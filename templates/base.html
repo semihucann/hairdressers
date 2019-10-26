@@ -4,6 +4,24 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Hairdressers - {% block title %}{% endblock %}</title>
+
+    <!--Jquery Js file -->
+    <script type = "text/javascript"
+         src = "{{ url_for('static', filename = 'js/jquery.js') }}" ></script>
+    <!--------------------->
+
+    <!-- Datatable js file for Homepage-->
+    <script type = "text/javascript"
+         src = "{{ url_for('static', filename = 'js/datatablebootstrapjsfile.js') }}" ></script>
+    <script type = "text/javascript"
+         src = "{{ url_for('static', filename = 'js/datatablejsfile.js') }}" ></script>
+    <!-- --------------------------------------->
+    <!--Css file for Datatable in HomePage-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cloudfarecsslib.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/datatablesbootstrap.css') }}">
+    <!----------------------------------------------->
+
+
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css"/>
 </head>
@@ -15,10 +33,10 @@
             <a class="button is-link" href="{{ url_for('home_page') }}">Home</a>
           </span>
             <span class="navbar-item">
-            <a class="button is-link" href="{{ url_for('blog_page') }}">Blog</a>
+            <a class="button is-link">Blog</a>
           </span>
             <span class="navbar-item">
-            <a class="button is-link" href="{{ url_for('profile_page') }}">Profile</a>
+            <a class="button is-link">Profile</a>
           </span>
         </div>
       </nav>
@@ -36,5 +54,16 @@
         <small>&copy;2019, Hairdressers </small>
       </div>
     </footer>
+
+
+
+
+   <script>
+       //function for table calling in HomePage
+       $(document).ready(function() {
+            $('#allBerbers').DataTable();
+        } );
+   </script>
+
 </body>
 </html>

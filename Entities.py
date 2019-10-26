@@ -1,3 +1,19 @@
+class Berbershop:
+    def __init__(self):
+
+        self.id=None
+        self.shopname=None
+        self.ownerpeople_id=None
+        self.location=None
+        self.openingtime=None
+        self.closingtime=None
+        self.tradenumber=None
+
+
+
+
+
+
 #Entity of People table in database
 class People:
     def __init__(self,id,username,name,surname,mail,password,gender,age):
@@ -32,4 +48,7 @@ class Comment:
         self.comment=comment
         self.point=point
         self.datetime=datetime
+
+
+
 

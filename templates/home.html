@@ -1,5 +1,52 @@
 {%extends "base.html"%}
 {%block title%} Homepage {%endblock%}
 {%block content%}
-    <p> Hello {{name}} ! </p>
+
+
+
+
+    <div class="container mb-3 mt-3">
+
+        <table id="allBerbers" class="table table-striped table-bordered" style="width:90%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Owner</th>
+                    <th>Place</th>
+                    <th>OpeningTime</th>
+                    <th>ClosingTime</th>
+                    <th>TradeNumber</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+        {% for berber in berbers %}
+                <tr>
+                    <td>{{berber.shopname}}</td>
+                    <td>{{berber.ownerpeople_id}}</td>
+                    <td>{{berber.location}}</td>
+                    <td>{{berber.openingtime}}</td>
+                    <td>{{berber.closingtime}}</td>
+                    <td>{{berber.tradenumber}}</td>
+                    <td>
+                        <a href = "">Check</a>
+                    </td>
+                </tr>
+        {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>Owner</th>
+                    <th>Place</th>
+                    <th>OpeningTime</th>
+                    <th>ClosingTime</th>
+                    <th>TradeNumber</th>
+                </tr>
+            </tfoot>
+        </table>
+
+    </div>
+
+
 {%endblock%}

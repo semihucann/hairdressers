@@ -28,7 +28,16 @@ def listOfBerbers():
     berbershop3.openingtime = "12.00"
     berbershop3.ownerpeople_id = 258
 
+    berbershop4 = Berbershop()
+    berbershop4.shopname = "Ağdacı Ertuğrul"
+    berbershop4.id = 4
+    berbershop4.closingtime = "23.00"
+    berbershop4.tradenumber = 2355
+    berbershop4.location = "Diyarbakır"
+    berbershop4.openingtime = "12.00"
+    berbershop4.ownerpeople_id = 258
 
 
-    berberShopList=[berbershop1,berbershop2,berbershop3]
+
+    berberShopList=[berbershop1,berbershop2,berbershop3,berbershop4]
     return berberShopList

@@ -19,8 +19,11 @@ def signupbase_page():
         return render_template("signup_base.html")
     else:
         form_register_type = request.form["register_type"]
+        form_mail = request.form["mail"]
+        form_name_surname = request.form["name_surname"]
         form_username = request.form["username"]
         form_password = request.form["password"]
-        print(form_username,form_password, form_register_type)
+        form_gender = request.form["gender"]
+        print(form_mail,form_name_surname, form_username, form_password, form_register_type,form_gender)
 
         return redirect(url_for("blog_page"))

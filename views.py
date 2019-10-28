@@ -14,6 +14,7 @@ def blog_page():
 def profile_page():
     return render_template("profile.html")
 
+
 def signupbase_page():
     if request.method == 'GET':
         return render_template("signup_base.html")
@@ -26,4 +27,16 @@ def signupbase_page():
         form_gender = request.form["gender"]
         print(form_mail,form_name_surname, form_username, form_password, form_register_type,form_gender)
 
-        return redirect(url_for("blog_page"))
+        if form_register_type=="type_user":
+            return render_template("signup_user.html")
+        elif form_register_type=="type_owner":
+            return render_template("signup_owner.html")
+        elif form_register_type=="type_berber":
+            return render_template("signup_berber.html")
+        else:
+            return redirect(url_for("signupbase_page"))
+
+
+def signup_user(username):
+    print(username)
+    return render_template("signup_user.html")

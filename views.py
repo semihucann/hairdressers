@@ -1,4 +1,4 @@
-from flask import render_template,Flask
+from flask import render_template,Flask,request,redirect,url_for
 import Temporarypython
 
 
@@ -13,3 +13,14 @@ def blog_page():
 
 def profile_page():
     return render_template("profile.html")
+
+def signupbase_page():
+    if request.method == 'GET':
+        return render_template("signup_base.html")
+    else:
+        form_register_type = request.form["register_type"]
+        form_username = request.form["username"]
+        form_password = request.form["password"]
+        print(form_username,form_password, form_register_type)
+
+        return redirect(url_for("blog_page"))

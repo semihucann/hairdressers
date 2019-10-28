@@ -1,0 +1,40 @@
+{%extends "base.html"%}
+{%block title%} Signup {%endblock%}
+{%block content%}
+ <h1 class="title">Signup Page</h1>
+    <form action="" method="post" name="signup_base_first">
+        <div class="field">
+          <label for="register_type" class="label">Registration Type</label>
+          <div class="control">
+            <div class="select is-success">
+              <select name="register_type">
+                <option value="type_user">User</option>
+                <option value="type_owner">Owner</option>
+                <option value="type_berber">Berber</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+      <div class="field">
+        <label for="username" class="label">Username</label>
+        <div class="control">
+          <input type="text" name="username" class="input is-success" required="required"/>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="password" class="label">Password</label>
+        <div class="control">
+          <input type="password" name="password" class="input is-success" required="required"/>
+        </div>
+      </div>
+
+      <div class="field is-grouped">
+        <div class="control">
+             <button class="button is-success">Continue</button>
+        </div>
+      </div>
+
+    </form>
+{%endblock%}

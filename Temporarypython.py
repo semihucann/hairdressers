@@ -24,7 +24,7 @@ def listOfBerbers():
     berbershop3.id = 3
     berbershop3.closingtime = "23.00"
     berbershop3.tradenumber = 2355
-    berbershop3.location = "İzmir"
+    berbershop3.location = "Izmir"
     berbershop3.openingtime = "12.00"
     berbershop3.ownerpeople_id = 258
 

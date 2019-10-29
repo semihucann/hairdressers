@@ -4,7 +4,8 @@ import Temporarypython
 
 def home_page():
     berbershopList = Temporarypython.listOfBerbers()
-    return render_template('home.html', berbers=berbershopList)
+    citylist = ["Istanbul", "Ankara", "Izmir", "Diyarbakır"]
+    return render_template('home.html', berbers=berbershopList, citylist=citylist)
 
 
 def blog_page():

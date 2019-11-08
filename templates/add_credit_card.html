@@ -1,0 +1,42 @@
+{%extends "base.html"%}
+{%block title%} Profile page {%endblock%}
+{%block content%}
+<h1 class="title">Add Credit Card</h1>
+
+    <form action="/profile" method="post" name="movie_edit">
+        <div class="field">
+          <label for="name_surname" class="label">Card Owner Name Surname</label>
+          <div class="control">
+            <input type="text" name="name_surname" class="input" required="required"/>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="number" class="label">Card Number</label>
+          <div class="control">
+            <input type="number" name="number" class="input" required="required"/>
+          </div>
+        </div>
+
+        <div class="field">
+        <label for="date" class="label">Valid Thru (01/20)</label>
+        <div class="control">
+          <input type="text" name="date" class="input" required="required"/>
+        </div>
+        </div>
+
+        <div class="field">
+          <label for="cvv" class="label">CVV</label>
+          <div class="control">
+            <input type="number" name="cvv" class="input" required="required"/>
+          </div>
+        </div>
+
+
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="button is-primary is-small">Save</button>
+          </div>
+      </div>
+    </form>
+{%endblock%}

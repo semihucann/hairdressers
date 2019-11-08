@@ -13,7 +13,17 @@ def blog_page():
 
 
 def profile_page():
+    if request.method == 'POST':
+        card_owner_name = request.form["name_surname"]
+        card_number = request.form["number"]
+        card_valid_date = request.form["date"]
+        card_cvv = request.form["cvv"]
+        print(card_owner_name + " " + card_number + " " + card_valid_date + " " + card_cvv)
     return render_template("profile.html")
+
+
+def addcreditcard_page():
+    return render_template("add_credit_card.html")
 
 
 def signupbase_page():

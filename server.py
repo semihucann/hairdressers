@@ -9,6 +9,9 @@ def create_app():
     app2.add_url_rule("/profile", view_func=views.profile_page, methods=["GET", "POST"])
     app2.add_url_rule("/addcreditcard", view_func=views.addcreditcard_page, methods=["GET", "POST"])
     app2.add_url_rule("/signup", view_func=views.signupbase_page, methods=["GET", "POST"])
+    app2.add_url_rule("/signup_berber", view_func=views.signup_berber_page, methods=["GET", "POST"])
+    app2.add_url_rule("/signup_owner", view_func=views.signup_owner_page, methods=["GET", "POST"])
+    app2.add_url_rule("/signup_user", view_func=views.signup_user_page, methods=["GET", "POST"])
 
     app2.config["DEBUG"] = True
     return app2

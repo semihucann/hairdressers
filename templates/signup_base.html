@@ -1,20 +1,9 @@
 {%extends "base.html"%}
 {%block title%} Signup {%endblock%}
 {%block content%}
- <h1 class="title">Signup Page</h1>
+    {%block type%}{%endblock%}
+
     <form action="" method="post" name="signup_base_first">
-        <div class="field">
-          <label for="register_type" class="label">Registration Type</label>
-          <div class="control">
-            <div class="select is-success">
-              <select name="register_type">
-                <option value="type_user">User</option>
-                <option value="type_owner">Owner</option>
-                <option value="type_berber">Berber</option>
-              </select>
-            </div>
-          </div>
-        </div>
         <div class="field">
           <label for="mail" class="label">E-Mail Adress</label>
             <div class="control">
@@ -45,15 +34,11 @@
             </div>
           </div>
           <div class="control">
+            <label for="gender" class="label">Gender</label>
             <input type="radio" name="gender" id="men" value="men" checked> Men </input>
             <input type="radio" name="gender" id="women" value="women"> Women </input>
           </div>
-
-          <br/>
-          <div class="field is-grouped">
-            <div class="control">
-                 <button class="button is-success">Continue</button>
-            </div>
-          </div>
+     {%block question%}{%endblock%}
     </form>
+
 {%endblock%}

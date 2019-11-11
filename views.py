@@ -28,26 +28,58 @@ def addcreditcard_page():
 
 def signupbase_page():
     if request.method == 'GET':
-        return render_template("signup_base.html")
+        #signup_base dönüyordu
+        return render_template("register_type.html")
     else:
-        form_register_type = request.form["register_type"]
+        if request.form['submit_button'] == 'user':
+            return redirect(url_for('signup_user_page'))
+        elif request.form['submit_button'] == 'berber':
+            return redirect(url_for('signup_berber_page'))
+        elif request.form['submit_button'] == 'owner':
+            return redirect(url_for('signup_owner_page'))
+        return render_template("profile.html")
+
+
+def signup_berber_page():
+    if request.method == 'GET':
+        return render_template("signup_berber.html")
+    else:
         form_mail = request.form["mail"]
         form_name_surname = request.form["name_surname"]
         form_username = request.form["username"]
         form_password = request.form["password"]
         form_gender = request.form["gender"]
-        print(form_mail,form_name_surname, form_username, form_password, form_register_type,form_gender)
-
-        if form_register_type=="type_user":
-            return render_template("signup_user.html")
-        elif form_register_type=="type_owner":
-            return render_template("signup_owner.html")
-        elif form_register_type=="type_berber":
-            return render_template("signup_berber.html")
-        else:
-            return redirect(url_for("signupbase_page"))
+        form_experince_year = request.form["experience"]
+        form_gender_choice = request.form["gender_choice"]
+        form_start_time = request.form["start_time"]
+        form_finish_time = request.form["finish_time"]
+        print(form_mail, form_name_surname, form_username, form_password, form_gender, form_experince_year, form_gender_choice, form_start_time, form_finish_time)
+        return redirect(url_for("home_page"))
+        #uyarı metni yazmamız gerekiyor
 
 
-def signup_user(username):
-    print(username)
-    return render_template("signup_user.html")
+def signup_owner_page():
+    if request.method == 'GET':
+        return render_template("signup_owner.html")
+    else:
+        form_mail = request.form["mail"]
+        form_name_surname = request.form["name_surname"]
+        form_username = request.form["username"]
+        form_password = request.form["password"]
+        form_gender = request.form["gender"]
+        print(form_mail, form_name_surname, form_username, form_password, form_gender)
+        return redirect(url_for("home_page"))
+        # uyarı metni yazmamız gerekiyor
+
+def signup_user_page():
+    if request.method == 'GET':
+        return render_template("signup_user.html")
+    else:
+        form_mail = request.form["mail"]
+        form_name_surname = request.form["name_surname"]
+        form_username = request.form["username"]
+        form_password = request.form["password"]
+        form_gender = request.form["gender"]
+        print(form_mail, form_name_surname, form_username, form_password, form_gender)
+        return redirect(url_for("home_page"))
+        # uyarı metni yazmamız gerekiyor

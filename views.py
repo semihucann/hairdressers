@@ -67,7 +67,13 @@ def signup_owner_page():
         form_username = request.form["username"]
         form_password = request.form["password"]
         form_gender = request.form["gender"]
-        print(form_mail, form_name_surname, form_username, form_password, form_gender)
+        form_tc = request.form["tc_number"]
+        form_serial_number = request.form["serial_number"]
+        form_vol_number = request.form["vol_number"]
+        form_family_order_no = request.form["family_order_no"]
+        form_order_no = request.form["order_no"]
+
+        print(form_mail, form_name_surname, form_username, form_password, form_gender, form_tc, form_serial_number, form_vol_number, form_family_order_no, form_order_no)
         return redirect(url_for("home_page"))
         # uyarı metni yazmamız gerekiyor
 

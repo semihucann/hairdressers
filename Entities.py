@@ -40,14 +40,17 @@ class People:
 
 
 #Entity of Comment table in Database
-class Comment:
-    def __init__(self, id, peopleid, berberid, comment, point, datetime):
+class Comments:
+    def __init__(self, id, peopleid, berberid, comment_title, comment_content, rate, datetime,comment_like,comment_dislike):
         self.id = id
-        self.peopleid=peopleid
-        self.berberid=berberid
-        self.comment=comment
-        self.point=point
-        self.datetime=datetime
+        self.peopleid = peopleid
+        self.berber = berberid
+        self.comment_title = comment_title
+        self.comment_content=comment_content
+        self.rate = rate
+        self.date_time=datetime
+        self.comment_like=comment_like
+        self.comment_dislike=comment_dislike
 
 
 

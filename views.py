@@ -89,3 +89,7 @@ def signup_user_page():
         print(form_mail, form_name_surname, form_username, form_password, form_gender)
         return redirect(url_for("home_page"))
         # uyarı metni yazmamız gerekiyor
+
+
+def signin():
+    return render_template("signin.html")

@@ -12,6 +12,7 @@ def create_app():
     app2.add_url_rule("/signup_berber", view_func=views.signup_berber_page, methods=["GET", "POST"])
     app2.add_url_rule("/signup_owner", view_func=views.signup_owner_page, methods=["GET", "POST"])
     app2.add_url_rule("/signup_user", view_func=views.signup_user_page, methods=["GET", "POST"])
+    app2.add_url_rule("/signin", view_func=views.signin)
 
     app2.config["DEBUG"] = True
     return app2

@@ -8,17 +8,18 @@ INIT_STATEMENTS = [
     "CREATE TABLE IF NOT EXISTS DUMMY (NUM INTEGER)",
     "INSERT INTO DUMMY VALUES (42)",
 
-    "CREATE TABLE IF NOT EXISTS Comments( "+
-    "id integer PRIMARY KEY, "+
-    "people_id integer, "+
-    "berber integer, "+
-    "comment_title VARCHAR (100), "+
-    "comment_content VARCHAR (500), "+
-    "rate integer NOT NULL, "+
-    "date_time TIMESTAMP, "+
-    "comment_like integer NOT NULL, "+
-    "comment_dislike integer NOT NULL "+
-    ")",
+    """
+    CREATE TABLE IF NOT EXISTS Comments(
+    id SERIAL PRIMARY KEY, 
+    people_id integer,
+    berber integer,
+    comment_title VARCHAR (100),
+    comment_content VARCHAR (500),
+    rate integer NOT NULL,
+    date_time TIMESTAMP, 
+    comment_like integer NOT NULL, 
+    comment_dislike integer NOT NULL 
+    )""",
 
 
 ]

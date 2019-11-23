@@ -1,3 +1,5 @@
+from datetime import datetime
+today = datetime.now()
 class Berbershop:
     def __init__(self):
 
@@ -40,17 +42,23 @@ class People:
 
 
 #Entity of Comment table in Database
-class Comments:
-    def __init__(self, id, peopleid, berberid, comment_title, comment_content, rate, datetime,comment_like,comment_dislike):
-        self.id = id
-        self.peopleid = peopleid
-        self.berber = berberid
-        self.comment_title = comment_title
-        self.comment_content=comment_content
-        self.rate = rate
-        self.date_time=datetime
-        self.comment_like=comment_like
-        self.comment_dislike=comment_dislike
+class Comment:
+    def __init__(self):
+        self.id = None
+        self.peopleId = None
+        self.berber = None
+        self.title = ""
+        self.content = ""
+        self.rate = 0
+        self.dateTime = today
+        self.like = 0
+        self.dislike = 0
+
+
+
+
+
+
 
 
 

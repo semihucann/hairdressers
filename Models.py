@@ -1,5 +1,5 @@
 import psycopg2 as dbapi2
-from Entities import People,Comments
+from Entities import People,Comment
 url = "postgres://lltjryrurbhacv:4ed89e50a1718d204c9ac3cee26560e3874bf47bd7ce47e12f0c4f81611954f6@ec2-107-22-236-52.compute-1.amazonaws.com:5432/d2lpnjbrjgerqm"
 
 
@@ -26,22 +26,96 @@ class PeopleModel:
             return peoplelist
 
 
-class CommentsModel:
-    def Insert(Comments):
+class CommentModel:
+
+    #will be called from outside to decide insert or update
+    def save(self, comment):
+        if(comment.id == None): # if object has no id value then insert
+            self.__insert(comment)
+        else:
+            if(self.ifExist(comment.id)!=True): # object has value but if it exists in database
+                self.__insert(comment) #then insert since that object not in database
+            else:
+                self.__update(comment) # it exists in database update
+
+
+
+
+    #private insert method that will be used by save method
+    def __insert(self, comment):
         with dbapi2.connect(url) as connection:
             cursor=connection.cursor()
-            cursor.execute("""INSERT INTO Comments (id,people_id , berber , comment_title , comment_content , rate , date_time , 
+            cursor.execute("""INSERT INTO Comments (people_id , berber , comment_title , comment_content , rate , date_time , 
                 comment_like , comment_dislike)
-                VALUES (%s , %s , %s , %s , %s , %s , %s , %s , %s)""", (Comments.id, Comments.peopleid, Comments.berber, Comments.comment_title,
-                                         Comments.comment_content, Comments.rate, Comments.date_time, Comments.comment_like,
-                                         Comments.comment_dislike))
+                VALUES (%s , %s , %s , %s , %s , %s , %s , %s)""", (comment.peopleId, comment.berber, comment.title,
+                                         comment.content, comment.rate, comment.dateTime, comment.like,
+                                         comment.dislike))
+    #get by id
+    def getById(self,id):
+        with dbapi2.connect(url) as connection:
+            cursor=connection.cursor()
+            cursor.execute ("""
+                SELECT * from Comments as c where c.id = %s """,(id,))
+            row = cursor.fetchone()
+
+        # return one comment object
+        comment = Comment()
+        comment.id, comment.peopleId, comment.berber, comment.title, comment.content, comment.rate, comment.dateTime, \
+        comment.like, comment.dislike = row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8]
+        return comment
+
+    #get All
+    def getAll(self):
+        with dbapi2.connect(url) as connection:
+            cursor=connection.cursor()
+            cursor.execute("SELECT * from Comments as c")
+            rows=cursor.fetchall()
+
+        comments = []
+        for row in rows:
+            comment = Comment()
+            comment.id, comment.peopleId, comment.berber, comment.title, comment.content, comment.rate, comment.dateTime, \
+            comment.like, comment.dislike = row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8]
+            comments.append(comment)
+        return comments
+
+    def deleteById(self,id):
+        with dbapi2.connect(url) as connection:
+            cursor=connection.cursor()
+            cursor.execute("""
+                DELETE from Comments where id = %s
+            """,(id,))
+
+    #private update method that will be used by save method
+    def __update(self,comment):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                UPDATE Comments SET id = %s, people_id = %s , berber = %s , comment_title =%s , comment_content = %s ,
+                rate = %s , date_time = %s , comment_like =%s , comment_dislike = %s where id = %s""",
+                (comment.id, comment.peopleId, comment.berber, comment.title, comment.content, comment.rate, comment.dateTime,
+                 comment.like, comment.dislike, comment.id))
+
+    def ifExist(self,id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                SELECT * from Comments where id = %s
+            """,(id,))
+        row = cursor.fetchone()
+        if(row == None):
+            return False
+        return True
 
 
 
-#adding value by using model and entity
-Comments1=Comments(1,1,1,'my comment','content',1,'2016-06-22 19:10:25-07',1,2)
-commentModel=CommentsModel
-commentModel.Insert(Comments1)
+
+
+
+
+
+
+
 
 
 

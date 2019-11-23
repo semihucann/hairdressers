@@ -54,6 +54,19 @@ class Comment:
         self.like = 0
         self.dislike = 0
 
+#Entity of Contact_info table in database
+class ContactInfo:
+    def __init__(self):
+        self.id = None
+        self.berberId = None
+        self.berberShopId = None
+        self.type = None
+        self.telephoneNumber = None
+        self.facebook = None
+        self.twitter = None
+        self.instagram = None
+
+
 
 
 

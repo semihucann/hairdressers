@@ -10,15 +10,28 @@ INIT_STATEMENTS = [
 
     """
     CREATE TABLE IF NOT EXISTS Comments(
-    id SERIAL PRIMARY KEY, 
-    people_id integer,
-    berber integer,
-    comment_title VARCHAR (100),
-    comment_content VARCHAR (500),
-    rate integer NOT NULL,
-    date_time TIMESTAMP, 
-    comment_like integer NOT NULL, 
-    comment_dislike integer NOT NULL 
+        id SERIAL PRIMARY KEY, 
+        people_id integer,
+        berber integer,
+        comment_title VARCHAR (100),
+        comment_content VARCHAR (500),
+        rate integer NOT NULL,
+        date_time TIMESTAMP, 
+        comment_like integer NOT NULL, 
+        comment_dislike integer NOT NULL 
+    )""",
+    #  CREATE TYPE IF NOT EXISTS type AS ENUM ('company', 'personal');
+    """
+  
+    CREATE TABLE IF NOT EXISTS Contact_info(
+        id SERIAL PRIMARY KEY, 
+        berber_id integer,
+        berbershop_id integer,
+        type type,
+        telephone_number VARCHAR (12),
+        facebook VARCHAR (500),
+        twitter VARCHAR (500),
+        instagram VARCHAR (500)
     )""",
 
 

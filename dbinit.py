@@ -34,6 +34,21 @@ INIT_STATEMENTS = [
         instagram VARCHAR (500)
     )""",
 
+    """
+    
+       CREATE TABLE IF NOT EXISTS Rezervation(
+           id SERIAL PRIMARY KEY,
+           people_id integer, 
+           berber_id integer,
+           datetime_registration TIMESTAMP,
+           datetime_rezervation TIMESTAMP,
+           status VARCHAR (100),
+           note VARCHAR (100),
+           price_type VARCHAR (100)
+       )""",
+
+
+
 
 ]
 

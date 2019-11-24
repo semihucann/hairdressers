@@ -12,3 +12,44 @@
     padding-bottom:30px;
     padding-top:10px
 }
+
+#allBerbers tr:hover
+{
+    background-color: yellow;
+}
+
+
+#allbarbershopsdiv{
+    margin-top:50px;
+}
+
+#myInputStore{
+  width: 15%;
+  padding: 6px 10px;
+  margin: 8px 20 0 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+#myInputCity
+{
+  width: 15%;
+  padding: 6px 10px;
+  margin: 8px 10 0 10px;
+  border: 1px solid brown;
+  border-radius: 4px;
+}
+
+#allBerbers_length{
+     display: none;
+}
+
+#allbarbershopssearchdiv{
+    margin-bottom : 40px
+}
+
+.discountbutton
+{
+    height : 50px;
+    width : 50px;
+    background-color : green;
+}

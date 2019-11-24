@@ -193,62 +193,26 @@
          });
        }
 
-       //function for table calling in HomePage
+       //DocumentReady
        $(document).ready(function() {
-            $('#allBerbers').DataTable();
+
+            // Datatable adjustments
+            var table = $('#allBerbers').DataTable();
+
+            $('#myInputStore').on( 'keyup', function () {
+                table.columns(0).search( this.value ).draw();
+            } );
+            $('#myInputCity').on( 'keyup', function () {
+                table.columns(2).search( this.value ).draw();
+            } );
+
+            $('#allBerbers_length').hide();
+            $('#allBerbers_filter').hide();
+
+            //Slide
+
+
         } );
-
-
-
-        //table filtering in HomePage
-        function myFunction() {
-
-          // Declare variables
-
-          var input, filter, table, tr, td, i, txtValue;
-          table = document.getElementById("allBerbers");
-          tr = table.getElementsByTagName("tr");
-          input1 = document.getElementById("myInputStore")
-          input2 = document.getElementById("myInputCity")
-          console.log("input 1 : "+input1+ " input2 : "+input2)
-
-          filter1 = input1.value.toUpperCase();
-          filter2 = input2.value.toUpperCase();
-              // Loop through all table rows, and hide those who don't match the search query
-              for (i = 0; i < tr.length; i++) {
-                td1 = tr[i].getElementsByTagName("td")[0];
-                td2 = tr[i].getElementsByTagName("td")[2];
-
-                if (td1 && td2) {
-
-                  txtValue1 = td1.textContent || td1.innerText;
-                  txtValue2 = td2.textContent || td2.innerText;
-
-                  if (txtValue1.toUpperCase().indexOf(filter1) > -1
-                  && txtValue2.toUpperCase().indexOf(filter2) > -1 ) {
-                    tr[i].style.display = "";
-                  } else {
-                    tr[i].style.display = "none";
-                  }
-                }
-
-
-
-
-
-
-
-              }
-          }
-
-
-
-
-
-
-
-
-
 
 
 

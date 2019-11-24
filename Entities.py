@@ -10,34 +10,7 @@ class Berbershop:
         self.openingtime=None
         self.closingtime=None
         self.tradenumber=None
-
-
-
-
-
-
-#Entity of People table in database
-class People:
-    def __init__(self,id,username,name,surname,mail,password,gender,age):
-        self.username=username
-        self.name=name
-        self.surname=surname
-        self.mail=mail
-        self.password=password
-        self.gender=gender
-        self.age=age
-
-    @property
-    def fullname(self):
-        return self.name+" "+self.surname
-
-    @fullname.setter
-    def fullname(self,fullname):
-        first, last=fullname.split(' ')
-        self.name=first
-        self.surname=last
-
-
+        self.campaigns = None # i need this for my page, you can ignore it for now
 
 
 

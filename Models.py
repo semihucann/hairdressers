@@ -1,25 +1,25 @@
 import psycopg2 as dbapi2
-from Entities import People,Comment, ContactInfo
+from Entities import People,Comment, ContactInfo, Rezervation
 url = "postgres://lltjryrurbhacv:4ed89e50a1718d204c9ac3cee26560e3874bf47bd7ce47e12f0c4f81611954f6@ec2-107-22-236-52.compute-1.amazonaws.com:5432/d2lpnjbrjgerqm"
 
 
 class CommentModel:
 
-    #will be called from outside to decide insert or update
+    # to decide insert or update
     def save(self, comment):
         if(comment.id == None): # if object has no id value then insert
-            self.__insert(comment)
+            self.insert(comment)
         else:
             if(self.ifExist(comment.id)!=True): # object has value but if it exists in database
-                self.__insert(comment) #then insert since that object not in database
+                self.insert(comment) #then insert since that object not in database
             else:
-                self.__update(comment) # it exists in database update
+                self.update(comment) # it exists in database update
 
 
 
 
-    #private insert method that will be used by save method
-    def __insert(self, comment):
+    #insert method that will be do insertion
+    def insert(self, comment):
         with dbapi2.connect(url) as connection:
             cursor=connection.cursor()
             cursor.execute("""INSERT INTO Comments (people_id , berber , comment_title , comment_content , rate , date_time , 
@@ -63,8 +63,8 @@ class CommentModel:
                 DELETE from Comments where id = %s
             """,(id,))
 
-    #private update method that will be used by save method
-    def __update(self,comment):
+    #update method that will do update
+    def update(self,comment):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""
@@ -88,18 +88,18 @@ class CommentModel:
 
 class ContactInfoModel:
 
-    # will be called from outside to decide insert or update
+    #  to decide insert or update
     def save(self, comment):
         if (comment.id == None):  # if object has no id value then insert
-            self.__insert(comment)
+            self.insert(comment)
         else:
             if (self.ifExist(comment.id) != True):  # object has value but if it exists in database
-                self.__insert(comment)  # then insert since that object not in database
+                self.insert(comment)  # then insert since that object not in database
             else:
-                self.__update(comment)  # it exists in database update
+                self.update(comment)  # it exists in database update
 
-    # private insert method that will be used by save method
-    def __insert(self, contactInfo):
+    # insert method that will do insertion
+    def insert(self, contactInfo):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""INSERT INTO Contact_info (berber_id , berbershop_id , type , telephone_number , facebook , twitter , 
@@ -108,8 +108,8 @@ class ContactInfoModel:
                                                                    contactInfo.telephoneNumber,contactInfo.facebook,contactInfo.twitter,
                                                                    contactInfo.instagram))
 
-    # private update method that will be used by save method
-    def __update(self, contactInfo):
+    #update method that will do update
+    def update(self, contactInfo):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""
@@ -169,6 +169,88 @@ class ContactInfoModel:
 
 
 
+class RezervationModel:
+
+    # to decide insert or update
+    def save(self, rezervation):
+        if (rezervation.id == None):  # if object has no id value then insert
+            self.insert(rezervation)
+        else:
+            if (self.ifExist(rezervation.id) != True):  # object has value but if it exists in database
+                self.insert(rezervation)  # then insert since that object not in database
+            else:
+                self.update(rezervation)  # it exists in database update
+
+    # insert method that will do insertion
+    def insert(self, rezervation):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""INSERT INTO Rezervation (people_id, berber_id, datetime_registration, datetime_rezervation, status, note, 
+                    price_type)
+                    VALUES (%s , %s , %s , %s , %s , %s , %s)""", (rezervation.peopleId, rezervation.berberId, rezervation.dateTimeRegistration,
+                                                                   rezervation.dateTimeRezervation, rezervation.status, rezervation.note,
+                                                                   rezervation.priceType))
+
+    # update method that will do update
+    def update(self, rezervation):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                UPDATE Rezervation SET id = %s, people_id  = %s, berber_id = %s, datetime_registration = %s, datetime_rezervation = %s ,
+                status = %s , note = %s , price_type =%s where id = %s """,
+                           (rezervation.id,rezervation.peopleId, rezervation.berberId, rezervation.dateTimeRegistration,
+                                                                   rezervation.dateTimeRezervation, rezervation.status, rezervation.note,
+                                                                   rezervation.priceType,rezervation.id))
+
+    # get by id
+    def getById(self, id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                SELECT * from Rezervation as r where r.id = %s """, (id,))
+            row = cursor.fetchone()
+
+        # return one comment object
+        rezervation = Rezervation()
+        rezervation.id, rezervation.peopleId, rezervation.berberId, rezervation.dateTimeRegistration, rezervation.dateTimeRezervation, \
+        rezervation.status, rezervation.note, rezervation.priceType = row[0], row[1], row[2], row[3], row[4], \
+                                                                      row[5], row[6], row[7]
+        return rezervation
+
+    def deleteById(self,id):
+        with dbapi2.connect(url) as connection:
+            cursor=connection.cursor()
+            cursor.execute("""
+                DELETE from Rezervation where id = %s
+            """,(id,))
+
+    # get All
+    def getAll(self):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("SELECT * from Rezervation as r")
+            rows = cursor.fetchall()
+
+        rezervations = []
+        for row in rows:
+            rezervation = Rezervation()
+            rezervation.id, rezervation.peopleId, rezervation.berberId, rezervation.dateTimeRegistration, rezervation.dateTimeRezervation,\
+            rezervation.status, rezervation.note, rezervation.priceType = row[0], row[1], row[2], row[3], row[4], \
+                                                                               row[5], row[6], row[7]
+            rezervations.append(rezervation)
+        return rezervations
+
+
+    def ifExist(self,id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                SELECT * from Rezervation where id = %s
+            """,(id,))
+        row = cursor.fetchone()
+        if(row == None):
+            return False
+        return True
 
 
 

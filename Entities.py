@@ -1,5 +1,5 @@
 from datetime import datetime
-today = datetime.now()
+
 class Berbershop:
     def __init__(self):
 
@@ -50,7 +50,7 @@ class Comment:
         self.title = ""
         self.content = ""
         self.rate = 0
-        self.dateTime = today
+        self.dateTime = datetime.now()
         self.like = 0
         self.dislike = 0
 
@@ -65,6 +65,21 @@ class ContactInfo:
         self.facebook = None
         self.twitter = None
         self.instagram = None
+
+
+#Entity of Rezervation table in database
+class Rezervation :
+    def __init__(self):
+        self.id = None
+        self.peopleId = None
+        self.berberId = None
+        self.dateTimeRegistration = datetime.now()
+        self.dateTimeRezervation = None
+        self.status = None
+        self.note = None
+        self.priceType = None
+
+
 
 
 

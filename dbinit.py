@@ -63,13 +63,19 @@ INIT_STATEMENTS = [
         role VARCHAR(1)    
     )""",
     """
-    INSERT INTO People(username,name_surname,mail,password_hash,gender,age,role) VALUES('firstuser','first user','first@user.com', '1a2b','m',22,'u');
+    CREATE TABLE IF NOT EXISTS Berber(
+        id SERIAL PRIMARY KEY,
+        people_id INTEGER REFERENCES People(id),
+        berbershop_id INTEGER DEFAULT 0, 
+        gender_choice VARCHAR(1),
+        experience_year INTEGER,
+        start_time INTEGER,
+        finish_time INTEGER,
+        rates INTEGER DEFAULT 0 
+    )
     """
     #################################################################################
-
-
 ]
-
 
 def initialize(url):
     with dbapi2.connect(url) as connection:

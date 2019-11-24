@@ -47,8 +47,25 @@ INIT_STATEMENTS = [
            price_type VARCHAR (100)
        )""",
 
-
-
+    # SEMİH TABLE ######################################################################
+    # "CREATE TYPE IF NOT EXISTS GENDER_TYPE AS ENUM ('male', 'female', 'unisex'); ",
+    # "CREATE TYPE IF NOT EXISTS ROLE AS ENUM ('berber','owner','user', 'admin' ); ",
+    # One char is used
+    """
+    CREATE TABLE IF NOT EXISTS People(
+        id SERIAL PRIMARY KEY,
+        username VARCHAR(50) UNIQUE,
+        name_surname VARCHAR(50),
+        mail VARCHAR(300) UNIQUE,
+        password_hash VARCHAR(300),
+        gender VARCHAR(1),
+        age integer,
+        role VARCHAR(1)    
+    )""",
+    """
+    INSERT INTO People(username,name_surname,mail,password_hash,gender,age,role) VALUES('firstuser','first user','first@user.com', '1a2b','m',22,'u');
+    """
+    #################################################################################
 
 ]
 

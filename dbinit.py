@@ -47,11 +47,35 @@ INIT_STATEMENTS = [
            price_type VARCHAR (100)
        )""",
 
-
-
-
+    # SEMİH TABLE ######################################################################
+    # "CREATE TYPE IF NOT EXISTS GENDER_TYPE AS ENUM ('male', 'female', 'unisex'); ",
+    # "CREATE TYPE IF NOT EXISTS ROLE AS ENUM ('berber','owner','user', 'admin' ); ",
+    # One char is used
+    """
+    CREATE TABLE IF NOT EXISTS People(
+        id SERIAL PRIMARY KEY,
+        username VARCHAR(50) UNIQUE,
+        name_surname VARCHAR(50),
+        mail VARCHAR(300) UNIQUE,
+        password_hash VARCHAR(300),
+        gender VARCHAR(1),
+        age integer,
+        role VARCHAR(1)    
+    )""",
+    """
+    CREATE TABLE IF NOT EXISTS Berber(
+        id SERIAL PRIMARY KEY,
+        people_id INTEGER REFERENCES People(id),
+        berbershop_id INTEGER DEFAULT 0, 
+        gender_choice VARCHAR(1),
+        experience_year INTEGER,
+        start_time INTEGER,
+        finish_time INTEGER,
+        rates INTEGER DEFAULT 0 
+    )
+    """
+    #################################################################################
 ]
-
 
 def initialize(url):
     with dbapi2.connect(url) as connection:

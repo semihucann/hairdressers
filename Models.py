@@ -1,7 +1,7 @@
 import psycopg2 as dbapi2
 from Entities import People,Comment, ContactInfo, Rezervation
-url = "postgres://lltjryrurbhacv:4ed89e50a1718d204c9ac3cee26560e3874bf47bd7ce47e12f0c4f81611954f6@ec2-107-22-236-52.compute-1.amazonaws.com:5432/d2lpnjbrjgerqm"
-
+import os
+url = os.getenv("DATABASE_URL")
 
 class CommentModel:
 
@@ -254,7 +254,10 @@ class RezervationModel:
 
 
 
-
+rezervationModel = RezervationModel()
+rezervation = Rezervation()
+rezervation.priceType = "not determined"
+rezervationModel.save(rezervation)
 
 
 

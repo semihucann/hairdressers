@@ -67,6 +67,7 @@ INIT_STATEMENTS = [
     """
     #################################################################################
 
+
 ]
 
 
@@ -79,7 +80,7 @@ def initialize(url):
 
 
 if __name__ == "__main__":
-    url = "postgres://lltjryrurbhacv:4ed89e50a1718d204c9ac3cee26560e3874bf47bd7ce47e12f0c4f81611954f6@ec2-107-22-236-52.compute-1.amazonaws.com:5432/d2lpnjbrjgerqm"
+    url = os.getenv("DATABASE_URL")
     if url is None:
         print("Usage: DATABASE_URL=url python dbinit.py", file=sys.stderr)
         sys.exit(1)

@@ -64,4 +64,16 @@ class People:
         self.gender = None
         self.age = None
         self.role = None
+
+
+class Berber:
+    def __init__(self):
+        self.id = None
+        self.people_id = None
+        self.berbershopid = None
+        self.gender_choice = None
+        self.experience_year = None
+        self.start_time = None
+        self.finish_time = None
+        self.rates = None
 ########################################################################

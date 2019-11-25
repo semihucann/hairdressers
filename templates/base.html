@@ -20,8 +20,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/datatablesbootstrap.css') }}">
     <!----------------------------------------------->
 
-    <!-- CustomHomePageCss  -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom_homepage.css') }}">
+
 
 
 
@@ -39,7 +38,10 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css"/>
 
 
-        <style>
+    <!-- CustomHomePageCss  -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom_homepage.css') }}">
+
+    <style>
     #flex-container {
         display: flex;
         flex-direction: row;
@@ -209,10 +211,27 @@
             $('#allBerbers_length').hide();
             $('#allBerbers_filter').hide();
 
-            //Slide
+            //Slide down button in datatable of barbers
+             $("#discountpricebutton").click(function(){
+                $("#panel").slideToggle("slow");
+             });
 
 
         } );
+
+        function discountpricebutton(buttonid) {
+            var xname= buttonid + "panel"
+            console.log (xname)
+            var x = document.getElementById(xname)
+            if (x.style.display == 'none') {
+                 console.log("1")
+                 x.style.display = 'block';
+            } else {
+                x.style.display = 'none';
+                console.log("2")
+            }
+
+        }
 
 
 

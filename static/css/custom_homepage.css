@@ -15,7 +15,7 @@
 
 #allBerbers tr:hover
 {
-    background-color: yellow;
+    background-color : yellow;
 }
 
 
@@ -52,4 +52,21 @@
     height : 50px;
     width : 50px;
     background-color : green;
+}
+
+td .card {
+  background-color : white;
+  float : left;
+  margin-left : 100px;
+  margin-top : 10px;
+  margin - bottom : 10px;
+  display : none;
+
+}
+
+#panelsidetext
+{
+    display: none;
+    display: inline;
+    float: left;
 }

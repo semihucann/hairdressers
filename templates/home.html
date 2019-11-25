@@ -325,21 +325,40 @@
             <tbody>
         {% for berber in berbers %}
                 <tr>
-                    <td>{{berber.shopname}}</td>
+                    <td>{{berber.shopname}}
+					</td>
                     <td>{{berber.ownerpeople_id}}</td>
                     <td>{{berber.location}}</td>
-                    <td>{{berber.openingtime}}</td>
+                    <td>{{berber.openingtime}}
+
+						<div class="card" id="{{berber.id}}discountpricebuttonpanel" style="width: 18rem;display:none">
+									<img src="..." class="card-img-top" alt="...">
+								  <div class="card-body" align="center">
+									<h5 class="card-title">{{berber.shopname}}</h5>
+									<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+								  </div>
+								  <ul class="list-group list-group-flush">
+									<li class="list-group-item">Campaign Text</li>
+									<li class="list-group-item">Dapibus ac facilisis in</li>
+									<li class="list-group-item">Vestibulum at eros</li>
+								  </ul>
+								  <div class="card-body" align="center">
+									<a href="#" class="card-link">Get Rezervation</a>
+								  </div>
+							</div>
+
+
+					</td>
                     <td>{{berber.closingtime}}</td>
                     <td>{{berber.tradenumber}}</td>
                     <td>
 						{% if berber.campaigns != None  %}
-							<form action="">
-         						<button type="submit" class="btn btn-danger btn-sm">Discounted Price</button>
-      						</form>
+
+							<button id="{{berber.id}}discountpricebutton" onclick="discountpricebutton('{{berber.id}}discountpricebutton')"
+									class="btn btn-danger btn-sm">Discounted Price</button>
 						{% else %}
-							<form action="">
-         						<button type="submit" class="btn btn-primary btn-sm" > &nbsp;   Normal Price &nbsp; &nbsp;  </button>
-      						</form>
+							<button type="submit" class="btn btn-primary btn-sm" > &nbsp;   Normal Price &nbsp; &nbsp;  </button>
+
 						{% endif %}
 
                     </td>

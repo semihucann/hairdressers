@@ -13,7 +13,7 @@ def listOfBerbers():
 
     berbershop10 = Berbershop()
     berbershop10.shopname = "Semih Berber"
-    berbershop10.id = 1
+    berbershop10.id = 10
     berbershop10.closingtime = "20.00"
     berbershop10.tradenumber = 235
     berbershop10.location = "Istanbul"
@@ -23,7 +23,7 @@ def listOfBerbers():
 
     berbershop11 = Berbershop()
     berbershop11.shopname = "Xemih Berber"
-    berbershop11.id = 1
+    berbershop11.id = 11
     berbershop11.closingtime = "20.00"
     berbershop11.tradenumber = 235
     berbershop11.location = "Istanbul"
@@ -33,7 +33,7 @@ def listOfBerbers():
 
     berbershop12 = Berbershop()
     berbershop12.shopname = "Temih Berber"
-    berbershop12.id = 1
+    berbershop12.id = 12
     berbershop12.closingtime = "20.00"
     berbershop12.tradenumber = 235
     berbershop12.location = "Istanbul"
@@ -69,7 +69,7 @@ def listOfBerbers():
 
     berbershop5 = Berbershop()
     berbershop5.shopname = "Ağdacı Ertuğrul"
-    berbershop5.id = 4
+    berbershop5.id = 5
     berbershop5.closingtime = "23.00"
     berbershop5.tradenumber = 2355
     berbershop5.location = "Diyarbakır"
@@ -78,7 +78,7 @@ def listOfBerbers():
 
     berbershop6 = Berbershop()
     berbershop6.shopname = "Ağdacı Ertuğrul"
-    berbershop6.id = 4
+    berbershop6.id = 6
     berbershop6.closingtime = "23.00"
     berbershop6.tradenumber = 2355
     berbershop6.location = "Diyarbakır"
@@ -87,7 +87,7 @@ def listOfBerbers():
 
     berbershop7 = Berbershop()
     berbershop7.shopname = "Ağdacı Ertuğrul"
-    berbershop7.id = 4
+    berbershop7.id = 7
     berbershop7.closingtime = "23.00"
     berbershop7.tradenumber = 2355
     berbershop7.location = "Diyarbakır"
@@ -96,7 +96,7 @@ def listOfBerbers():
 
     berbershop8 = Berbershop()
     berbershop8.shopname = "Ağdacı Ertuğrul"
-    berbershop8.id = 4
+    berbershop8.id = 8
     berbershop8.closingtime = "23.00"
     berbershop8.tradenumber = 2355
     berbershop8.location = "Diyarbakır"
@@ -106,7 +106,7 @@ def listOfBerbers():
 
     berbershop9 = Berbershop()
     berbershop9.shopname = "Ağdacı Ertuğrul"
-    berbershop9.id = 4
+    berbershop9.id = 9
     berbershop9.closingtime = "23.00"
     berbershop9.tradenumber = 2355
     berbershop9.location = "Diyarbakır"

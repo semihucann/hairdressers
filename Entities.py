@@ -1,20 +1,19 @@
 from datetime import datetime
 
+
 class Berbershop:
     def __init__(self):
-
-        self.id=None
-        self.shopname=None
-        self.ownerpeople_id=None
-        self.location=None
-        self.openingtime=None
-        self.closingtime=None
-        self.tradenumber=None
-        self.campaigns = None # i need this for my page, you can ignore it for now
-
+        self.id = None
+        self.shopname = None
+        self.ownerpeople_id = None
+        self.location = None
+        self.openingtime = None
+        self.closingtime = None
+        self.tradenumber = None
+        self.campaigns = None  # i need this for my page, you can ignore it for now
 
 
-#Entity of Comment table in Database
+# Entity of Comment table in Database
 class Comment:
     def __init__(self):
         self.id = None
@@ -27,7 +26,8 @@ class Comment:
         self.like = 0
         self.dislike = 0
 
-#Entity of Contact_info table in database
+
+# Entity of Contact_info table in database
 class ContactInfo:
     def __init__(self):
         self.id = None
@@ -40,8 +40,8 @@ class ContactInfo:
         self.instagram = None
 
 
-#Entity of Rezervation table in database
-class Rezervation :
+# Entity of Rezervation table in database
+class Rezervation:
     def __init__(self):
         self.id = None
         self.peopleId = None
@@ -53,14 +53,15 @@ class Rezervation :
         self.priceType = None
 
 
-
-
-
-
-
-
-
-
-
-
-
+##Semih Classlar########################################################
+class People:
+    def __init__(self):
+        self.id = None
+        self.username = None
+        self.name_surname = None
+        self.mail = None
+        self.password_hash = None
+        self.gender = None
+        self.age = None
+        self.role = None
+########################################################################

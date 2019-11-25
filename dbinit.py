@@ -68,11 +68,22 @@ INIT_STATEMENTS = [
         people_id INTEGER REFERENCES People(id),
         berbershop_id INTEGER DEFAULT 0, 
         gender_choice VARCHAR(1),
-        experience_year INTEGER,
+        experience_year INTEGER DEFAULT 0,
         start_time INTEGER,
         finish_time INTEGER,
         rates INTEGER DEFAULT 0 
     )
+    """,
+    """
+    CREATE TABLE IF NOT EXISTS Owner(
+        id SERIAL PRIMARY KEY,
+        people_id INTEGER REFERENCES People(id),
+        tc_number NUMERIC(11) UNIQUE NOT NULL,
+        serial_number NUMERIC(5) NOT NULL,
+        vol_number NUMERIC(5),
+        family_order_no NUMERIC(5),
+        order_no NUMERIC(5)
+    )   
     """
     #################################################################################
 ]

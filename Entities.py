@@ -70,10 +70,21 @@ class Berber:
     def __init__(self):
         self.id = None
         self.people_id = None
-        self.berbershopid = None
+        self.berber_shop_id = None
         self.gender_choice = None
         self.experience_year = None
         self.start_time = None
         self.finish_time = None
         self.rates = None
+
+
+class Owner:
+    def __init__(self):
+        self.id = None
+        self.people_id = None
+        self.tc_number = None
+        self.serial_number = None
+        self.vol_number = None
+        self.family_order_no = None
+        self.order_no = None
 ########################################################################

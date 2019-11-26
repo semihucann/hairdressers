@@ -216,6 +216,42 @@
                 $("#panel").slideToggle("slow");
              });
 
+             //statistics button toggle
+              $("#statisticbutton1").click(function(){
+                $(".bestbershopstable").slideDown();
+                $(".lastaddedberbershops").slideUp();
+                $(".bestberberslist").slideUp();
+                $(".mostpopularberbershops").slideUp();
+              });
+              $("#statisticbutton2").click(function(){
+               $(".lastaddedberbershops").slideDown();
+                 $(".bestbershopstable").slideUp();
+                $(".bestberberslist").slideUp();
+                $(".mostpopularberbershops").slideUp();
+              });
+              $("#statisticbutton3").click(function(){
+                $(".bestberberslist").slideDown();
+                 $(".bestbershopstable").slideUp();
+                $(".lastaddedberbershops").slideUp();
+                $(".mostpopularberbershops").slideUp();
+              });
+
+              $("#statisticbutton4").click(function(){
+                $(".mostpopularberbershops").slideDown();
+                $(".bestberberslist").slideUp();
+                 $(".bestbershopstable").slideUp();
+                $(".lastaddedberbershops").slideUp();
+              });
+
+
+
+
+
+
+
+
+
+
 
         } );
 

@@ -7,6 +7,9 @@ def home_page():
     citylist = ["Istanbul", "Ankara", "Izmir", "Diyarbakır"]
     return render_template('home.html', berbers=berbershopList, citylist=citylist)
 
+def statistics():
+    return render_template('statistics.html')
+
 
 def blog_page():
     return render_template("blog.html", name="blog_page")

@@ -92,7 +92,7 @@ def signup_user_page():
         person.role = "user"
         #print(person.username, person.name_surname, person.mail, person.password_hash, person.gender, person.age, person.role)
         people = Peoplemodel()
-        people.insert(person)
+        people.save(person)
 
 
 

@@ -58,16 +58,16 @@ INIT_STATEMENTS = [
         name_surname VARCHAR(50),
         mail VARCHAR(300) UNIQUE,
         password_hash VARCHAR(300),
-        gender VARCHAR(1),
+        gender VARCHAR(10),
         age integer,
-        role VARCHAR(1)    
+        role VARCHAR(10)    
     )""",
     """
     CREATE TABLE IF NOT EXISTS Berber(
         id SERIAL PRIMARY KEY,
         people_id INTEGER REFERENCES People(id),
         berbershop_id INTEGER DEFAULT 0, 
-        gender_choice VARCHAR(1),
+        gender_choice VARCHAR(10),
         experience_year INTEGER DEFAULT 0,
         start_time INTEGER,
         finish_time INTEGER,
@@ -84,7 +84,9 @@ INIT_STATEMENTS = [
         family_order_no NUMERIC(5),
         order_no NUMERIC(5)
     )   
-    """
+    """,
+
+    #"""DROP TABLE People, Berber, Owner;"""
     #################################################################################
 ]
 

@@ -13,10 +13,7 @@
     padding-top:10px
 }
 
-#allBerbers tr:hover
-{
-    background-color : yellow;
-}
+
 
 
 #allbarbershopsdiv{
@@ -69,4 +66,11 @@ td .card {
     display: none;
     display: inline;
     float: left;
+}
+
+.card-deck .card{
+    background-color : red;
+    width : 80px;
+    height : 200px;
+
 }

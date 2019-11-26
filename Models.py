@@ -1,5 +1,5 @@
 import psycopg2 as dbapi2
-from Entities import Comment, ContactInfo, Rezervation
+from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner
 import os
 
 url = os.getenv("DATABASE_URL")
@@ -202,9 +202,10 @@ class RezervationModel:
                 UPDATE Rezervation SET id = %s, people_id  = %s, berber_id = %s, datetime_registration = %s, datetime_rezervation = %s ,
                 status = %s , note = %s , price_type =%s where id = %s """,
                            (
-                           rezervation.id, rezervation.peopleId, rezervation.berberId, rezervation.dateTimeRegistration,
-                           rezervation.dateTimeRezervation, rezervation.status, rezervation.note,
-                           rezervation.priceType, rezervation.id))
+                               rezervation.id, rezervation.peopleId, rezervation.berberId,
+                               rezervation.dateTimeRegistration,
+                               rezervation.dateTimeRezervation, rezervation.status, rezervation.note,
+                               rezervation.priceType, rezervation.id))
 
     # get by id
     def getById(self, id):
@@ -260,3 +261,12 @@ rezervationModel = RezervationModel()
 rezervation = Rezervation()
 rezervation.priceType = "not determined"
 rezervationModel.save(rezervation)
+
+
+class Peoplemodel:
+    def insert(self, people):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor
+            #cursor.execute("""INSERT INTO People (username, name_surname, mail, password_hash, gender, age,role)
+            #               VALUES (%s , %s , %s , %s , %s , %s,  %s )""", (people.username, people.name_surname, people.mail, people.password_hash, people.gender, people.age, people.role))
+            print (people.username, people.name_surname, people.mail, people.password_hash, people.gender, people.age, people.role)

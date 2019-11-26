@@ -90,6 +90,7 @@ INIT_STATEMENTS = [
     #################################################################################
 ]
 
+
 def initialize(url):
     with dbapi2.connect(url) as connection:
         cursor = connection.cursor()

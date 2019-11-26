@@ -266,7 +266,20 @@ rezervationModel.save(rezervation)
 class Peoplemodel:
     def insert(self, people):
         with dbapi2.connect(url) as connection:
-            cursor = connection.cursor
-            #cursor.execute("""INSERT INTO People (username, name_surname, mail, password_hash, gender, age,role)
-            #               VALUES (%s , %s , %s , %s , %s , %s,  %s )""", (people.username, people.name_surname, people.mail, people.password_hash, people.gender, people.age, people.role))
-            print (people.username, people.name_surname, people.mail, people.password_hash, people.gender, people.age, people.role)
+            cursor = connection.cursor()
+            cursor.execute("""INSERT INTO People (username, name_surname, mail, password_hash, gender, age,role)
+                           VALUES (%s , %s , %s , %s , %s , %s,  %s )""", (people.username, people.name_surname, people.mail, people.password_hash, people.gender, people.age, people.role))
+    def control_exist(self, people):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("SELECT * FROM People where username = %s and mail = %s ", (people.username, people.mail))
+        row = cursor.fetchone()
+        if (row == None):
+            return False
+        return True
+    def save(self, people):
+        if(self.control_exist(people)==False):
+            self.insert(people)
+        else:
+            print("Kaydedilmedi")
+            #Hata mesajı ver

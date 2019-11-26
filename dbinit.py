@@ -88,6 +88,43 @@ INIT_STATEMENTS = [
 
     #"""DROP TABLE People, Berber, Owner;"""
     #################################################################################
+
+    #FATIH'S TABLES
+    """
+    CREATE TABLE IF NOT EXISTS Berbershop(
+        id SERIAL PRIMARY KEY,
+        owner_people_id INTEGER REFERENCES People(id),
+        shopname VARCHAR(50),
+        location VARCHAR(300),
+        opening_time TIMESTAMP,
+        closing_time TIMESTAMP,
+        trade_number NUMERIC(10) NOT NULL
+    )   
+    """,
+    """
+    CREATE TABLE IF NOT EXISTS Serviceprices(
+        id SERIAL PRIMARY KEY,
+        shop_id INTEGER REFERENCES Berbershop(id),
+        service_name VARCHAR(50),
+        definition VARCHAR(300),
+        gender VARCHAR(1),
+        price DECIMAL(6,2),
+        duration INTEGER
+    )   
+    """,
+    """
+    CREATE TABLE IF NOT EXISTS Creditcards(
+        id SERIAL PRIMARY KEY,
+        people_id INTEGER REFERENCES People(id),
+        name VARCHAR(50),
+        card_number NUMERIC(16) NOT NULL,
+        cvv_number NUMERIC(4) NOT NULL,
+        last_month NUMERIC(2) NOT NULL,
+        last_year NUMERIC(2) NOT NULL
+    )   
+    """
+    #FATIH'S TABLES
+
 ]
 
 

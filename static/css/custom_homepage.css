@@ -78,7 +78,7 @@ td .card {
 #berbershop_card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   width: 250px;
-  height:570px;
+  height:470px;
   margin-left:20px;
   text-align: center;
   font-family: arial;
@@ -118,4 +118,27 @@ berbershop_tagbutton:hover, .berbershop_taga:hover {
 }
 
 .berbershop_view_tables{
+    display:inline;
+    width : %90;
 }
+
+#berbershop_view_rezervation{
+    display:block;
+    width:1000px;
+}
+.my-custom-scrollbar {
+position: relative;
+height: 200px;
+overflow: auto;
+}
+
+.berbershop_comment{
+    margin-top:50px;
+    clear:both;
+    display:block;
+}
+
+
+
+
+

@@ -1,8 +1,11 @@
 from flask import render_template,Flask,request,redirect,url_for
 import Temporarypython
-from Models import Peoplemodel
+from Models import Peoplemodel,CommentModel
 from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner
 from passlib.hash import pbkdf2_sha256 as hasher
+
+
+#Ertuğrul's Function
 
 def home_page():
     berbershopList = Temporarypython.listOfBerbers()
@@ -12,8 +15,32 @@ def home_page():
 def statistics():
     return render_template('statistics.html')
 
-def berbershop_view():
-    return render_template('berbershopview.html')
+def barbershop_view():
+    if request.method == 'GET':
+        #Get the list of the comment
+        commentModel = CommentModel()
+        commentlist = commentModel.getAll()
+        return render_template("barbershopview.html",commentlist=commentlist)
+    else:
+        berbershopid = request.form["bcommentselector"]
+        commenttitle = request.form["bcommenttitle"]
+        commenttext = request.form["bcommenttext"]
+        commentrate = request.form["bcommentrate"]
+
+        #save in database
+        commentModel = CommentModel()
+        comment = Comment()
+        comment.berber, comment.title, comment.content, comment.rate,comment.peopleId = int(berbershopid), commenttitle, commenttext,\
+                                                                                        int(commentrate),1
+
+        commentModel.save(comment)
+        # Get the list of the comment
+        commentModel = CommentModel()
+        commentlist = commentModel.getAll()
+        return render_template("barbershopview.html", commentlist=commentlist)
+
+###########################################################
+
 
 def blog_page():
     return render_template("blog.html", name="blog_page")

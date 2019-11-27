@@ -1,0 +1,183 @@
+{%extends "base.html"%}
+{%block title%} berbershopview {%endblock%}
+{%block content%}
+
+
+
+
+<div id="berbershop_card" align="left">
+  <img src="{{ url_for('static', filename='images/barbershopcard.jpg') }}" style="height:80px;" alt="John" >
+  <h3>ShopName </h3>
+  <p class="berbershopcard_title">Owner Name</p>
+  <p>Address : pendik istanbul güzelyalı ener sokak no 40</p>
+  <p>Opening-Closing Time :  21.00 - 23.00</p>
+  <p>Phone : </p>
+
+
+    <a class="berbershop_taga" href="#"><i class="fa fa-instagram fa-2x"></i></a>
+    <a class="berbershop_taga" href="#"><i class="fa fa-twitter fa-2x"></i></a>
+    <a class="berbershop_taga" href="#"><i class="fa fa-facebook fa-2x"></i></a>
+  </div>
+
+
+
+<div class="table-wrapper-scroll-y my-custom-scrollbar" id="berbershopview_table_scroller0">
+
+
+
+   <table class="table table-bordered table-striped mb-0" style="width:1200px;">
+        <thead class="thead-dark">
+        <tr>
+            <th colspan="4" ><p align="center">REZERVATION BY TIME INTERVALS</p></th>
+        </tr>
+      </thead>
+
+       <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+      </tr>
+      <tr>
+        <th scope="row">4</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">5</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">6</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+
+<div class="berbershop_comment">
+    <hr>
+
+    <form method="post" action="">
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Example select</label>
+        <select class="form-control" name="bcommentselector" id="exampleFormControlSelect1">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+
+        <div class="form-group">
+        <label for="exampleFormControlSelect2">Example select</label>
+        <select class="form-control" name="bcommentrate" id="exampleFormControlSelect2">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Title</label>
+            <input type="text" name="bcommenttitle" class="form-control" id="exampleFormControlInput1" placeholder="my title">
+        </div>
+
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Comment Text</label>
+        <textarea name="bcommenttext" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+
+        <button type="submit" class="btn btn-success">Submit</button>
+
+    </form>
+
+
+</div>
+
+
+
+<table id="dtMaterialDesignExample" class="table table-striped" cellspacing="0" width="100%">
+  <thead>
+    <tr>
+      <th class="th-sm">Content
+      </th>
+      <th class="th-sm">Date
+      </th>
+      <th class="th-sm">Likes
+      </th>
+      <th class="th-sm">Dislikes
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for comment in commentlist %}
+
+       <tr>
+         <td>
+           <h3>{{comment.title}}</h3>
+           <p>{{comment.content}}</p>
+        </td>
+        <td>{{comment.dateTime}}</td>
+        <td>New York</td>
+        <td>27</td>
+
+      </tr>
+
+    {% endfor %}
+
+  </tbody>
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{%endblock%}

@@ -1,12 +1,16 @@
 from flask import Flask
 import views
 
+import os
+
+url = os.getenv("DATABASE_URL")
+
 
 def create_app():
     app2 = Flask(__name__)
     app2.add_url_rule("/", view_func=views.home_page)
     app2.add_url_rule("/statistics",view_func=views.statistics)
-    app2.add_url_rule("/berbershopview",view_func=views.berbershop_view)
+    app2.add_url_rule("/barbershopview",view_func=views.barbershop_view, methods=["GET", "POST"])
     app2.add_url_rule("/blog", view_func=views.blog_page)
     app2.add_url_rule("/profile", view_func=views.profile_page, methods=["GET", "POST"])
     app2.add_url_rule("/addcreditcard", view_func=views.addcreditcard_page, methods=["GET", "POST"])

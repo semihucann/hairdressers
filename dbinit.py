@@ -10,16 +10,18 @@ INIT_STATEMENTS = [
 
     #ERTUGRUL's tables
     """
+ 
     CREATE TABLE IF NOT EXISTS Comments(
         id SERIAL PRIMARY KEY, 
         people_id integer NOT NULL REFERENCES People(id),
         berber integer NOT NULL REFERENCES Berber(id),
         title VARCHAR (100),
         content VARCHAR (500),
-        rate integer NOT NULL,
+        rate integer  NOT NULL,
         date_time TIMESTAMP, 
         comment_like integer NOT NULL, 
-        comment_dislike integer NOT NULL 
+        comment_dislike integer NOT NULL,
+        CHECK (rate > 0), CHECK (rate < 6) 
     )""",
     #  CREATE TYPE IF NOT EXISTS type AS ENUM ('company', 'personal');
     """

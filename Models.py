@@ -259,7 +259,7 @@ class RezervationModel:
 
 
 
-
+# SEMİH MODELS ######################################################################
 class Peoplemodel:
     def insert(self, people):
         with dbapi2.connect(url) as connection:
@@ -272,7 +272,7 @@ class Peoplemodel:
     def control_exist(self, people):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
-            cursor.execute("SELECT * FROM People where username = %s and mail = %s ", (people.username, people.mail))
+            cursor.execute("SELECT * FROM People where username = %s or mail = %s ", (people.username, people.mail))
         row = cursor.fetchone()
         if (row == None):
             return False
@@ -284,3 +284,23 @@ class Peoplemodel:
             return True
         else:
             return False
+
+class Berbermodel:
+    def get_id(self, username):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                            SELECT id FROM PEOPLE WHERE username = %s 
+                            """, (username, ))
+        row = cursor.fetchone()
+        return row
+
+    def insert(self, berber):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""INSERT INTO Berber (people_id, gender_choice, experience_year, start_time, finish_time, rates) 
+                             VALUES (%s , %s , %s , %s , %s , %s )""", (berber.people_id, berber.gender_choice, berber.experience_year,
+                                                                             berber.start_time, berber.finish_time, berber.rates))
+
+
+######################################################################################

@@ -87,7 +87,7 @@ INIT_STATEMENTS = [
     )   
     """,
 
-    #"""DROP TABLE People, Berber, Owner;"""
+    """DROP TABLE People, Berber, Owner;""",
     #################################################################################
 
     #FATIH'S TABLES

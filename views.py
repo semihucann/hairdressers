@@ -49,19 +49,28 @@ def signup_berber_page():
     if request.method == 'GET':
         return render_template("signup_berber.html")
     else:
-        form_mail = request.form["mail"]
-        form_name_surname = request.form["name_surname"]
-        form_username = request.form["username"]
-        form_password = request.form["password"]
-        form_gender = request.form["gender"]
-        form_experince_year = request.form["experience"]
-        form_gender_choice = request.form["gender_choice"]
-        form_start_time = request.form["start_time"]
-        form_finish_time = request.form["finish_time"]
-        print(form_mail, form_name_surname, form_username, form_password, form_gender, form_experince_year, form_gender_choice, form_start_time, form_finish_time)
-        return redirect(url_for("home_page"))
-        #uyarı metni yazmamız gerekiyor
+        person = People()
+        person.username = request.form["username"]
+        person.name_surname = request.form["name_surname"]
+        person.mail = request.form["mail"]
+        person.password_hash = hasher.hash(request.form["password"])
+        person.gender = request.form["gender"]
+        person.age = request.form["age"]
+        person.role = "berber"
+        people = Peoplemodel()
+        if (people.save(person)):
+            berber = Berber()
+            berber.experience_year = request.form["experience"]
+            berber.gender_choice = request.form["gender_choice"]
+            berber.start_time = request.form["start_time"]
+            berber.finish_time = request.form["finish_time"]
+            print(berber.experience_year, berber.gender_choice, berber.start_time, berber.finish_time)
+            return render_template("signup_berber.html", message="True")
+        else:
+            #Kayıt yapılamadı
+            return render_template("signup_berber.html", message="False")
 
+        return redirect(url_for("signup_berber_page"))
 
 def signup_owner_page():
     if request.method == 'GET':
@@ -97,6 +106,7 @@ def signup_user_page():
 
         people = Peoplemodel()
         if(people.save(person)):
+            #BERBER KAYDI EKLENECEK
             return render_template("signup_user.html", message="True")
         else:
             return render_template("signup_user.html", message="False")

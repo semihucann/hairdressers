@@ -1,6 +1,11 @@
 {%extends "signup_base.html"%}
 {%block type%}
     <h1 class="title">Signup Page for Berbers</h1>
+    {% if message == "True"%}
+        <h2 class="title" style="color: green;">Your registration is completed. </h2>
+    {% elif message == "False" %}
+        <h2 class="title" style="color: red;"> Registration is failure !! </h2>
+    {% endif %}
 {%endblock%}
 {%block question%}
      <div class="field">

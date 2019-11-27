@@ -83,7 +83,7 @@ def signup_owner_page():
 
 def signup_user_page():
     if request.method == 'GET':
-        return render_template("signup_user.html")
+        return render_template("signup_user.html", message="")
     else:
         person = People()
         person.username = request.form["username"]
@@ -95,13 +95,12 @@ def signup_user_page():
         person.role = "user"
         #print(person.username, person.name_surname, person.mail, person.password_hash, person.gender, person.age, person.role)
         people = Peoplemodel()
-        people.save(person)
+        if(people.save(person)):
+            return render_template("signup_user.html", message="Registration is completed")
+        else:
+            return render_template("signup_user.html", message="Registration is failure !!")
 
-
-
-
-        return redirect(url_for("home_page"))
-        # uyarı metni yazmamız gerekiyor
+        return redirect(url_for("signup_user_page"))
 
 
 def signin():

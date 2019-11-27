@@ -96,9 +96,9 @@ def signup_user_page():
         #print(person.username, person.name_surname, person.mail, person.password_hash, person.gender, person.age, person.role)
         people = Peoplemodel()
         if(people.save(person)):
-            return render_template("signup_user.html", message="Registration is completed")
+            return render_template("signup_user.html", message="True")
         else:
-            return render_template("signup_user.html", message="Registration is failure !!")
+            return render_template("signup_user.html", message="False")
 
         return redirect(url_for("signup_user_page"))
 

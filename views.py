@@ -2,6 +2,7 @@ from flask import render_template,Flask,request,redirect,url_for
 import Temporarypython
 from Models import Peoplemodel
 from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner
+from passlib.hash import pbkdf2_sha256 as hasher
 
 def home_page():
     berbershopList = Temporarypython.listOfBerbers()
@@ -89,11 +90,11 @@ def signup_user_page():
         person.username = request.form["username"]
         person.name_surname = request.form["name_surname"]
         person.mail = request.form["mail"]
-        person.password_hash = request.form["password"]
+        person.password_hash = hasher.hash(request.form["password"])
         person.gender = request.form["gender"]
         person.age = request.form["age"]
         person.role = "user"
-        #print(person.username, person.name_surname, person.mail, person.password_hash, person.gender, person.age, person.role)
+
         people = Peoplemodel()
         if(people.save(person)):
             return render_template("signup_user.html", message="True")

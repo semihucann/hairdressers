@@ -1,0 +1,77 @@
+{%extends "base.html"%}
+{%block title%} berbershopview {%endblock%}
+{%block content%}
+
+
+
+
+<div id="berbershop_card" align="left">
+  <img src="{{ url_for('static', filename='images/barbershopcard.jpg') }}" style="height:180px;" alt="John" >
+  <h3>ShopName </h3>
+  <p class="berbershopcard_title">Owner Name</p>
+  <p>Address : pendik istanbul güzelyalı ener sokak no 40</p>
+  <p>Opening-Closing Time :  21.00 - 23.00</p>
+  <p>Phone : </p>
+  <div style="margin: 24px 0;">
+    <a class="berbershop_taga" href="#"><i class="fa fa-instagram"></i></a>
+    <a class="berbershop_taga" href="#"><i class="fa fa-twitter"></i></a>
+    <a class="berbershop_taga" href="#"><i class="fa fa-facebook"></i></a>
+  </div>
+  <p><button class="berbershop_tagbutton">Contact</button></p>
+</div>
+
+
+<div class="berbershop_view_tables">
+
+
+    <table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{%endblock%}

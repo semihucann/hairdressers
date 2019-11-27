@@ -12,9 +12,12 @@ def home_page():
 def statistics():
     return render_template('statistics.html')
 
+def berbershop_view():
+    return render_template('berbershopview.html')
 
 def blog_page():
     return render_template("blog.html", name="blog_page")
+
 
 
 def profile_page():

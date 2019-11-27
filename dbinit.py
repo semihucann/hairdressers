@@ -8,13 +8,14 @@ INIT_STATEMENTS = [
     "CREATE TABLE IF NOT EXISTS DUMMY (NUM INTEGER)",
     "INSERT INTO DUMMY VALUES (42)",
 
+    #ERTUGRUL's tables
     """
     CREATE TABLE IF NOT EXISTS Comments(
         id SERIAL PRIMARY KEY, 
-        people_id integer,
-        berber integer,
-        comment_title VARCHAR (100),
-        comment_content VARCHAR (500),
+        people_id integer NOT NULL REFERENCES People(id),
+        berber integer NOT NULL REFERENCES Berber(id),
+        title VARCHAR (100),
+        content VARCHAR (500),
         rate integer NOT NULL,
         date_time TIMESTAMP, 
         comment_like integer NOT NULL, 
@@ -22,27 +23,25 @@ INIT_STATEMENTS = [
     )""",
     #  CREATE TYPE IF NOT EXISTS type AS ENUM ('company', 'personal');
     """
-  
     CREATE TABLE IF NOT EXISTS Contact_info(
         id SERIAL PRIMARY KEY, 
-        berber_id integer,
-        berbershop_id integer,
+        berber_id integer  REFERENCES Berber(id) ,
+        berbershop_id integer  REFERENCES Berbershop(id),
         type type,
-        telephone_number VARCHAR (12),
+        telephone_number VARCHAR (15) NOT NULL,
         facebook VARCHAR (500),
         twitter VARCHAR (500),
         instagram VARCHAR (500)
     )""",
-
+    # CREATE TYPE status AS ENUM ('okey','notokey');
     """
-    
        CREATE TABLE IF NOT EXISTS Rezervation(
            id SERIAL PRIMARY KEY,
-           people_id integer, 
-           berber_id integer,
+           people_id integer NOT NULL REFERENCES People(id),
+           berbershop_id integer NOT NULL REFERENCES Berbershop(id),
            datetime_registration TIMESTAMP,
            datetime_rezervation TIMESTAMP,
-           status VARCHAR (100),
+           status status,
            note VARCHAR (100),
            price_type VARCHAR (100)
        )""",

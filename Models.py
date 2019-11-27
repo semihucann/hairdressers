@@ -21,7 +21,7 @@ class CommentModel:
     def insert(self, comment):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
-            cursor.execute("""INSERT INTO Comments (people_id , berber , comment_title , comment_content , rate , date_time , 
+            cursor.execute("""INSERT INTO Comments (people_id , berber , title , content , rate , date_time , 
                 comment_like , comment_dislike)
                 VALUES (%s , %s , %s , %s , %s , %s , %s , %s)""", (comment.peopleId, comment.berber, comment.title,
                                                                     comment.content, comment.rate, comment.dateTime,
@@ -69,7 +69,7 @@ class CommentModel:
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""
-                UPDATE Comments SET id = %s, people_id = %s , berber = %s , comment_title =%s , comment_content = %s ,
+                UPDATE Comments SET id = %s, people_id = %s , berber = %s , title =%s , content = %s ,
                 rate = %s , date_time = %s , comment_like =%s , comment_dislike = %s where id = %s""",
                            (comment.id, comment.peopleId, comment.berber, comment.title, comment.content, comment.rate,
                             comment.dateTime,
@@ -187,7 +187,7 @@ class RezervationModel:
     def insert(self, rezervation):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
-            cursor.execute("""INSERT INTO Rezervation (people_id, berber_id, datetime_registration, datetime_rezervation, status, note, 
+            cursor.execute("""INSERT INTO Rezervation (people_id, berbershop_id, datetime_registration, datetime_rezervation, status, note, 
                     price_type)
                     VALUES (%s , %s , %s , %s , %s , %s , %s)""",
                            (rezervation.peopleId, rezervation.berberId, rezervation.dateTimeRegistration,
@@ -199,7 +199,7 @@ class RezervationModel:
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""
-                UPDATE Rezervation SET id = %s, people_id  = %s, berber_id = %s, datetime_registration = %s, datetime_rezervation = %s ,
+                UPDATE Rezervation SET id = %s, people_id  = %s, berbershop_id = %s, datetime_registration = %s, datetime_rezervation = %s ,
                 status = %s , note = %s , price_type =%s where id = %s """,
                            (
                                rezervation.id, rezervation.peopleId, rezervation.berberId,
@@ -257,10 +257,7 @@ class RezervationModel:
         return True
 
 
-rezervationModel = RezervationModel()
-rezervation = Rezervation()
-rezervation.priceType = "not determined"
-rezervationModel.save(rezervation)
+
 
 
 class Peoplemodel:

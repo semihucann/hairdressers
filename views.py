@@ -1,23 +1,26 @@
-from flask import render_template,Flask,request,redirect,url_for
+from flask import render_template, Flask, request, redirect, url_for
 import Temporarypython
-from Models import Peoplemodel
+from Models import Peoplemodel, Berbermodel
 from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner
 from passlib.hash import pbkdf2_sha256 as hasher
+
 
 def home_page():
     berbershopList = Temporarypython.listOfBerbers()
     citylist = ["Istanbul", "Ankara", "Izmir", "Diyarbakır"]
     return render_template('home.html', berbers=berbershopList, citylist=citylist)
 
+
 def statistics():
     return render_template('statistics.html')
+
 
 def berbershop_view():
     return render_template('berbershopview.html')
 
+
 def blog_page():
     return render_template("blog.html", name="blog_page")
-
 
 
 def profile_page():
@@ -36,7 +39,7 @@ def addcreditcard_page():
 
 def signupbase_page():
     if request.method == 'GET':
-        #signup_base dönüyordu
+        # signup_base dönüyordu
         return render_template("register_type.html")
     else:
         if request.form['submit_button'] == 'user':
@@ -61,19 +64,24 @@ def signup_berber_page():
         person.age = request.form["age"]
         person.role = "berber"
         people = Peoplemodel()
+
         if (people.save(person)):
+            berbers = Berbermodel()
             berber = Berber()
-            berber.experience_year = request.form["experience"]
+            berber.people_id = berbers.get_id(person.username)[0]
             berber.gender_choice = request.form["gender_choice"]
-            berber.start_time = request.form["start_time"]
-            berber.finish_time = request.form["finish_time"]
-            print(berber.experience_year, berber.gender_choice, berber.start_time, berber.finish_time)
+            berber.experience_year = request.form["experience"]
+            berber.start_time = request.form["start_time"][:2]
+            berber.finish_time = request.form["finish_time"][:2]
+            #Dikkat start  and finish zamanı sadece saat cinsinden alındı
+            berbers.insert(berber)
             return render_template("signup_berber.html", message="True")
         else:
-            #Kayıt yapılamadı
+            # Kayıt yapılamadı
             return render_template("signup_berber.html", message="False")
 
         return redirect(url_for("signup_berber_page"))
+
 
 def signup_owner_page():
     if request.method == 'GET':
@@ -90,9 +98,11 @@ def signup_owner_page():
         form_family_order_no = request.form["family_order_no"]
         form_order_no = request.form["order_no"]
 
-        print(form_mail, form_name_surname, form_username, form_password, form_gender, form_tc, form_serial_number, form_vol_number, form_family_order_no, form_order_no)
+        print(form_mail, form_name_surname, form_username, form_password, form_gender, form_tc, form_serial_number,
+              form_vol_number, form_family_order_no, form_order_no)
         return redirect(url_for("home_page"))
         # uyarı metni yazmamız gerekiyor
+
 
 def signup_user_page():
     if request.method == 'GET':
@@ -108,8 +118,7 @@ def signup_user_page():
         person.role = "user"
 
         people = Peoplemodel()
-        if(people.save(person)):
-            #BERBER KAYDI EKLENECEK
+        if (people.save(person)):
             return render_template("signup_user.html", message="True")
         else:
             return render_template("signup_user.html", message="False")

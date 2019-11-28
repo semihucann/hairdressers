@@ -328,12 +328,28 @@ class Peoplemodel:
     def get_role(self, username):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
-            cursor.execute("""
-                                      SELECT role from people where username = %s
+            cursor.execute("""    SELECT role from people where username = %s
                                    """, (username,))
             role = cursor.fetchone()[0]
             return role
 
+    def get_all(self, username):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute(""" SELECT * from people where username = %s
+                                   """, (username,))
+            person = People()
+            rows = cursor.fetchall()
+            person.id = rows[0][0]
+            person.username = rows[0][1]
+            person.name_surname = rows[0][2]
+            person.mail = rows[0][3]
+            person.password_hash = rows[0][4]
+            person.gender = rows[0][5]
+            person.age = rows[0][6]
+            person.role = rows[0][7]
+            person.active = True
+            return person
 
     def control_exist_username(self, username):
         with dbapi2.connect(url) as connection:

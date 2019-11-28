@@ -65,7 +65,14 @@ class People:
         self.gender = None
         self.age = None
         self.role = None
+        self.active = True
 
+    def get_id(self):
+        return self.username
+
+    @property
+    def is_active(self):
+        return self.active
 
 class Berber:
     def __init__(self):
@@ -88,4 +95,5 @@ class Owner:
         self.vol_number = None
         self.family_order_no = None
         self.order_no = None
+
 ########################################################################

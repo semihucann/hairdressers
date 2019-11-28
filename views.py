@@ -100,7 +100,10 @@ def signup_berber_page():
         person.role = "berber"
         people = Peoplemodel()
 
-        if (people.save(person)):
+        if (people.control_exist(person)):
+            return render_template("signup_berber.html", message="False")
+        else:
+            people.save(person)
             berbers = Berbermodel()
             berber = Berber()
             berber.people_id = berbers.get_id(person.username)[0]
@@ -110,8 +113,6 @@ def signup_berber_page():
             berber.finish_time = request.form["finish_time"][:2]
             berbers.insert(berber)
             return render_template("signup_berber.html", message="True")
-        else:
-            return render_template("signup_berber.html", message="False")
 
         return redirect(url_for("signup_berber_page"))
 
@@ -129,10 +130,12 @@ def signup_owner_page():
         person.age = request.form["age"]
         person.role = "owner"
         people = Peoplemodel()
-
-        if(people.save(person)):
+        if(people.control_exist(person)):
+            return render_template("signup_owner.html", message="False")
+        else:
+            people.save(person)
             owners = Ownermodel()
-            owner =Owner()
+            owner = Owner()
             owner.people_id = owners.get_id(person.username)[0]
             owner.tc_number = request.form["tc_number"]
             owner.serial_number = request.form["serial_number"]
@@ -141,8 +144,6 @@ def signup_owner_page():
             owner.order_no = request.form["order_no"]
             owners.insert(owner)
             return render_template("signup_owner.html", message="True")
-        else:
-            return render_template("signup_owner.html", message="False")
 
         return redirect(url_for("signup_owner_page"))
 

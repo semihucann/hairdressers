@@ -177,13 +177,11 @@ def signin():
         password = request.form["password"]
         people = Peoplemodel()
 
-        print(hasher.verify(password, people.get_hash(mail)))
-
         #Eğer kullanıcı databasede ekli değilse patlar
-
-        if(hasher.verify(password, people.get_hash(mail))):
-            return render_template("signin.html", message="True")
+        if(people.control_exist_mail(mail)):
+            if(hasher.verify(password, people.get_hash(mail))):
+                return render_template("signin.html", message="True", role=people.get_role(mail))
+            else:
+                return render_template("signin.html", message="False")
         else:
             return render_template("signin.html", message="False")
-
-        return render_template("signin.html")

@@ -176,4 +176,4 @@ def signin():
         mail = request.form["mail"]
         password = request.form["password"]
         print(mail, password)
-
+        return render_template("blog.html")

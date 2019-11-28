@@ -1,7 +1,7 @@
 from flask import render_template, Flask, request, redirect, url_for
 import Temporarypython
-from Models import Peoplemodel,CommentModel
-from Models import Peoplemodel, Berbermodel
+from Models import CommentModel
+from Models import Peoplemodel, Berbermodel, Ownermodel
 from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner
 from passlib.hash import pbkdf2_sha256 as hasher
 
@@ -68,10 +68,13 @@ def profile_page():
 def addcreditcard_page():
     return render_template("add_credit_card.html")
 
+#Semih's Functions
+##Notes:
+# Berber signup kısmında start  and finish time sadece saat cinsinden alındı (08:30 yerine 08)
+
 
 def signupbase_page():
     if request.method == 'GET':
-        # signup_base dönüyordu
         return render_template("register_type.html")
     else:
         if request.form['submit_button'] == 'user':
@@ -105,11 +108,9 @@ def signup_berber_page():
             berber.experience_year = request.form["experience"]
             berber.start_time = request.form["start_time"][:2]
             berber.finish_time = request.form["finish_time"][:2]
-            #Dikkat start  and finish zamanı sadece saat cinsinden alındı
             berbers.insert(berber)
             return render_template("signup_berber.html", message="True")
         else:
-            # Kayıt yapılamadı
             return render_template("signup_berber.html", message="False")
 
         return redirect(url_for("signup_berber_page"))
@@ -119,21 +120,31 @@ def signup_owner_page():
     if request.method == 'GET':
         return render_template("signup_owner.html")
     else:
-        form_mail = request.form["mail"]
-        form_name_surname = request.form["name_surname"]
-        form_username = request.form["username"]
-        form_password = request.form["password"]
-        form_gender = request.form["gender"]
-        form_tc = request.form["tc_number"]
-        form_serial_number = request.form["serial_number"]
-        form_vol_number = request.form["vol_number"]
-        form_family_order_no = request.form["family_order_no"]
-        form_order_no = request.form["order_no"]
+        person = People()
+        person.username = request.form["username"]
+        person.name_surname = request.form["name_surname"]
+        person.mail = request.form["mail"]
+        person.password_hash = hasher.hash(request.form["password"])
+        person.gender = request.form["gender"]
+        person.age = request.form["age"]
+        person.role = "owner"
+        people = Peoplemodel()
 
-        print(form_mail, form_name_surname, form_username, form_password, form_gender, form_tc, form_serial_number,
-              form_vol_number, form_family_order_no, form_order_no)
-        return redirect(url_for("home_page"))
-        # uyarı metni yazmamız gerekiyor
+        if(people.save(person)):
+            owners = Ownermodel()
+            owner =Owner()
+            owner.people_id = owners.get_id(person.username)[0]
+            owner.tc_number = request.form["tc_number"]
+            owner.serial_number = request.form["serial_number"]
+            owner.vol_number = request.form["vol_number"]
+            owner.family_order_no = request.form["family_order_no"]
+            owner.order_no = request.form["order_no"]
+            owners.insert(owner)
+            return render_template("signup_berber.html", message="True")
+        else:
+            return render_template("signup_berber.html", message="False")
+
+        return redirect(url_for("signup_berber_page"))
 
 
 def signup_user_page():

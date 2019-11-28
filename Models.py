@@ -303,4 +303,24 @@ class Berbermodel:
                                                                              berber.start_time, berber.finish_time, berber.rates))
 
 
+class Ownermodel:
+    def get_id(self, username):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                            SELECT id FROM PEOPLE WHERE username = %s 
+                            """, (username,))
+        row = cursor.fetchone()
+        return row
+
+
+    def insert(self, owner):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""INSERT INTO Owner (people_id, tc_number, serial_number, vol_number, family_order_no, order_no)
+                            VALUES (%s , %s , %s , %s , %s , %s )""", (owner.people_id, owner.tc_number, owner.serial_number, owner.vol_number, owner.family_order_no, owner.order_no))
+
+
+
+
 ######################################################################################

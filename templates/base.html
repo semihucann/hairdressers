@@ -290,6 +290,15 @@
 
         }
 
+        function inputCopied(){
+            var text = document.getElementById('commentedittext').innerHTML;
+            var title = document.getElementById('commentedittitle').innerHTML;
+            document.getElementById('commenttextinput').value = text;
+            document.getElementById('commenttitleinput').value = title;
+            document.getElementById("editcommentform").submit();
+
+        }
+
 
 
 

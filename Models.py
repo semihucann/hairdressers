@@ -46,7 +46,7 @@ class CommentModel:
     def getAll(self):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
-            cursor.execute("SELECT * from Comments as c")
+            cursor.execute("SELECT * from Comments as c order by c.date_time desc")
             rows = cursor.fetchall()
 
         comments = []
@@ -69,7 +69,7 @@ class CommentModel:
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""
-                UPDATE Comments SET id = %s, people_id = %s , berber = %s , title =%s , content = %s ,
+                UPDATE Comments SET id = %s, people_id = %s , berber = %s , title = %s , content = %s ,
                 rate = %s , date_time = %s , comment_like =%s , comment_dislike = %s where id = %s""",
                            (comment.id, comment.peopleId, comment.berber, comment.title, comment.content, comment.rate,
                             comment.dateTime,
@@ -85,6 +85,36 @@ class CommentModel:
         if (row == None):
             return False
         return True
+
+    def getAllCommentswithPeople(self):
+
+        commentlist = self.getAll()
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                SELECT p.id,p.username,p.name_surname from People as p  JOIN Comments as c ON p.id = c.people_id 
+            """)
+
+        rows = cursor.fetchall()
+        i = 0
+        for row in rows:
+            people = People()
+            people.id, people.username, people.name_surname = row[0], row[1], row[2]
+            commentlist[i].peopleobj = people
+            i += 1
+
+        return commentlist
+
+    def updateByIdTitleText(self, id, title, content, datetime):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                       UPDATE Comments SET title = %s , content= %s, date_time = %s  where id = %s""",
+                           (title,content,datetime,id))
+
+
+
+
 
 
 class ContactInfoModel:

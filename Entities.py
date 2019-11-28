@@ -25,6 +25,7 @@ class Comment:
         self.dateTime = datetime.now()
         self.like = 0
         self.dislike = 0
+        self.peopleobj = None
 
 
 # Entity of Contact_info table in database

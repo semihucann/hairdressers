@@ -1,4 +1,5 @@
 from flask import render_template, Flask, request, redirect, url_for
+from datetime import date,datetime
 import Temporarypython
 from Models import CommentModel
 from Models import Peoplemodel, Berbermodel, Ownermodel
@@ -20,32 +21,52 @@ def home_page():
 def statistics():
     return render_template('statistics.html')
 
+def barbershop_view_edit():
+    commentid = request.form["commentid"]
+    commentidint = int(commentid)
+    commenttitle = request.form["commenttitle"]
+    commenttext  = request.form["commenttext"]
+    dateTime = datetime.now()
 
-def berbershop_view():
-    return render_template('berbershopview.html')
+    commentModel = CommentModel()
+    commentModel.updateByIdTitleText(commentidint,commenttitle,commenttext,dateTime)
+
+    return redirect(url_for("barbershop_view"))
+
+def barbershop_view_delete():
+    commentModel = CommentModel()
+    commentModel.deleteById(int(request.form["commentid"]))
+    return redirect(url_for("barbershop_view"))
+
+
 def barbershop_view():
     if request.method == 'GET':
         #Get the list of the comment
         commentModel = CommentModel()
-        commentlist = commentModel.getAll()
-        return render_template("barbershopview.html",commentlist=commentlist)
+        commentlist = commentModel.getAllCommentswithPeople()
+
+        for c in commentlist:
+            c.dateTime = date(c.dateTime.year, c.dateTime.month, c.dateTime.day)
+
+        return render_template("barbershopview.html", commentlist=commentlist)
     else:
+        commentModel = CommentModel()
+
         berbershopid = request.form["bcommentselector"]
         commenttitle = request.form["bcommenttitle"]
         commenttext = request.form["bcommenttext"]
         commentrate = request.form["bcommentrate"]
 
         #save in database
-        commentModel = CommentModel()
+
         comment = Comment()
         comment.berber, comment.title, comment.content, comment.rate,comment.peopleId = int(berbershopid), commenttitle, commenttext,\
                                                                                         int(commentrate),1
 
         commentModel.save(comment)
-        # Get the list of the comment
-        commentModel = CommentModel()
-        commentlist = commentModel.getAll()
-        return render_template("barbershopview.html", commentlist=commentlist)
+        return redirect(url_for("barbershop_view"))
+
+
 
 ###########################################################
 

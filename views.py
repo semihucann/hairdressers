@@ -195,7 +195,23 @@ def signout():
     return render_template("signin.html", message="s")
 
 def admin_panel():
-    if(current_user.role=="admin"):
-        return render_template("admin_panel.html",)
+    if(current_user.role=="berber"):
+        #Düzeltttt user yerine admin yazılacak !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        person = People()
+        person.username="deneme"
+        person.gender = "male"
+
+        person2 = People()
+        person2.username = "deneme2"
+        person2.gender = "male"
+
+
+        peoples = [person, person2]
+
+
+
+
+        return render_template("admin_panel.html", people=peoples)
     else:
         return render_template("signin.html", message="admin_error")

@@ -4,6 +4,11 @@
 
 <center>
     <h1 class="title">Sign In </h1>
+     {% if message == "True"%}
+        <h2 class="title" style="color: green;"> You are login. </h2>
+    {% elif message == "False" %}
+        <h2 class="title" style="color: red;"> Mail or password is wrong !! </h2>
+    {% endif %}
 </center>
 
   <div class="hero-body">

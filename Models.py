@@ -285,6 +285,17 @@ class Peoplemodel:
         else:
             return False
 
+
+    def get_hash(self, mail):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                               SELECT password_hash from people where mail = %s
+                            """, (mail,))
+            hash = cursor.fetchone()[0]
+            return hash
+
+
 class Berbermodel:
     def get_id(self, username):
         with dbapi2.connect(url) as connection:

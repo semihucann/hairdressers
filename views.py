@@ -171,9 +171,19 @@ def signup_user_page():
 
 def signin():
     if request.method == 'GET':
-        return render_template("signin.html")
+        return render_template("signin.html", message="")
     else:
         mail = request.form["mail"]
         password = request.form["password"]
-        print(mail, password)
-        return render_template("blog.html")
+        people = Peoplemodel()
+
+        print(hasher.verify(password, people.get_hash(mail)))
+
+        #Eğer kullanıcı databasede ekli değilse patlar
+
+        if(hasher.verify(password, people.get_hash(mail))):
+            return render_template("signin.html", message="True")
+        else:
+            return render_template("signin.html", message="False")
+
+        return render_template("signin.html")

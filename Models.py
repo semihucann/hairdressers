@@ -321,6 +321,4 @@ class Ownermodel:
                             VALUES (%s , %s , %s , %s , %s , %s )""", (owner.people_id, owner.tc_number, owner.serial_number, owner.vol_number, owner.family_order_no, owner.order_no))
 
 
-
-
 ######################################################################################

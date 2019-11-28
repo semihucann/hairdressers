@@ -1,60 +1,71 @@
 {%extends "base.html"%}
 {%block title%} Registeration Types {%endblock%}
 {%block content%}
+<center>
     <h1 class="title">Registeration Types</h1>
     <h4 class="title">Click continue button to select your registration type</h4>
+</center>
+<div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
         <form action="" method="post" name="register_type">
-        <div id="flex-container">
-            <div class="flip-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  <img src="https://cdn2.iconfinder.com/data/icons/business-management-52/96/Artboard_20-512.png" alt="Avatar" style="width:300px;height:300px;">
+            <div id="flex-container">
+
+                <div class="flip-card">
+                  <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                      <img src="https://cdn2.iconfinder.com/data/icons/business-management-52/96/Artboard_20-512.png" alt="Avatar" style="width:300px;height:300px;">
+                    </div>
+                    <div class="flip-card-back">
+                      <h1>User</h1>
+                        <ul>
+                            <li>can create posts on blog page.</li>
+                            <li>can get a reservation from berbers.</li>
+                        </ul>
+                         <button class="button is-success" name="submit_button" value="user">Continue</button>
+                    </div>
+                  </div>
                 </div>
-                <div class="flip-card-back">
-                  <h1>User</h1>
-                    <ul>
-                        <li>can create posts on blog page.</li>
-                        <li>can get a reservation from berbers.</li>
-                    </ul>
-                     <button class="button is-success" name="submit_button" value="user">Continue</button>
+
+                 <div class="flip-card">
+                  <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                      <img src="https://cdn0.iconfinder.com/data/icons/mobile-development-icons/256/Barber.png" alt="Avatar" style="width:300px;height:300px;">
+                    </div>
+                    <div class="flip-card-back">
+                      <h1>Barber</h1>
+                      <ul>
+                            <li>can create posts on blog page.</li>
+                            <li>can get a reservation from berbers.</li>
+                        </ul>
+                         <button class="button is-success" name="submit_button" value="berber">Continue</button>
+                    </div>
+                  </div>
                 </div>
-              </div>
+
+                <div class="flip-card">
+                  <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                      <img src="https://cdn2.iconfinder.com/data/icons/real-estate-1-12/50/13-512.png" alt="Avatar" style="width:300px;height:300px;">
+                    </div>
+                    <div class="flip-card-back">
+                      <h1>Owner</h1>
+                        <ul>
+                            <li>can create barbershops.</li>
+                            <li>can add barbers to its barbershop.</li>
+                        </ul>
+                         <button class="button is-success" name="submit_button" value="owner">Continue</button>
+                    </div>
+                  </div>
+                </div>
 
             </div>
-
-             <div class="flip-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  <img src="https://cdn0.iconfinder.com/data/icons/mobile-development-icons/256/Barber.png" alt="Avatar" style="width:300px;height:300px;">
-                </div>
-                <div class="flip-card-back">
-                  <h1>Barber</h1>
-                  <ul>
-                        <li>can create posts on blog page.</li>
-                        <li>can get a reservation from berbers.</li>
-                    </ul>
-                     <button class="button is-success" name="submit_button" value="berber">Continue</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="flip-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  <img src="https://cdn2.iconfinder.com/data/icons/real-estate-1-12/50/13-512.png" alt="Avatar" style="width:300px;height:300px;">
-                </div>
-                <div class="flip-card-back">
-                  <h1>Owner</h1>
-                    <ul>
-                        <li>can create barbershops.</li>
-                        <li>can add barbers to its barbershop.</li>
-                    </ul>
-                     <button class="button is-success" name="submit_button" value="owner">Continue</button>
-                </div>
-              </div>
-            </div>
-        </div>
         </form>
+
+        </div>
+    </div>
+</div>
+
 {%endblock%}
 {%block type%}
 {%endblock%}

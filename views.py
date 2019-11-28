@@ -170,4 +170,10 @@ def signup_user_page():
 
 
 def signin():
-    return render_template("signin.html")
+    if request.method == 'GET':
+        return render_template("signin.html")
+    else:
+        mail = request.form["mail"]
+        password = request.form["password"]
+        print(mail, password)
+

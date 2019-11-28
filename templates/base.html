@@ -161,7 +161,7 @@
                 </a>
                 <div class="navbar-dropdown">
                    <a class="navbar-item" href="{{ url_for('profile_page') }}">
-                        <strong>Profile</strong>
+                        <strong>Profile - {{ current_user.role }}</strong>
                 </a>
                   <hr class="navbar-divider">
                    <a class="navbar-item" href="{{ url_for('signout') }}" >

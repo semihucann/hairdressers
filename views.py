@@ -4,7 +4,7 @@ from Models import CommentModel
 from Models import Peoplemodel, Berbermodel, Ownermodel
 from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner
 from passlib.hash import pbkdf2_sha256 as hasher
-from flask_login import LoginManager, login_user, logout_user
+from flask_login import LoginManager, login_user, logout_user, current_user
 
 
 #Ertuğrul's Function
@@ -193,3 +193,9 @@ def signin():
 def signout():
     logout_user()
     return render_template("signin.html", message="s")
+
+def admin_panel():
+    if(current_user.role=="admin"):
+        return render_template("admin_panel.html",)
+    else:
+        return render_template("signin.html", message="admin_error")

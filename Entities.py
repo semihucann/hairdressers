@@ -1,18 +1,5 @@
 from datetime import datetime
 
-
-class Berbershop:
-    def __init__(self):
-        self.id = None
-        self.shopname = None
-        self.ownerpeople_id = None
-        self.location = None
-        self.openingtime = None
-        self.closingtime = None
-        self.tradenumber = None
-        self.campaigns = None  # i need this for my page, you can ignore it for now
-
-
 # Entity of Comment table in Database
 class Comment:
     def __init__(self):
@@ -97,3 +84,40 @@ class Owner:
         self.order_no = None
 
 ########################################################################
+
+# FATIH'S CLASSES
+
+
+class ServicePrice:
+    def __init__(self):
+        self.id = None
+        self.shop_id = None
+        self.service_name = None
+        self.definition = None
+        self.gender = None
+        self.price = None
+        self.duration = None
+
+
+class CreditCard:
+    def __init__(self):
+        self.id = None
+        self.people_id = None
+        self.name = None
+        self.card_number = None
+        self.cvv = None
+        self.last_month = None
+        self.last_year = None
+
+
+class Berbershop:
+    def __init__(self):
+        self.id = None
+        self.shopname = None
+        self.ownerpeople_id = None
+        self.location = None
+        self.openingtime = None
+        self.closingtime = None
+        self.tradenumber = None
+        self.campaigns = None  # i need this for my page, you can ignore it for now
+

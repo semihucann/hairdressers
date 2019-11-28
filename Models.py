@@ -286,29 +286,29 @@ class Peoplemodel:
             return False
 
 
-    def get_hash(self, mail):
+    def get_hash(self, username):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""
-                               SELECT password_hash from people where mail = %s
-                            """, (mail,))
+                               SELECT password_hash from people where username = %s
+                            """, (username,))
             hash = cursor.fetchone()[0]
             return hash
 
-    def get_role(self, mail):
+    def get_role(self, username):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""
-                                      SELECT role from people where mail = %s
-                                   """, (mail,))
+                                      SELECT role from people where username = %s
+                                   """, (username,))
             role = cursor.fetchone()[0]
             return role
 
 
-    def control_exist_mail(self, mail):
+    def control_exist_username(self, username):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
-            cursor.execute("SELECT * FROM People where mail = %s ", (mail, ))
+            cursor.execute("SELECT * FROM People where username = %s ", (username, ))
         row = cursor.fetchone()
         if (row == None):
             return False

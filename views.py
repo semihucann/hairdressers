@@ -140,11 +140,11 @@ def signup_owner_page():
             owner.family_order_no = request.form["family_order_no"]
             owner.order_no = request.form["order_no"]
             owners.insert(owner)
-            return render_template("signup_berber.html", message="True")
+            return render_template("signup_owner.html", message="True")
         else:
-            return render_template("signup_berber.html", message="False")
+            return render_template("signup_owner.html", message="False")
 
-        return redirect(url_for("signup_berber_page"))
+        return redirect(url_for("signup_owner_page"))
 
 
 def signup_user_page():
@@ -173,14 +173,14 @@ def signin():
     if request.method == 'GET':
         return render_template("signin.html", message="")
     else:
-        mail = request.form["mail"]
+        username = request.form["username"]
         password = request.form["password"]
         people = Peoplemodel()
 
         #Eğer kullanıcı databasede ekli değilse patlar
-        if(people.control_exist_mail(mail)):
-            if(hasher.verify(password, people.get_hash(mail))):
-                return render_template("signin.html", message="True", role=people.get_role(mail))
+        if(people.control_exist_username(username)):
+            if(hasher.verify(password, people.get_hash(username))):
+                return render_template("signin.html", message="True", role=people.get_role(username))
             else:
                 return render_template("signin.html", message="False")
         else:

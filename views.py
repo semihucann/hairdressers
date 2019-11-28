@@ -4,8 +4,7 @@ from Models import CommentModel
 from Models import Peoplemodel, Berbermodel, Ownermodel
 from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner
 from passlib.hash import pbkdf2_sha256 as hasher
-
-
+from flask_login import LoginManager, login_user, logout_user
 
 
 #Ertuğrul's Function
@@ -180,9 +179,17 @@ def signin():
 
         #Eğer kullanıcı databasede ekli değilse patlar
         if(people.control_exist_username(username)):
-            if(hasher.verify(password, people.get_hash(username))):
+            person = People()
+            person = people.get_all(username)
+
+            if(hasher.verify(password, person.password_hash)):
+                login_user(person)
                 return render_template("signin.html", message="True", role=people.get_role(username))
             else:
                 return render_template("signin.html", message="False")
         else:
             return render_template("signin.html", message="False")
+
+def signout():
+    logout_user()
+    return render_template("signin.html", message="s")

@@ -1,0 +1,56 @@
+{%extends "base.html"%}
+{%block title%} Admin Panel {%endblock%}
+{%block content%}
+    <p> Hello {{name}} ! </p>
+    <center><h3>People Table</h3></center>
+    <table class="table">
+        <tr>
+            <th>Selection</th>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Name Surname</th>
+            <th>Mail</th>
+            <th>Password</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>Role</th>
+        </tr>
+
+       {% for person in people %}
+        <tr>
+          <td>
+            <label class="checkbox">
+              <input type="checkbox" name="key" value="{{ person.id }}"/>
+            </label>
+          </td>
+           <td>
+              {{ person.id }}
+          </td>
+          <td>
+              {{ person.username }}
+          </td>
+          <td>
+              {{ person.name_surname }}
+          </td>
+           <td>
+              {{ person.mail }}
+          </td>
+          <td>
+              {{ person.password_hash }}
+          </td>
+           <td>
+              {{ person.gender }}
+          </td>
+          <td>
+              {{ person.age }}
+          </td>
+          <td>
+              {{ person.role }}
+          </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+
+{%endblock%}

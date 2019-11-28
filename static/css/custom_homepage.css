@@ -138,7 +138,69 @@ overflow: auto;
     display:block;
 }
 
+.thumbnail {
+    padding:0px;
+}
+.panel {
+	position:relative;
+}
+.panel>.panel-heading:after,.panel>.panel-heading:before{
+	position:absolute;
+	top:11px;left:-16px;
+	right:100%;
+	width:0;
+	height:0;
+	display:block;
+	content:" ";
+	border-color:transparent;
+	border-style:solid solid outset;
+	pointer-events:none;
+}
+.panel>.panel-heading:after{
+	border-width:7px;
+	border-right-color:#f7f7f7;
+	margin-top:1px;
+	margin-left:2px;
+}
+.panel>.panel-heading:before{
+	border-right-color:#ddd;
+	border-width:8px;
+}
 
+.btn-primary
+{
+    margin-top : 12px;
+    height:30px;
+    margin-left:10px;
+    display:inline
+}
+.btn-danger{
+    margin-top : 12px;
+    height:30px;
+    margin-left:10px;
+    display:inline
+}
 
+.panel-body{
+    width:530px;
+    max-width:530px;
+    overflow: hidden;
+    word-wrap: break-word
+}
 
+.commentdatespan{
+    font-size:12px;
+    margin-left:10px;
+}
+
+.commenttextcontent{
+    border: 0px solid red;
+    padding : 5px;
+}
+
+.commenttexttitle{
+    border: 0px solid red;
+    padding : 5px;
+    display:inline;
+}
 

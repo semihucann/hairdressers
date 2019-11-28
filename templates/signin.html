@@ -8,6 +8,8 @@
         <h2 class="title" style="color: green;"> You are login as {{role}} </h2>
     {% elif message == "False" %}
         <h2 class="title" style="color: red;"> Mail or password is wrong !! </h2>
+    {% elif message == "admin_error" %}
+        <h5 class="title" style="color: red;"> You are not allowed admin page !! </h5>
     {% endif %}
 </center>
 
@@ -44,7 +46,7 @@
               </div>
 
               <div class="field is-grouped">
-                <div class="control">
+                   <div class="control">
                        <button class="button is-success">Login</button>
                   </div>
               </div>

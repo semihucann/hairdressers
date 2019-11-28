@@ -154,20 +154,24 @@
                 <strong>Sign in</strong>
                 </a>
                 {% else %}
-                {{ current_user.username }}
-                <a class="navbar-item" href="{{ url_for('signout') }}" >
-                <strong>Sign Out</strong>
+
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link" href="{{ url_for('profile_page') }}">
+                        <strong>{{ current_user.username }}</strong>
                 </a>
+                <div class="navbar-dropdown">
+                   <a class="navbar-item" href="{{ url_for('profile_page') }}">
+                        <strong>Profile - {{ current_user.role }}</strong>
+                </a>
+                  <hr class="navbar-divider">
+                   <a class="navbar-item" href="{{ url_for('signout') }}" >
+                      <strong>Sign Out</strong>
+                   </a>
+                </div>
+              </div>
+            </div>
                 {% endif %}
 
-
-
-
-
-
-               <a class="navbar-item" href="{{ url_for('profile_page') }}">
-                <strong>Profile</strong>
-              </a>
             </div>
           </div>
         </div>
@@ -305,6 +309,15 @@
                 x.style.display = 'none';
                 console.log("2")
             }
+
+        }
+
+        function inputCopied(){
+            var text = document.getElementById('commentedittext').innerHTML;
+            var title = document.getElementById('commentedittitle').innerHTML;
+            document.getElementById('commenttextinput').value = text;
+            document.getElementById('commenttitleinput').value = title;
+            document.getElementById("editcommentform").submit();
 
         }
 

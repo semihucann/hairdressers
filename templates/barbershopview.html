@@ -128,41 +128,78 @@
 </div>
 
 
+<div>
+  <hr>
+  <h4>Comments</h4>
+  <br>
+  {% for comment in commentlist %}
+    <div>
+      <div class="container" style="margin-top:20px;">
+        <div class="row">
+        <div class="col-sm-12">
+        <h5>
+          {% if comment.peopleobj.id == 1 %}
+            <p  class="commenttexttitle" id="commentedittitle" contenteditable="true">{{comment.title}}</p>
+          {% else %}
+            <p>{{comment.title}}</p>
+          {% endif %}
+        </h5>
+        </div><!-- /col-sm-12 -->
+        </div><!-- /row -->
+        <div class="row">
+        <div class="col-sm-1">
+        <div class="thumbnail">
+        <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+        </div><!-- /thumbnail -->
+        </div><!-- /col-sm-1 -->
 
-<table id="dtMaterialDesignExample" class="table table-striped" cellspacing="0" width="100%">
-  <thead>
-    <tr>
-      <th class="th-sm">Content
-      </th>
-      <th class="th-sm">Date
-      </th>
-      <th class="th-sm">Likes
-      </th>
-      <th class="th-sm">Dislikes
-      </th>
-    </tr>
-  </thead>
-  <tbody>
+        <div class="col-sm-5">
+        <div class="panel panel-default">
+        <div class="panel-heading">
 
-    {% for comment in commentlist %}
+          {% if comment.peopleobj.id == 1 %}
+            <strong style="background-color : yellow;">{{comment.peopleobj.username}}</strong>
+          {% else %}
+             <strong>{{comment.peopleobj.username}}</strong>
+          {% endif %}
 
-       <tr>
-         <td>
-           <h3>{{comment.title}}</h3>
-           <p>{{comment.content}}</p>
-        </td>
-        <td>{{comment.dateTime}}</td>
-        <td>New York</td>
-        <td>27</td>
 
-      </tr>
+          <span class="commentdatespan">commented on {{comment.dateTime}}</span>
+        </div>
+        <div class="panel-body">
+          {% if comment.peopleobj.id == 1 %}
+            <p id="commentedittext" class="commenttextcontent" contenteditable="true">{{comment.content}}</p>
+          {% else %}
+            <p>{{comment.content}}</p>
+          {% endif %}
 
-    {% endfor %}
+        </div><!-- /panel-body -->
+        </div><!-- /panel panel-default -->
+        </div><!-- /col-sm-5 -->
 
-  </tbody>
+        </div>
+         <form action="{{url_for('barbershop_view_edit')}}" id="editcommentform" method="POST">
+            <input  type="hidden" name="commentid" value="{{comment.id}}">
+            <input id="commenttitleinput" type="hidden" name="commenttitle" value="">
+           <input id="commenttextinput" type="hidden" name="commenttext" value="{{comment.id}}">
+            <button type="submit" onclick="inputCopied()"  class="btn btn-primary btn-sm">Edit</button>
+        </form>
 
-</table>
 
+
+        <form action="{{url_for('barbershop_view_delete')}}"  method="POST">
+            <input type="hidden" name="commentid" value="{{comment.id}}">
+            <button type="submit"  class="btn btn-danger btn-sm">Delete</button>
+        </form>
+        <br>
+
+
+  {% endfor %}
+
+
+
+
+</div>
 
 
 

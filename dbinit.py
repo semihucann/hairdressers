@@ -121,8 +121,22 @@ INIT_STATEMENTS = [
         last_month NUMERIC(2) NOT NULL,
         last_year NUMERIC(2) NOT NULL
     )   
-    """
+    """,
     #FATIH'S TABLES
+    
+    #HALIS'S TABLES
+    """
+    CREATE TABLE IF NOT EXISTS Posts(
+        id SERIAL PRIMARY KEY,
+        people_id INTEGER REFERENCES People(id) ON DELETE CASCADE,
+        post_title VARCHAR(50),
+        post_content VARCHAR(500),
+        like_number INTEGER,
+        dislike_number INTEGER,
+        subject VARCHAR(20),
+        date_time TIMESTAMP
+    )
+    """
 
 ]
 

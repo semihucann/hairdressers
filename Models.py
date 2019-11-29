@@ -351,6 +351,32 @@ class Peoplemodel:
             person.active = True
             return person
 
+    def get_all_list(self):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute(""" SELECT * from people""")
+            people_list = []
+            rows = cursor.fetchall()
+            for i in rows:
+                person = People()
+                person.id = i[0]
+                person.username = i[1]
+                person.name_surname = i[2]
+                person.mail = i[3]
+                person.password_hash = i[4]
+                person.gender = i[5]
+                person.age = i[6]
+                person.role = i[7]
+                person.active = True
+                people_list.append(person)
+            return people_list
+
+
+    def delete_id(self, id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("DELETE FROM People where id = %s", (id,))
+
     def control_exist_username(self, username):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()

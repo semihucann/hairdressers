@@ -220,7 +220,7 @@ def signin():
 
 def signout():
     logout_user()
-    return redirect(url_for("signin"))
+    return redirect(url_for("home_page"))
 
 def admin_panel():
     peoples = []

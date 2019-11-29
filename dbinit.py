@@ -6,14 +6,12 @@ import psycopg2 as dbapi2
 
 INIT_STATEMENTS = [
     "CREATE TABLE IF NOT EXISTS DUMMY (NUM INTEGER)",
-    "INSERT INTO DUMMY VALUES (42)",
 
     #ERTUGRUL's tables
     """
- 
     CREATE TABLE IF NOT EXISTS Comments(
         id SERIAL PRIMARY KEY, 
-        people_id integer NOT NULL REFERENCES People(id),
+        people_id integer NOT NULL REFERENCES People(id) ON DELETE CASCADE,
         berber integer NOT NULL REFERENCES Berber(id),
         title VARCHAR (100),
         content VARCHAR (500),
@@ -39,7 +37,7 @@ INIT_STATEMENTS = [
     """
        CREATE TABLE IF NOT EXISTS Rezervation(
            id SERIAL PRIMARY KEY,
-           people_id integer NOT NULL REFERENCES People(id),
+           people_id integer NOT NULL REFERENCES People(id) ON DELETE CASCADE,
            berbershop_id integer NOT NULL REFERENCES Berbershop(id),
            datetime_registration TIMESTAMP,
            datetime_rezervation TIMESTAMP,
@@ -66,7 +64,7 @@ INIT_STATEMENTS = [
     """
     CREATE TABLE IF NOT EXISTS Berber(
         id SERIAL PRIMARY KEY,
-        people_id INTEGER REFERENCES People(id),
+        people_id INTEGER REFERENCES People(id) ON DELETE CASCADE,
         berbershop_id INTEGER DEFAULT 0, 
         gender_choice VARCHAR(10),
         experience_year INTEGER DEFAULT 0,
@@ -78,7 +76,7 @@ INIT_STATEMENTS = [
     """
     CREATE TABLE IF NOT EXISTS Owner(
         id SERIAL PRIMARY KEY,
-        people_id INTEGER REFERENCES People(id),
+        people_id INTEGER REFERENCES People(id) ON DELETE CASCADE,
         tc_number NUMERIC(11) UNIQUE NOT NULL,
         serial_number NUMERIC(5) NOT NULL,
         vol_number NUMERIC(5),

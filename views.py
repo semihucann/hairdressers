@@ -213,7 +213,7 @@ def signin():
 
 def signout():
     logout_user()
-    return render_template("signin.html", message="s")
+    return redirect(url_for("signin"))
 
 def admin_panel():
     peoples = []
@@ -231,12 +231,5 @@ def admin_panel():
             for j in peoples:
                 if j.id == int(i) and j.role == "user":
                     people.delete_id(j.id)
-                    #eğer kişinin commenti varsa silemeyiz
-
-
-
-
-
-
 
         return redirect(url_for("admin_panel"))

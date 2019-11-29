@@ -220,7 +220,7 @@ def admin_panel():
     people = Peoplemodel()
     peoples = people.get_all_list()
     if request.method == 'GET':
-        if (current_user.role == "berber"):
+        if (current_user.role == "admin"):
             # Düzeltttt user yerine admin yazılacak !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             return render_template("admin_panel.html", people=peoples)
         else:
@@ -230,9 +230,8 @@ def admin_panel():
         for i in form_movie_keys:
             for j in peoples:
                 if j.id == int(i) and j.role == "user":
-                    print(j.id)
                     people.delete_id(j.id)
-
+                    #eğer kişinin commenti varsa silemeyiz
 
 
 

@@ -72,7 +72,13 @@ def barbershop_view():
 
 
 def blog_page():
+
     return render_template("blog.html", name="blog_page")
+
+
+def newpost_page():
+
+    return render_template("newpost.html", name="newpost_page")
 
 
 def profile_page():

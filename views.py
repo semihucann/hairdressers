@@ -1,4 +1,4 @@
-from flask import render_template, Flask, request, redirect, url_for
+from flask import render_template, Flask, request, redirect, url_for, current_app
 from datetime import date,datetime
 import Temporarypython
 from Models import CommentModel
@@ -218,6 +218,8 @@ def signin():
 
             if(hasher.verify(password, person.password_hash)):
                 login_user(person)
+                current_app.config["LOGGED_USER"] = person
+
                 return render_template("signin.html", message="True", role=people.get_role(username))
             else:
                 return render_template("signin.html", message="False")

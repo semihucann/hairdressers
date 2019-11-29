@@ -2,8 +2,8 @@ from flask import render_template, Flask, request, redirect, url_for
 from datetime import date,datetime
 import Temporarypython
 from Models import CommentModel
-from Models import Peoplemodel, Berbermodel, Ownermodel
-from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner
+from Models import Peoplemodel, Berbermodel, Ownermodel, CreditcardModel
+from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, CreditCard
 from passlib.hash import pbkdf2_sha256 as hasher
 from flask_login import LoginManager, login_user, logout_user, current_user
 
@@ -77,11 +77,18 @@ def blog_page():
 
 def profile_page():
     if request.method == 'POST':
-        card_owner_name = request.form["name_surname"]
-        card_number = request.form["number"]
-        card_valid_date = request.form["date"]
-        card_cvv = request.form["cvv"]
-        print(card_owner_name + " " + card_number + " " + card_valid_date + " " + card_cvv)
+        credit_card = CreditCard()
+        credit_card.name = request.form["name_surname"]
+        credit_card.card_number = request.form["number"]
+        last_date = request.form["date"]
+        if "/" not in last_date:
+            return render_template("profile.html")
+        array_last_date = last_date.split("/")
+        credit_card.last_year = array_last_date[1]
+        credit_card.last_month = array_last_date[0]
+        credit_card.cvv = request.form["cvv"]
+        credit_card.people_id = request.form["card_owner_id"]
+        CreditcardModel().insert(credit_card)
     return render_template("profile.html")
 
 

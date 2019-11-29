@@ -230,6 +230,8 @@ def admin_panel():
 
         peoples = [person, person2]
 
+        people = Peoplemodel()
+        peoples = people.get_all_list()
 
 
 

@@ -5,7 +5,7 @@
     <center><h3>People Table</h3></center>
     <table class="table">
         <tr>
-            <th>Selection</th>
+            <th></th>
             <th>Id</th>
             <th>Username</th>
             <th>Name Surname</th>
@@ -14,6 +14,8 @@
             <th>Gender</th>
             <th>Age</th>
             <th>Role</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
 
        {% for person in people %}
@@ -47,10 +49,18 @@
           <td>
               {{ person.role }}
           </td>
+          <td>
+            <label class="checkbox">
+              <button class="button is-info"name="edit" value="{{ person.id }}" >Edit</button>
+            </label>
+          </td>
+          <td>
+            <label class="checkbox">
+              <button class="button is-danger" name="edit" value="{{ person.id }}" >Delete</button>
+            </label>
+          </td>
         </tr>
         {% endfor %}
     </table>
-
-
 
 {%endblock%}

@@ -371,6 +371,12 @@ class Peoplemodel:
                 people_list.append(person)
             return people_list
 
+
+    def delete_id(self, id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("DELETE FROM People where id = %s", (id,))
+
     def control_exist_username(self, username):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()

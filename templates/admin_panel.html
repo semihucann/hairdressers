@@ -1,9 +1,17 @@
 {%extends "base.html"%}
 {%block title%} Admin Panel {%endblock%}
 {%block content%}
-    <p> Hello {{name}} ! </p>
-    <center><h3>People Table</h3></center>
-    <table class="table">
+<p> Hello {{name}} ! </p>
+<center><h3>People Table</h3></center>
+
+<form action="" method="post" name="signup_base_first" class="box">
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+        <div class="field is-grouped">
+            <div class="control">
+              <button class="button is-danger">Delete selected</button>
+            </div>
+        </div>
+
         <tr>
             <th></th>
             <th>Id</th>
@@ -15,14 +23,13 @@
             <th>Age</th>
             <th>Role</th>
             <th>Edit</th>
-            <th>Delete</th>
         </tr>
 
        {% for person in people %}
         <tr>
           <td>
             <label class="checkbox">
-              <input type="checkbox" name="key" value="{{ person.id }}"/>
+              <input type="checkbox" name="people_keys" value="{{ person.id }}"/>
             </label>
           </td>
            <td>
@@ -51,16 +58,11 @@
           </td>
           <td>
             <label class="checkbox">
-              <button class="button is-info"name="edit" value="{{ person.id }}" >Edit</button>
-            </label>
-          </td>
-          <td>
-            <label class="checkbox">
-              <button class="button is-danger" name="edit" value="{{ person.id }}" >Delete</button>
+              <button class="button is-info" name="edit" value="{{ person.id }}" >Edit</button>
             </label>
           </td>
         </tr>
         {% endfor %}
     </table>
-
+</form>
 {%endblock%}

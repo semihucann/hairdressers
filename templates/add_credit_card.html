@@ -5,33 +5,38 @@
 
     <form action="/profile" method="post" name="movie_edit">
         <div class="field">
-          <label for="name_surname" class="label">Card Owner Name Surname</label>
+          <label class="label">Card Owner Name Surname</label>
           <div class="control">
             <input type="text" name="name_surname" class="input" required="required"/>
           </div>
         </div>
 
         <div class="field">
-          <label for="number" class="label">Card Number</label>
+          <label class="label">Card Number</label>
           <div class="control">
             <input type="number" name="number" class="input" required="required"/>
           </div>
         </div>
 
         <div class="field">
-        <label for="date" class="label">Valid Thru (01/20)</label>
+        <label class="label">Valid Thru (01/20)</label>
         <div class="control">
           <input type="text" name="date" class="input" required="required"/>
         </div>
         </div>
 
         <div class="field">
-          <label for="cvv" class="label">CVV</label>
+          <label class="label">CVV</label>
           <div class="control">
             <input type="number" name="cvv" class="input" required="required"/>
           </div>
         </div>
 
+        <div class="field">
+          <div class="control">
+            <input type="hidden" name="card_owner_id" class="input" value="{{current_user.id}}"/>
+          </div>
+        </div>
 
         <div class="field is-grouped">
           <div class="control">

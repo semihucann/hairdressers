@@ -398,3 +398,15 @@ class Ownermodel:
 
 
 ######################################################################################
+
+#FATIH'S MODELS
+
+class CreditcardModel:
+    def insert(self, creditCard):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""INSERT INTO Creditcards (people_id, name, card_number, cvv_number, last_month, last_year) 
+                             VALUES (%s , %s , %s , %s , %s , %s )""", (creditCard.people_id, creditCard.name,
+                                                                        creditCard.card_number,
+                                                                        creditCard.cvv, creditCard.last_month,
+                                                                        creditCard.last_year))

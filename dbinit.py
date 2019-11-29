@@ -114,7 +114,7 @@ INIT_STATEMENTS = [
     """
     CREATE TABLE IF NOT EXISTS Creditcards(
         id SERIAL PRIMARY KEY,
-        people_id INTEGER REFERENCES People(id),
+        people_id INTEGER REFERENCES People(id) ON DELETE CASCADE,
         name VARCHAR(50),
         card_number NUMERIC(16) NOT NULL,
         cvv_number NUMERIC(4) NOT NULL,

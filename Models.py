@@ -601,3 +601,15 @@ class CreditcardModel:
                                                                         creditCard.card_number,
                                                                         creditCard.cvv, creditCard.last_month,
                                                                         creditCard.last_year))
+
+
+class Berbershopmodel:
+
+    def insert(self, berbershop):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""INSERT INTO Berbershop (owner_people_id, shopname, location, city, opening_time, closing_time, trade_number) 
+                             VALUES (%s , %s , %s , %s , %s , %s, %s)""", (berbershop.ownerpeople_id, berbershop.shopname,
+                                                                        berbershop.location, berbershop.city,
+                                                                        berbershop.openingtime, berbershop.closingtime,
+                                                                        berbershop.tradenumber))

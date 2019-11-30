@@ -108,16 +108,13 @@ class CommentModel:
             comments.append(comment)
         return comments
 
-
-
-
-    def commentCurrentUserRelationship(self,id,peopleId):
+    def commentCurrentUserRelationship(self,id):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""
               select com.id, com.people_id, com.ifliked, com.ifdisliked from
-               commentlikedislike as com where com.comment_id = %s and com.people_id = %s  
-            """,(id,peopleId))
+               commentlikedislike as com where com.comment_id = %s and com.people_id = 14  
+            """,(id,))
 
         row = cursor.fetchone()
         likedDisliked = LikedDisliked()
@@ -604,6 +601,19 @@ class CreditcardModel:
                                                                         creditCard.card_number,
                                                                         creditCard.cvv, creditCard.last_month,
                                                                         creditCard.last_year))
+
+
+class Berbershopmodel:
+
+    def insert(self, berbershop):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""INSERT INTO Berbershop (owner_people_id, shopname, location, city, opening_time, closing_time, trade_number) 
+                             VALUES (%s , %s , %s , %s , %s , %s, %s)""", (berbershop.ownerpeople_id, berbershop.shopname,
+                                                                        berbershop.location, berbershop.city,
+                                                                        berbershop.openingtime, berbershop.closingtime,
+                                                                        berbershop.tradenumber))
+
 
 
 

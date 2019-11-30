@@ -37,15 +37,35 @@ def barbershop_view_delete():
     commentModel.deleteById(int(request.form["commentid"]))
     return redirect(url_for("barbershop_view"))
 
+def barbershopview_comment_like_dislike() :
+    likeddislikedid = request.form["likedislikeid"]
+    likeddislikedidint = None
+
+    if(len(likeddislikedid) > 0 and likeddislikedidint != " "):
+        likeddislikedidint = int(likeddislikedid)
+
+
+    commentid = request.form["commentid"]
+    commentidint = int(commentid)
+    peopleid = request.form["peopleid"]
+    peopleidint = int(peopleid)
+    bool = int(request.form["bool"])
+    boolint = int(bool)
+
+    commentModel = CommentModel()
+    commentModel.likedislikeUpdate(commentidint,peopleidint,boolint, likeddislikedidint)
+    return redirect(url_for("barbershop_view"))
+
 
 def barbershop_view():
     if request.method == 'GET':
         #Get the list of the comment
         commentModel = CommentModel()
-        commentlist = commentModel.getAllCommentswithPeople()
+        commentlist = commentModel.getAllCommentswithPeopleandLiked()
 
         for c in commentlist:
             c.dateTime = date(c.dateTime.year, c.dateTime.month, c.dateTime.day)
+            c.likedDislikedobj = commentModel.commentCurrentUserRelationship(c.id)
 
         return render_template("barbershopview.html", commentlist=commentlist)
     else:
@@ -60,7 +80,7 @@ def barbershop_view():
 
         comment = Comment()
         comment.berber, comment.title, comment.content, comment.rate,comment.peopleId = int(berbershopid), commenttitle, commenttext,\
-                                                                                        int(commentrate),1
+                                                                                        int(commentrate),14
 
         commentModel.save(comment)
         return redirect(url_for("barbershop_view"))

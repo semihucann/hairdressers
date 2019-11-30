@@ -178,21 +178,107 @@
         </div><!-- /col-sm-5 -->
 
         </div>
+        {% if comment.peopleobj.id == 1 %}
          <form action="{{url_for('barbershop_view_edit')}}" id="editcommentform" method="POST">
             <input  type="hidden" name="commentid" value="{{comment.id}}">
             <input id="commenttitleinput" type="hidden" name="commenttitle" value="">
            <input id="commenttextinput" type="hidden" name="commenttext" value="{{comment.id}}">
+
             <button type="submit" onclick="inputCopied()"  class="btn btn-primary btn-sm">Edit</button>
         </form>
+        {% endif %}
 
 
-
+        {% if comment.peopleobj.id == 1 %}
         <form action="{{url_for('barbershop_view_delete')}}"  method="POST">
             <input type="hidden" name="commentid" value="{{comment.id}}">
             <button type="submit"  class="btn btn-danger btn-sm">Delete</button>
         </form>
         <br>
+        {% endif %}
 
+
+        <!-- LİKED - DİSLİKED PART -->
+
+        <div id="demo">
+          {% if comment.likedDislikedobj == None %}
+          <form style="margin-left : 100px" class="likedislikeform" action="{{url_for('barbershopview_comment_like_dislike')}}" method="post">
+              <input type="hidden" name="likedislikeid" value="{{comment.likedDislikedobj.id}}">
+            <input type="hidden" name="commentid" value="{{comment.id}}">
+              <input type="hidden" name="peopleid" value="14">
+              <input type="hidden" name="bool" value="1">
+              <button type="submit" class="notlikedbefore">
+                <img  src="{{ url_for('static', filename='images/iconfinder_thumbs-o-up_1608724.png')}}" />
+                 <span>{{comment.like}}</span>
+              </button>
+          </form>
+
+          <form class="likedislikeform" action="{{url_for('barbershopview_comment_like_dislike')}}" method="post">
+                <input type="hidden" name="likedislikeid" value="{{comment.likedDislikedobj.id}}">
+              <input type="hidden" name="commentid" value="{{comment.id}}">
+              <input type="hidden" name="peopleid" value="14">
+              <input type="hidden" name="bool" value="-1">
+              <button class="notdislikedbefore">
+               <img  src="{{ url_for('static', filename='images/dislike1.png')}}" />
+           </button>
+            <span> {{comment.dislike}} </span>
+          </form>
+
+          {% elif comment.likedDislikedobj.ifliked == 1 %}
+
+          <form style="margin-left : 100px" class="likedislikeform" action="{{url_for('barbershopview_comment_like_dislike')}}" method="post">
+              <input type="hidden" name="likedislikeid" value="{{comment.likedDislikedobj.id}}">
+            <input type="hidden" name="commentid" value="{{comment.id}}">
+              <input type="hidden" name="peopleid" value="14">
+              <input type="hidden" name="bool" value="-1">
+              <button class="likedbefore">
+                <img  src="{{ url_for('static', filename='images/iconfinder_thumbs-up_1608950.png')}}" />
+              </button>
+                {{comment.like}}
+          </form>
+
+          <form class="likedislikeform" action="{{url_for('barbershopview_comment_like_dislike')}}" method="post">
+              <input type="hidden" name="likedislikeid" value="{{comment.likedDislikedobj.id}}">
+            <input type="hidden" name="commentid" value="{{comment.id}}">
+              <input type="hidden" name="peopleid" value="14">
+              <input type="hidden" name="bool" value="-2">
+              <button class="notdislikedbefore">
+                <img  src="{{ url_for('static', filename='images/dislike1.png')}}" />
+
+           </button>
+            {{comment.dislike}}
+          </form>
+
+
+
+          {% elif comment.likedDislikedobj.ifDisliked == 1 %}
+          <form style="margin-left : 100px" class="likedislikeform" action="{{url_for('barbershopview_comment_like_dislike')}}" method="post">
+              <input type="hidden" name="likedislikeid" value="{{comment.likedDislikedobj.id}}">
+            <input type="hidden" name="commentid" value="{{comment.id}}">
+              <input type="hidden" name="peopleid" value="14">
+              <input type="hidden" name="bool" value="2">
+               <button class="notlikedbefore">
+               <img  src="{{ url_for('static', filename='images/iconfinder_thumbs-o-up_1608724.png')}}" />
+
+               </button>
+             {{comment.like}}
+          </form>
+
+          <form class="likedislikeform" action="{{url_for('barbershopview_comment_like_dislike')}}" method="post">
+              <input type="hidden" name="likedislikeid" value="{{comment.likedDislikedobj.id}}">
+            <input type="hidden" name="commentid" value="{{comment.id}}">
+              <input type="hidden" name="peopleid" value="14">
+              <input type="hidden" name="bool" value="1">
+              <button class="dislikedbefore">
+                <img  src="{{ url_for('static', filename='images/dislike2.png')}}" />
+
+               </button>
+            {{comment.dislike}}
+          </form>
+
+          {% endif %}
+
+      </div>
 
   {% endfor %}
 

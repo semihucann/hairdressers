@@ -17,8 +17,8 @@ INIT_STATEMENTS = [
         content VARCHAR (500),
         rate integer  NOT NULL,
         date_time TIMESTAMP, 
-        comment_like integer NOT NULL, 
-        comment_dislike integer NOT NULL,
+        comment_like integer DEFAULT 0 NOT NULL, 
+        comment_dislike  integer DEFAULT 0 NOT NULL,
         CHECK (rate > 0), CHECK (rate < 6) 
     )""",
     #  CREATE TYPE IF NOT EXISTS type AS ENUM ('company', 'personal');
@@ -44,6 +44,17 @@ INIT_STATEMENTS = [
            status status,
            note VARCHAR (100),
            price_type VARCHAR (100)
+       )""",
+
+    """ 
+    
+       CREATE TABLE IF NOT EXISTS CommentLikeDislike(
+           id SERIAL PRIMARY KEY,
+           comment_id integer NOT NULL REFERENCES Comments(id) ON DELETE CASCADE,
+           people_id integer NOT NULL REFERENCES People(id) ON DELETE CASCADE,
+           ifliked  integer NOT NULL,
+           ifdisliked integer NOT NULL,
+           CHECK (ifliked <2), CHECK (ifliked >-2), CHECK (ifdisliked <2), CHECK (ifdisliked >-2) 
        )""",
 
     # SEMİH TABLE ######################################################################

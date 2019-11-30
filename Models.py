@@ -1,5 +1,5 @@
 import psycopg2 as dbapi2
-from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner
+from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, LikedDisliked
 import os
 
 url = os.getenv("DATABASE_URL")
@@ -57,6 +57,8 @@ class CommentModel:
             comments.append(comment)
         return comments
 
+
+
     def deleteById(self, id):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
@@ -86,24 +88,41 @@ class CommentModel:
             return False
         return True
 
-    def getAllCommentswithPeople(self):
-
-        commentlist = self.getAll()
+    def getAllCommentswithPeopleandLiked(self):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""
-                SELECT p.id,p.username,p.name_surname from People as p  JOIN Comments as c ON p.id = c.people_id 
+                SELECT c.*, p.id, p.username from comments as c join people as  p on c.people_id = p.id
             """)
 
         rows = cursor.fetchall()
-        i = 0
+        comments = []
         for row in rows:
-            people = People()
-            people.id, people.username, people.name_surname = row[0], row[1], row[2]
-            commentlist[i].peopleobj = people
-            i += 1
+            comment = Comment()
+            comment.id, comment.peopleId, comment.berber, comment.title, comment.content, comment.rate, comment.dateTime, \
+            comment.like, comment.dislike = row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8]
 
-        return commentlist
+            people = People()
+            people.id, people.username = row[9], row[10]
+            comment.peopleobj = people
+            comments.append(comment)
+        return comments
+
+    def commentCurrentUserRelationship(self,id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+              select com.id, com.people_id, com.ifliked, com.ifdisliked from
+               commentlikedislike as com where com.comment_id = %s and com.people_id = 14  
+            """,(id,))
+
+        row = cursor.fetchone()
+        likedDisliked = LikedDisliked()
+        if (row == None) :
+            return None
+        likedDisliked.id, likedDisliked.peopleId, likedDisliked.ifliked, likedDisliked.ifDisliked= row[0], \
+        row[1], row[2], row[3]
+        return likedDisliked
 
     def updateByIdTitleText(self, id, title, content, datetime):
         with dbapi2.connect(url) as connection:
@@ -111,6 +130,152 @@ class CommentModel:
             cursor.execute("""
                        UPDATE Comments SET title = %s , content= %s, date_time = %s  where id = %s""",
                            (title,content,datetime,id))
+
+
+    def  increaseLikeNumber(self, commentid):
+         with dbapi2.connect(url) as connection:
+             cursor = connection.cursor()
+             cursor.execute(""" UPDATE Comments as c SET comment_like = comment_like +1  where c.id = %s""",
+                                   (commentid,))
+
+    def increaseDislikeNumber(self, commentid):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute(""" UPDATE Comments as c SET comment_dislike = comment_dislike +1  where c.id = %s""",
+                           (commentid,))
+
+    def decreaseDislikeNumber(self, commentid):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute(""" UPDATE Comments as c SET comment_dislike = comment_dislike -1  where c.id = %s""",
+                           (commentid,))
+
+    def decreaseLikeNumber(self, commentid):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute(""" UPDATE Comments as c SET comment_like = comment_like -1  where c.id = %s""",
+                           (commentid,))
+
+    def increaseLikeDecreaseDislike(self, commentid):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute(""" UPDATE Comments as c SET comment_like = comment_like +1 , comment_dislike = comment_dislike -1
+              where c.id = %s""",
+                           (commentid,))
+
+    def decreaseLikeIncreaseDislike(self, commentid):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute(""" UPDATE Comments as c SET comment_like = comment_like -1 , comment_dislike = comment_dislike + 1
+              where c.id = %s""",
+                           (commentid,))
+
+
+
+    def likeDislikeUpdateCondition(self,commentid, peopleid, bool , likedislikeid):
+        #it is not existed
+        if(bool == 1 or bool == 2):
+            like , dislike = 0, 0
+            if(bool == 1):
+                self.increaseLikeNumber(commentid)
+                like = 1
+            else :
+                dislike = 1
+                self.increaseDislikeNumber(commentid)
+
+            with dbapi2.connect(url) as connection:
+                cursor = connection.cursor()
+                cursor.execute("""  INSERT into CommentLikeDislike (comment_id, people_id, ifliked, ifdisliked) 
+                                               values (%s, %s, %s, %s) """,
+                               (commentid, peopleid, like, dislike))
+
+
+        elif (bool == 3):
+            self.decreaseLikeNumber(commentid)
+            with dbapi2.connect(url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(""" DELETE from CommentLikeDislike as c where c.id = %s """,
+                               (likedislikeid,))
+
+
+
+
+
+
+        elif (bool == 4):
+
+            like = 0
+            dislike = 1
+            self.decreaseLikeIncreaseDislike(commentid)
+            with dbapi2.connect(url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(""" UPDATE CommentLikeDislike as c SET ifliked = %s, ifdisliked = %s where c.id = %s """,
+                               (like, dislike, likedislikeid))
+        elif (bool == 5):
+            like = 1
+            dislike = 0
+            self.increaseLikeDecreaseDislike(commentid)
+            with dbapi2.connect(url) as connection:
+                cursor = connection.cursor()
+                cursor.execute(""" UPDATE CommentLikeDislike as c SET ifliked = %s, ifdisliked = %s where c.id = %s """,
+                               (like, dislike, likedislikeid))
+        else :
+            self.decreaseDislikeNumber(commentid)
+            with dbapi2.connect(url) as connection:
+                cursor = connection.cursor()
+                cursor.execute("""DELETE from CommentLikeDislike as c where c.id = %s""",
+                               (likedislikeid,))
+
+
+
+
+
+
+
+
+    def likedislikeUpdate(self, commentid, peopleid, bool , likedislikeid):
+
+        if( likedislikeid == None): #no like-dislike exist
+            like = 0
+            dislike = 0
+            if(bool ==1):
+                self.increaseLikeNumber(commentid)
+                like = 1
+            if (bool == -1):
+                dislike = 1
+                self.increaseDislikeNumber(commentid)
+            with dbapi2.connect(url) as connection:
+                cursor = connection.cursor()
+                cursor.execute("""
+                                    INSERT into CommentLikeDislike (comment_id, people_id, ifliked, ifdisliked) 
+                                    values (%s, %s, %s, %s) """,
+                               (commentid, peopleid,like,dislike))
+
+        else:
+            if(bool == 1 or bool==-1): #delete it got notr
+                if(bool == 1) :
+                    self.decreaseDislikeNumber(commentid)
+                else:
+                    self.decreaseLikeNumber(commentid)
+                with dbapi2.connect(url) as connection:
+                    cursor = connection.cursor()
+                    cursor.execute("""DELETE from CommentLikeDislike as c where c.id = %s""",
+                                   (likedislikeid,))
+            else:
+                like,dislike = 0,0
+                if(bool == 2):
+                    like = 1
+                    self.increaseLikeDecreaseDislike(commentid)
+                else:
+                    dislike = 1
+                    self.decreaseLikeIncreaseDislike(commentid)
+                with dbapi2.connect(url) as connection:
+                    cursor = connection.cursor()
+                    cursor.execute(""" UPDATE CommentLikeDislike as c SET ifliked = %s, ifdisliked = %s where c.id = %s """,
+                                   (like,dislike,likedislikeid))
+
+
+
 
 
 

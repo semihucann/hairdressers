@@ -13,6 +13,15 @@ class Comment:
         self.like = 0
         self.dislike = 0
         self.peopleobj = None
+        self.likedDislikedobj = None
+
+class LikedDisliked:
+    def __init__(self):
+        self.id = None
+        self.comment_id = None
+        self.peopleId = None
+        self.ifliked = None
+        self.ifDisliked = None
 
 
 # Entity of Contact_info table in database
@@ -120,4 +129,5 @@ class Berbershop:
         self.closingtime = None
         self.tradenumber = None
         self.campaigns = None  # i need this for my page, you can ignore it for now
+
 

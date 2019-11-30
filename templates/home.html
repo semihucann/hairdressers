@@ -314,8 +314,8 @@
             <thead class="thead-dark">
                 <tr>
                     <th>Name</th>
-                    <th>Owner</th>
-                    <th>Place</th>
+                    <th>City</th>
+                    <th>Address</th>
                     <th>OpeningTime</th>
                     <th>ClosingTime</th>
                     <th>TradeNumber</th>
@@ -323,11 +323,11 @@
                 </tr>
             </thead>
             <tbody>
-        {% for berber in berbers %}
+        {% for berber in berbershops %}
                 <tr>
                     <td>{{berber.shopname}}
 					</td>
-                    <td>{{berber.ownerpeople_id}}</td>
+                    <td>{{berber.city}}</td>
                     <td>{{berber.location}}</td>
                     <td>{{berber.openingtime}}
 
@@ -357,7 +357,10 @@
 							<button id="{{berber.id}}discountpricebutton" onclick="discountpricebutton('{{berber.id}}discountpricebutton')"
 									class="btn btn-danger btn-sm">Discounted Price</button>
 						{% else %}
-							<button type="submit" class="btn btn-primary btn-sm" > &nbsp;   Normal Price &nbsp; &nbsp;  </button>
+						<form method="get" action="/barbershopview/{{berber.id}}">
+  						  <button type="submit" class="btn btn-primary btn-sm" > &nbsp;   Normal Price &nbsp; &nbsp;  </button>
+						</form>
+
 
 						{% endif %}
 

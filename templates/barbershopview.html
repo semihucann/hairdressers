@@ -11,14 +11,23 @@
       <p class="berbershopcard_title">{{berbershop.city}}</p>
       <p>{{berbershop.location }}</p>
       <p>Opening-Closing Time :  {{berbershop.openingtime}} - {{berbershop.closingtime}}</p>
+        {% if berbershop.contactInfo != None%}
       <p>Phone : {{berbershop.contactInfo.telephoneNumber }} </p>
 
+             {% if berbershop.contactInfo.instagram != None %}
+            <a class="berbershop_taga" target="_blank" href="https://www.instagram.com/{{berbershop.contactInfo.instagram}}"><i class="fa fa-instagram fa-2x"></i></a>
+            {% endif %}
 
-        <a class="berbershop_taga" href="#"><i class="fa fa-instagram fa-2x"></i></a>
-        <a class="berbershop_taga" href="#"><i class="fa fa-twitter fa-2x"></i></a>
-        <a class="berbershop_taga" href="#"><i class="fa fa-facebook fa-2x"></i></a>
+            {% if berbershop.contactInfo.twitter != None %}
+            <a class="berbershop_taga" target="_blank" href="https://www.twitter.com/{{berbershop.contactInfo.twitter}}"><i class="fa fa-twitter fa-2x"></i></a>
+            {% endif %}
+            {% if berbershop.contactInfo.facebook != None %}
+            <a class="berbershop_taga" target="_blank" href="https://www.facebook.com/{{berbershop.contactInfo.facebook}}"><i class="fa fa-facebook fa-2x"></i></a>
+            {% endif %}
+        {% endif %}
         <hr>
-        <a>Get Rezervation</a>
+
+        <a href="/rezervation/{{berbershop.id}}">Get Rezervation</a>
       </div>
 
 
@@ -30,7 +39,7 @@
         <form method="post" action="">
 
           <div class="form-group">
-            <label for="exampleFormControlSelect1">Example select</label>
+            <label for="exampleFormControlSelect1">Select Berber</label>
             <select class="form-control" name="bcommentselector" id="exampleFormControlSelect1">
               <option value="1">1</option>
               <option value="2">2</option>
@@ -41,7 +50,7 @@
       </div>
 
         <div class="form-group">
-        <label for="exampleFormControlSelect2">Example select</label>
+        <label for="exampleFormControlSelect2">Rate</label>
         <select class="form-control" name="bcommentrate" id="exampleFormControlSelect2">
           <option value="1">1</option>
           <option value="2">2</option>
@@ -80,7 +89,7 @@
         <div class="row">
         <div class="col-sm-12">
         <h5>
-          {% if comment.peopleobj.id == 14 %}
+          {% if comment.peopleobj.id == 26 %}
             <p  class="commenttexttitle" id="commentedittitle" contenteditable="true">{{comment.title}}</p>
           {% else %}
             <p>{{comment.title}}</p>
@@ -99,7 +108,7 @@
         <div class="panel panel-default">
         <div class="panel-heading">
 
-          {% if comment.peopleobj.id == 14 %}
+          {% if comment.peopleobj.id == 26 %}
             <strong style="background-color : yellow;">{{comment.peopleobj.username}}</strong>
           {% else %}
              <strong>{{comment.peopleobj.username}}</strong>
@@ -109,7 +118,7 @@
           <span class="commentdatespan">commented on {{comment.dateTime}}</span>
         </div>
         <div class="panel-body">
-          {% if comment.peopleobj.id == 14 %}
+          {% if comment.peopleobj.id == 26 %}
             <p id="commentedittext" class="commenttextcontent" contenteditable="true">{{comment.content}}</p>
           {% else %}
             <p>{{comment.content}}</p>
@@ -121,7 +130,7 @@
         </div>
         </div>
         {% if comment.peopleobj.id == 26 %}
-         <form style="display:inline;margin-left : 180px;" action="{{url_for('barbershop_view_edit')}}" id="editcommentform" method="POST">
+         <form style="display:inline;margin-left : 180px;" action="/barbershopview/edit/{{berbershop.id}}" id="editcommentform" method="POST">
             <input  type="hidden" name="commentid" value="{{comment.id}}">
             <input id="commenttitleinput" type="hidden" name="commenttitle" value="">
            <input  id="commenttextinput" type="hidden" name="commenttext" value="">
@@ -133,7 +142,7 @@
 
 
         {% if comment.peopleobj.id == 26 %}
-        <form style="display : inline;margin-left : 20px;"  action="{{url_for('barbershop_view_delete')}}"  method="POST">
+        <form style="display : inline;margin-left : 20px;"  action="/barbershopview/delete/{{berbershop.id}}"  method="POST">
             <input type="hidden" name="commentid" value="{{comment.id}}">
             <button  type="submit"  class="btn btn-danger btn-sm">Delete</button>
         </form>
@@ -145,7 +154,7 @@
 
         <div style="margin-left : 185px;" id="demoforms">
           {% if comment.likedDislikedobj == None  %}
-          <form  class="likedislikeform" action="{{url_for('barbershopview_comment_like_dislike')}}" method="post">
+          <form  class="likedislikeform" action="/barbershopview/likedislike/{{berbershop.id}}" method="post">
               <input type="hidden" name="likedislikeid" value="{{comment.likedDislikedobj.id}}">
             <input type="hidden" name="commentid" value="{{comment.id}}">
               <input type="hidden" name="peopleid" value="26">
@@ -156,7 +165,7 @@
               </button>
           </form>
 
-          <form class="likedislikeform" action="{{url_for('barbershopview_comment_like_dislike')}}" method="post">
+          <form class="likedislikeform" action="/barbershopview/likedislike/{{berbershop.id}}" method="post">
                 <input type="hidden" name="likedislikeid" value="{{comment.likedDislikedobj.id}}">
               <input type="hidden" name="commentid" value="{{comment.id}}">
               <input type="hidden" name="peopleid" value="26">
@@ -169,7 +178,7 @@
 
           {% elif comment.likedDislikedobj.ifliked == 1  %}
 
-          <form  class="likedislikeform" action="{{url_for('barbershopview_comment_like_dislike')}}" method="post">
+          <form  class="likedislikeform" action="/barbershopview/likedislike/{{berbershop.id}}" method="post">
               <input type="hidden" name="likedislikeid" value="{{comment.likedDislikedobj.id}}">
             <input type="hidden" name="commentid" value="{{comment.id}}">
               <input type="hidden" name="peopleid" value="26">
@@ -180,7 +189,7 @@
                 {{comment.like}}
           </form>
 
-          <form class="likedislikeform" action="{{url_for('barbershopview_comment_like_dislike')}}" method="post">
+          <form class="likedislikeform" action="/barbershopview/likedislike/{{berbershop.id}}" method="post">
               <input type="hidden" name="likedislikeid" value="{{comment.likedDislikedobj.id}}">
             <input type="hidden" name="commentid" value="{{comment.id}}">
               <input type="hidden" name="peopleid" value="26">
@@ -195,7 +204,7 @@
 
 
           {% elif comment.likedDislikedobj.ifDisliked == 1 %}
-          <form  class="likedislikeform" action="{{url_for('barbershopview_comment_like_dislike')}}" method="post">
+          <form  class="likedislikeform" action="/barbershopview/likedislike/{{berbershop.id}}" method="post">
               <input type="hidden" name="likedislikeid" value="{{comment.likedDislikedobj.id}}">
             <input type="hidden" name="commentid" value="{{comment.id}}">
               <input type="hidden" name="peopleid" value="26">
@@ -207,7 +216,7 @@
              {{comment.like}}
           </form>
 
-          <form class="likedislikeform" action="{{url_for('barbershopview_comment_like_dislike')}}" method="post">
+          <form class="likedislikeform" action="/barbershopview/likedislike/{{berbershop.id}}" method="post">
               <input type="hidden" name="likedislikeid" value="{{comment.likedDislikedobj.id}}">
             <input type="hidden" name="commentid" value="{{comment.id}}">
               <input type="hidden" name="peopleid" value="26">

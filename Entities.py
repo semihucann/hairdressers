@@ -6,6 +6,7 @@ class Comment:
         self.id = None
         self.peopleId = None
         self.berber = None
+        self.berbershop = None
         self.title = ""
         self.content = ""
         self.rate = 0
@@ -41,7 +42,7 @@ class Rezervation:
     def __init__(self):
         self.id = None
         self.peopleId = None
-        self.berberId = None
+        self.berberShopId = None
         self.dateTimeRegistration = datetime.now()
         self.dateTimeRezervation = None
         self.status = None

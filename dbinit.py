@@ -9,11 +9,12 @@ INIT_STATEMENTS = [
 
     #ERTUGRUL's tables
     """
+   
     CREATE TABLE IF NOT EXISTS Comments(
         id SERIAL PRIMARY KEY, 
         people_id integer NOT NULL REFERENCES People(id) ON DELETE CASCADE,
-        berber integer NOT NULL REFERENCES Berber(id) ON DELETE SET NULL,
-        berbershop integer NOT NULL REFERENCES Berbershop(id) ON DELETE SET NULL,
+        berber integer  REFERENCES Berber(id) ON DELETE SET NULL,
+        berbershop integer  REFERENCES Berbershop(id) ON DELETE SET NULL,
         title VARCHAR (100),
         content VARCHAR (500),
         rate integer  NOT NULL,
@@ -35,7 +36,10 @@ INIT_STATEMENTS = [
         instagram VARCHAR (500)
     )""",
     # CREATE TYPE status AS ENUM ('okey','notokey');
+    #CREATE TYPE priceType AS ENUM('creditcart', 'cash');
     """
+      
+       
        CREATE TABLE IF NOT EXISTS Rezervation(
            id SERIAL PRIMARY KEY,
            people_id integer NOT NULL REFERENCES People(id) ON DELETE CASCADE,
@@ -44,7 +48,7 @@ INIT_STATEMENTS = [
            datetime_rezervation TIMESTAMP,
            status status,
            note VARCHAR (100),
-           price_type VARCHAR (100)
+           price_type priceType 
        )""",
 
     """ 

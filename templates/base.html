@@ -288,12 +288,16 @@
                //Button toggle - Rezervation Page
                $("#rezervationbutton1").click(function(){
                 $(".todayrezervation").slideDown();
+                $("#rezervationbutton1").css("background-color","green");
                 $(".tomorrowrezervation").slideUp();
+                 $("#rezervationbutton2").css("background-color","blue");
               });
 
               $("#rezervationbutton2").click(function(){
                 $(".tomorrowrezervation").slideDown();
+                $("#rezervationbutton2").css("background-color","green");
                 $(".todayrezervation").slideUp();
+                 $("#rezervationbutton1").css("background-color","blue");
               });
 
 

@@ -2,9 +2,15 @@
 {%block title%} Statistics {%endblock%}
 {%block content%}
 
+{% if berbershop != None %}
+
+  <h2>{{berbershop.shopname }}</h2>
+
+{% endif %}
+
 <div align="center">
 
-    <button style="width : 180px;height:60px;" type="button" id="rezervationbutton1" class="btn btn-primary ">Today</button>
+    <button style="width : 180px;height:60px;background-color : green" type="button" id="rezervationbutton1" class="btn btn-primary ">Today</button>
     <button style="width : 180px;height:60px;" type="button" id="rezervationbutton2" class="btn btn-primary ">Tomorrow</button>
 
 
@@ -20,111 +26,159 @@
 
 
 <div class="todayrezervation" >
-  <h3>Today Rezervation</h3>
+  <h3>Today Rezervation </h3>
+  <strong>{{today}}</strong>
 
     <table class="table table-bordered">
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Hour</th>
+      <th scope="col">Status</th>
+      <th scope="col">Note</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td >Larry the Bird</td>
-      <td>@twitter</td>
-      <td>@ttt</td>
-    </tr>
+
+    {% for rez in todayrezervations %}
+
+      <tr>
+              <th scope="row">{{loop.index }}</th>
+              <td> <strong>{{rez.dateTimeRezervation}} : 00</strong></td>
+              {% if rez.status == "okey" %}
+                <td>Confirmed</td>
+              {% else %}
+                <td>Not Confirmed</td>
+              {% endif %}
+              <td>{{rez.note}}</td>
+      </tr>
+
+    {% endfor %}
+
+
+
+
+
   </tbody>
 </table>
 
 
-</div>
-
-
-<div class="tomorrowrezervation" style="display:none;">
-
-    <h3>Tomorrow Rezervation</h3>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
-    </table>
-
-
-</div>
-
-
-
-<form>
+  <form action="/rezervation/{{id}}" method="post">
+     <input name="formvalue" value="1" type="hidden">
   <div class="form-group">
-    <label for="exampleFormControlSelect1">Beginning Time</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
+    <label for="exampleFormControlSelect3">Beginning Time</label>
+    <select class="form-control" name="todayhour" id="exampleFormControlSelect3">
+      {% for o in options %}
+
+            <option value={{o}}>{{o}}</option>
+
+      {% endfor %}
     </select>
   </div>
 
     <div class="form-group">
-    <label for="exampleFormControlSelect1">Duration</label>
-    <select class="form-control" id="exampleFormControlSelect2">
-      <option>30 Minutes</option>
-      <option>1 Hour</option>
-      <option>1.5 Hour</option>
-      <option>2 Hour</option>
+    <label for="exampleFormControlSelect1">Payment</label>
+    <select name="todaypayment"class="form-control" id="exampleFormControlSelect2">
+      <option value="creditcart">Credit Cart</option>
+      <option value="cash">Cash</option>
     </select>
   </div>
 
 
   <div class="form-group">
     <label for="exampleFormControlTextarea1">Note</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <textarea class="form-control" name="todaynote" id="exampleFormControlTextarea11" rows="3"></textarea>
   </div>
     <button style="height:40px;" type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+<div class="tomorrowrezervation" style="display:none;">
+
+    <h3>Tomorrow Rezervation </h3>
+    <strong>{{tomorrow}}</strong>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Hour</th>
+          <th scope="col">Status</th>
+          <th scope="col">Note</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+       <tbody>
+
+      {% for rez in tomorrowrezervations %}
+
+        <tr>
+                <th scope="row">{{loop.index }}</th>
+                <td> <strong>{{rez.dateTimeRezervation}} : 00</strong></td>
+                {% if rez.status == "okey" %}
+                  <td>Confirmed</td>
+                {% else %}
+                  <td>Not Confirmed</td>
+                {% endif %}
+
+                <td>{{rez.note}}</td>
+        </tr>
+
+      {% endfor %}
+
+
+
+
+
+  </tbody>
+    </table>
+
+
+
+  <form action="/rezervation/{{id}}" method="post">
+    <input name="formvalue" value="2" type="hidden">
+  <div class="form-group">
+    <label for="exampleFormControlSelect33">Beginning Time</label>
+    <select class="form-control" name="tomorrowhour" id="exampleFormControlSelect33">
+      {% for o in options %}
+
+            <option value={{o}}>{{o}}</option>
+
+      {% endfor %}
+    </select>
+  </div>
+
+    <div class="form-group">
+    <label for="exampleFormControlSelect4">Payment</label>
+    <select name="tomorrowpayment" class="form-control" id="exampleFormControlSelect4">
+      <option value="creditcart">Credit Cart</option>
+      <option value="cash">Cash</option>
+    </select>
+  </div>
+
+
+  <div class="form-group">
+    <label  for="exampleFormControlTextarea1">Note</label>
+    <textarea name="tomorrownote" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+    <button style="height:40px;" type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+
+</div>
+
+
+
 
 
 

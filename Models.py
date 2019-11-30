@@ -1,5 +1,7 @@
 import psycopg2 as dbapi2
 from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, LikedDisliked , Berbershop
+import datetime
+
 import os
 
 url = os.getenv("DATABASE_URL")
@@ -21,9 +23,9 @@ class CommentModel:
     def insert(self, comment):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
-            cursor.execute("""INSERT INTO Comments (people_id , berber , title , content , rate , date_time , 
+            cursor.execute("""INSERT INTO Comments (people_id ,  berber , berbershop, title , content , rate , date_time , 
                 comment_like , comment_dislike)
-                VALUES (%s , %s , %s , %s , %s , %s , %s , %s)""", (comment.peopleId, comment.berber, comment.title,
+                VALUES (%s , %s, %s , %s , %s , %s , %s , %s , %s)""", (comment.peopleId, comment.berber,comment.berbershop,comment.title,
                                                                     comment.content, comment.rate, comment.dateTime,
                                                                     comment.like,
                                                                     comment.dislike))
@@ -38,8 +40,8 @@ class CommentModel:
 
         # return one comment object
         comment = Comment()
-        comment.id, comment.peopleId, comment.berber, comment.title, comment.content, comment.rate, comment.dateTime, \
-        comment.like, comment.dislike = row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8]
+        comment.id, comment.peopleId, comment.berber, comment.berbershop, comment.title, comment.content, comment.rate, comment.dateTime, \
+        comment.like, comment.dislike = row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9]
         return comment
 
     # get All
@@ -52,8 +54,8 @@ class CommentModel:
         comments = []
         for row in rows:
             comment = Comment()
-            comment.id, comment.peopleId, comment.berber, comment.title, comment.content, comment.rate, comment.dateTime, \
-            comment.like, comment.dislike = row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8]
+            comment.id, comment.peopleId, comment.berber, comment.berbershop, comment.title, comment.content, comment.rate, comment.dateTime, \
+            comment.like, comment.dislike = row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9]
             comments.append(comment)
         return comments
 
@@ -71,9 +73,9 @@ class CommentModel:
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""
-                UPDATE Comments SET id = %s, people_id = %s , berber = %s , title = %s , content = %s ,
+                UPDATE Comments SET id = %s, people_id = %s , berber = %s , berbershop =%s title = %s , content = %s ,
                 rate = %s , date_time = %s , comment_like =%s , comment_dislike = %s where id = %s""",
-                           (comment.id, comment.peopleId, comment.berber, comment.title, comment.content, comment.rate,
+                           (comment.id, comment.peopleId, comment.berber, comment.berbershop, comment.title, comment.content, comment.rate,
                             comment.dateTime,
                             comment.like, comment.dislike, comment.id))
 
@@ -100,11 +102,11 @@ class CommentModel:
         comments = []
         for row in rows:
             comment = Comment()
-            comment.id, comment.peopleId, comment.berber, comment.title, comment.content, comment.rate, comment.dateTime, \
-            comment.like, comment.dislike = row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8]
+            comment.id, comment.peopleId, comment.berber, comment.berbershop, comment.title, comment.content, comment.rate, comment.dateTime, \
+            comment.like, comment.dislike = row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8],row[9]
 
             people = People()
-            people.id, people.username = row[9], row[10]
+            people.id, people.username = row[10], row[11]
             comment.peopleobj = people
             comments.append(comment)
         return comments
@@ -374,6 +376,8 @@ class ContactInfoModel:
             row = cursor.fetchone()
 
             # return one comment object
+        if(row == None):
+            return None
         contactInfo = ContactInfo()
         contactInfo.id,  contactInfo.berberShopId, contactInfo.type, contactInfo.telephoneNumber, \
         contactInfo.facebook, contactInfo.twitter, contactInfo.instagram = row[0], row[1], row[2], row[3], row[4], row[
@@ -400,9 +404,10 @@ class RezervationModel:
             cursor.execute("""INSERT INTO Rezervation (people_id, berbershop_id, datetime_registration, datetime_rezervation, status, note, 
                     price_type)
                     VALUES (%s , %s , %s , %s , %s , %s , %s)""",
-                           (rezervation.peopleId, rezervation.berberId, rezervation.dateTimeRegistration,
+                           (rezervation.peopleId, rezervation.berberShopId, rezervation.dateTimeRegistration,
                             rezervation.dateTimeRezervation, rezervation.status, rezervation.note,
                             rezervation.priceType))
+            return None
 
     # update method that will do update
     def update(self, rezervation):
@@ -427,7 +432,7 @@ class RezervationModel:
 
         # return one comment object
         rezervation = Rezervation()
-        rezervation.id, rezervation.peopleId, rezervation.berberId, rezervation.dateTimeRegistration, rezervation.dateTimeRezervation, \
+        rezervation.id, rezervation.peopleId, rezervation.berberShopId, rezervation.dateTimeRegistration, rezervation.dateTimeRezervation, \
         rezervation.status, rezervation.note, rezervation.priceType = row[0], row[1], row[2], row[3], row[4], \
                                                                       row[5], row[6], row[7]
         return rezervation
@@ -440,16 +445,20 @@ class RezervationModel:
             """, (id,))
 
     # get All
-    def getAll(self):
+    def getAllByBarberShop(self,berbershopid,currenttime,tomorrow):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
-            cursor.execute("SELECT * from Rezervation as r")
+            cursor.execute("""SELECT * from Rezervation as r where r.berbershop_id = %s and r.datetime_rezervation >= %s and 
+                r.datetime_rezervation < %s order by r.datetime_rezervation asc
+            """,
+                           (berbershopid,currenttime,tomorrow))
             rows = cursor.fetchall()
-
+        if(rows == None):
+            return  None
         rezervations = []
         for row in rows:
             rezervation = Rezervation()
-            rezervation.id, rezervation.peopleId, rezervation.berberId, rezervation.dateTimeRegistration, rezervation.dateTimeRezervation, \
+            rezervation.id, rezervation.peopleId, rezervation.berberShopId, rezervation.dateTimeRegistration, rezervation.dateTimeRezervation, \
             rezervation.status, rezervation.note, rezervation.priceType = row[0], row[1], row[2], row[3], row[4], \
                                                                           row[5], row[6], row[7]
             rezervations.append(rezervation)
@@ -664,15 +673,6 @@ class Berbershopmodel:
                                                                                  row[5], row[6], row[7]
         return berbershop
 
-
-
-contact = ContactInfo()
-contactmodel = ContactInfoModel()
-contact.berberShopId = 1
-contact.telephoneNumber = 2164931980
-contact.instagram = "ertugrulsmz"
-contact.twitter = "ertugrulsmz"
-contactmodel.insert(contact)
 
 
 

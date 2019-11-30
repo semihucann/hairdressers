@@ -1,5 +1,39 @@
 {%extends "base.html"%}
 {%block title%} Blog {%endblock%}
 {%block content%}
-    <p> Hello {{name}} ! </p>
+
+
+<div class="columns">
+				<div class="column is-3">
+					<a class="button is-primary is-block is-alt is-large" href="{{ url_for('newpost_page') }}">New Post</a>
+
+				</div>
+				<div class="column is-9">
+					<div class="box content">
+                        {% for Post in Posts %}
+						    <article class="post">
+							    <h4>{{Post.title}}</h4>
+                                <h6>{{Post.content}}</h6>
+                        {% endfor %}
+							<div class="media">
+								<div class="media-left">
+									<p class="image is-32x32">
+										<img src="http://bulma.io/images/placeholders/128x128.png">
+									</p>
+								</div>
+								<div class="media-content">
+									<div class="content">
+
+									</div>
+								</div>
+
+							</div>
+						</article>
+
+					</div>
+				</div>
+			</div>
+
+
+
 {%endblock%}

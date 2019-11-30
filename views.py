@@ -1,4 +1,4 @@
-from flask import render_template, Flask, request, redirect, url_for
+from flask import render_template, Flask, request, redirect, url_for, current_app
 from datetime import date,datetime
 import Temporarypython
 from Models import CommentModel
@@ -92,7 +92,13 @@ def barbershop_view():
 
 
 def blog_page():
+
     return render_template("blog.html", name="blog_page")
+
+
+def newpost_page():
+
+    return render_template("newpost.html", name="newpost_page")
 
 
 def profile_page():
@@ -232,6 +238,8 @@ def signin():
 
             if(hasher.verify(password, person.password_hash)):
                 login_user(person)
+                current_app.config["LOGGED_USER"] = person
+
                 return render_template("signin.html", message="True", role=people.get_role(username))
             else:
                 return render_template("signin.html", message="False")

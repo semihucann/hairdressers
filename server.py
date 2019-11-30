@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, current_app, url_for, redirect
 import views
 from flask_login import LoginManager
 import Models
@@ -11,11 +11,15 @@ lm = LoginManager()
 
 @lm.user_loader
 def load_user(user_id):
-    people = Models.Peoplemodel()
-    return people.get_all(user_id)
+    login_user = current_app.config["LOGGED_USER"]
+    if login_user.id is None:
+        login_user = Models.Peoplemodel().get_all(user_id)
+        current_app.config["LOGGED_USER"] = login_user
+    return login_user
 
 def create_app():
     app2 = Flask(__name__)
+    app2.config.from_object("settings")
     app2.secret_key = 'super secret key'
     app2.add_url_rule("/", view_func=views.home_page)
     app2.add_url_rule("/statistics",view_func=views.statistics)
@@ -33,6 +37,7 @@ def create_app():
     app2.add_url_rule("/signin", view_func=views.signin, methods=["GET", "POST"])
     app2.add_url_rule("/signout", view_func=views.signout)
     app2.add_url_rule("/admin_panel", view_func=views.admin_panel, methods=["GET", "POST"])
+    app2.add_url_rule("/newpost", view_func=views.newpost_page)
 
     lm.init_app(app2)
     lm.login_view = "login_page"

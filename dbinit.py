@@ -12,7 +12,8 @@ INIT_STATEMENTS = [
     CREATE TABLE IF NOT EXISTS Comments(
         id SERIAL PRIMARY KEY, 
         people_id integer NOT NULL REFERENCES People(id) ON DELETE CASCADE,
-        berber integer NOT NULL REFERENCES Berber(id),
+        berber integer NOT NULL REFERENCES Berber(id) ON DELETE SET NULL,
+        berbershop integer NOT NULL REFERENCES Berbershop(id) ON DELETE SET NULL,
         title VARCHAR (100),
         content VARCHAR (500),
         rate integer  NOT NULL,
@@ -23,10 +24,10 @@ INIT_STATEMENTS = [
     )""",
     #  CREATE TYPE IF NOT EXISTS type AS ENUM ('company', 'personal');
     """
+    
     CREATE TABLE IF NOT EXISTS Contact_info(
         id SERIAL PRIMARY KEY, 
-        berber_id integer  REFERENCES Berber(id) ,
-        berbershop_id integer  REFERENCES Berbershop(id),
+        berbershop_id integer  REFERENCES Berbershop(id) ON DELETE CASCADE,
         type type,
         telephone_number VARCHAR (15) NOT NULL,
         facebook VARCHAR (500),

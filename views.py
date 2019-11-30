@@ -1,9 +1,9 @@
 from flask import render_template, Flask, request, redirect, url_for, current_app
 from datetime import date,datetime
 import Temporarypython
-from Models import CommentModel
-from Models import Peoplemodel, Berbermodel, Ownermodel, CreditcardModel
-from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, CreditCard
+from Models import CommentModel, ContactInfoModel
+from Models import Peoplemodel, Berbermodel, Ownermodel, CreditcardModel, Berbershopmodel
+from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, CreditCard, Berbershop
 from passlib.hash import pbkdf2_sha256 as hasher
 from flask_login import LoginManager, login_user, logout_user, current_user
 
@@ -12,9 +12,20 @@ from flask_login import LoginManager, login_user, logout_user, current_user
 
 
 def home_page():
-    berbershopList = Temporarypython.listOfBerbers()
-    citylist = ["Istanbul", "Ankara", "Izmir", "Diyarbakır"]
-    return render_template('home.html', berbers=berbershopList, citylist=citylist)
+    berbershopModel = Berbershopmodel()
+    berbershopList = berbershopModel.getAll()
+
+    nonuniquecitylist = []
+    uniquecitylist = []
+
+    for berbershop in berbershopList :
+        nonuniquecitylist.append(berbershop.city)
+    for x in nonuniquecitylist:
+        # check if exists in unique_list or not
+        if x not in uniquecitylist:
+            uniquecitylist.append(x)
+
+    return render_template('home.html', berbershops=berbershopList, citylist=uniquecitylist)
 
 
 def statistics():
@@ -60,17 +71,27 @@ def barbershopview_comment_like_dislike() :
     return redirect(url_for("barbershop_view"))
 
 
-def barbershop_view():
+def barbershop_view(id):
     if request.method == 'GET':
+        idint = int(id)
         #Get the list of the comment
         commentModel = CommentModel()
-        commentlist = commentModel.getAllCommentswithPeople()
+        commentlist = commentModel.getAllCommentswithPeopleByBerbershopId(idint)
+
+        berbershopModel = Berbershopmodel()
+        berbershop = berbershopModel.getById(id)
+
+        contactInfoModel = ContactInfoModel()
+        contactInfo = contactInfoModel.getByBarbershopId(idint)
+        berbershop.contactInfo = contactInfo
+
+
 
         for c in commentlist:
             c.dateTime = date(c.dateTime.year, c.dateTime.month, c.dateTime.day)
             c.likedDislikedobj = commentModel.commentCurrentUserRelationship(c.id,26)
 
-        return render_template("barbershopview.html", commentlist=commentlist)
+        return render_template("barbershopview.html", commentlist=commentlist, berbershop = berbershop)
     else:
         commentModel = CommentModel()
 

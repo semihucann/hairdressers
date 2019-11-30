@@ -7,11 +7,11 @@
 <div id="berbershopview_wrapper">
     <div id="berbershop_card"  align="left">
       <img src="{{ url_for('static', filename='images/barbershopcard.jpg') }}" style="height:80px;" alt="John" >
-      <h3>ShopName </h3>
-      <p class="berbershopcard_title">Owner Name</p>
-      <p>Address : pendik istanbul güzelyalı ener sokak no 40</p>
-      <p>Opening-Closing Time :  21.00 - 23.00</p>
-      <p>Phone : </p>
+      <h3>{{berbershop.shopname}}</h3>
+      <p class="berbershopcard_title">{{berbershop.city}}</p>
+      <p>{{berbershop.location }}</p>
+      <p>Opening-Closing Time :  {{berbershop.openingtime}} - {{berbershop.closingtime}}</p>
+      <p>Phone : {{berbershop.contactInfo.telephoneNumber }} </p>
 
 
         <a class="berbershop_taga" href="#"><i class="fa fa-instagram fa-2x"></i></a>

@@ -28,7 +28,6 @@ class LikedDisliked:
 class ContactInfo:
     def __init__(self):
         self.id = None
-        self.berberId = None
         self.berberShopId = None
         self.type = None
         self.telephoneNumber = None
@@ -130,5 +129,6 @@ class Berbershop:
         self.closingtime = None
         self.tradenumber = None
         self.campaigns = None  # i need this for my page, you can ignore it for now
+        self.contactInfo = None
 
 

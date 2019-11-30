@@ -1,5 +1,5 @@
 import psycopg2 as dbapi2
-from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, LikedDisliked
+from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, LikedDisliked , Berbershop
 import os
 
 url = os.getenv("DATABASE_URL")
@@ -88,12 +88,13 @@ class CommentModel:
             return False
         return True
 
-    def getAllCommentswithPeople(self):
+    def getAllCommentswithPeopleByBerbershopId(self,id):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""
-                SELECT c.*, p.id, p.username from comments as c join people as  p on c.people_id = p.id order by c.date_time desc
-            """)
+                SELECT c.*, p.id, p.username from comments as c join people as  p on c.people_id = p.id 
+                WHERE c.berbershop = %s order by c.date_time desc
+            """,(id,))
 
         rows = cursor.fetchall()
         comments = []
@@ -108,13 +109,13 @@ class CommentModel:
             comments.append(comment)
         return comments
 
-    def commentCurrentUserRelationship(self,id):
+    def commentCurrentUserRelationship(self,id,peopleid):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""
               select com.id, com.people_id, com.ifliked, com.ifdisliked from
-               commentlikedislike as com where com.comment_id = %s and com.people_id = 14  
-            """,(id,))
+               commentlikedislike as com where com.comment_id = %s and com.people_id = %s  
+            """,(id,peopleid))
 
         row = cursor.fetchone()
         likedDisliked = LikedDisliked()
@@ -298,10 +299,10 @@ class ContactInfoModel:
     def insert(self, contactInfo):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
-            cursor.execute("""INSERT INTO Contact_info (berber_id , berbershop_id , type , telephone_number , facebook , twitter , 
+            cursor.execute("""INSERT INTO Contact_info (berbershop_id , type , telephone_number , facebook , twitter , 
                     instagram)
-                    VALUES (%s , %s , %s , %s , %s , %s , %s)""",
-                           (contactInfo.berberId, contactInfo.berberShopId, contactInfo.type,
+                    VALUES ( %s , %s , %s , %s , %s , %s)""",
+                           (contactInfo.berberShopId, contactInfo.type,
                             contactInfo.telephoneNumber, contactInfo.facebook, contactInfo.twitter,
                             contactInfo.instagram))
 
@@ -310,9 +311,9 @@ class ContactInfoModel:
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""
-                UPDATE Contact_Info SET id = %s, berber_id  = %s , berbershop_id = %s , type  =%s , telephone_number = %s ,
+                UPDATE Contact_Info SET id = %s, berbershop_id = %s , type  =%s , telephone_number = %s ,
                 facebook = %s , twitter = %s , instagram =%s where id = %s """,
-                           (contactInfo.id, contactInfo.berberId, contactInfo.berberShopId, contactInfo.type,
+                           (contactInfo.id, contactInfo.berberShopId, contactInfo.type,
                             contactInfo.telephoneNumber,
                             contactInfo.facebook, contactInfo.twitter, contactInfo.instagram, contactInfo.id))
 
@@ -326,9 +327,9 @@ class ContactInfoModel:
 
         # return one comment object
         contactInfo = ContactInfo()
-        contactInfo.id, contactInfo.berberId, contactInfo.berberShopId, contactInfo.type, contactInfo.telephoneNumber, \
+        contactInfo.id, contactInfo.berberShopId, contactInfo.type, contactInfo.telephoneNumber, \
         contactInfo.facebook, contactInfo.twitter, contactInfo.instagram = row[0], row[1], row[2], row[3], row[4], row[
-            5], row[6], row[7]
+            5], row[6]
         return contactInfo
 
     def deleteById(self, id):
@@ -348,9 +349,9 @@ class ContactInfoModel:
         contacts = []
         for row in rows:
             contactInfo = ContactInfo()
-            contactInfo.id, contactInfo.berberId, contactInfo.berberShopId, contactInfo.type, contactInfo.telephoneNumber, \
+            contactInfo.id, contactInfo.berberShopId, contactInfo.type, contactInfo.telephoneNumber, \
             contactInfo.facebook, contactInfo.twitter, contactInfo.instagram = row[0], row[1], row[2], row[3], row[4], \
-                                                                               row[5], row[6], row[7]
+                                                                               row[5], row[6]
             contacts.append(contactInfo)
         return contacts
 
@@ -364,6 +365,20 @@ class ContactInfoModel:
         if (row == None):
             return False
         return True
+
+    def getByBarbershopId (self, barbershopid):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                       SELECT * from Contact_info as c where c.berbershop_id = %s """, (barbershopid,))
+            row = cursor.fetchone()
+
+            # return one comment object
+        contactInfo = ContactInfo()
+        contactInfo.id,  contactInfo.berberShopId, contactInfo.type, contactInfo.telephoneNumber, \
+        contactInfo.facebook, contactInfo.twitter, contactInfo.instagram = row[0], row[1], row[2], row[3], row[4], row[
+            5], row[6]
+        return contactInfo
 
 
 class RezervationModel:
@@ -552,6 +567,8 @@ class Peoplemodel:
         return True
 
 
+
+
 class Berbermodel:
     def get_id(self, username):
         with dbapi2.connect(url) as connection:
@@ -588,6 +605,7 @@ class Ownermodel:
                             VALUES (%s , %s , %s , %s , %s , %s )""", (owner.people_id, owner.tc_number, owner.serial_number, owner.vol_number, owner.family_order_no, owner.order_no))
 
 
+
 ######################################################################################
 
 #FATIH'S MODELS
@@ -615,8 +633,46 @@ class Berbershopmodel:
                                                                         berbershop.tradenumber))
 
 
+    #get All
+    def getAll(self):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("SELECT * from Berbershop")
+            rows = cursor.fetchall()
+
+        berbershops = []
+        for row in rows:
+            berbershop = Berbershop()
+            berbershop.id, berbershop.ownerpeople_id, berbershop.shopname, berbershop.location, berbershop.city, \
+            berbershop.openingtime, berbershop.closingtime, berbershop.tradenumber = row[0], row[1], row[2], row[3], row[4], \
+                                                                               row[5], row[6], row[7]
+            berbershops.append(berbershop)
+        return berbershops
+
+    # get by id
+    def getById(self, id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                SELECT * from Berbershop as b where b.id = %s """, (id,))
+            row = cursor.fetchone()
+
+        # return one berbershop object
+        berbershop = Berbershop()
+        berbershop.id, berbershop.ownerpeople_id, berbershop.shopname, berbershop.location, berbershop.city, \
+        berbershop.openingtime, berbershop.closingtime, berbershop.tradenumber = row[0], row[1], row[2], row[3], row[4], \
+                                                                                 row[5], row[6], row[7]
+        return berbershop
 
 
+
+contact = ContactInfo()
+contactmodel = ContactInfoModel()
+contact.berberShopId = 1
+contact.telephoneNumber = 2164931980
+contact.instagram = "ertugrulsmz"
+contact.twitter = "ertugrulsmz"
+contactmodel.insert(contact)
 
 
 

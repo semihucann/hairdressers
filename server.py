@@ -23,7 +23,7 @@ def create_app():
     app2.secret_key = 'super secret key'
     app2.add_url_rule("/", view_func=views.home_page)
     app2.add_url_rule("/statistics",view_func=views.statistics)
-    app2.add_url_rule("/barbershopview",view_func=views.barbershop_view, methods=["GET", "POST"])
+    app2.add_url_rule("/barbershopview/<id>",view_func=views.barbershop_view, methods=["GET", "POST"])
     app2.add_url_rule("/barbershopview/edit",view_func=views.barbershop_view_edit, methods=["POST"])
     app2.add_url_rule("/barbershopview/delete", view_func=views.barbershop_view_delete, methods=["POST"])
     app2.add_url_rule("/barbershopview/likedislike", view_func=views.barbershopview_comment_like_dislike, methods=["POST"])

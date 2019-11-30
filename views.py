@@ -20,6 +20,9 @@ def home_page():
 def statistics():
     return render_template('statistics.html')
 
+def rezervation():
+    return render_template('rezervation.html')
+
 def barbershop_view_edit():
     commentid = request.form["commentid"]
     commentidint = int(commentid)
@@ -65,7 +68,7 @@ def barbershop_view():
 
         for c in commentlist:
             c.dateTime = date(c.dateTime.year, c.dateTime.month, c.dateTime.day)
-            c.likedDislikedobj = commentModel.commentCurrentUserRelationship(c.id)
+            c.likedDislikedobj = commentModel.commentCurrentUserRelationship(c.id,26)
 
         return render_template("barbershopview.html", commentlist=commentlist)
     else:
@@ -80,7 +83,7 @@ def barbershop_view():
 
         comment = Comment()
         comment.berber, comment.title, comment.content, comment.rate,comment.peopleId = int(berbershopid), commenttitle, commenttext,\
-                                                                                        int(commentrate),14
+                                                                                        int(commentrate),16
 
         commentModel.save(comment)
         return redirect(url_for("barbershop_view"))

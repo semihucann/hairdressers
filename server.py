@@ -27,6 +27,7 @@ def create_app():
     app2.add_url_rule("/barbershopview/edit",view_func=views.barbershop_view_edit, methods=["POST"])
     app2.add_url_rule("/barbershopview/delete", view_func=views.barbershop_view_delete, methods=["POST"])
     app2.add_url_rule("/barbershopview/likedislike", view_func=views.barbershopview_comment_like_dislike, methods=["POST"])
+    app2.add_url_rule("/rezervation", view_func=views.rezervation, methods=["GET"])
     app2.add_url_rule("/blog", view_func=views.blog_page)
     app2.add_url_rule("/profile", view_func=views.profile_page, methods=["GET", "POST"])
     app2.add_url_rule("/addcreditcard", view_func=views.addcreditcard_page, methods=["GET", "POST"])

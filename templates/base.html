@@ -224,10 +224,11 @@
          });
        }
 
+
        //DocumentReady
        $(document).ready(function() {
 
-            // Datatable adjustments
+            // Datatable adjustments Homepage
             var table = $('#allBerbers').DataTable();
 
             $('#myInputStore').on( 'keyup', function () {
@@ -240,37 +241,62 @@
             $('#allBerbers_length').hide();
             $('#allBerbers_filter').hide();
 
-            //Slide down button in datatable of barbers
+            //Slide down button in datatable of barbers Homepage
              $("#discountpricebutton").click(function(){
                 $("#panel").slideToggle("slow");
              });
 
-             //statistics button toggle
+             //statistics button toggle Statistic page
               $("#statisticbutton1").click(function(){
                 $(".bestbershopstable").slideDown();
                 $(".lastaddedberbershops").slideUp();
                 $(".bestberberslist").slideUp();
-                $(".mostpopularberbershops").slideUp();
+                $(".mostpopularbarbers").slideUp();
+                $(".popularbarbershops").slideUp();
               });
               $("#statisticbutton2").click(function(){
                $(".lastaddedberbershops").slideDown();
                  $(".bestbershopstable").slideUp();
                 $(".bestberberslist").slideUp();
-                $(".mostpopularberbershops").slideUp();
+                $(".mostpopularbarbers").slideUp();
+                $(".popularbarbershops").slideUp();
               });
               $("#statisticbutton3").click(function(){
                 $(".bestberberslist").slideDown();
                  $(".bestbershopstable").slideUp();
                 $(".lastaddedberbershops").slideUp();
-                $(".mostpopularberbershops").slideUp();
+                $(".mostpopularbarbers").slideUp();
+                $(".popularbarbershops").slideUp();
               });
 
               $("#statisticbutton4").click(function(){
-                $(".mostpopularberbershops").slideDown();
+                $(".mostpopularbarbers").slideDown();
+                $(".bestberberslist").slideUp();
+                 $(".bestbershopstable").slideUp();
+                $(".lastaddedberbershops").slideUp();
+                 $(".popularbarbershops").slideUp();
+              });
+
+              $("#statisticbutton5").click(function(){
+                $(".popularbarbershops").slideDown();
+                $(".mostpopularbarbers").slideUp();
                 $(".bestberberslist").slideUp();
                  $(".bestbershopstable").slideUp();
                 $(".lastaddedberbershops").slideUp();
               });
+
+               //Button toggle - Rezervation Page
+               $("#rezervationbutton1").click(function(){
+                $(".todayrezervation").slideDown();
+                $(".tomorrowrezervation").slideUp();
+              });
+
+              $("#rezervationbutton2").click(function(){
+                $(".tomorrowrezervation").slideDown();
+                $(".todayrezervation").slideUp();
+              });
+
+
 
               //Comment Datatable
               // Material Design example
@@ -319,6 +345,7 @@
 
         }
 
+        document.getElementById("editpost1").addEventListener("click", inputCopied);
         function inputCopied(){
             var text = document.getElementById('commentedittext').innerHTML;
             var title = document.getElementById('commentedittitle').innerHTML;

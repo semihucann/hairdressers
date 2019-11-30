@@ -111,13 +111,13 @@ class CommentModel:
 
 
 
-    def commentCurrentUserRelationship(self,id):
+    def commentCurrentUserRelationship(self,id,peopleId):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""
               select com.id, com.people_id, com.ifliked, com.ifdisliked from
-               commentlikedislike as com where com.comment_id = %s and com.people_id = 14  
-            """,(id,))
+               commentlikedislike as com where com.comment_id = %s and com.people_id = %s  
+            """,(id,peopleId))
 
         row = cursor.fetchone()
         likedDisliked = LikedDisliked()
@@ -604,3 +604,9 @@ class CreditcardModel:
                                                                         creditCard.card_number,
                                                                         creditCard.cvv, creditCard.last_month,
                                                                         creditCard.last_year))
+
+
+
+
+
+

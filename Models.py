@@ -1,5 +1,5 @@
 import psycopg2 as dbapi2
-from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, LikedDisliked
+from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, LikedDisliked, CreditCard
 import os
 
 url = os.getenv("DATABASE_URL")
@@ -602,6 +602,24 @@ class CreditcardModel:
                                                                         creditCard.cvv, creditCard.last_month,
                                                                         creditCard.last_year))
 
+
+    def get_all_credit_cards_of_a_person(self, user_id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute(""" SELECT * from Creditcards where people_id = %s""", (user_id,))
+            creditcards_list = []
+            rows = cursor.fetchall()
+            for i in rows:
+                creditcard = CreditCard()
+                creditcard.id = i[0]
+                creditcard.people_id = i[1]
+                creditcard.name = i[2]
+                creditcard.card_number = i[3]
+                creditcard.cvv = i[4]
+                creditcard.last_month = i[5]
+                creditcard.last_year = i[6]
+                creditcards_list.append(creditcard)
+            return creditcards_list
 
 class Berbershopmodel:
 

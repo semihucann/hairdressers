@@ -613,3 +613,15 @@ class Berbershopmodel:
                                                                         berbershop.location, berbershop.city,
                                                                         berbershop.openingtime, berbershop.closingtime,
                                                                         berbershop.tradenumber))
+
+
+class ServicepriceModel:
+
+    def insert(self, serviceprice):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""INSERT INTO Serviceprices (owner_people_id, shopname, location, city, opening_time, closing_time, trade_number) 
+                             VALUES (%s , %s , %s , %s , %s , %s)""", (serviceprice.shop_id, serviceprice.service_name,
+                                                                        serviceprice.definition, serviceprice.gender,
+                                                                        serviceprice.price, serviceprice.duration))
+

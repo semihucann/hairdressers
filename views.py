@@ -61,7 +61,7 @@ def barbershop_view():
     if request.method == 'GET':
         #Get the list of the comment
         commentModel = CommentModel()
-        commentlist = commentModel.getAllCommentswithPeopleandLiked()
+        commentlist = commentModel.getAllCommentswithPeople()
 
         for c in commentlist:
             c.dateTime = date(c.dateTime.year, c.dateTime.month, c.dateTime.day)

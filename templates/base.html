@@ -298,24 +298,7 @@
 
 
 
-          $('#demo').likeDislike({
 
-                // send data to the server
-                $.ajax({
-                  url: '/action',
-                  type: '',
-                  data: 'id=1' + '&likes=' + likes + '&dislikes=' + dislikes,
-                  success: function (data) {
-                    // show new values
-                    $(self).find('.likes').text(data.likes);
-                    $(self).find('.dislikes').text(data.dislikes);
-                    localStorage['key'] = btnType;
-
-
-                  }
-                });
-              }
-            });
 
 
 
@@ -343,12 +326,13 @@
 
         }
 
-        function inputCopied(){
+        document.getElementById("editpost1").addEventListener ("click", inputcopy);
+        function inputcopy(){
             var text = document.getElementById('commentedittext').innerHTML;
             var title = document.getElementById('commentedittitle').innerHTML;
             document.getElementById('commenttextinput').value = text;
             document.getElementById('commenttitleinput').value = title;
-            document.getElementById("editcommentform").submit();
+            //document.getElementById("editcommentform").submit();
 
         }
 

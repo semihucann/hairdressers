@@ -88,11 +88,11 @@ class CommentModel:
             return False
         return True
 
-    def getAllCommentswithPeopleandLiked(self):
+    def getAllCommentswithPeople(self):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""
-                SELECT c.*, p.id, p.username from comments as c join people as  p on c.people_id = p.id
+                SELECT c.*, p.id, p.username from comments as c join people as  p on c.people_id = p.id order by c.date_time desc
             """)
 
         rows = cursor.fetchall()
@@ -107,6 +107,9 @@ class CommentModel:
             comment.peopleobj = people
             comments.append(comment)
         return comments
+
+
+
 
     def commentCurrentUserRelationship(self,id):
         with dbapi2.connect(url) as connection:

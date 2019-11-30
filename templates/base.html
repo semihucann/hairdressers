@@ -298,30 +298,6 @@
 
 
 
-          $('#demo').likeDislike({
-
-                // send data to the server
-                $.ajax({
-                  url: '/action',
-                  type: '',
-                  data: 'id=1' + '&likes=' + likes + '&dislikes=' + dislikes,
-                  success: function (data) {
-                    // show new values
-                    $(self).find('.likes').text(data.likes);
-                    $(self).find('.dislikes').text(data.dislikes);
-                    localStorage['key'] = btnType;
-
-
-                  }
-                });
-              }
-            });
-
-
-
-
-
-
 
 
 

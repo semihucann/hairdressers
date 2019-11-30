@@ -125,6 +125,7 @@ class Berbershop:
         self.shopname = None
         self.ownerpeople_id = None
         self.location = None
+        self.city = None
         self.openingtime = None
         self.closingtime = None
         self.tradenumber = None

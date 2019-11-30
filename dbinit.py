@@ -106,6 +106,7 @@ INIT_STATEMENTS = [
         owner_people_id INTEGER REFERENCES People(id),
         shopname VARCHAR(50),
         location VARCHAR(300),
+        city VARCHAR(50),
         opening_time TIMESTAMP,
         closing_time TIMESTAMP,
         trade_number NUMERIC(10) NOT NULL

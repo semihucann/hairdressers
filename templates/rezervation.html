@@ -36,6 +36,7 @@
       <th scope="col">Hour</th>
       <th scope="col">Status</th>
       <th scope="col">Note</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
@@ -44,13 +45,24 @@
 
       <tr>
               <th scope="row">{{loop.index }}</th>
-              <td> <strong>{{rez.dateTimeRezervation}} : 00</strong></td>
+              <td> <strong>{{rez.dateTimeRezervation}}</strong></td>
               {% if rez.status == "okey" %}
                 <td>Confirmed</td>
               {% else %}
                 <td>Not Confirmed</td>
               {% endif %}
               <td>{{rez.note}}</td>
+              <td>
+                   {% if rez.peopleId == 26 %}
+
+                        <form action="/rezervation/delete/{{id}}" method="post">
+                            <input type="hidden" name="rezid" value="{{rez.id}}">
+                            <button style="height : 40px;" type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    {% else %}
+                        no action
+                    {% endif %}
+              </td>
       </tr>
 
     {% endfor %}
@@ -69,9 +81,10 @@
     <label for="exampleFormControlSelect3">Beginning Time</label>
     <select class="form-control" name="todayhour" id="exampleFormControlSelect3">
       {% for o in options %}
-
-            <option value={{o}}>{{o}}</option>
-
+         {% if o > hour %}
+            <option value="{{o}}:00">{{o}}:00</option>
+            <option value="{{o}}:30">{{o}}:30</option>
+         {% endif %}
       {% endfor %}
     </select>
   </div>
@@ -123,7 +136,7 @@
 
         <tr>
                 <th scope="row">{{loop.index }}</th>
-                <td> <strong>{{rez.dateTimeRezervation}} : 00</strong></td>
+                <td> <strong>{{rez.dateTimeRezervation}}</strong></td>
                 {% if rez.status == "okey" %}
                   <td>Confirmed</td>
                 {% else %}
@@ -131,6 +144,18 @@
                 {% endif %}
 
                 <td>{{rez.note}}</td>
+                <td>
+                    {% if rez.peopleId == 26 %}
+
+                        <form action="/rezervation/delete/{{id}}" method="post">
+                            <input type="hidden" name="rezid" value="{{rez.id}}">
+                            <button style="height : 40px;" type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    {% else %}
+                        no action
+                    {% endif %}
+
+                </td>
         </tr>
 
       {% endfor %}
@@ -151,7 +176,8 @@
     <select class="form-control" name="tomorrowhour" id="exampleFormControlSelect33">
       {% for o in options %}
 
-            <option value={{o}}>{{o}}</option>
+           <option value="{{o}}:00">{{o}}:00</option>
+           <option value="{{o}}:30">{{o}}:30</option>
 
       {% endfor %}
     </select>

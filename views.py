@@ -49,9 +49,21 @@ def rezervation(id):
         todayrezervations = rezervationModel.getAllByBarberShop(int(id),now,tmrw)
         tomorrowrezervations = rezervationModel.getAllByBarberShop(int(id),tmrw,tmrwafter)
         for t in tomorrowrezervations:
-            t.dateTimeRezervation = t.dateTimeRezervation.hour
+            minute = t.dateTimeRezervation.minute
+            minutestr = ""
+            if minute == 0 :
+                minutestr = str(minute) + "0"
+            else:
+                minutestr = str(minute)
+            t.dateTimeRezervation = str(t.dateTimeRezervation.hour) + ":" + minutestr
         for j in todayrezervations:
-            j.dateTimeRezervation = j.dateTimeRezervation.hour
+            minute = j.dateTimeRezervation.minute
+            minutestr = ""
+            if minute == 0:
+                minutestr = str(minute) + "0"
+            else:
+                minutestr = str(minute)
+            j.dateTimeRezervation = str(j.dateTimeRezervation.hour) + ":" + minutestr
 
 
         return render_template('rezervation.html', today = today,tomorrow = tomorrow,
@@ -67,13 +79,11 @@ def rezervation(id):
 
         if(int(formvalue) == 1):
             hour = request.form["todayhour"]
-            hourint = int(hour)
-            tdy = str(today) + " " + str(hourint) + ":00"
+            tdy = str(today) + " " + str(hour)
             note = request.form["todaynote"]
         else:
             hour = request.form["tomorrowhour"]
-            hourint = int(hour)
-            tdy = str(tomorrow) + " " + str(hourint) + ":00"
+            tdy = str(tomorrow) + " " + str(hour)
             note = request.form["tomorrownote"]
 
 
@@ -86,6 +96,13 @@ def rezervation(id):
         rezervation.berberShopId = int(id)
         rm.insert(rezervation)
         return redirect(url_for("rezervation", id=id))
+
+def rezervation_delete (id):
+    rezid = request.form["rezid"]
+    rezidint = int(rezid)
+    rm = RezervationModel()
+    rm.deleteById(rezidint)
+    return redirect(url_for("rezervation", id=id))
 
 def barbershop_view_edit(id):
     commentid = request.form["commentid"]

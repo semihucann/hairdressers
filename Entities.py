@@ -1,6 +1,8 @@
 from datetime import datetime
 
 # Entity of Comment table in Database
+
+
 class Comment:
     def __init__(self):
         self.id = None

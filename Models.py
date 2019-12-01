@@ -6,6 +6,30 @@ import os
 
 url = os.getenv("DATABASE_URL")
 
+class StatisticsModel :
+    def mostPopularBerbershops(self):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                Select s.* from (SELECT  count(*) as c, Berbershop   from comments GROUP BY Berbershop ) as j join berbershop as s on j.berbershop = s.id 
+                ORDER BY j.c DESC LIMIT 3
+            """)
+            rows = cursor.fetchall()
+
+        berbershops = []
+        for row in rows:
+            berbershop = Berbershop()
+            berbershop.id, berbershop.ownerpeople_id, berbershop.shopname, berbershop.location, berbershop.city, \
+            berbershop.openingtime, berbershop.closingtime, berbershop.tradenumber = row[0], row[1], row[2], row[3], \
+                                                                                     row[4], \
+                                                                                     row[5], row[6], row[7]
+            berbershops.append(berbershop)
+        return berbershops
+
+
+
+
+
 
 class CommentModel:
 
@@ -127,12 +151,12 @@ class CommentModel:
         row[1], row[2], row[3]
         return likedDisliked
 
-    def updateByIdTitleText(self, id, title, content, datetime):
+    def updateByIdTitleTextRate(self, id, title, content, datetime, rate):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""
-                       UPDATE Comments SET title = %s , content= %s, date_time = %s  where id = %s""",
-                           (title,content,datetime,id))
+                       UPDATE Comments SET title = %s , content= %s, date_time = %s, rate =%s  where id = %s""",
+                           (title,content,datetime,rate,id))
 
 
     def  increaseLikeNumber(self, commentid):

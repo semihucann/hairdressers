@@ -1,7 +1,7 @@
 from flask import render_template, Flask, request, redirect, url_for, current_app
 import datetime
 
-from Models import CommentModel, ContactInfoModel
+from Models import CommentModel, ContactInfoModel, StatisticsModel
 from Models import Peoplemodel, Berbermodel, Ownermodel, CreditcardModel, Berbershopmodel, RezervationModel
 from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, CreditCard, Berbershop
 from passlib.hash import pbkdf2_sha256 as hasher
@@ -29,7 +29,9 @@ def home_page():
 
 
 def statistics():
-    return render_template('statistics.html')
+    statisticModel = StatisticsModel()
+    mostPopularBerbers = statisticModel.mostPopularBerbershops()
+    return render_template('statistics.html',mostPopularBerbers = mostPopularBerbers)
 
 def rezervation(id):
     if request.method == 'GET':
@@ -105,6 +107,7 @@ def rezervation_delete (id):
     return redirect(url_for("rezervation", id=id))
 
 def barbershop_view_edit(id):
+    commentrate = request.form["bcommentrate"]
     commentid = request.form["commentid"]
     commentidint = int(commentid)
     commenttitle = request.form["commenttitle"]
@@ -112,7 +115,7 @@ def barbershop_view_edit(id):
     dateTime = datetime.datetime.now()
 
     commentModel = CommentModel()
-    commentModel.updateByIdTitleText(commentidint,commenttitle,commenttext,dateTime)
+    commentModel.updateByIdTitleTextRate(commentidint,commenttitle,commenttext,dateTime,int(commentrate))
 
     return redirect(url_for("barbershop_view", id=id))
 
@@ -176,7 +179,7 @@ def barbershop_view(id):
 
         comment = Comment()
         comment.berbershop, comment.title, comment.content, comment.rate,comment.peopleId = int(berbershopid), commenttitle, commenttext,\
-                                                                                        int(commentrate),26
+                                                                                        int(commentrate),16
 
         commentModel.insert(comment)
         return redirect(url_for("barbershop_view",id=id))

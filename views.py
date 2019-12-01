@@ -210,12 +210,40 @@ def profile_page():
         credit_card.last_month = array_last_date[0]
         credit_card.cvv = request.form["cvv"]
         credit_card.people_id = request.form["card_owner_id"]
-        CreditcardModel().insert(credit_card)
-    return render_template("profile.html")
+
+        if "card_id" in request.form:
+            credit_card.id = request.form["card_id"]
+            #todo CreditcardModel().update(credit_card)
+        else:
+            CreditcardModel().insert(credit_card)
+
+    if current_user.is_active:
+        list_of_cards = CreditcardModel().get_all_credit_cards_of_a_person(current_user.id)
+        return render_template("profile.html", cards=list_of_cards)
+
+    return render_template("profile.html", cards=[])
 
 
 def addcreditcard_page():
-    return render_template("add_credit_card.html")
+    return render_template("add_credit_card.html", title="Add Credit Card", credit_card=None)
+
+
+def updatecreditcard_page():
+    credit_card = CreditCard()
+    if request.method == 'POST':
+
+        credit_card.name = request.form["name_surname"]
+        credit_card.card_number = request.form["number"]
+        last_date = request.form["date"]
+        if "/" not in last_date:
+            return render_template("profile.html")
+        array_last_date = last_date.split("/")
+        credit_card.last_year = array_last_date[1]
+        credit_card.last_month = array_last_date[0]
+        credit_card.cvv = request.form["cvv"]
+        credit_card.id = request.form["card_id"]
+
+    return render_template("add_credit_card.html", title="Update Credit Card", credit_card=credit_card)
 
 #Semih's Functions
 ##Notes:

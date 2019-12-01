@@ -1,5 +1,5 @@
 import psycopg2 as dbapi2
-from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, LikedDisliked , Berbershop
+from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, LikedDisliked, Berbershop, CreditCard
 import datetime
 
 import os
@@ -576,8 +576,6 @@ class Peoplemodel:
         return True
 
 
-
-
 class Berbermodel:
     def get_id(self, username):
         with dbapi2.connect(url) as connection:
@@ -614,7 +612,6 @@ class Ownermodel:
                             VALUES (%s , %s , %s , %s , %s , %s )""", (owner.people_id, owner.tc_number, owner.serial_number, owner.vol_number, owner.family_order_no, owner.order_no))
 
 
-
 ######################################################################################
 
 #FATIH'S MODELS
@@ -629,6 +626,24 @@ class CreditcardModel:
                                                                         creditCard.cvv, creditCard.last_month,
                                                                         creditCard.last_year))
 
+
+    def get_all_credit_cards_of_a_person(self, user_id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute(""" SELECT * from Creditcards where people_id = %s""", (user_id,))
+            creditcards_list = []
+            rows = cursor.fetchall()
+            for i in rows:
+                creditcard = CreditCard()
+                creditcard.id = i[0]
+                creditcard.people_id = i[1]
+                creditcard.name = i[2]
+                creditcard.card_number = i[3]
+                creditcard.cvv = i[4]
+                creditcard.last_month = i[5]
+                creditcard.last_year = i[6]
+                creditcards_list.append(creditcard)
+            return creditcards_list
 
 class Berbershopmodel:
 
@@ -676,3 +691,14 @@ class Berbershopmodel:
 
 
 
+
+
+class ServicepriceModel:
+
+    def insert(self, serviceprice):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""INSERT INTO Serviceprices (shop_id, service_name, definition, gender, price, duration) 
+                             VALUES (%s , %s , %s , %s , %s , %s)""", (serviceprice.shop_id, serviceprice.service_name,
+                                                                        serviceprice.definition, serviceprice.gender,
+                                                                        serviceprice.price, serviceprice.duration))

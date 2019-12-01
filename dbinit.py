@@ -123,7 +123,7 @@ INIT_STATEMENTS = [
         shop_id INTEGER REFERENCES Berbershop(id),
         service_name VARCHAR(50),
         definition VARCHAR(300),
-        gender VARCHAR(1),
+        gender VARCHAR(10),
         price DECIMAL(6,2),
         duration INTEGER
     )   

@@ -1,34 +1,51 @@
 {%extends "base.html"%}
 {%block title%} Profile page {%endblock%}
 {%block content%}
-<h1 class="title">Add Credit Card</h1>
 
-    <form action="/profile" method="post" name="movie_edit">
+<h1 class="title">{{title}}</h1>
+
+    <form action="{{ url_for('profile_page') }}" method="post" name="movie_edit">
         <div class="field">
           <label class="label">Card Owner Name Surname</label>
           <div class="control">
-            <input type="text" name="name_surname" class="input" required="required"/>
+            <input type="text" name="name_surname" class="input" required="required"
+            {% if credit_card != None %}
+                   value="{{ credit_card.name }}"
+            {% endif %}
+            />
           </div>
         </div>
 
         <div class="field">
           <label class="label">Card Number</label>
           <div class="control">
-            <input type="number" name="number" class="input" required="required"/>
+            <input type="number" name="number" class="input" required="required"
+            {% if credit_card != None %}
+                   value="{{ credit_card.card_number }}"
+            {% endif %}
+            />
           </div>
         </div>
 
         <div class="field">
         <label class="label">Valid Thru (01/20)</label>
         <div class="control">
-          <input type="text" name="date" class="input" required="required"/>
+          <input type="text" name="date" class="input" required="required"
+          {% if credit_card != None %}
+                   value="{{ credit_card.last_month }}/{{ credit_card.last_year }}"
+          {% endif %}
+          />
         </div>
         </div>
 
         <div class="field">
           <label class="label">CVV</label>
           <div class="control">
-            <input type="number" name="cvv" class="input" required="required"/>
+            <input type="number" name="cvv" class="input" required="required"
+            {% if credit_card != None %}
+                   value="{{ credit_card.cvv }}"
+            {% endif %}
+            />
           </div>
         </div>
 
@@ -38,10 +55,27 @@
           </div>
         </div>
 
-        <div class="field is-grouped">
+        {% if credit_card != None %}
+        <div class="field">
           <div class="control">
-            <button class="button is-primary is-small">Save</button>
+            <input type="hidden" name="card_id" class="input" value="{{credit_card.id}}"/>
           </div>
-      </div>
+        </div>
+        <div class="field is-grouped">
+            <div class="control">
+                <button class="button is-primary is-small">Update</button>
+            </div>
+        </div>
+        <a class="button is-danger is-small">Delete</a>
+        {% else %}
+            <div class="field is-grouped">
+              <div class="control">
+                <button class="button is-primary is-small">Save</button>
+              </div>
+            </div>
+        {% endif %}
     </form>
+
+
+
 {%endblock%}

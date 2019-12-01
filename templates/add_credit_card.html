@@ -74,6 +74,7 @@
             </div>
         {% endif %}
     </form>
+    {% if credit_card != None %}
     <form action="{{ url_for('profile_page') }}" method="post" name="credit_card_delete">
 
         <div class="field">
@@ -89,6 +90,6 @@
         </div>
 
     </form>
-
+    {% endif %}
 
 {%endblock%}

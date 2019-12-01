@@ -641,20 +641,33 @@ class Ownermodel:
 #FATIH'S MODELS
 
 class CreditcardModel:
-    def insert(self, creditCard):
+    def insert(self, credit_card):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""INSERT INTO Creditcards (people_id, name, card_number, cvv_number, last_month, last_year) 
-                             VALUES (%s , %s , %s , %s , %s , %s )""", (creditCard.people_id, creditCard.name,
-                                                                        creditCard.card_number,
-                                                                        creditCard.cvv, creditCard.last_month,
-                                                                        creditCard.last_year))
+                             VALUES (%s , %s , %s , %s , %s , %s )""", (credit_card.people_id, credit_card.name,
+                                                                        credit_card.card_number,
+                                                                        credit_card.cvv, credit_card.last_month,
+                                                                        credit_card.last_year))
 
+    def update(self, credit_card):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                UPDATE Creditcards SET name = %s, card_number = %s, cvv_number = %s, last_month = %s, last_year = %s where id = %s""",
+                           (credit_card.name, credit_card.card_number, credit_card.cvv, credit_card.last_month, credit_card.last_year, credit_card.id))
+
+    def delete_credit_card(self, id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                DELETE from Creditcards where id = %s
+            """, (id,))
 
     def get_all_credit_cards_of_a_person(self, user_id):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
-            cursor.execute(""" SELECT * from Creditcards where people_id = %s""", (user_id,))
+            cursor.execute(""" SELECT * from Creditcards where people_id = %s order by id""", (user_id,))
             creditcards_list = []
             rows = cursor.fetchall()
             for i in rows:

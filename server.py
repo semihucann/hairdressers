@@ -11,11 +11,15 @@ lm = LoginManager()
 
 @lm.user_loader
 def load_user(user_id):
-    login_user = current_app.config["LOGGED_USER"]
-    if login_user.id is None:
+    if user_id in current_app.config["LOGGED_USERS"]:
+        login_user = current_app.config["LOGGED_USERS"][user_id]
+        return login_user
+    else:
         login_user = Models.Peoplemodel().get_all(user_id)
-        current_app.config["LOGGED_USER"] = login_user
-    return login_user
+        current_app.config["LOGGED_USERS"][user_id] = login_user
+        return login_user
+
+
 
 def create_app():
     app2 = Flask(__name__)

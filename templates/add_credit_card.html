@@ -4,7 +4,7 @@
 
 <h1 class="title">{{title}}</h1>
 
-    <form action="{{ url_for('profile_page') }}" method="post" name="movie_edit">
+    <form action="{{ url_for('profile_page') }}" method="post" name="credit_card">
         <div class="field">
           <label class="label">Card Owner Name Surname</label>
           <div class="control">
@@ -66,7 +66,6 @@
                 <button class="button is-primary is-small">Update</button>
             </div>
         </div>
-        <a class="button is-danger is-small">Delete</a>
         {% else %}
             <div class="field is-grouped">
               <div class="control">
@@ -75,7 +74,21 @@
             </div>
         {% endif %}
     </form>
+    <form action="{{ url_for('profile_page') }}" method="post" name="credit_card_delete">
 
+        <div class="field">
+          <div class="control">
+            <input type="hidden" name="delete_card" class="input" value="{{credit_card.id}}"/>
+          </div>
+        </div>
+
+        <div class="field is-grouped">
+            <div class="control">
+                <button class="button is-danger is-small">Delete</button>
+            </div>
+        </div>
+
+    </form>
 
 
 {%endblock%}

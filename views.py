@@ -365,7 +365,7 @@ def signin():
 
             if(hasher.verify(password, person.password_hash)):
                 login_user(person)
-                current_app.config["LOGGED_USER"] = person
+                current_app.config["LOGGED_USERS"][person.username] = person
 
                 return render_template("signin.html", message="True", role=people.get_role(username))
             else:

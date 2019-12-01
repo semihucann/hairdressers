@@ -199,23 +199,26 @@ def newpost_page():
 
 def profile_page():
     if request.method == 'POST':
-        credit_card = CreditCard()
-        credit_card.name = request.form["name_surname"]
-        credit_card.card_number = request.form["number"]
-        last_date = request.form["date"]
-        if "/" not in last_date:
-            return render_template("profile.html")
-        array_last_date = last_date.split("/")
-        credit_card.last_year = array_last_date[1]
-        credit_card.last_month = array_last_date[0]
-        credit_card.cvv = request.form["cvv"]
-        credit_card.people_id = request.form["card_owner_id"]
-
-        if "card_id" in request.form:
-            credit_card.id = request.form["card_id"]
-            #todo CreditcardModel().update(credit_card)
+        if "delete_card" in request.form:
+            CreditcardModel().delete_credit_card(request.form["delete_card"])
         else:
-            CreditcardModel().insert(credit_card)
+            credit_card = CreditCard()
+            credit_card.name = request.form["name_surname"]
+            credit_card.card_number = request.form["number"]
+            last_date = request.form["date"]
+            if "/" not in last_date:
+                return render_template("profile.html")
+            array_last_date = last_date.split("/")
+            credit_card.last_year = array_last_date[1]
+            credit_card.last_month = array_last_date[0]
+            credit_card.cvv = request.form["cvv"]
+            credit_card.people_id = request.form["card_owner_id"]
+
+            if "card_id" in request.form:
+                credit_card.id = request.form["card_id"]
+                CreditcardModel().update(credit_card)
+            else:
+                CreditcardModel().insert(credit_card)
 
     if current_user.is_active:
         list_of_cards = CreditcardModel().get_all_credit_cards_of_a_person(current_user.id)

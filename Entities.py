@@ -132,4 +132,7 @@ class Berbershop:
         self.campaigns = None  # i need this for my page, you can ignore it for now
         self.contactInfo = None
 
+########################################################################
+
+# HALIS'S CLASSES
 

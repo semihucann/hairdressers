@@ -434,17 +434,13 @@ class RezervationModel:
             return None
 
     # update method that will do update
-    def update(self, rezervation):
+    def updateByIdDate(self, id, daterez):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""
-                UPDATE Rezervation SET id = %s, people_id  = %s, berbershop_id = %s, datetime_registration = %s, datetime_rezervation = %s ,
-                status = %s , note = %s , price_type =%s where id = %s """,
+                UPDATE Rezervation SET datetime_rezervation = %s where id = %s """,
                            (
-                               rezervation.id, rezervation.peopleId, rezervation.berberId,
-                               rezervation.dateTimeRegistration,
-                               rezervation.dateTimeRezervation, rezervation.status, rezervation.note,
-                               rezervation.priceType, rezervation.id))
+                               daterez, id))
 
     # get by id
     def getById(self, id):

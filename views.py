@@ -106,6 +106,18 @@ def rezervation_delete (id):
     rm.deleteById(rezidint)
     return redirect(url_for("rezervation", id=id))
 
+def rezervation_edit (id):
+    rezid = request.form["rezid"]
+    datehour = request.form["daterez"]
+    day = request.form["day"]
+    date = day + " " + datehour
+    rezidint = int(rezid)
+    rm = RezervationModel()
+    rm.updateByIdDate(rezidint,date)
+    return redirect(url_for("rezervation", id=id))
+
+
+
 def barbershop_view_edit(id):
     commentrate = request.form["bcommentrate"]
     commentid = request.form["commentid"]

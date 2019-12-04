@@ -403,10 +403,13 @@ def admin_panel():
         else:
             return render_template("signin.html", message="admin_error")
     else:
-        form_movie_keys = request.form.getlist("people_keys")
-        for i in form_movie_keys:
-            for j in peoples:
-                if j.id == int(i) and j.role == "user":
-                    people.delete_id(j.id)
+        if request.form["edit"]=="delete":
+            form_movie_keys = request.form.getlist("people_keys")
+            for i in form_movie_keys:
+                for j in peoples:
+                    if j.id == int(i) and j.role == "user":
+                        people.delete_id(j.id)
+        else:
+            print(request.form["edit"])
 
         return redirect(url_for("admin_panel"))

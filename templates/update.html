@@ -1,0 +1,59 @@
+{%extends "base.html"%}
+{%block title%} Admin Update {%endblock%}
+{%block content%}
+
+<center><h2>Hello {{person.username}} </h2></center>
+
+<div class="container">
+      <div class="columns is-centered">
+          <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+            <form action="" method="post" name="signup_base_first" class="box">
+                <div class="field">
+                  <label for="mail" class="label">E-Mail Adress</label>
+                    <div class="control">
+                      <input type="email" name="mail" class="input is-success" required="required" value="{{person.mail}}"/>
+                    </div>
+                </div>
+                 <div class="field">
+                 <label for="name_surname" class="label">Name Surname</label>
+                    <div class="control">
+                      <input type="text" name="name_surname" class="input is-success" required="required" value="{{person.name_surname}}"/>
+                    </div>
+                  </div>
+                  <div class="field">
+                  <label for="username" class="label">Username</label>
+                    <div class="control">
+                      <input type="text" name="username" class="input is-success" required="required" value="{{person.username}}"/>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label for="password" class="label">New Password</label>
+                    <div class="control">
+                      <input type="password" name="password" class="input is-success" required="required" value=""/>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label for="age" class="label">Age</label>
+                    <div class="control">
+                      <input type="number" name="age" class="input is-success" required="required" value="{{person.age}}"/>
+                    </div>
+                  </div>
+                  <div class="control">
+                    <label for="gender" class="label">Gender</label>
+                    <input type="radio" name="gender" id="men" value="men" checked> Men </input>
+                    <input type="radio" name="gender" id="women" value="women"> Women </input>
+                  </div>
+<div class="field is-grouped">
+<div class="control">
+<button class="button is-success">Save</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+
+
+
+{%endblock%}

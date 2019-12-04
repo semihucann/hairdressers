@@ -396,6 +396,7 @@ def admin_panel():
     peoples = []
     people = Peoplemodel()
     berbers = Berbermodel()
+    owners = Ownermodel()
     peoples = people.get_all_list()
     if request.method == 'GET':
         if (current_user.role == "admin"):
@@ -412,6 +413,9 @@ def admin_panel():
                         people.delete_id(j.id)
                     elif j.id == int(i) and j.role == "berber":
                         berbers.delete_with_people_id(j.id)
+                        people.delete_id(j.id)
+                    elif j.id == int(i) and j.role == "owner":
+                        owners.delete_with_people_id(j.id)
                         people.delete_id(j.id)
         else:
             print(request.form["edit"])

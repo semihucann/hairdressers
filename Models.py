@@ -635,6 +635,12 @@ class Ownermodel:
             cursor.execute("""INSERT INTO Owner (people_id, tc_number, serial_number, vol_number, family_order_no, order_no)
                             VALUES (%s , %s , %s , %s , %s , %s )""", (owner.people_id, owner.tc_number, owner.serial_number, owner.vol_number, owner.family_order_no, owner.order_no))
 
+    def delete_with_people_id(self, id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("DELETE FROM Owner where people_id = %s", (id,))
+
+
 
 ######################################################################################
 

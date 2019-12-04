@@ -417,6 +417,7 @@ def admin_panel():
                     elif j.id == int(i) and j.role == "owner":
                         owners.delete_with_people_id(j.id)
                         people.delete_id(j.id)
+
         else:
             print(request.form["edit"])
 

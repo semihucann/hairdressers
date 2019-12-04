@@ -1,7 +1,7 @@
 from flask import render_template, Flask, request, redirect, url_for, current_app
 import datetime
 
-from Models import CommentModel, ContactInfoModel
+from Models import CommentModel, ContactInfoModel, StatisticsModel
 from Models import Peoplemodel, Berbermodel, Ownermodel, CreditcardModel, Berbershopmodel, RezervationModel
 from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, CreditCard, Berbershop
 from passlib.hash import pbkdf2_sha256 as hasher
@@ -29,7 +29,9 @@ def home_page():
 
 
 def statistics():
-    return render_template('statistics.html')
+    statisticModel = StatisticsModel()
+    mostPopularBerbers = statisticModel.mostPopularBerbershops()
+    return render_template('statistics.html',mostPopularBerbers = mostPopularBerbers)
 
 def rezervation(id):
     if request.method == 'GET':
@@ -104,7 +106,20 @@ def rezervation_delete (id):
     rm.deleteById(rezidint)
     return redirect(url_for("rezervation", id=id))
 
+def rezervation_edit (id):
+    rezid = request.form["rezid"]
+    datehour = request.form["daterez"]
+    day = request.form["day"]
+    date = day + " " + datehour
+    rezidint = int(rezid)
+    rm = RezervationModel()
+    rm.updateByIdDate(rezidint,date)
+    return redirect(url_for("rezervation", id=id))
+
+
+
 def barbershop_view_edit(id):
+    commentrate = request.form["bcommentrate"]
     commentid = request.form["commentid"]
     commentidint = int(commentid)
     commenttitle = request.form["commenttitle"]
@@ -112,7 +127,7 @@ def barbershop_view_edit(id):
     dateTime = datetime.datetime.now()
 
     commentModel = CommentModel()
-    commentModel.updateByIdTitleText(commentidint,commenttitle,commenttext,dateTime)
+    commentModel.updateByIdTitleTextRate(commentidint,commenttitle,commenttext,dateTime,int(commentrate))
 
     return redirect(url_for("barbershop_view", id=id))
 
@@ -176,7 +191,7 @@ def barbershop_view(id):
 
         comment = Comment()
         comment.berbershop, comment.title, comment.content, comment.rate,comment.peopleId = int(berbershopid), commenttitle, commenttext,\
-                                                                                        int(commentrate),26
+                                                                                        int(commentrate),16
 
         commentModel.insert(comment)
         return redirect(url_for("barbershop_view",id=id))
@@ -199,23 +214,26 @@ def newpost_page():
 
 def profile_page():
     if request.method == 'POST':
-        credit_card = CreditCard()
-        credit_card.name = request.form["name_surname"]
-        credit_card.card_number = request.form["number"]
-        last_date = request.form["date"]
-        if "/" not in last_date:
-            return render_template("profile.html")
-        array_last_date = last_date.split("/")
-        credit_card.last_year = array_last_date[1]
-        credit_card.last_month = array_last_date[0]
-        credit_card.cvv = request.form["cvv"]
-        credit_card.people_id = request.form["card_owner_id"]
-
-        if "card_id" in request.form:
-            credit_card.id = request.form["card_id"]
-            #todo CreditcardModel().update(credit_card)
+        if "delete_card" in request.form:
+            CreditcardModel().delete_credit_card(request.form["delete_card"])
         else:
-            CreditcardModel().insert(credit_card)
+            credit_card = CreditCard()
+            credit_card.name = request.form["name_surname"]
+            credit_card.card_number = request.form["number"]
+            last_date = request.form["date"]
+            if "/" not in last_date:
+                return render_template("profile.html")
+            array_last_date = last_date.split("/")
+            credit_card.last_year = array_last_date[1]
+            credit_card.last_month = array_last_date[0]
+            credit_card.cvv = request.form["cvv"]
+            credit_card.people_id = request.form["card_owner_id"]
+
+            if "card_id" in request.form:
+                credit_card.id = request.form["card_id"]
+                CreditcardModel().update(credit_card)
+            else:
+                CreditcardModel().insert(credit_card)
 
     if current_user.is_active:
         list_of_cards = CreditcardModel().get_all_credit_cards_of_a_person(current_user.id)
@@ -362,7 +380,7 @@ def signin():
 
             if(hasher.verify(password, person.password_hash)):
                 login_user(person)
-                current_app.config["LOGGED_USER"] = person
+                current_app.config["LOGGED_USERS"][person.username] = person
 
                 return render_template("signin.html", message="True", role=people.get_role(username))
             else:
@@ -377,6 +395,8 @@ def signout():
 def admin_panel():
     peoples = []
     people = Peoplemodel()
+    berbers = Berbermodel()
+    owners = Ownermodel()
     peoples = people.get_all_list()
     if request.method == 'GET':
         if (current_user.role == "admin"):
@@ -385,10 +405,20 @@ def admin_panel():
         else:
             return render_template("signin.html", message="admin_error")
     else:
-        form_movie_keys = request.form.getlist("people_keys")
-        for i in form_movie_keys:
-            for j in peoples:
-                if j.id == int(i) and j.role == "user":
-                    people.delete_id(j.id)
+        if request.form["edit"]=="delete":
+            form_movie_keys = request.form.getlist("people_keys")
+            for i in form_movie_keys:
+                for j in peoples:
+                    if j.id == int(i) and j.role == "user":
+                        people.delete_id(j.id)
+                    elif j.id == int(i) and j.role == "berber":
+                        berbers.delete_with_people_id(j.id)
+                        people.delete_id(j.id)
+                    elif j.id == int(i) and j.role == "owner":
+                        owners.delete_with_people_id(j.id)
+                        people.delete_id(j.id)
+
+        else:
+            print(request.form["edit"])
 
         return redirect(url_for("admin_panel"))

@@ -302,6 +302,8 @@
 
 
 
+
+
               //Comment Datatable
               // Material Design example
             $(document).ready(function () {
@@ -353,11 +355,30 @@
         function inputCopied(){
             var text = document.getElementById('commentedittext').innerHTML;
             var title = document.getElementById('commentedittitle').innerHTML;
+            var rate = e.options[e.selectedIndex].value;
             document.getElementById('commenttextinput').value = text;
             document.getElementById('commenttitleinput').value = title;
+             document.getElementById('editrateresult').value = rate;
             document.getElementById("editcommentform").submit();
 
         }
+
+
+        function hourCopied(){
+            var e = document.getElementById("updatehour");
+            var rate = e.options[e.selectedIndex].value;
+            document.getElementById('daterez').value = rate;
+            document.getElementById("editrezervation").submit();
+        }
+        function hourCopiedtmrw(){
+        var e = document.getElementById("updatehourtmrw");
+        var rate = e.options[e.selectedIndex].value;
+        document.getElementById('datereztmrw').value = rate;
+        document.getElementById("editrezervationtmrw").submit();
+
+        }
+
+
 
 
 

@@ -6,9 +6,10 @@
 
 <form action="" method="post" name="signup_base_first" class="box">
     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+
         <div class="field is-grouped">
             <div class="control">
-              <button class="button is-danger">Delete selected</button>
+              <button class="button is-danger" name="edit" value="delete">Delete selected</button>
             </div>
         </div>
 
@@ -58,7 +59,7 @@
           </td>
           <td>
             <label class="checkbox">
-              <button class="button is-info" name="edit" value="{{ person.id }}" >Edit</button>
+              <button class="button is-primary modal-button" name="edit" value = "{{person.id}}" >Edit</button>
             </label>
           </td>
         </tr>

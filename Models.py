@@ -6,6 +6,30 @@ import os
 
 url = os.getenv("DATABASE_URL")
 
+class StatisticsModel :
+    def mostPopularBerbershops(self):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                Select s.* from (SELECT  count(*) as c, Berbershop   from comments GROUP BY Berbershop ) as j join berbershop as s on j.berbershop = s.id 
+                ORDER BY j.c DESC LIMIT 3
+            """)
+            rows = cursor.fetchall()
+
+        berbershops = []
+        for row in rows:
+            berbershop = Berbershop()
+            berbershop.id, berbershop.ownerpeople_id, berbershop.shopname, berbershop.location, berbershop.city, \
+            berbershop.openingtime, berbershop.closingtime, berbershop.tradenumber = row[0], row[1], row[2], row[3], \
+                                                                                     row[4], \
+                                                                                     row[5], row[6], row[7]
+            berbershops.append(berbershop)
+        return berbershops
+
+
+
+
+
 
 class CommentModel:
 
@@ -127,12 +151,12 @@ class CommentModel:
         row[1], row[2], row[3]
         return likedDisliked
 
-    def updateByIdTitleText(self, id, title, content, datetime):
+    def updateByIdTitleTextRate(self, id, title, content, datetime, rate):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""
-                       UPDATE Comments SET title = %s , content= %s, date_time = %s  where id = %s""",
-                           (title,content,datetime,id))
+                       UPDATE Comments SET title = %s , content= %s, date_time = %s, rate =%s  where id = %s""",
+                           (title,content,datetime,rate,id))
 
 
     def  increaseLikeNumber(self, commentid):
@@ -410,17 +434,13 @@ class RezervationModel:
             return None
 
     # update method that will do update
-    def update(self, rezervation):
+    def updateByIdDate(self, id, daterez):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""
-                UPDATE Rezervation SET id = %s, people_id  = %s, berbershop_id = %s, datetime_registration = %s, datetime_rezervation = %s ,
-                status = %s , note = %s , price_type =%s where id = %s """,
+                UPDATE Rezervation SET datetime_rezervation = %s where id = %s """,
                            (
-                               rezervation.id, rezervation.peopleId, rezervation.berberId,
-                               rezervation.dateTimeRegistration,
-                               rezervation.dateTimeRezervation, rezervation.status, rezervation.note,
-                               rezervation.priceType, rezervation.id))
+                               daterez, id))
 
     # get by id
     def getById(self, id):
@@ -560,7 +580,6 @@ class Peoplemodel:
                 people_list.append(person)
             return people_list
 
-
     def delete_id(self, id):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
@@ -593,6 +612,11 @@ class Berbermodel:
                              VALUES (%s , %s , %s , %s , %s , %s )""", (berber.people_id, berber.gender_choice, berber.experience_year,
                                                                              berber.start_time, berber.finish_time, berber.rates))
 
+    def delete_with_people_id(self, id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("DELETE FROM Berber where people_id = %s", (id,))
+
 
 class Ownermodel:
     def get_id(self, username):
@@ -611,26 +635,45 @@ class Ownermodel:
             cursor.execute("""INSERT INTO Owner (people_id, tc_number, serial_number, vol_number, family_order_no, order_no)
                             VALUES (%s , %s , %s , %s , %s , %s )""", (owner.people_id, owner.tc_number, owner.serial_number, owner.vol_number, owner.family_order_no, owner.order_no))
 
+    def delete_with_people_id(self, id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("DELETE FROM Owner where people_id = %s", (id,))
+
+
 
 ######################################################################################
 
 #FATIH'S MODELS
 
 class CreditcardModel:
-    def insert(self, creditCard):
+    def insert(self, credit_card):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""INSERT INTO Creditcards (people_id, name, card_number, cvv_number, last_month, last_year) 
-                             VALUES (%s , %s , %s , %s , %s , %s )""", (creditCard.people_id, creditCard.name,
-                                                                        creditCard.card_number,
-                                                                        creditCard.cvv, creditCard.last_month,
-                                                                        creditCard.last_year))
+                             VALUES (%s , %s , %s , %s , %s , %s )""", (credit_card.people_id, credit_card.name,
+                                                                        credit_card.card_number,
+                                                                        credit_card.cvv, credit_card.last_month,
+                                                                        credit_card.last_year))
 
+    def update(self, credit_card):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                UPDATE Creditcards SET name = %s, card_number = %s, cvv_number = %s, last_month = %s, last_year = %s where id = %s""",
+                           (credit_card.name, credit_card.card_number, credit_card.cvv, credit_card.last_month, credit_card.last_year, credit_card.id))
+
+    def delete_credit_card(self, id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                DELETE from Creditcards where id = %s
+            """, (id,))
 
     def get_all_credit_cards_of_a_person(self, user_id):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
-            cursor.execute(""" SELECT * from Creditcards where people_id = %s""", (user_id,))
+            cursor.execute(""" SELECT * from Creditcards where people_id = %s order by id""", (user_id,))
             creditcards_list = []
             rows = cursor.fetchall()
             for i in rows:

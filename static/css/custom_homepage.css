@@ -210,5 +210,9 @@ overflow: auto;
     display: flex;
 }
 
+.rezeditform
+{
+    display : inline;
+}
 
 

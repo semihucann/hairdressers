@@ -11,11 +11,15 @@ lm = LoginManager()
 
 @lm.user_loader
 def load_user(user_id):
-    login_user = current_app.config["LOGGED_USER"]
-    if login_user.id is None:
+    if user_id in current_app.config["LOGGED_USERS"]:
+        login_user = current_app.config["LOGGED_USERS"][user_id]
+        return login_user
+    else:
         login_user = Models.Peoplemodel().get_all(user_id)
-        current_app.config["LOGGED_USER"] = login_user
-    return login_user
+        current_app.config["LOGGED_USERS"][user_id] = login_user
+        return login_user
+
+
 
 def create_app():
     app2 = Flask(__name__)
@@ -29,6 +33,7 @@ def create_app():
     app2.add_url_rule("/barbershopview/likedislike/<id>", view_func=views.barbershopview_comment_like_dislike, methods=["POST"])
     app2.add_url_rule("/rezervation/<id>", view_func=views.rezervation, methods=["GET","POST"])
     app2.add_url_rule("/rezervation/delete/<id>", view_func=views.rezervation_delete, methods=["POST"])
+    app2.add_url_rule("/rezervation/edit/<id>", view_func=views.rezervation_edit, methods=["POST"])
     app2.add_url_rule("/blog", view_func=views.blog_page)
     app2.add_url_rule("/profile", view_func=views.profile_page, methods=["GET", "POST"])
     app2.add_url_rule("/addcreditcard", view_func=views.addcreditcard_page, methods=["GET", "POST"])

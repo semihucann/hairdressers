@@ -43,7 +43,7 @@ INIT_STATEMENTS = [
        CREATE TABLE IF NOT EXISTS Rezervation(
            id SERIAL PRIMARY KEY,
            people_id integer NOT NULL REFERENCES People(id) ON DELETE CASCADE,
-           berbershop_id integer NOT NULL REFERENCES Berbershop(id),
+           berbershop_id integer NOT NULL REFERENCES Berbershop(id) ON DELETE CASCADE,
            datetime_registration TIMESTAMP,
            datetime_rezervation TIMESTAMP,
            status status,
@@ -108,7 +108,7 @@ INIT_STATEMENTS = [
     """
     CREATE TABLE IF NOT EXISTS Berbershop(
         id SERIAL PRIMARY KEY,
-        owner_people_id INTEGER REFERENCES People(id),
+        owner_people_id INTEGER REFERENCES People(id) ON DELETE CASCADE,
         shopname VARCHAR(50),
         location VARCHAR(300),
         city VARCHAR(50),
@@ -120,7 +120,7 @@ INIT_STATEMENTS = [
     """
     CREATE TABLE IF NOT EXISTS Serviceprices(
         id SERIAL PRIMARY KEY,
-        shop_id INTEGER REFERENCES Berbershop(id),
+        shop_id INTEGER REFERENCES Berbershop(id) ON DELETE CASCADE,
         service_name VARCHAR(50),
         definition VARCHAR(300),
         gender VARCHAR(10),

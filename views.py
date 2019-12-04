@@ -395,6 +395,7 @@ def signout():
 def admin_panel():
     peoples = []
     people = Peoplemodel()
+    berbers = Berbermodel()
     peoples = people.get_all_list()
     if request.method == 'GET':
         if (current_user.role == "admin"):
@@ -408,6 +409,9 @@ def admin_panel():
             for i in form_movie_keys:
                 for j in peoples:
                     if j.id == int(i) and j.role == "user":
+                        people.delete_id(j.id)
+                    elif j.id == int(i) and j.role == "berber":
+                        berbers.delete_with_people_id(j.id)
                         people.delete_id(j.id)
         else:
             print(request.form["edit"])

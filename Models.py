@@ -580,7 +580,6 @@ class Peoplemodel:
                 people_list.append(person)
             return people_list
 
-
     def delete_id(self, id):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
@@ -612,6 +611,11 @@ class Berbermodel:
             cursor.execute("""INSERT INTO Berber (people_id, gender_choice, experience_year, start_time, finish_time, rates) 
                              VALUES (%s , %s , %s , %s , %s , %s )""", (berber.people_id, berber.gender_choice, berber.experience_year,
                                                                              berber.start_time, berber.finish_time, berber.rates))
+
+    def delete_with_people_id(self, id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("DELETE FROM Berber where people_id = %s", (id,))
 
 
 class Ownermodel:

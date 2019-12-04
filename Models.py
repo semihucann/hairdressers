@@ -763,7 +763,7 @@ class Postsmodel :
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""INSERT INTO Posts (people_id, post_title, post_content, like, dislike, subject, date_time)
-             VALUES(%s, %s, %s, %s, %s, %s, %s) """, (Posts.people_id, Posts.post_title, Posts.post_content, Posts.like,
-                                                      Posts.dislike, Posts.subject, Posts.date_time))
+                            VALUES(%s, %s, %s, %s, %s, %s, %s) """, (Posts.people_id, Posts.post_title, Posts.post_content,
+                                                                     Posts.like, Posts.dislike, Posts.subject, Posts.date_time))
 
 

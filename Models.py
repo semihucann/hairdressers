@@ -135,7 +135,7 @@ class CommentModel:
             comments.append(comment)
         return comments
 
-    def commentCurrentUserRelationship(self,id,peopleid):
+    def commentCurrentUserRelationship(self, id, peopleid):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""
@@ -343,6 +343,7 @@ class ContactInfoModel:
                             contactInfo.telephoneNumber,
                             contactInfo.facebook, contactInfo.twitter, contactInfo.instagram, contactInfo.id))
 
+
     # get by id
     def getById(self, id):
         with dbapi2.connect(url) as connection:
@@ -356,6 +357,23 @@ class ContactInfoModel:
         contactInfo.id, contactInfo.berberShopId, contactInfo.type, contactInfo.telephoneNumber, \
         contactInfo.facebook, contactInfo.twitter, contactInfo.instagram = row[0], row[1], row[2], row[3], row[4], row[
             5], row[6]
+        return contactInfo
+
+    def getByBarbershopId(self,id):
+        row = None
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                SELECT * from Contact_info as c where c.berbershop_id  = %s """, (id,))
+            row = cursor.fetchone()
+        if row == None:
+            return None
+
+        # return one comment object
+        contactInfo = ContactInfo()
+        contactInfo.id, contactInfo.berberShopId, contactInfo.type, contactInfo.telephoneNumber, \
+        contactInfo.facebook, contactInfo.twitter, contactInfo.instagram = row[0], row[1], row[2], row[3], row[4], \
+                                                                           row[5], row[6]
         return contactInfo
 
     def deleteById(self, id):
@@ -765,5 +783,7 @@ class Postsmodel :
             cursor.execute("""INSERT INTO Posts (people_id, post_title, post_content, like, dislike, subject, date_time)
              VALUES(%s, %s, %s, %s, %s, %s, %s) """, (Posts.people_id, Posts.post_title, Posts.post_content, Posts.like,
                                                       Posts.dislike, Posts.subject, Posts.date_time))
+
+
 
 

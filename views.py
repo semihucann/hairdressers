@@ -91,7 +91,7 @@ def rezervation(id):
 
         rm = RezervationModel()
         rezervation = Rezervation()
-        rezervation.peopleId = 26
+        rezervation.peopleId = current_user.id
         rezervation.dateTimeRezervation = tdy
         rezervation.note = note
         rezervation.status = "notokey"
@@ -138,6 +138,8 @@ def barbershop_view_delete(id):
     return redirect(url_for("barbershop_view", id=id))
 
 def barbershopview_comment_like_dislike(id) :
+    if(current_user.is_active != True):
+        return redirect(url_for("signin"))
     likeddislikedid = request.form["likedislikeid"]
     likeddislikedidint = None
 
@@ -171,11 +173,15 @@ def barbershop_view(id):
         contactInfo = contactInfoModel.getByBarbershopId(idint)
         berbershop.contactInfo = contactInfo
 
+        x = 0 #indicating there is current user
+        if(current_user.is_active):
+            x=1
 
 
         for c in commentlist:
             c.dateTime = datetime.date(c.dateTime.year, c.dateTime.month, c.dateTime.day)
-            c.likedDislikedobj = commentModel.commentCurrentUserRelationship(c.id,26)
+            if x==1 :
+                c.likedDislikedobj = commentModel.commentCurrentUserRelationship(c.id, current_user.id)
 
         return render_template("barbershopview.html", commentlist=commentlist, berbershop = berbershop)
     else:
@@ -191,10 +197,49 @@ def barbershop_view(id):
 
         comment = Comment()
         comment.berbershop, comment.title, comment.content, comment.rate,comment.peopleId = int(berbershopid), commenttitle, commenttext,\
-                                                                                        int(commentrate),16
+                                                                                        int(commentrate),current_user.id
 
         commentModel.insert(comment)
         return redirect(url_for("barbershop_view",id=id))
+
+def contact_delete(id):
+    cm= ContactInfoModel()
+    contactId = request.form["contactid"]
+    cm.deleteById(int(contactId))
+    return redirect(url_for("barbershop_view", id=id))
+
+
+def contact_settings(id):
+
+    if request.method == 'GET' :
+        cm = ContactInfoModel()
+        contactentity = cm.getByBarbershopId(int(id))
+        return  render_template("contact.html", id = id, contact = contactentity)
+
+    #POST
+    cm = ContactInfoModel()
+    typec = request.form["typec"]
+    instagramc = request.form["instagramc"]
+    twitterc = request.form["twitterc"]
+    facebookc = request.form["facebookc"]
+    contactId = request.form["contactid"]
+    phoneNumber = request.form["phonenumber"]
+
+    contact = ContactInfo()
+    contact.type = typec
+    contact.instagram = instagramc
+    contact.twitter = twitterc
+    contact.facebook = facebookc
+    contact.telephoneNumber = phoneNumber
+    contact.berberShopId = int (id)
+
+    if (contactId == None) or (contactId == "") :
+        cm.insert(contact)
+    else :
+        contact.id = int(contactId)
+        cm.update(contact)
+
+    return redirect(url_for("barbershop_view", id=id))
 
 
 

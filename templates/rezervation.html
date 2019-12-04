@@ -45,7 +45,7 @@
 
       <tr>
               <th scope="row">{{loop.index }}</th>
-               {% if rez.peopleId == 26 %}
+               {% if rez.peopleId ==  current_user.id %}
                     <td>
                         <div  style="display : inline , width : 150px; max-width:200px; margin-bottom : 20px;" class="form-group">
                         <select class="form-control" id="updatehour">
@@ -71,7 +71,7 @@
               {% endif %}
               <td>{{rez.note}}</td>
               <td>
-                   {% if rez.peopleId == 26 %}
+                   {% if rez.peopleId ==  current_user.id %}
 
                         <form style="display:inline;" action="/rezervation/edit/{{id}}" method="post" id="editrezervation">
                             <input type="hidden" name="rezid" value="{{rez.id}}">
@@ -129,8 +129,13 @@
     <label for="exampleFormControlTextarea1">Note</label>
     <textarea class="form-control" name="todaynote" id="exampleFormControlTextarea11" rows="3"></textarea>
   </div>
-    <button style="height:40px;" type="submit" class="btn btn-primary">Submit</button>
-</form>
+      {%if current_user.is_active  %}
+        <button style="height:40px;" type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      {% else %}
+        <a href="/signin" style="height:40px;" type="submit" class="btn btn-primary">Submit</a>
+      {% endif %}
+
 
 
 
@@ -142,8 +147,8 @@
 
 
 
-
 <div class="tomorrowrezervation" style="display:none;">
+<form>
 
     <h3>Tomorrow Rezervation </h3>
     <strong>{{tomorrow}}</strong>
@@ -163,7 +168,7 @@
 
         <tr>
                 <th scope="row">{{loop.index }}</th>
-                {% if rez.peopleId == 26 %}
+                {% if rez.peopleId ==  current_user.id %}
                     <td>
                         <div  style="display : inline , width : 150px; max-width:200px; margin-bottom : 20px;" class="form-group">
                         <select class="form-control" id="updatehourtmrw">
@@ -190,7 +195,7 @@
 
                 <td>{{rez.note}}</td>
                 <td>
-                    {% if rez.peopleId == 26 %}
+                    {% if rez.peopleId == current_user.id %}
 
 
                         <form style="display:inline;" action="/rezervation/edit/{{id}}" method="post" id="editrezervationtmrw">
@@ -249,9 +254,15 @@
     <label  for="exampleFormControlTextarea1">Note</label>
     <textarea name="tomorrownote" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
   </div>
-    <button style="height:40px;" type="submit" class="btn btn-primary">Submit</button>
-</form>
+      {%if current_user.is_active > 0  %}
+       <button style="height:40px;" type="submit" class="btn btn-primary">Submit</button>
+        </form>
+     {% else %}
+        <a href="/signin" style="height:40px;" type="submit" class="btn btn-primary">Submit</a>
+        </form>
+    {% endif %}
 
+</div>
 
 
 </div>

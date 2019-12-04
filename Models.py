@@ -745,3 +745,25 @@ class ServicepriceModel:
                              VALUES (%s , %s , %s , %s , %s , %s)""", (serviceprice.shop_id, serviceprice.service_name,
                                                                         serviceprice.definition, serviceprice.gender,
                                                                         serviceprice.price, serviceprice.duration))
+
+
+######################################################################################
+
+#HALIS'S MODELS
+
+class Postsmodel :
+
+    def printposts(self):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("SELECT * from Posts")
+            data = cursor.fetchall()
+
+    def insert(self,Posts):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""INSERT INTO Posts (people_id, post_title, post_content, like, dislike, subject, date_time)
+             VALUES(%s, %s, %s, %s, %s, %s, %s) """, (Posts.people_id, Posts.post_title, Posts.post_content, Posts.like,
+                                                      Posts.dislike, Posts.subject, Posts.date_time))
+
+

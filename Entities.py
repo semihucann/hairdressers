@@ -138,3 +138,13 @@ class Berbershop:
 
 # HALIS'S CLASSES
 
+class Post:
+    def __init__(self):
+        self.id = None
+        self.people_id = None
+        self.post_title = None
+        self.post_content = None
+        self.like = None
+        self.dislike = None
+        self.subject = None
+        self.date_time = None

@@ -612,6 +612,17 @@ class Peoplemodel:
             return False
         return True
 
+    def update(self, people):
+        if self.control_exist(people) == False:
+            with dbapi2.connect(url) as connection:
+                cursor = connection.cursor()
+                cursor.execute("""UPDATE People SET username = %s, name_surname = %s, mail = %s, password_hash = %s, gender = %s, age = %s where id = %s""",
+                               (people.username, people.name_surname, people.mail, people.password_hash, people.gender, people.age, people.id))
+            return True
+        else:
+            return False
+
+
 
 class Berbermodel:
     def get_id(self, username):

@@ -469,16 +469,35 @@ def admin_panel():
                         owners.delete_with_people_id(j.id)
                         people.delete_id(j.id)
 
-        elif "update" in request.form["edit"] :
+        elif "update" in request.form["edit"]:
             print("update")
+            for i in peoples:
+                x = request.form["edit"].split("_")[0]
+                if int(x) == i.id:
+                    if i.role == "user":
+                        person = People()
+                        person.username = request.form["username"]
+                        person.name_surname = request.form["name_surname"]
+                        person.mail = request.form["mail"]
+                        person.password_hash = hasher.hash(request.form["password"])
+                        person.gender = request.form["gender"]
+                        person.age = request.form["age"]
+                        person.role = "user"
+                        person.id = i.id
+                        print("passwordü kontrol_et")
+                        ####Password kontrolü yap kişiyi kendisi ile kontrol et eğer mail ya da sadece username değişirse böyle bir kişi var diye update yapmıyor
+                        print(people.update(person));
+                    elif i.role == "berber":
+                        print("berber")
+                    elif i.role == "owner":
+                        print("owner")
 
         else:
-            print(request.form["edit"])
+            #print(request.form["edit"])
             #print(peoples[int(request.form["edit"])])
             for i in peoples:
                 if int(request.form["edit"]) == i.id:
-                    print(i.username)
-                    return  render_template("update.html", person=i)
+                    return render_template("update.html", person=i)
 
 
         return redirect(url_for("admin_panel"))

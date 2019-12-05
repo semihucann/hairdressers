@@ -469,16 +469,17 @@ def admin_panel():
                         owners.delete_with_people_id(j.id)
                         people.delete_id(j.id)
 
+        elif "update" in request.form["edit"] :
+            print("update")
+
         else:
             print(request.form["edit"])
             #print(peoples[int(request.form["edit"])])
             for i in peoples:
                 if int(request.form["edit"]) == i.id:
                     print(i.username)
-                    #return redirect(url_for("admin_update", person="i"))
                     return  render_template("update.html", person=i)
+
+
         return redirect(url_for("admin_panel"))
 
-
-def admin_update():
-    return render_template("update.html")

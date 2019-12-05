@@ -120,6 +120,7 @@ def rezervation_edit (id):
 
 def barbershop_view_edit(id):
     commentrate = request.form["bcommentrate"]
+    commentrateint = int(commentrate)
     commentid = request.form["commentid"]
     commentidint = int(commentid)
     commenttitle = request.form["commenttitle"]
@@ -127,7 +128,7 @@ def barbershop_view_edit(id):
     dateTime = datetime.datetime.now()
 
     commentModel = CommentModel()
-    commentModel.updateByIdTitleTextRate(commentidint,commenttitle,commenttext,dateTime,int(commentrate))
+    commentModel.updateByIdTitleTextRate(commentidint,commenttitle,commenttext,dateTime,commentrateint)
 
     return redirect(url_for("barbershop_view", id=id))
 
@@ -189,21 +190,27 @@ def barbershop_view(id):
                 c.likedDislikedobj = commentModel.commentCurrentUserRelationship(c.id, current_user.id)
 
         return render_template("barbershopview.html", commentlist= commentlist, berbershop = berbershop, berbers = berbers)
-    else:
+
+    else: #POST
         idint = int(id)
         commentModel = CommentModel()
 
+        #get Form Data
         berbershopid =  idint = int(id)
         commenttitle = request.form["bcommenttitle"]
         commenttext = request.form["bcommenttext"]
         commentrate = request.form["bcommentrate"]
-        #berberid = request.form["berber"]
+        berberid = request.form["berber"]
+        berberidint = int(berberid)
+
+        if berberidint == -1: #berbershop itself
+            berberidint = None
 
         #save in database
 
         comment = Comment()
-        comment.berbershop, comment.title, comment.content, comment.rate,comment.peopleId = int(berbershopid), commenttitle, commenttext,\
-                                                                                        int(commentrate),current_user.id
+        comment.berbershop, comment.title, comment.content, comment.rate,comment.peopleId, comment.berber = int(berbershopid), commenttitle, commenttext,\
+                                                                                        int(commentrate),current_user.id, berberidint
 
         commentModel.insert(comment)
         return redirect(url_for("barbershop_view",id=id))

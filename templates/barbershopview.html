@@ -45,10 +45,13 @@
           <div class="form-group">
             <label for="exampleFormControlSelect1">Select Berber</label>
             <select class="form-control" name="berber" id="exampleFormControlSelect1">
-                 {% if berbers == None  %}
-                    <option value="-1" selected disabled hidden>No Berber Found for Shop</option>
-
+                    <option value="-1">BerberShop Itself</option>
+                 {% if berbers != None  %}
+                    {% for b in berbers %}
+                    <option value="{{b.id}}">{{b.people.name_surname}}</option>
+                    {% endfor %}
                 {% endif %}
+
             </select>
       </div>
 

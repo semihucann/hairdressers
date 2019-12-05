@@ -646,8 +646,10 @@ class Berbermodel:
             berbers = []
             for row in rows:
                 berber = Berber()
+                people = People()
                 berber.id = row[0]
-                berber.people.name_surname = row[1]
+                people.name_surname = row[1]
+                berber.people = people
                 berbers.append(berber)
             if len(berbers) == 0:
                  return None
@@ -801,5 +803,14 @@ class Postsmodel :
             cursor.execute("""INSERT INTO Posts (people_id, post_title, post_content, like, dislike, subject, date_time)
              VALUES(%s, %s, %s, %s, %s, %s, %s) """, (Posts.people_id, Posts.post_title, Posts.post_content, Posts.like,
                                                       Posts.dislike, Posts.subject, Posts.date_time))
+
+
+berber = Berber()
+berber.people_id =  40
+berber.berber_shop_id = 3
+with dbapi2.connect(url) as connection:
+    cursor = connection.cursor()
+    cursor.execute("""INSERT INTO Berber (People_id, Berbershop_id, Gender_choice)
+    VALUES(%s, %s, %s) """, (40,3,"unisex"))
 
 

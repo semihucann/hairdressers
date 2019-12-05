@@ -635,6 +635,24 @@ class Berbermodel:
             cursor = connection.cursor()
             cursor.execute("DELETE FROM Berber where people_id = %s", (id,))
 
+    def getBerbersByBerbershop(self, berbershopid): #needed for berbershopview page for commenting.
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("Select b.id, p.name_surname from berber as b join people as p  on b.People_id = p.id where berbershop_id = %s", (berbershopid,))
+            rows = cursor.fetchall()
+
+            if(rows == None):
+                return None
+            berbers = []
+            for row in rows:
+                berber = Berber()
+                berber.id = row[0]
+                berber.people.name_surname = row[1]
+                berbers.append(berber)
+            if len(berbers) == 0:
+                 return None
+            return berbers
+
 
 class Ownermodel:
     def get_id(self, username):
@@ -783,7 +801,5 @@ class Postsmodel :
             cursor.execute("""INSERT INTO Posts (people_id, post_title, post_content, like, dislike, subject, date_time)
              VALUES(%s, %s, %s, %s, %s, %s, %s) """, (Posts.people_id, Posts.post_title, Posts.post_content, Posts.like,
                                                       Posts.dislike, Posts.subject, Posts.date_time))
-
-
 
 

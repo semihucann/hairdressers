@@ -65,6 +65,7 @@ class People:
         self.role = None
         self.active = True
 
+
     def get_id(self):
         return self.username
 
@@ -82,7 +83,7 @@ class Berber:
         self.start_time = None
         self.finish_time = None
         self.rates = None
-
+        self.people = None #will be used for reaching berber's people attributes for berbershop_view page
 
 class Owner:
     def __init__(self):

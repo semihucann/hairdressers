@@ -166,12 +166,17 @@ def barbershop_view(id):
         commentModel = CommentModel()
         commentlist = commentModel.getAllCommentswithPeopleByBerbershopId(idint)
 
+
         berbershopModel = Berbershopmodel()
         berbershop = berbershopModel.getById(id)
 
         contactInfoModel = ContactInfoModel()
         contactInfo = contactInfoModel.getByBarbershopId(idint)
         berbershop.contactInfo = contactInfo
+
+        #list berbers for rating
+        berberModel = Berbermodel()
+        berbers = berberModel.getBerbersByBerbershop(idint)
 
         x = 0 #indicating there is current user
         if(current_user.is_active):
@@ -183,7 +188,7 @@ def barbershop_view(id):
             if x==1 :
                 c.likedDislikedobj = commentModel.commentCurrentUserRelationship(c.id, current_user.id)
 
-        return render_template("barbershopview.html", commentlist=commentlist, berbershop = berbershop)
+        return render_template("barbershopview.html", commentlist= commentlist, berbershop = berbershop, berbers = berbers)
     else:
         idint = int(id)
         commentModel = CommentModel()
@@ -192,6 +197,7 @@ def barbershop_view(id):
         commenttitle = request.form["bcommenttitle"]
         commenttext = request.form["bcommenttext"]
         commentrate = request.form["bcommentrate"]
+        #berberid = request.form["berber"]
 
         #save in database
 

@@ -31,7 +31,9 @@ def home_page():
 def statistics():
     statisticModel = StatisticsModel()
     mostPopularBerbers = statisticModel.mostPopularBerbershops()
-    return render_template('statistics.html',mostPopularBerbers = mostPopularBerbers)
+    lastAddedBarbershops = statisticModel.lastAddedBarbershops()
+
+    return render_template('statistics.html',mostPopularBerbers = mostPopularBerbers, lastAddedBarbershops = lastAddedBarbershops)
 
 def rezervation(id):
     if request.method == 'GET':

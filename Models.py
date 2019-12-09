@@ -26,7 +26,23 @@ class StatisticsModel :
             berbershops.append(berbershop)
         return berbershops
 
+    def lastAddedBarbershops(self):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+               SELECT * from berbershop ORDER BY Id DESC limit 3
+            """)
+            rows = cursor.fetchall()
 
+        berbershops = []
+        for row in rows:
+            berbershop = Berbershop()
+            berbershop.id, berbershop.ownerpeople_id, berbershop.shopname, berbershop.location, berbershop.city, \
+            berbershop.openingtime, berbershop.closingtime, berbershop.tradenumber = row[0], row[1], row[2], row[3], \
+                                                                                     row[4], \
+                                                                                     row[5], row[6], row[7]
+            berbershops.append(berbershop)
+        return berbershops
 
 
 

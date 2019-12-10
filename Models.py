@@ -701,6 +701,25 @@ class Berbermodel:
                  return None
             return berbers
 
+    def get_all_list(self):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute(""" SELECT * from berber""")
+            berber_list = []
+            rows = cursor.fetchall()
+            for i in rows:
+                berber = Berber()
+                berber.id = i[0]
+                berber.people_id = i[1]
+                berber.berber_shop_id = i[2]
+                berber.gender_choice = i[3]
+                berber.experience_year = i[4]
+                berber.start_time = i[5]
+                berber.finish_time = i[6]
+                berber.rates = i[7]
+                berber_list.append(berber)
+            return berber_list
+
 
 class Ownermodel:
     def get_id(self, username):
@@ -850,13 +869,5 @@ class Postsmodel :
              VALUES(%s, %s, %s, %s, %s, %s, %s) """, (Posts.people_id, Posts.post_title, Posts.post_content, Posts.like,
                                                       Posts.dislike, Posts.subject, Posts.date_time))
 
-
-berber = Berber()
-berber.people_id =  40
-berber.berber_shop_id = 3
-with dbapi2.connect(url) as connection:
-    cursor = connection.cursor()
-    cursor.execute("""INSERT INTO Berber (People_id, Berbershop_id, Gender_choice)
-    VALUES(%s, %s, %s) """, (40,3,"unisex"))
 
 

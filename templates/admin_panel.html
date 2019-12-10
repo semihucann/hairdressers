@@ -67,4 +67,52 @@
         {% endfor %}
     </table>
 </form>
+
+<center><h3>Berber Table</h3></center>
+
+<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+
+        <tr>
+            <th>Id</th>
+            <th>People Id</th>
+            <th>Berber_shop_id</th>
+            <th>Gender_choice</th>
+            <th>Experience_year</th>
+            <th>Start_time</th>
+            <th>Finish_time</th>
+            <th>Rates</th>
+        </tr>
+       {% for berber in berbers %}
+        <tr>
+           <td>
+              {{ berber.id }}
+          </td>
+          <td>
+              {{ berber.people_id }}
+          </td>
+            <td>
+              {{ berber.berber_shop_id }}
+          </td>
+          <td>
+              {{ berber.gender_choice }}
+          </td>
+           <td>
+              {{ berber.experience_year }}
+          </td>
+          <td>
+              {{ berber.start_time }}
+          </td>
+           <td>
+              {{ berber.finish_time }}
+          </td>
+          <td>
+              {{ berber.rates }}
+          </td>
+          <td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+
 {%endblock%}

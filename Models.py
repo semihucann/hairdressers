@@ -744,6 +744,24 @@ class Ownermodel:
             cursor.execute("DELETE FROM Owner where people_id = %s", (id,))
 
 
+    def get_all_list(self):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute(""" SELECT * from owner""")
+            owner_list = []
+            rows = cursor.fetchall()
+            for i in rows:
+                owner = Owner()
+                owner.id = i[0]
+                owner.people_id = i[1]
+                owner.tc_number = i[2]
+                owner.serial_number = i[3]
+                owner.vol_number = i[4]
+                owner.family_order_no = i[5]
+                owner.order_no = i[6]
+                owner_list.append(owner)
+            return owner_list
+
 
 ######################################################################################
 

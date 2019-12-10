@@ -108,11 +108,50 @@
           <td>
               {{ berber.rates }}
           </td>
-          <td>
         </tr>
         {% endfor %}
     </table>
 
+
+<center><h3>Owner Table</h3></center>
+
+<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+
+        <tr>
+            <th>Id</th>
+            <th>People Id</th>
+            <th>Tc Number</th>
+            <th>Serial Number</th>
+            <th>Vol Number</th>
+            <th>Family Order No</th>
+            <th>Order No</th>
+        </tr>
+       {% for owner in owners %}
+        <tr>
+           <td>
+              {{ owner.id }}
+          </td>
+          <td>
+              {{ owner.people_id }}
+          </td>
+            <td>
+              {{ owner.tc_number }}
+          </td>
+          <td>
+              {{ owner.serial_number }}
+          </td>
+           <td>
+              {{ owner.vol_number }}
+          </td>
+          <td>
+              {{ owner.family_order_no }}
+          </td>
+           <td>
+              {{ owner.order_no }}
+          </td>
+        </tr>
+        {% endfor %}
+    </table>
 
 
 {%endblock%}

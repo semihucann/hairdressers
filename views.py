@@ -460,10 +460,13 @@ def admin_panel():
     peoples = people.get_all_list()
     berber_list = []
     berber_list = berbers.get_all_list()
+    owner_list = []
+    owner_list = owners.get_all_list()
+
     if request.method == 'GET':
         if (current_user.role == "admin"):
             # Düzeltttt user yerine admin yazılacak !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            return render_template("admin_panel.html", people=peoples, berbers=berber_list)
+            return render_template("admin_panel.html", people=peoples, berbers=berber_list, owners=owner_list)
         else:
             return render_template("signin.html", message="admin_error")
     else:

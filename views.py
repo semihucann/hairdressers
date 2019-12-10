@@ -483,7 +483,7 @@ def admin_panel():
             for i in peoples:
                 x = request.form["edit"].split("_")[0]
                 if int(x) == i.id:
-                    if i.role == "user":
+                    if i.role == "user" or i.role == "admin":
                         person = People()
                         person.username = request.form["username"]
                         person.name_surname = request.form["name_surname"]
@@ -493,9 +493,8 @@ def admin_panel():
                         person.age = request.form["age"]
                         person.role = "user"
                         person.id = i.id
-                        print("passwordü kontrol_et")
-                        ####Password kontrolü yap kişiyi kendisi ile kontrol et eğer mail ya da sadece username değişirse böyle bir kişi var diye update yapmıyor
-                        print(people.update(person));
+
+                        print(people.update(person))
                     elif i.role == "berber":
                         print("berber")
                     elif i.role == "owner":

@@ -1,7 +1,8 @@
 {%extends "base.html"%}
 {%block title%} Admin Panel {%endblock%}
 {%block content%}
-<p> Hello {{name}} ! </p>
+<center><p> Hello Mr. Admin. You can delete and update any person (user, berber, owner) ! </p></center> <br> <br>
+
 <center><h3>People Table</h3></center>
 
 <form action="" method="post" name="signup_base_first" class="box">
@@ -59,7 +60,7 @@
           </td>
           <td>
             <label class="checkbox">
-              <button class="button is-primary modal-button" name="edit" value = "{{person.id}}" >Edit</button>
+              <button class="button is-link" name="edit" value = "{{person.id}}" >Edit</button>
             </label>
           </td>
         </tr>

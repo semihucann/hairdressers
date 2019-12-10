@@ -551,6 +551,18 @@ class Peoplemodel:
             return False
         return True
 
+    def control_exist_to_update(self, people):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("SELECT id FROM People where username = %s or mail = %s ", (people.username, people.mail))
+        row = cursor.fetchone()
+        if (row == None):
+            return False
+        elif (row[0]==people.id):
+            return False
+        return True
+
+
     def save(self, people):
         if (self.control_exist(people) == False):
             self.insert(people)
@@ -629,7 +641,7 @@ class Peoplemodel:
         return True
 
     def update(self, people):
-        if self.control_exist(people) == False:
+        if self.control_exist_to_update(people) == False:
             with dbapi2.connect(url) as connection:
                 cursor = connection.cursor()
                 cursor.execute("""UPDATE People SET username = %s, name_surname = %s, mail = %s, password_hash = %s, gender = %s, age = %s where id = %s""",

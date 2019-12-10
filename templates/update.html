@@ -27,17 +27,6 @@
                       <input type="text" name="username" class="input is-success" required="required" value="{{person.username}}"/>
                     </div>
                   </div>
-                <div class="field">
-                    <label for="password_select" class="label">Password Selection</label>
-                    <div class="control">
-                     <div class="select is-success">
-                        <select class="is-focused">
-                        <option value="1">New Password</option>
-                        <option value="2">Current Password</option>
-                    </select>
-                     </div>
-                    </div>
-                </div>
                   <div class="field" id="password_area">
                     <label for="password" class="label">New Password</label>
                     <div class="control">
@@ -117,7 +106,7 @@
                   <div class="field is-grouped">
                     <div class="control">
                         <br>
-                        <button class="button is-primary modal-button" name="edit" value = "{{person.id}}_update" >Edit</button>
+                        <button class="button is-success" name="edit" value = "{{person.id}}_update" >Update</button>
                     </div>
                    </div>
                 </form>
@@ -125,17 +114,5 @@
         </div>
     </div>
 </div>
-
-<script>
-$('select').on('change', function() {
- var x = document.getElementById("password_area");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-});
-</script>
-
 
 {%endblock%}

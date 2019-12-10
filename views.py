@@ -31,7 +31,9 @@ def home_page():
 def statistics():
     statisticModel = StatisticsModel()
     mostPopularBerbers = statisticModel.mostPopularBerbershops()
-    return render_template('statistics.html',mostPopularBerbers = mostPopularBerbers)
+    lastAddedBarbershops = statisticModel.lastAddedBarbershops()
+
+    return render_template('statistics.html',mostPopularBerbers = mostPopularBerbers, lastAddedBarbershops = lastAddedBarbershops)
 
 def rezervation(id):
     if request.method == 'GET':
@@ -91,7 +93,7 @@ def rezervation(id):
 
         rm = RezervationModel()
         rezervation = Rezervation()
-        rezervation.peopleId = 26
+        rezervation.peopleId = current_user.id
         rezervation.dateTimeRezervation = tdy
         rezervation.note = note
         rezervation.status = "notokey"
@@ -120,6 +122,7 @@ def rezervation_edit (id):
 
 def barbershop_view_edit(id):
     commentrate = request.form["bcommentrate"]
+    commentrateint = int(commentrate)
     commentid = request.form["commentid"]
     commentidint = int(commentid)
     commenttitle = request.form["commenttitle"]
@@ -127,7 +130,7 @@ def barbershop_view_edit(id):
     dateTime = datetime.datetime.now()
 
     commentModel = CommentModel()
-    commentModel.updateByIdTitleTextRate(commentidint,commenttitle,commenttext,dateTime,int(commentrate))
+    commentModel.updateByIdTitleTextRate(commentidint,commenttitle,commenttext,dateTime,commentrateint)
 
     return redirect(url_for("barbershop_view", id=id))
 
@@ -138,6 +141,8 @@ def barbershop_view_delete(id):
     return redirect(url_for("barbershop_view", id=id))
 
 def barbershopview_comment_like_dislike(id) :
+    if(current_user.is_active != True):
+        return redirect(url_for("signin"))
     likeddislikedid = request.form["likedislikeid"]
     likeddislikedidint = None
 
@@ -164,6 +169,7 @@ def barbershop_view(id):
         commentModel = CommentModel()
         commentlist = commentModel.getAllCommentswithPeopleByBerbershopId(idint)
 
+
         berbershopModel = Berbershopmodel()
         berbershop = berbershopModel.getById(id)
 
@@ -171,30 +177,84 @@ def barbershop_view(id):
         contactInfo = contactInfoModel.getByBarbershopId(idint)
         berbershop.contactInfo = contactInfo
 
+        #list berbers for rating
+        berberModel = Berbermodel()
+        berbers = berberModel.getBerbersByBerbershop(idint)
+
+        x = 0 #indicating there is current user
+        if(current_user.is_active):
+            x=1
 
 
         for c in commentlist:
             c.dateTime = datetime.date(c.dateTime.year, c.dateTime.month, c.dateTime.day)
-            c.likedDislikedobj = commentModel.commentCurrentUserRelationship(c.id,26)
+            if x==1 :
+                c.likedDislikedobj = commentModel.commentCurrentUserRelationship(c.id, current_user.id)
 
-        return render_template("barbershopview.html", commentlist=commentlist, berbershop = berbershop)
-    else:
+        return render_template("barbershopview.html", commentlist= commentlist, berbershop = berbershop, berbers = berbers)
+
+    else: #POST
         idint = int(id)
         commentModel = CommentModel()
 
+        #get Form Data
         berbershopid =  idint = int(id)
         commenttitle = request.form["bcommenttitle"]
         commenttext = request.form["bcommenttext"]
         commentrate = request.form["bcommentrate"]
+        berberid = request.form["berber"]
+        berberidint = int(berberid)
+
+        if berberidint == -1: #berbershop itself
+            berberidint = None
 
         #save in database
 
         comment = Comment()
-        comment.berbershop, comment.title, comment.content, comment.rate,comment.peopleId = int(berbershopid), commenttitle, commenttext,\
-                                                                                        int(commentrate),16
+        comment.berbershop, comment.title, comment.content, comment.rate,comment.peopleId, comment.berber = int(berbershopid), commenttitle, commenttext,\
+                                                                                        int(commentrate),current_user.id, berberidint
 
         commentModel.insert(comment)
         return redirect(url_for("barbershop_view",id=id))
+
+def contact_delete(id):
+    cm= ContactInfoModel()
+    contactId = request.form["contactid"]
+    cm.deleteById(int(contactId))
+    return redirect(url_for("barbershop_view", id=id))
+
+
+def contact_settings(id):
+
+    if request.method == 'GET' :
+        cm = ContactInfoModel()
+        contactentity = cm.getByBarbershopId(int(id))
+        return  render_template("contact.html", id = id, contact = contactentity)
+
+    #POST
+    cm = ContactInfoModel()
+    typec = request.form["typec"]
+    instagramc = request.form["instagramc"]
+    twitterc = request.form["twitterc"]
+    facebookc = request.form["facebookc"]
+    contactId = request.form["contactid"]
+    phoneNumber = request.form["phonenumber"]
+
+    contact = ContactInfo()
+    contact.type = typec
+    contact.instagram = instagramc
+    contact.twitter = twitterc
+    contact.facebook = facebookc
+    contact.telephoneNumber = phoneNumber
+    contact.berberShopId = int (id)
+
+    if (contactId == None) or (contactId == "") :
+        cm.insert(contact)
+    else :
+        contact.id = int(contactId)
+        cm.update(contact)
+
+    return redirect(url_for("barbershop_view", id=id))
 
 
 
@@ -398,10 +458,15 @@ def admin_panel():
     berbers = Berbermodel()
     owners = Ownermodel()
     peoples = people.get_all_list()
+    berber_list = []
+    berber_list = berbers.get_all_list()
+    owner_list = []
+    owner_list = owners.get_all_list()
+
     if request.method == 'GET':
         if (current_user.role == "admin"):
             # Düzeltttt user yerine admin yazılacak !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            return render_template("admin_panel.html", people=peoples)
+            return render_template("admin_panel.html", people=peoples, berbers=berber_list, owners=owner_list)
         else:
             return render_template("signin.html", message="admin_error")
     else:
@@ -418,16 +483,44 @@ def admin_panel():
                         owners.delete_with_people_id(j.id)
                         people.delete_id(j.id)
 
+        elif "update" in request.form["edit"]:
+            print("update")
+            for i in peoples:
+                x = request.form["edit"].split("_")[0]
+                if int(x) == i.id:
+                    person = People()
+                    person.username = request.form["username"]
+                    person.name_surname = request.form["name_surname"]
+                    person.mail = request.form["mail"]
+                    person.password_hash = hasher.hash(request.form["password"])
+                    person.gender = request.form["gender"]
+                    person.age = request.form["age"]
+                    person.role = "user"
+                    person.id = i.id
+                    if i.role == "user" or i.role == "admin":
+                        print(people.update(person))
+                    elif i.role == "berber":
+                        print(people.update(person))
+                        berbers = Berbermodel()
+                        berber = Berber()
+                        berber.people_id = i.id
+                        berber.gender_choice = request.form["gender_choice"]
+                        berber.experience_year = request.form["experience"]
+                        berber.start_time = request.form["start_time"][:2]
+                        berber.finish_time = request.form["finish_time"][:2]
+                        print(berber.people_id, berber.people_id, berber.gender_choice)
+                        berbers = Berbermodel()
+                        berbers.update_berber(berber)
+                    elif i.role == "owner":
+                        print(people.update(person))
+                        print("owner")
         else:
-            print(request.form["edit"])
+            #print(request.form["edit"])
             #print(peoples[int(request.form["edit"])])
             for i in peoples:
                 if int(request.form["edit"]) == i.id:
-                    print(i.username)
-                    #return redirect(url_for("admin_update", person="i"))
-                    return  render_template("update.html", person=i)
+                    return render_template("update.html", person=i)
+
+
         return redirect(url_for("admin_panel"))
 
-
-def admin_update():
-    return render_template("update.html")

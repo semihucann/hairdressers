@@ -355,6 +355,7 @@
         function inputCopied(){
             var text = document.getElementById('commentedittext').innerHTML;
             var title = document.getElementById('commentedittitle').innerHTML;
+            var e = document.getElementById("editrating");
             var rate = e.options[e.selectedIndex].value;
             document.getElementById('commenttextinput').value = text;
             document.getElementById('commenttitleinput').value = title;

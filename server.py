@@ -34,6 +34,8 @@ def create_app():
     app2.add_url_rule("/rezervation/<id>", view_func=views.rezervation, methods=["GET","POST"])
     app2.add_url_rule("/rezervation/delete/<id>", view_func=views.rezervation_delete, methods=["POST"])
     app2.add_url_rule("/rezervation/edit/<id>", view_func=views.rezervation_edit, methods=["POST"])
+    app2.add_url_rule("/contact/<id>", view_func=views.contact_settings, methods=["GET","POST"])
+    app2.add_url_rule("/contact/delete/<id>", view_func=views.contact_delete, methods=["POST"])
     app2.add_url_rule("/blog", view_func=views.blog_page)
     app2.add_url_rule("/profile", view_func=views.profile_page, methods=["GET", "POST"])
     app2.add_url_rule("/addcreditcard", view_func=views.addcreditcard_page, methods=["GET", "POST"])
@@ -45,7 +47,6 @@ def create_app():
     app2.add_url_rule("/signin", view_func=views.signin, methods=["GET", "POST"])
     app2.add_url_rule("/signout", view_func=views.signout)
     app2.add_url_rule("/admin_panel", view_func=views.admin_panel, methods=["GET", "POST"])
-    app2.add_url_rule("/admin_update", view_func=views.admin_update, methods=["GET", "POST"])
     app2.add_url_rule("/newpost", view_func=views.newpost_page)
 
 

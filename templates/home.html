@@ -20,7 +20,7 @@
 						<button style="width:200px; height:60px;margin-right:10px" type="button" id="whoweareidsuper"
 								onclick="location.href='#whoweareid'"
 								class="btn btn-warning">
-							<p style="font-size:25px" class="font-weight-light">Who we are ?</p>
+							<p style="font-size:25px" class="font-weight-light">Who are we ?</p>
 
 						</button>
 						<br>
@@ -45,7 +45,7 @@
 					<img  style="width : 1480px; height: 595px;" src="{{ url_for('static', filename='images/slide32.jpg') }}" alt="Third Slide">
 					<div class="carousel-caption d-none d-md-block">
 						<button style="width:200px; height:60px;margin-right:10px" type="button"
-								onclick="location.href='#allbarbershopsid'"
+								onclick="location.href='#allBerbers'"
 								class="btn btn-warning">
 							<p style="font-size:25px" class="font-weight-light">All Berbershops</p>
 						</button>
@@ -69,7 +69,7 @@
 
 
 <div id="whoweareid" style="margin-top:50px">
-	<h1  align="center" style="padding-top:20px">Who WE are ? </h1>
+	<h1  align="center" style="padding-top:20px">Who are we ? </h1>
 </div>
 
 <div class="card-group"  style="margin-top:50px;margin-bottom:0px">
@@ -77,27 +77,27 @@
 	<div class="card" align="center" style="padding:10px">
 	<img src="{{ url_for('static', filename='images/a.png') }}" style="width:400px; height:300px" alt="Card Image Tab">
 	<div class="card-body">
-	  <h5 class="card-title">Card title</h5>
-	  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-	  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+	  <h5 class="card-title">Customer</h5>
+	  <p class="card-text">You can register to our system and begin to search for barbershops. Find the best one that does fit for you.</p>
+	  <p class="card-text"><small class="text-muted">Customer Opportunities</small></p>
 	</div>
 	</div>
 
 	<div class="card" align="center" style="padding:10px">
-	<img src="{{ url_for('static', filename='images/a.png') }}" style="width:400px; height:300px" alt="Card Image Tab">
+	<img src="{{ url_for('static', filename='images/bs1.jpg') }}" style="width:400px; height:300px" alt="Card Image Tab">
 	<div class="card-body">
-	  <h5 class="card-title">Card title</h5>
-	  <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-	  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+	  <h5 class="card-title">Barber</h5>
+	  <p class="card-text">Looking for job ? You can reach many barbershop through their contacts.</p>
+	  <p class="card-text"><small class="text-muted">Barber Opportunities </small></p>
 	</div>
 	</div>
 
 	<div class="card" align="center" style="padding:10px">
-		<img src="{{ url_for('static', filename='images/a.png') }}" style="width:400px; height:300px" alt="Card Image Tab">
+		<img src="{{ url_for('static', filename='images/bs2.jpg') }}" style="width:400px; height:300px" alt="Card Image Tab">
 		<div class="card-body">
-			<h5 class="card-title">Card title</h5>
-	  		<p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-	  		<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+			<h5 class="card-title">Barbershop</h5>
+	  		<p class="card-text">Configure your store with our sistem. Increase your network to make more profit</p>
+	  		<p class="card-text"><small class="text-muted">Barbershop Opportunities</small></p>
 		</div>
 	</div>
 
@@ -137,12 +137,12 @@
 						 				<img src="{{ url_for('static', filename='images/a.png') }}" alt="Second Slide">
 						 				<div class="card-body" style="height:200px">
 											<div class="contentofcart">
-												<h4 class="card-title">Last Added  Berbershops</h4>
-						 						<p class="card-text">Discover the last added berbers around your place</p>
+												<h4 class="card-title">Statistics</h4>
+						 						<p class="card-text">Discover the most of the system through statistics</p>
 												</br>
 											</div>
 
-						 					<button type="button" class="btn btn-warning">Read More</button>
+						 					<button onclick="window.location.href='/statistics'" class="btn btn-warning">Read More</button>
 
 						 				</div>
 
@@ -155,11 +155,11 @@
 						 				<img src="{{ url_for('static', filename='images/a.png') }}" alt="Second Slide">
 						 				<div class="card-body" style="height:200px">
 											<div class="contentofcart">
-						 						<h4 class="card-title">Best berbershop</h4>
-						 						<p class="card-text">Best berbershops which get highest point average from customers </p>
+						 						<h4 class="card-title">Blog</h4>
+						 						<p class="card-text">Read Post shared by shops and users. Share yours with community.</p>
 												</br>
 											</div>
-						 					<button type="button" class="btn btn-warning">Read More</button>
+						 					<button onclick="window.location.href='/blog'" class="btn btn-warning">Read More</button>
 
 						 				</div>
 

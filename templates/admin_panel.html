@@ -1,7 +1,8 @@
 {%extends "base.html"%}
 {%block title%} Admin Panel {%endblock%}
 {%block content%}
-<p> Hello {{name}} ! </p>
+<center><p> Hello Mr. Admin. You can delete and update any person (user, berber, owner) ! </p></center> <br> <br>
+
 <center><h3>People Table</h3></center>
 
 <form action="" method="post" name="signup_base_first" class="box">
@@ -59,11 +60,98 @@
           </td>
           <td>
             <label class="checkbox">
-              <button class="button is-primary modal-button" name="edit" value = "{{person.id}}" >Edit</button>
+              <button class="button is-link" name="edit" value = "{{person.id}}" >Edit</button>
             </label>
           </td>
         </tr>
         {% endfor %}
     </table>
 </form>
+
+<center><h3>Berber Table</h3></center>
+
+<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+
+        <tr>
+            <th>Id</th>
+            <th>People Id</th>
+            <th>Berber_shop_id</th>
+            <th>Gender_choice</th>
+            <th>Experience_year</th>
+            <th>Start_time</th>
+            <th>Finish_time</th>
+            <th>Rates</th>
+        </tr>
+       {% for berber in berbers %}
+        <tr>
+           <td>
+              {{ berber.id }}
+          </td>
+          <td>
+              {{ berber.people_id }}
+          </td>
+            <td>
+              {{ berber.berber_shop_id }}
+          </td>
+          <td>
+              {{ berber.gender_choice }}
+          </td>
+           <td>
+              {{ berber.experience_year }}
+          </td>
+          <td>
+              {{ berber.start_time }}
+          </td>
+           <td>
+              {{ berber.finish_time }}
+          </td>
+          <td>
+              {{ berber.rates }}
+          </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+<center><h3>Owner Table</h3></center>
+
+<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+
+        <tr>
+            <th>Id</th>
+            <th>People Id</th>
+            <th>Tc Number</th>
+            <th>Serial Number</th>
+            <th>Vol Number</th>
+            <th>Family Order No</th>
+            <th>Order No</th>
+        </tr>
+       {% for owner in owners %}
+        <tr>
+           <td>
+              {{ owner.id }}
+          </td>
+          <td>
+              {{ owner.people_id }}
+          </td>
+            <td>
+              {{ owner.tc_number }}
+          </td>
+          <td>
+              {{ owner.serial_number }}
+          </td>
+           <td>
+              {{ owner.vol_number }}
+          </td>
+          <td>
+              {{ owner.family_order_no }}
+          </td>
+           <td>
+              {{ owner.order_no }}
+          </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
 {%endblock%}

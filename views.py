@@ -483,23 +483,32 @@ def admin_panel():
             for i in peoples:
                 x = request.form["edit"].split("_")[0]
                 if int(x) == i.id:
+                    person = People()
+                    person.username = request.form["username"]
+                    person.name_surname = request.form["name_surname"]
+                    person.mail = request.form["mail"]
+                    person.password_hash = hasher.hash(request.form["password"])
+                    person.gender = request.form["gender"]
+                    person.age = request.form["age"]
+                    person.role = "user"
+                    person.id = i.id
                     if i.role == "user" or i.role == "admin":
-                        person = People()
-                        person.username = request.form["username"]
-                        person.name_surname = request.form["name_surname"]
-                        person.mail = request.form["mail"]
-                        person.password_hash = hasher.hash(request.form["password"])
-                        person.gender = request.form["gender"]
-                        person.age = request.form["age"]
-                        person.role = "user"
-                        person.id = i.id
-
                         print(people.update(person))
                     elif i.role == "berber":
-                        print("berber")
+                        print(people.update(person))
+                        berbers = Berbermodel()
+                        berber = Berber()
+                        berber.people_id = i.id
+                        berber.gender_choice = request.form["gender_choice"]
+                        berber.experience_year = request.form["experience"]
+                        berber.start_time = request.form["start_time"][:2]
+                        berber.finish_time = request.form["finish_time"][:2]
+                        print(berber.people_id, berber.people_id, berber.gender_choice)
+                        berbers = Berbermodel()
+                        berbers.update_berber(berber)
                     elif i.role == "owner":
+                        print(people.update(person))
                         print("owner")
-
         else:
             #print(request.form["edit"])
             #print(peoples[int(request.form["edit"])])

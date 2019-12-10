@@ -651,7 +651,6 @@ class Peoplemodel:
             return False
 
 
-
 class Berbermodel:
     def get_id(self, username):
         with dbapi2.connect(url) as connection:
@@ -673,6 +672,14 @@ class Berbermodel:
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("DELETE FROM Berber where people_id = %s", (id,))
+
+    def update_berber(self, berber):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute(
+                """UPDATE Berber SET gender_choice = %s, experience_year = %s, start_time = %s, finish_time = %s  where people_id = %s""",
+                (berber.gender_choice, berber.experience_year, berber.start_time, berber.finish_time, berber.people_id))
+        return True
 
     def getBerbersByBerbershop(self, berbershopid): #needed for berbershopview page for commenting.
         with dbapi2.connect(url) as connection:

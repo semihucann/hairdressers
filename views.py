@@ -501,6 +501,7 @@ def admin_panel():
                         print(people.update(person))
                     elif i.role == "berber":
                         print(people.update(person))
+                        #uyarı mesajı gönder
                         berbers = Berbermodel()
                         berber = Berber()
                         berber.people_id = i.id
@@ -508,12 +509,21 @@ def admin_panel():
                         berber.experience_year = request.form["experience"]
                         berber.start_time = request.form["start_time"][:2]
                         berber.finish_time = request.form["finish_time"][:2]
-                        print(berber.people_id, berber.people_id, berber.gender_choice)
                         berbers = Berbermodel()
                         berbers.update_berber(berber)
+                        # uyarı mesajı gönder
                     elif i.role == "owner":
                         print(people.update(person))
-                        print("owner")
+                        # uyarı mesajı gönder
+                        owner = Owner()
+                        owner.people_id = owners.get_id(person.username)[0]
+                        owner.tc_number = request.form["tc_number"]
+                        owner.serial_number = request.form["serial_number"]
+                        owner.vol_number = request.form["vol_number"]
+                        owner.family_order_no = request.form["family_order_no"]
+                        owner.order_no = request.form["order_no"]
+                        owners.update_owner(owner)
+
         else:
             #print(request.form["edit"])
             #print(peoples[int(request.form["edit"])])

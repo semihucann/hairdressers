@@ -48,6 +48,7 @@ def create_app():
     app2.add_url_rule("/signout", view_func=views.signout)
     app2.add_url_rule("/admin_panel", view_func=views.admin_panel, methods=["GET", "POST"])
     app2.add_url_rule("/newpost", view_func=views.newpost_page)
+    app2.add_url_rule("/add_barbershop", view_func=views.add_barbershop_page, methods=["GET", "POST"])
 
 
     lm.init_app(app2)

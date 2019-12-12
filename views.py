@@ -388,17 +388,31 @@ def signup_owner_page():
         if(people.control_exist(person)):
             return render_template("signup_owner.html", message="False")
         else:
-            people.save(person)
             owners = Ownermodel()
             owner = Owner()
-            owner.people_id = owners.get_id(person.username)[0]
             owner.tc_number = request.form["tc_number"]
             owner.serial_number = request.form["serial_number"]
             owner.vol_number = request.form["vol_number"]
             owner.family_order_no = request.form["family_order_no"]
             owner.order_no = request.form["order_no"]
-            owners.insert(owner)
-            return render_template("signup_owner.html", message="True")
+            if(owners.control_exist_tc(owner.tc_number)):
+                return render_template("signup_owner.html", message="The TC Number has been saved already ")
+            elif(len(owner.tc_number)!=11):
+                return render_template("signup_owner.html", message="TC Number Length must be 11 digits")
+            elif(len(owner.serial_number)!=3):
+                return render_template("signup_owner.html", message="Serial number must be 3 digits")
+            elif (len(owner.vol_number) != 3):
+                return render_template("signup_owner.html", message="Vol number must be 3 digits")
+            elif (len(owner.family_order_no) != 3):
+                return render_template("signup_owner.html", message="Family order number must be 3 digits")
+            elif (len(owner.order_no) != 3):
+                return render_template("signup_owner.html", message="Order number must be 3 digits")
+            else:
+                people.save(person)
+                owner.people_id = owners.get_id(person.username)[0]
+                owners.insert(owner)
+                #tc kimlik varlığını kontrolü
+                return render_template("signup_owner.html", message="True")
 
         return redirect(url_for("signup_owner_page"))
 

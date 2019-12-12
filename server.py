@@ -20,7 +20,6 @@ def load_user(user_id):
         return login_user
 
 
-
 def create_app():
     app2 = Flask(__name__)
     app2.config.from_object("settings")

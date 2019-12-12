@@ -5,9 +5,12 @@
         <h2 class="title" style="color: green;">Your registration is completed. </h2>
     {% elif message == "False" %}
         <h2 class="title" style="color: red;"> Mail or username is registered  !! </h2>
+    {% else %}
+        <h2 class="title" style="color: red;"> {{message}} </h2>
     {% endif %}
 {%endblock%}
 {%block question%}
+
     <div class="field">
             <label for="tc_number" class="label">TC Number</label>
             <div class="control">

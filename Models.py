@@ -763,6 +763,23 @@ class Ownermodel:
             return owner_list
 
 
+    def update_owner(self, owner):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute(
+                """UPDATE Owner SET tc_number = %s, serial_number = %s, vol_number = %s, family_order_no = %s, order_no = %s  where people_id = %s""",
+                (owner.tc_number, owner.serial_number, owner.vol_number, owner.family_order_no, owner.order_no, owner.people_id))
+        return True
+
+    def control_exist_tc(self, tc):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("SELECT * FROM Owner where tc_number = %s ", (tc, ))
+        row = cursor.fetchone()
+        if (row == None):
+            return False
+        return True
+
 ######################################################################################
 
 #FATIH'S MODELS

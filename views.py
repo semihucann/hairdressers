@@ -10,6 +10,7 @@ from flask_login import LoginManager, login_user, logout_user, current_user
 
 #Ertuğrul's Function
 
+cities = ["", "Adana", "Adıyaman", "Afyonkarahisar", "Ağrı", "Amasya", "Ankara", "Antalya", "Artvin", "Aydın", "Balıkesir", "Bilecik", "Bingöl", "Bitlis", "Bolu", "Burdur", "Bursa", "Çanakkale", "Çankırı", "Çorum", "Denizli", "Diyarbakır", "Edirne", "Elazığ", "Erzincan", "Erzurum", "Eskişehir", "Gaziantep", "Giresun", "Gümüşhane", "Hakkâri", "Hatay", "Isparta", "Mersin", "İstanbul", "İzmir", "Kars", "Kastamonu", "Kayseri", "Kırklareli", "Kırşehir", "Kocaeli", "Konya", "Kütahya", "Malatya", "Manisa", "Kahramanmaraş", "Mardin", "Muğla", "Muş", "Nevşehir", "Niğde", "Ordu", "Rize", "Sakarya", "Samsun", "Siirt", "Sinop", "Sivas", "Tekirdağ", "Tokat", "Trabzon", "Tunceli", "Şanlıurfa", "Uşak", "Van", "Yozgat", "Zonguldak", "Aksaray", "Bayburt", "Karaman", "Kırıkkale", "Batman", "Şırnak", "Bartın", "Ardahan", "Iğdır", "Yalova", "Karabük", "Kilis", "Osmaniye", "Düzce"]
 
 def home_page():
     berbershopModel = Berbershopmodel()
@@ -274,7 +275,17 @@ def newpost_page():
 
 def profile_page():
     if request.method == 'POST':
-        if "delete_card" in request.form:
+        if "barber_owner_id" in request.form:
+            shop = Berbershop()
+            shop.ownerpeople_id = request.form["barber_owner_id"]
+            shop.shopname = request.form["shop_name"]
+            shop.city = cities[int(request.form["city"])]
+            shop.location = request.form["location"]
+            shop.openingtime = request.form["open_time"]
+            shop.closingtime = request.form["close_time"]
+            shop.tradenumber = request.form["trade"]
+            Berbershopmodel().insert(shop)
+        elif "delete_card" in request.form:
             CreditcardModel().delete_credit_card(request.form["delete_card"])
         else:
             credit_card = CreditCard()
@@ -322,6 +333,10 @@ def updatecreditcard_page():
         credit_card.id = request.form["card_id"]
 
     return render_template("add_credit_card.html", title="Update Credit Card", credit_card=credit_card)
+
+
+def add_barbershop_page():
+    return render_template("add_barbershop.html", title="Create Barbershop")
 
 #Semih's Functions
 ##Notes:
@@ -388,17 +403,31 @@ def signup_owner_page():
         if(people.control_exist(person)):
             return render_template("signup_owner.html", message="False")
         else:
-            people.save(person)
             owners = Ownermodel()
             owner = Owner()
-            owner.people_id = owners.get_id(person.username)[0]
             owner.tc_number = request.form["tc_number"]
             owner.serial_number = request.form["serial_number"]
             owner.vol_number = request.form["vol_number"]
             owner.family_order_no = request.form["family_order_no"]
             owner.order_no = request.form["order_no"]
-            owners.insert(owner)
-            return render_template("signup_owner.html", message="True")
+            if(owners.control_exist_tc(owner.tc_number)):
+                return render_template("signup_owner.html", message="The TC Number has been saved already ")
+            elif(len(owner.tc_number)!=11):
+                return render_template("signup_owner.html", message="TC Number Length must be 11 digits")
+            elif(len(owner.serial_number)!=3):
+                return render_template("signup_owner.html", message="Serial number must be 3 digits")
+            elif (len(owner.vol_number) != 3):
+                return render_template("signup_owner.html", message="Vol number must be 3 digits")
+            elif (len(owner.family_order_no) != 3):
+                return render_template("signup_owner.html", message="Family order number must be 3 digits")
+            elif (len(owner.order_no) != 3):
+                return render_template("signup_owner.html", message="Order number must be 3 digits")
+            else:
+                people.save(person)
+                owner.people_id = owners.get_id(person.username)[0]
+                owners.insert(owner)
+                #tc kimlik varlığını kontrolü
+                return render_template("signup_owner.html", message="True")
 
         return redirect(url_for("signup_owner_page"))
 
@@ -501,6 +530,7 @@ def admin_panel():
                         print(people.update(person))
                     elif i.role == "berber":
                         print(people.update(person))
+                        #uyarı mesajı gönder
                         berbers = Berbermodel()
                         berber = Berber()
                         berber.people_id = i.id
@@ -508,12 +538,21 @@ def admin_panel():
                         berber.experience_year = request.form["experience"]
                         berber.start_time = request.form["start_time"][:2]
                         berber.finish_time = request.form["finish_time"][:2]
-                        print(berber.people_id, berber.people_id, berber.gender_choice)
                         berbers = Berbermodel()
                         berbers.update_berber(berber)
+                        # uyarı mesajı gönder
                     elif i.role == "owner":
                         print(people.update(person))
-                        print("owner")
+                        # uyarı mesajı gönder
+                        owner = Owner()
+                        owner.people_id = owners.get_id(person.username)[0]
+                        owner.tc_number = request.form["tc_number"]
+                        owner.serial_number = request.form["serial_number"]
+                        owner.vol_number = request.form["vol_number"]
+                        owner.family_order_no = request.form["family_order_no"]
+                        owner.order_no = request.form["order_no"]
+                        owners.update_owner(owner)
+
         else:
             #print(request.form["edit"])
             #print(peoples[int(request.form["edit"])])

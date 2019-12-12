@@ -5,7 +5,6 @@ import psycopg2 as dbapi2
 
 
 INIT_STATEMENTS = [
-    "DELETE FROM BERBER WHERE people_id='40'",
 
     #ERTUGRUL's tables
     """
@@ -43,7 +42,7 @@ INIT_STATEMENTS = [
        CREATE TABLE IF NOT EXISTS Rezervation(
            id SERIAL PRIMARY KEY,
            people_id integer NOT NULL REFERENCES People(id) ON DELETE CASCADE,
-           berbershop_id integer NOT NULL REFERENCES Berbershop(id),
+           berbershop_id integer NOT NULL REFERENCES Berbershop(id) ON DELETE CASCADE,
            datetime_registration TIMESTAMP,
            datetime_rezervation TIMESTAMP,
            status status,
@@ -81,7 +80,7 @@ INIT_STATEMENTS = [
     CREATE TABLE IF NOT EXISTS Berber(
         id SERIAL PRIMARY KEY,
         people_id INTEGER REFERENCES People(id) ON DELETE CASCADE,
-        berbershop_id INTEGER DEFAULT 0, 
+        berbershop_id INTEGER DEFAULT NULL REFERENCES Berbershop(id) ON DELETE SET NULL,
         gender_choice VARCHAR(10),
         experience_year INTEGER DEFAULT 0,
         start_time INTEGER,
@@ -108,19 +107,19 @@ INIT_STATEMENTS = [
     """
     CREATE TABLE IF NOT EXISTS Berbershop(
         id SERIAL PRIMARY KEY,
-        owner_people_id INTEGER REFERENCES People(id),
+        owner_people_id INTEGER REFERENCES People(id) ON DELETE CASCADE,
         shopname VARCHAR(50),
         location VARCHAR(300),
         city VARCHAR(50),
-        opening_time TIMESTAMP,
-        closing_time TIMESTAMP,
+        opening_time TIME,
+        closing_time TIME,
         trade_number NUMERIC(10) NOT NULL
     )   
     """,
     """
     CREATE TABLE IF NOT EXISTS Serviceprices(
         id SERIAL PRIMARY KEY,
-        shop_id INTEGER REFERENCES Berbershop(id),
+        shop_id INTEGER REFERENCES Berbershop(id) ON DELETE CASCADE,
         service_name VARCHAR(50),
         definition VARCHAR(300),
         gender VARCHAR(10),

@@ -7,7 +7,7 @@ Welcome to itucsdb33's documentation!
 
    * Ertuğrul Semiz
    * Ahmet Semih Uçan
-   * Fatih Mustafa Bucak
+   * Fatih Mustafa Buçak
    * Halis İbrahim Aydın
 
 **project description goes here (a few paragraphs)**

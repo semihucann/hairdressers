@@ -904,5 +904,36 @@ class Postsmodel :
                             VALUES(%s, %s, %s, %s, %s, %s, %s) """, (Posts.people_id, Posts.post_title, Posts.post_content,
                                                                      Posts.like, Posts.dislike, Posts.subject, Posts.date_time))
 
+    def getAll(self):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("SELECT * from Posts as c order by c.date_time desc")
+            rows = cursor.fetchall()
 
+        Posts = []
+        for row in rows:
+            Post = Post()
+            Post.id, Post.people_id, Post.post_title, Post.post_content, Post.date_time, Post.like, Post.dislike = row[0], row[1], row[2], row[3], row[4],row[5],row[6]
+            Posts.append(Post)
+        return Posts
+
+
+    def getById(self, id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                SELECT * from Posts as c where c.id = %s """, (id,))
+            row = cursor.fetchone()
+
+        # return one post object
+        Post = Post()
+        Post.id, Post.people_id, Post.post_title, Post.post_content, Post.date_time, Post.like, Post.dislike = row[0], row[1], row[2], row[3], row[4], row[5], row[6]
+        return Post
+
+    def deleteById(self, id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                DELETE from Posts where id = %s
+            """, (id,))
 

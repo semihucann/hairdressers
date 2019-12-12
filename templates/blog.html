@@ -8,133 +8,61 @@
 					<a class="button is-primary is-block is-alt is-large" href="{{ url_for('newpost_page') }}">New Post</a>
 
 				</div>
-				<div class="column is-9">
-					<div class="box content">
-						<article class="post">
-							<h4>Bulma: How do you center a button in a box?</h4>
-							<div class="comment-bottom-bar">
-								<div class="comment-reply pull-left">
-								</div>
-									<div class="comment-votes pull-right">
-										<div class="comment-weight-container ">
-											<span class="btn-comment-vote">
-											<span class="vote-up"><span class="up-votes-text">21</span> <i class="fa fa-thumbs-up"></i></span>
-											<span class="vote-down"><span class="down-votes-text">-1</span> <i class="fa fa-thumbs-down"></i></i></span>
-											</span>
-										</div>
-									</div>
-									<span class="clearfix"></span>
-							</div>
-						</article>
-						<article class="post">
-							<h4>How can I make a bulma button go full width?</h4>
-							<div class="media">
-								<div class="media-left">
-									<p class="image is-32x32">
-										<img src="http://bulma.io/images/placeholders/128x128.png">
-									</p>
-								</div>
-								<div class="media-content">
-									<div class="content">
-										<p>
-											<a href="#">@red</a> replied 40 minutes ago &nbsp;
-											<span class="tag">Question</span>
-										</p>
-									</div>
-								</div>
-								<div class="media-right">
-									<span class="has-text-grey-light"><i class="fa fa-comments"></i> 0</span>
-								</div>
-							</div>
-						</article>
-						<article class="post">
-							<h4>TypeError: Data must be a string or a buffer when trying touse vue-bulma-tabs</h4>
-							<div class="media">
-								<div class="media-left">
-									<p class="image is-32x32">
-										<img src="http://bulma.io/images/placeholders/128x128.png">
-									</p>
-								</div>
-								<div class="media-content">
-									<div class="content">
-										<p>
-											<a href="#">@jsmith</a> replied 53 minutes ago &nbsp;
-											<span class="tag">Question</span>
-										</p>
-									</div>
-								</div>
-								<div class="media-right">
-									<span class="has-text-grey-light"><i class="fa fa-comments"></i> 13</span>
-								</div>
-							</div>
-						</article>
-						<article class="post">
-							<h4>How to vertically center elements in Bulma?</h4>
-							<div class="media">
-								<div class="media-left">
-									<p class="image is-32x32">
-										<img src="http://bulma.io/images/placeholders/128x128.png">
-									</p>
-								</div>
-								<div class="media-content">
-									<div class="content">
-										<p>
-											<a href="#">@brown</a> replied 3 hours ago &nbsp;
-											<span class="tag">Question</span>
-										</p>
-									</div>
-								</div>
-								<div class="media-right">
-									<span class="has-text-grey-light"><i class="fa fa-comments"></i> 2</span>
-								</div>
-							</div>
-						</article>
-						<article class="post">
-							<h4>I'm trying to use hamburger menu on bulma css, but it doesn't work. What is wrong?</h4>
-							<div class="media">
-								<div class="media-left">
-									<p class="image is-32x32">
-										<img src="http://bulma.io/images/placeholders/128x128.png">
-									</p>
-								</div>
-								<div class="media-content">
-									<div class="content">
-										<p>
-											<a href="#">@hamburgler</a> replied 5 hours ago &nbsp;
-											<span class="tag">Question</span>
-										</p>
-									</div>
-								</div>
-								<div class="media-right">
-									<span class="has-text-grey-light"><i class="fa fa-comments"></i> 2</span>
-								</div>
-							</div>
-						</article>
-						<article class="post">
-							<h4>How to make tiles wrap with Bulma CSS?</h4>
-							<div class="media">
-								<div class="media-left">
-									<p class="image is-32x32">
-										<img src="http://bulma.io/images/placeholders/128x128.png">
-									</p>
-								</div>
-								<div class="media-content">
-									<div class="content">
-										<p>
-											<a href="#">@rapper</a> replied 3 hours ago &nbsp;
-											<span class="tag">Question</span>
-										</p>
-									</div>
-								</div>
-								<div class="media-right">
-									<span class="has-text-grey-light"><i class="fa fa-comments"></i> 2</span>
-								</div>
-							</div>
-						</article>
-					</div>
-				</div>
+				<div style="clear:both;">
+  <hr>
+  <h4>Comments</h4>
+  <br>
+  {% for Post in Posts %}
+    <div>
+      <div class="container" style="margin-top:20px;">
+        <div class="row">
+        <div class="col-sm-12">
+        <h5>
+          {% if comment.people.id == current_user.id  %}
+
+            <p style="margin-bottom : 5px;" class="commenttexttitle" id="commentedittitle" contenteditable="true">{{Post.title}}</p>
+
+
+          {% else %}
+			<p style="margin-top : 20px;">{{Post.title}}</p>
+          {% endif %}
+        </h5>
+        </div><!-- /col-sm-12 -->
+        </div><!-- /row -->
+        <div class="row">
+        <div class="col-sm-1">
+        <div class="thumbnail">
+        <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+        </div><!-- /thumbnail -->
+        </div><!-- /col-sm-1 -->
+
+        <div class="col-sm-5">
+        <div class="panel panel-default">
+        <div class="panel-heading">
+
+          {% if comment.people.id == current_user.id %}
+            <strong style="background-color : yellow;">{{Post.people.username}}</strong>
+          {% else %}
+             <strong>{{Post.people.username}}</strong>
+          {% endif %}
+
+
+          <span class="commentdatespan">commented on {{comment.dateTime}}</span>
+        </div>
+        <div class="panel-body">
+          {% if comment.people.id == current_user.id  %}
+            <p id="commentedittext" class="commenttextcontent" contenteditable="true">{{Post.content}}</p>
+          {% else %}
+            <p>{{Post.content}}</p>
+          {% endif %}
+
+        </div><!-- /panel-body -->
+        </div><!-- /panel panel-default -->
+        </div><!-- /col-sm-5 -->
+        </div>
+        </div>
+</div>
 </div>
 
-
-
+</div>
 {%endblock%}

@@ -1,6 +1,8 @@
 from datetime import datetime
 
 # Entity of Comment table in Database
+
+
 class Comment:
     def __init__(self):
         self.id = None
@@ -63,6 +65,7 @@ class People:
         self.role = None
         self.active = True
 
+
     def get_id(self):
         return self.username
 
@@ -80,7 +83,7 @@ class Berber:
         self.start_time = None
         self.finish_time = None
         self.rates = None
-
+        self.people = None #will be used for reaching berber's people attributes for berbershop_view page
 
 class Owner:
     def __init__(self):
@@ -132,4 +135,17 @@ class Berbershop:
         self.campaigns = None  # i need this for my page, you can ignore it for now
         self.contactInfo = None
 
+########################################################################
 
+# HALIS'S CLASSES
+
+class Post:
+    def __init__(self):
+        self.id = None
+        self.people_id = None
+        self.post_title = None
+        self.post_content = None
+        self.like = None
+        self.dislike = None
+        self.subject = None
+        self.date_time = None

@@ -6,6 +6,46 @@ import os
 
 url = os.getenv("DATABASE_URL")
 
+class StatisticsModel :
+    def mostPopularBerbershops(self):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                Select s.* from (SELECT  count(*) as c, Berbershop   from comments GROUP BY Berbershop ) as j join berbershop as s on j.berbershop = s.id 
+                ORDER BY j.c DESC LIMIT 3
+            """)
+            rows = cursor.fetchall()
+
+        berbershops = []
+        for row in rows:
+            berbershop = Berbershop()
+            berbershop.id, berbershop.ownerpeople_id, berbershop.shopname, berbershop.location, berbershop.city, \
+            berbershop.openingtime, berbershop.closingtime, berbershop.tradenumber = row[0], row[1], row[2], row[3], \
+                                                                                     row[4], \
+                                                                                     row[5], row[6], row[7]
+            berbershops.append(berbershop)
+        return berbershops
+
+    def lastAddedBarbershops(self):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+               SELECT * from berbershop ORDER BY Id DESC limit 3
+            """)
+            rows = cursor.fetchall()
+
+        berbershops = []
+        for row in rows:
+            berbershop = Berbershop()
+            berbershop.id, berbershop.ownerpeople_id, berbershop.shopname, berbershop.location, berbershop.city, \
+            berbershop.openingtime, berbershop.closingtime, berbershop.tradenumber = row[0], row[1], row[2], row[3], \
+                                                                                     row[4], \
+                                                                                     row[5], row[6], row[7]
+            berbershops.append(berbershop)
+        return berbershops
+
+
+
 
 class CommentModel:
 
@@ -111,7 +151,7 @@ class CommentModel:
             comments.append(comment)
         return comments
 
-    def commentCurrentUserRelationship(self,id,peopleid):
+    def commentCurrentUserRelationship(self, id, peopleid):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""
@@ -127,12 +167,12 @@ class CommentModel:
         row[1], row[2], row[3]
         return likedDisliked
 
-    def updateByIdTitleText(self, id, title, content, datetime):
+    def updateByIdTitleTextRate(self, id, title, content, datetime, rate):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""
-                       UPDATE Comments SET title = %s , content= %s, date_time = %s  where id = %s""",
-                           (title,content,datetime,id))
+                       UPDATE Comments SET title = %s , content= %s, date_time = %s, rate =%s  where id = %s""",
+                           (title,content,datetime,rate,id))
 
 
     def  increaseLikeNumber(self, commentid):
@@ -319,6 +359,7 @@ class ContactInfoModel:
                             contactInfo.telephoneNumber,
                             contactInfo.facebook, contactInfo.twitter, contactInfo.instagram, contactInfo.id))
 
+
     # get by id
     def getById(self, id):
         with dbapi2.connect(url) as connection:
@@ -332,6 +373,23 @@ class ContactInfoModel:
         contactInfo.id, contactInfo.berberShopId, contactInfo.type, contactInfo.telephoneNumber, \
         contactInfo.facebook, contactInfo.twitter, contactInfo.instagram = row[0], row[1], row[2], row[3], row[4], row[
             5], row[6]
+        return contactInfo
+
+    def getByBarbershopId(self,id):
+        row = None
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                SELECT * from Contact_info as c where c.berbershop_id  = %s """, (id,))
+            row = cursor.fetchone()
+        if row == None:
+            return None
+
+        # return one comment object
+        contactInfo = ContactInfo()
+        contactInfo.id, contactInfo.berberShopId, contactInfo.type, contactInfo.telephoneNumber, \
+        contactInfo.facebook, contactInfo.twitter, contactInfo.instagram = row[0], row[1], row[2], row[3], row[4], \
+                                                                           row[5], row[6]
         return contactInfo
 
     def deleteById(self, id):
@@ -410,17 +468,13 @@ class RezervationModel:
             return None
 
     # update method that will do update
-    def update(self, rezervation):
+    def updateByIdDate(self, id, daterez):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""
-                UPDATE Rezervation SET id = %s, people_id  = %s, berbershop_id = %s, datetime_registration = %s, datetime_rezervation = %s ,
-                status = %s , note = %s , price_type =%s where id = %s """,
+                UPDATE Rezervation SET datetime_rezervation = %s where id = %s """,
                            (
-                               rezervation.id, rezervation.peopleId, rezervation.berberId,
-                               rezervation.dateTimeRegistration,
-                               rezervation.dateTimeRezervation, rezervation.status, rezervation.note,
-                               rezervation.priceType, rezervation.id))
+                               daterez, id))
 
     # get by id
     def getById(self, id):
@@ -497,6 +551,18 @@ class Peoplemodel:
             return False
         return True
 
+    def control_exist_to_update(self, people):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("SELECT id FROM People where username = %s or mail = %s ", (people.username, people.mail))
+        row = cursor.fetchone()
+        if (row == None):
+            return False
+        elif (row[0]==people.id):
+            return False
+        return True
+
+
     def save(self, people):
         if (self.control_exist(people) == False):
             self.insert(people)
@@ -560,7 +626,6 @@ class Peoplemodel:
                 people_list.append(person)
             return people_list
 
-
     def delete_id(self, id):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
@@ -574,6 +639,16 @@ class Peoplemodel:
         if (row == None):
             return False
         return True
+
+    def update(self, people):
+        if self.control_exist_to_update(people) == False:
+            with dbapi2.connect(url) as connection:
+                cursor = connection.cursor()
+                cursor.execute("""UPDATE People SET username = %s, name_surname = %s, mail = %s, password_hash = %s, gender = %s, age = %s where id = %s""",
+                               (people.username, people.name_surname, people.mail, people.password_hash, people.gender, people.age, people.id))
+            return True
+        else:
+            return False
 
 
 class Berbermodel:
@@ -593,6 +668,58 @@ class Berbermodel:
                              VALUES (%s , %s , %s , %s , %s , %s )""", (berber.people_id, berber.gender_choice, berber.experience_year,
                                                                              berber.start_time, berber.finish_time, berber.rates))
 
+    def delete_with_people_id(self, id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("DELETE FROM Berber where people_id = %s", (id,))
+
+    def update_berber(self, berber):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute(
+                """UPDATE Berber SET gender_choice = %s, experience_year = %s, start_time = %s, finish_time = %s  where people_id = %s""",
+                (berber.gender_choice, berber.experience_year, berber.start_time, berber.finish_time, berber.people_id))
+        return True
+
+    def getBerbersByBerbershop(self, berbershopid): #needed for berbershopview page for commenting.
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("Select b.id, p.name_surname from berber as b join people as p  on b.People_id = p.id where berbershop_id = %s", (berbershopid,))
+            rows = cursor.fetchall()
+
+            if(rows == None):
+                return None
+            berbers = []
+            for row in rows:
+                berber = Berber()
+                people = People()
+                berber.id = row[0]
+                people.name_surname = row[1]
+                berber.people = people
+                berbers.append(berber)
+            if len(berbers) == 0:
+                 return None
+            return berbers
+
+    def get_all_list(self):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute(""" SELECT * from berber""")
+            berber_list = []
+            rows = cursor.fetchall()
+            for i in rows:
+                berber = Berber()
+                berber.id = i[0]
+                berber.people_id = i[1]
+                berber.berber_shop_id = i[2]
+                berber.gender_choice = i[3]
+                berber.experience_year = i[4]
+                berber.start_time = i[5]
+                berber.finish_time = i[6]
+                berber.rates = i[7]
+                berber_list.append(berber)
+            return berber_list
+
 
 class Ownermodel:
     def get_id(self, username):
@@ -610,6 +737,40 @@ class Ownermodel:
             cursor = connection.cursor()
             cursor.execute("""INSERT INTO Owner (people_id, tc_number, serial_number, vol_number, family_order_no, order_no)
                             VALUES (%s , %s , %s , %s , %s , %s )""", (owner.people_id, owner.tc_number, owner.serial_number, owner.vol_number, owner.family_order_no, owner.order_no))
+
+    def delete_with_people_id(self, id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("DELETE FROM Owner where people_id = %s", (id,))
+
+
+    def get_all_list(self):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute(""" SELECT * from owner""")
+            owner_list = []
+            rows = cursor.fetchall()
+            for i in rows:
+                owner = Owner()
+                owner.id = i[0]
+                owner.people_id = i[1]
+                owner.tc_number = i[2]
+                owner.serial_number = i[3]
+                owner.vol_number = i[4]
+                owner.family_order_no = i[5]
+                owner.order_no = i[6]
+                owner_list.append(owner)
+            return owner_list
+
+
+    def update_owner(self, owner):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute(
+                """UPDATE Owner SET tc_number = %s, serial_number = %s, vol_number = %s, family_order_no = %s, order_no = %s  where people_id = %s""",
+                (owner.tc_number, owner.serial_number, owner.vol_number, owner.family_order_no, owner.order_no, owner.people_id))
+        return True
+
 
 
 ######################################################################################
@@ -715,3 +876,26 @@ class ServicepriceModel:
                              VALUES (%s , %s , %s , %s , %s , %s)""", (serviceprice.shop_id, serviceprice.service_name,
                                                                         serviceprice.definition, serviceprice.gender,
                                                                         serviceprice.price, serviceprice.duration))
+
+
+######################################################################################
+
+#HALIS'S MODELS
+
+class Postsmodel :
+
+    def printposts(self):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("SELECT * from Posts")
+            data = cursor.fetchall()
+
+    def insert(self,Posts):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""INSERT INTO Posts (people_id, post_title, post_content, like, dislike, subject, date_time)
+             VALUES(%s, %s, %s, %s, %s, %s, %s) """, (Posts.people_id, Posts.post_title, Posts.post_content, Posts.like,
+                                                      Posts.dislike, Posts.subject, Posts.date_time))
+
+
+

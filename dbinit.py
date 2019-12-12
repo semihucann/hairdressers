@@ -5,7 +5,7 @@ import psycopg2 as dbapi2
 
 
 INIT_STATEMENTS = [
-    "CREATE TABLE IF NOT EXISTS DUMMY (NUM INTEGER)",
+    "DELETE FROM BERBER WHERE people_id='40'",
 
     #ERTUGRUL's tables
     """

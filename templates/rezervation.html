@@ -45,7 +45,25 @@
 
       <tr>
               <th scope="row">{{loop.index }}</th>
-              <td> <strong>{{rez.dateTimeRezervation}}</strong></td>
+               {% if rez.peopleId ==  current_user.id %}
+                    <td>
+                        <div  style="display : inline , width : 150px; max-width:200px; margin-bottom : 20px;" class="form-group">
+                        <select class="form-control" id="updatehour">
+                             <option value="{{rez.dateTimeRezervation}}" selected disabled hidden> Date at  {{rez.dateTimeRezervation}} </option>
+                              {% for o in options %}
+                                 {% if o > hour %}
+                                    <option value="{{o}}:00">{{o}}:00</option>
+                                    <option value="{{o}}:30">{{o}}:30</option>
+                                 {% endif %}
+                              {% endfor %}
+                          </select>
+                        </div>
+                    </td>
+
+                {% else %}
+                     <td> <strong>{{rez.dateTimeRezervation}}</strong></td>
+                 {% endif %}
+
               {% if rez.status == "okey" %}
                 <td>Confirmed</td>
               {% else %}
@@ -53,12 +71,21 @@
               {% endif %}
               <td>{{rez.note}}</td>
               <td>
-                   {% if rez.peopleId == 26 %}
+                   {% if rez.peopleId ==  current_user.id %}
 
-                        <form action="/rezervation/delete/{{id}}" method="post">
+                        <form style="display:inline;" action="/rezervation/edit/{{id}}" method="post" id="editrezervation">
                             <input type="hidden" name="rezid" value="{{rez.id}}">
-                            <button style="height : 40px;" type="submit" class="btn btn-danger">Delete</button>
+                            <input type="hidden" name="day" value="{{today}}">
+                            <input type="hidden" name="daterez" id="daterez" value="">
+                            <button onclick="hourCopied()" style="height : 40px; width:70px;" type="submit" class="btn btn-primary">Edit</button>
                         </form>
+
+                         <form action="/rezervation/delete/{{id}}" method="post">
+                            <input type="hidden" name="rezid" value="{{rez.id}}">
+                            <button style="height : 40px;width:70px;" type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+
+
                     {% else %}
                         no action
                     {% endif %}
@@ -102,8 +129,13 @@
     <label for="exampleFormControlTextarea1">Note</label>
     <textarea class="form-control" name="todaynote" id="exampleFormControlTextarea11" rows="3"></textarea>
   </div>
-    <button style="height:40px;" type="submit" class="btn btn-primary">Submit</button>
-</form>
+      {%if current_user.is_active  %}
+        <button style="height:40px;" type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      {% else %}
+        <a href="/signin" style="height:40px;" type="submit" class="btn btn-primary">Submit</a>
+      {% endif %}
+
 
 
 
@@ -115,8 +147,8 @@
 
 
 
-
 <div class="tomorrowrezervation" style="display:none;">
+<form>
 
     <h3>Tomorrow Rezervation </h3>
     <strong>{{tomorrow}}</strong>
@@ -136,7 +168,25 @@
 
         <tr>
                 <th scope="row">{{loop.index }}</th>
-                <td> <strong>{{rez.dateTimeRezervation}}</strong></td>
+                {% if rez.peopleId ==  current_user.id %}
+                    <td>
+                        <div  style="display : inline , width : 150px; max-width:200px; margin-bottom : 20px;" class="form-group">
+                        <select class="form-control" id="updatehourtmrw">
+                             <option value="{{rez.dateTimeRezervation}}" selected disabled hidden> Date at  {{rez.dateTimeRezervation}} </option>
+                              {% for o in options %}
+                                 {% if o > hour %}
+                                    <option value="{{o}}:00">{{o}}:00</option>
+                                    <option value="{{o}}:30">{{o}}:30</option>
+                                 {% endif %}
+                              {% endfor %}
+                          </select>
+                        </div>
+                    </td>
+
+                {% else %}
+                     <td> <strong>{{rez.dateTimeRezervation}}</strong></td>
+                 {% endif %}
+
                 {% if rez.status == "okey" %}
                   <td>Confirmed</td>
                 {% else %}
@@ -145,7 +195,15 @@
 
                 <td>{{rez.note}}</td>
                 <td>
-                    {% if rez.peopleId == 26 %}
+                    {% if rez.peopleId == current_user.id %}
+
+
+                        <form style="display:inline;" action="/rezervation/edit/{{id}}" method="post" id="editrezervationtmrw">
+                            <input type="hidden" name="rezid" value="{{rez.id}}">
+                            <input type="hidden" name="day" value="{{tomorrow}}">
+                            <input type="hidden" name="daterez" id="datereztmrw" value="">
+                            <button onclick="hourCopiedtmrw()" style="height : 40px; width:70px;" type="submit" class="btn btn-primary">Edit</button>
+                        </form>
 
                         <form action="/rezervation/delete/{{id}}" method="post">
                             <input type="hidden" name="rezid" value="{{rez.id}}">
@@ -196,9 +254,15 @@
     <label  for="exampleFormControlTextarea1">Note</label>
     <textarea name="tomorrownote" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
   </div>
-    <button style="height:40px;" type="submit" class="btn btn-primary">Submit</button>
-</form>
+      {%if current_user.is_active > 0  %}
+       <button style="height:40px;" type="submit" class="btn btn-primary">Submit</button>
+        </form>
+     {% else %}
+        <a href="/signin" style="height:40px;" type="submit" class="btn btn-primary">Submit</a>
+        </form>
+    {% endif %}
 
+</div>
 
 
 </div>

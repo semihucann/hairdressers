@@ -3,7 +3,7 @@
 {%block content%}
 
 
-
+<!-- Berbershop Info -->
 <div id="berbershopview_wrapper">
     <div id="berbershop_card"  align="left">
       <img src="{{ url_for('static', filename='images/barbershopcard.jpg') }}" style="height:80px;" alt="John" >
@@ -14,21 +14,25 @@
         {% if berbershop.contactInfo != None%}
       <p>Phone : {{berbershop.contactInfo.telephoneNumber }} </p>
 
-             {% if berbershop.contactInfo.instagram != None %}
+             {% if berbershop.contactInfo.instagram != None and berbershop.contactInfo.instagram != "" %}
             <a class="berbershop_taga" target="_blank" href="https://www.instagram.com/{{berbershop.contactInfo.instagram}}"><i class="fa fa-instagram fa-2x"></i></a>
             {% endif %}
 
-            {% if berbershop.contactInfo.twitter != None %}
+            {% if berbershop.contactInfo.twitter != None and berbershop.contactInfo.twitter != ""  %}
             <a class="berbershop_taga" target="_blank" href="https://www.twitter.com/{{berbershop.contactInfo.twitter}}"><i class="fa fa-twitter fa-2x"></i></a>
             {% endif %}
-            {% if berbershop.contactInfo.facebook != None %}
+            {% if berbershop.contactInfo.facebook != None and berbershop.contactInfo.facebook != "" %}
             <a class="berbershop_taga" target="_blank" href="https://www.facebook.com/{{berbershop.contactInfo.facebook}}"><i class="fa fa-facebook fa-2x"></i></a>
             {% endif %}
         {% endif %}
         <hr>
+        {% if current_user.id == berbershop.ownerpeople_id %}
+        <a href="/contact/{{berbershop.id}}">Contact Settings</a> <br>
+        {% endif %}
 
-        <a href="/rezervation/{{berbershop.id}}">Get Rezervation</a>
-      </div>
+         <a href="/rezervation/{{berbershop.id}}">Get Rezervation</a>
+
+       </div>
 
 
 
@@ -40,12 +44,14 @@
 
           <div class="form-group">
             <label for="exampleFormControlSelect1">Select Berber</label>
-            <select class="form-control" name="bcommentselector" id="exampleFormControlSelect1">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
+            <select class="form-control" name="berber" id="exampleFormControlSelect1">
+                    <option value="-1">BerberShop Itself</option>
+                 {% if berbers != None  %}
+                    {% for b in berbers %}
+                    <option value="{{b.id}}">{{b.people.name_surname}}</option>
+                    {% endfor %}
+                {% endif %}
+
             </select>
       </div>
 
@@ -71,10 +77,15 @@
         <textarea name="bcommenttext" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
       </div>
 
+
+        {% if current_user.is_active %}
         <button type="submit" class="btn btn-success">Submit</button>
 
-    </form>
-
+        </form>
+        {% else %}
+        <a href="/signin" style="height:40px;" type="submit" class="btn btn-primary">Submit</a>
+        </form>
+        {% endif %}
 
     </div>
 </div>
@@ -89,10 +100,28 @@
         <div class="row">
         <div class="col-sm-12">
         <h5>
-          {% if comment.peopleobj.id == 26 %}
-            <p  class="commenttexttitle" id="commentedittitle" contenteditable="true">{{comment.title}}</p>
+          {% if comment.peopleobj.id == current_user.id  %}
+             <div  style="display : inline , width : 150px; max-width:200px; margin-bottom : 20px;" class="form-group">
+
+                 <select class="form-control" name="bcommentrate" id="editrating">
+               <option value="{{comment.rate}}" selected disabled hidden>Rate : {{comment.rate}} /5</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            </div>
+            <p style="margin-bottom : 5px;" class="commenttexttitle" id="commentedittitle" contenteditable="true">{{comment.title}}</p>
+
+
           {% else %}
-            <p>{{comment.title}}</p>
+            {% for n in range (comment.rate) %}
+                <img src="{{ url_for('static', filename='images/star.png') }}">
+
+            {% endfor %}
+
+            <p style="margin-top : 20px;">{{comment.title}}</p>
           {% endif %}
         </h5>
         </div><!-- /col-sm-12 -->
@@ -108,7 +137,7 @@
         <div class="panel panel-default">
         <div class="panel-heading">
 
-          {% if comment.peopleobj.id == 26 %}
+          {% if comment.peopleobj.id == current_user.id %}
             <strong style="background-color : yellow;">{{comment.peopleobj.username}}</strong>
           {% else %}
              <strong>{{comment.peopleobj.username}}</strong>
@@ -118,7 +147,7 @@
           <span class="commentdatespan">commented on {{comment.dateTime}}</span>
         </div>
         <div class="panel-body">
-          {% if comment.peopleobj.id == 26 %}
+          {% if comment.peopleobj.id == current_user.id  %}
             <p id="commentedittext" class="commenttextcontent" contenteditable="true">{{comment.content}}</p>
           {% else %}
             <p>{{comment.content}}</p>
@@ -129,9 +158,11 @@
         </div><!-- /col-sm-5 -->
         </div>
         </div>
-        {% if comment.peopleobj.id == 26 %}
+        {% if comment.peopleobj.id == current_user.id  %}
          <form style="display:inline;margin-left : 180px;" action="/barbershopview/edit/{{berbershop.id}}" id="editcommentform" method="POST">
             <input  type="hidden" name="commentid" value="{{comment.id}}">
+             <input type="hidden" id="editrateresult" name="bcommentrate" value="">
+
             <input id="commenttitleinput" type="hidden" name="commenttitle" value="">
            <input  id="commenttextinput" type="hidden" name="commenttext" value="">
 
@@ -141,7 +172,7 @@
 
 
 
-        {% if comment.peopleobj.id == 26 %}
+        {% if comment.peopleobj.id == current_user.id  %}
         <form style="display : inline;margin-left : 20px;"  action="/barbershopview/delete/{{berbershop.id}}"  method="POST">
             <input type="hidden" name="commentid" value="{{comment.id}}">
             <button  type="submit"  class="btn btn-danger btn-sm">Delete</button>
@@ -157,7 +188,7 @@
           <form  class="likedislikeform" action="/barbershopview/likedislike/{{berbershop.id}}" method="post">
               <input type="hidden" name="likedislikeid" value="{{comment.likedDislikedobj.id}}">
             <input type="hidden" name="commentid" value="{{comment.id}}">
-              <input type="hidden" name="peopleid" value="26">
+              <input type="hidden" name="peopleid" value="{{current_user.id}}">
               <input type="hidden" name="bool" value="1">
               <button type="submit" class="notlikedbefore">
                 <img  src="{{ url_for('static', filename='images/iconfinder_thumbs-o-up_1608724.png')}}" />
@@ -168,7 +199,7 @@
           <form class="likedislikeform" action="/barbershopview/likedislike/{{berbershop.id}}" method="post">
                 <input type="hidden" name="likedislikeid" value="{{comment.likedDislikedobj.id}}">
               <input type="hidden" name="commentid" value="{{comment.id}}">
-              <input type="hidden" name="peopleid" value="26">
+              <input type="hidden" name="peopleid" value="{{current_user.id}}">
               <input type="hidden" name="bool" value="-1">
               <button class="notdislikedbefore">
                <img  src="{{ url_for('static', filename='images/dislike1.png')}}" />
@@ -181,7 +212,7 @@
           <form  class="likedislikeform" action="/barbershopview/likedislike/{{berbershop.id}}" method="post">
               <input type="hidden" name="likedislikeid" value="{{comment.likedDislikedobj.id}}">
             <input type="hidden" name="commentid" value="{{comment.id}}">
-              <input type="hidden" name="peopleid" value="26">
+              <input type="hidden" name="peopleid" value="{{current_user.id}}">
               <input type="hidden" name="bool" value="-1">
               <button class="likedbefore">
                 <img  src="{{ url_for('static', filename='images/iconfinder_thumbs-up_1608950.png')}}" />
@@ -192,7 +223,7 @@
           <form class="likedislikeform" action="/barbershopview/likedislike/{{berbershop.id}}" method="post">
               <input type="hidden" name="likedislikeid" value="{{comment.likedDislikedobj.id}}">
             <input type="hidden" name="commentid" value="{{comment.id}}">
-              <input type="hidden" name="peopleid" value="26">
+              <input type="hidden" name="peopleid" value="{{current_user.id}}">
               <input type="hidden" name="bool" value="-2">
               <button class="notdislikedbefore">
                 <img  src="{{ url_for('static', filename='images/dislike1.png')}}" />
@@ -207,11 +238,10 @@
           <form  class="likedislikeform" action="/barbershopview/likedislike/{{berbershop.id}}" method="post">
               <input type="hidden" name="likedislikeid" value="{{comment.likedDislikedobj.id}}">
             <input type="hidden" name="commentid" value="{{comment.id}}">
-              <input type="hidden" name="peopleid" value="26">
+              <input type="hidden" name="peopleid" value="{{current_user.id}}">
               <input type="hidden" name="bool" value="2">
                <button class="notlikedbefore">
                <img  src="{{ url_for('static', filename='images/iconfinder_thumbs-o-up_1608724.png')}}" />
-
                </button>
              {{comment.like}}
           </form>
@@ -219,7 +249,7 @@
           <form class="likedislikeform" action="/barbershopview/likedislike/{{berbershop.id}}" method="post">
               <input type="hidden" name="likedislikeid" value="{{comment.likedDislikedobj.id}}">
             <input type="hidden" name="commentid" value="{{comment.id}}">
-              <input type="hidden" name="peopleid" value="26">
+              <input type="hidden" name="peopleid" value="{{current_user.id}}">
               <input type="hidden" name="bool" value="1">
               <button class="dislikedbefore">
                 <img  src="{{ url_for('static', filename='images/dislike2.png')}}" />

@@ -10,6 +10,7 @@ from flask_login import LoginManager, login_user, logout_user, current_user
 
 #Ertuğrul's Function
 
+cities = ["", "Adana", "Adıyaman", "Afyonkarahisar", "Ağrı", "Amasya", "Ankara", "Antalya", "Artvin", "Aydın", "Balıkesir", "Bilecik", "Bingöl", "Bitlis", "Bolu", "Burdur", "Bursa", "Çanakkale", "Çankırı", "Çorum", "Denizli", "Diyarbakır", "Edirne", "Elazığ", "Erzincan", "Erzurum", "Eskişehir", "Gaziantep", "Giresun", "Gümüşhane", "Hakkâri", "Hatay", "Isparta", "Mersin", "İstanbul", "İzmir", "Kars", "Kastamonu", "Kayseri", "Kırklareli", "Kırşehir", "Kocaeli", "Konya", "Kütahya", "Malatya", "Manisa", "Kahramanmaraş", "Mardin", "Muğla", "Muş", "Nevşehir", "Niğde", "Ordu", "Rize", "Sakarya", "Samsun", "Siirt", "Sinop", "Sivas", "Tekirdağ", "Tokat", "Trabzon", "Tunceli", "Şanlıurfa", "Uşak", "Van", "Yozgat", "Zonguldak", "Aksaray", "Bayburt", "Karaman", "Kırıkkale", "Batman", "Şırnak", "Bartın", "Ardahan", "Iğdır", "Yalova", "Karabük", "Kilis", "Osmaniye", "Düzce"]
 
 def home_page():
     berbershopModel = Berbershopmodel()
@@ -274,7 +275,17 @@ def newpost_page():
 
 def profile_page():
     if request.method == 'POST':
-        if "delete_card" in request.form:
+        if "barber_owner_id" in request.form:
+            shop = Berbershop()
+            shop.ownerpeople_id = request.form["barber_owner_id"]
+            shop.shopname = request.form["shop_name"]
+            shop.city = cities[int(request.form["city"])]
+            shop.location = request.form["location"]
+            shop.openingtime = request.form["open_time"]
+            shop.closingtime = request.form["close_time"]
+            shop.tradenumber = request.form["trade"]
+            Berbershopmodel().insert(shop)
+        elif "delete_card" in request.form:
             CreditcardModel().delete_credit_card(request.form["delete_card"])
         else:
             credit_card = CreditCard()
@@ -322,6 +333,10 @@ def updatecreditcard_page():
         credit_card.id = request.form["card_id"]
 
     return render_template("add_credit_card.html", title="Update Credit Card", credit_card=credit_card)
+
+
+def add_barbershop_page():
+    return render_template("add_barbershop.html", title="Create Barbershop")
 
 #Semih's Functions
 ##Notes:

@@ -2,9 +2,40 @@
 {%block title%}{{title}}{%endblock%}
 {%block content%}
 
-<h1 class="title">{{title}}</h1>
+<div id="shop_main_div" style="text-align: center; margin-bottom: 1rem;">
+    <img style="width : 20%;" src="{{ url_for('static', filename='images/shopicon.jpg') }}" alt="Barbershop">
+    <h1>{{shop.shopname}}</h1>
+    <div class="columns">
+        <div class="column">
+            <img src="{{ url_for('static', filename='images/loclogo.png') }}" alt="Location">
+            <p>{{shop.location}} <br> <span style="font-weight:bold">{{shop.city}}</span></p>
+        </div>
+        <div class="column">
+            <img src="{{ url_for('static', filename='images/timelogo.png') }}" alt="Location">
+            <p>{{shop.openingtime}} - {{shop.closingtime}} </p>
+        </div>
+        <div class="column">
+            <img src="{{ url_for('static', filename='images/employee.png') }}" alt="Location">
+            <p>Number of employees: {{shop.numberofemployee}} </p>
+        </div>
+    </div>
 
-<h3>{{shop.shopname}}</h3>
+    {%if shop.ownerpeople_id == current_user.id%}
+    <div class="columns">
+        <div class="column is-10">
+            <a href="{{ url_for('add_barbershop_page', id=shop.id) }}" class="button is-primary is-block is-alt is-large">Edit Barbershop</a>
+        </div>
+        <div class="column is-2">
+            <a href="{{ url_for('barbershop_delete', id=shop.id) }}" class="button is-danger is-block is-alt is-large">Delete</a>
+        </div>
+    </div>
+    {%endif%}
+
+
+
+</div>
+
+
 
 
 

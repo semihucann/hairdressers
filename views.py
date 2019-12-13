@@ -2,8 +2,8 @@ from flask import render_template, Flask, request, redirect, url_for, current_ap
 import datetime
 
 from Models import CommentModel, ContactInfoModel, StatisticsModel
-from Models import Peoplemodel, Berbermodel, Ownermodel, CreditcardModel, Berbershopmodel, RezervationModel
-from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, CreditCard, Berbershop
+from Models import Peoplemodel, Berbermodel, Ownermodel, CreditcardModel, Berbershopmodel, RezervationModel, ServicepriceModel
+from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, CreditCard, Berbershop, ServicePrice
 from passlib.hash import pbkdf2_sha256 as hasher
 from flask_login import LoginManager, login_user, logout_user, current_user
 
@@ -37,6 +37,7 @@ def statistics():
     return render_template('statistics.html',mostPopularBerbers = mostPopularBerbers, lastAddedBarbershops = lastAddedBarbershops)
 
 def rezervation(id):
+    idint = int(id)
     if request.method == 'GET':
         options = [9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
 
@@ -51,6 +52,7 @@ def rezervation(id):
         tomorrowafter = today + datetime.timedelta(days=2)
         tmrwafter = str(tomorrowafter)+ " 00:00"
 
+        #Get Rezervations
         todayrezervations = rezervationModel.getAllByBarberShop(int(id),now,tmrw)
         tomorrowrezervations = rezervationModel.getAllByBarberShop(int(id),tmrw,tmrwafter)
         for t in tomorrowrezervations:
@@ -70,27 +72,34 @@ def rezervation(id):
                 minutestr = str(minute)
             j.dateTimeRezervation = str(j.dateTimeRezervation.hour) + ":" + minutestr
 
-
+        #Get serviceprices
+        svmodel = ServicepriceModel()
+        prices = svmodel.listByBerberShop(idint)
         return render_template('rezervation.html', today = today,tomorrow = tomorrow,
                                id=id,todayrezervations=todayrezervations, tomorrowrezervations = tomorrowrezervations,
-                               hour = now.hour, options = options, berbershop = berbershop)
+                               hour = now.hour, options = options, berbershop = berbershop, prices = prices)
 
-    else:
+    else: #post method rezervation is being added
         formvalue = request.form["formvalue"]
+        pricetype = request.form["pricetype"]
         today = datetime.date.today()
         tomorrow = today + datetime.timedelta(days=1)
         hourint = 0
-        note =""
-
-        if(int(formvalue) == 1):
+        note = ""
+        tdy= ""
+        if(int(formvalue) == 1): #today
             hour = request.form["todayhour"]
             tdy = str(today) + " " + str(hour)
             note = request.form["todaynote"]
-        else:
+        else: #for tomorrow
             hour = request.form["tomorrowhour"]
             tdy = str(tomorrow) + " " + str(hour)
             note = request.form["tomorrownote"]
 
+        if pricetype == "-1": # null pricetype
+            pricetype = None
+        else:
+            pricetype = int(pricetype)
 
         rm = RezervationModel()
         rezervation = Rezervation()
@@ -99,6 +108,7 @@ def rezervation(id):
         rezervation.note = note
         rezervation.status = "notokey"
         rezervation.berberShopId = int(id)
+        rezervation.priceType = pricetype
         rm.insert(rezervation)
         return redirect(url_for("rezervation", id=id))
 
@@ -339,13 +349,34 @@ def updatecreditcard_page():
 
 
 def add_barbershop_page():
-    return render_template("add_barbershop.html", title="Create Barbershop")
+    edited_shop = None
+    if "id" in request.args:
+        edited_shop = Berbershopmodel().getById(request.args.get("id"))
+        return render_template("add_barbershop.html", title="Update Barbershop", shop=edited_shop, index=cities.index(edited_shop.city))
+    return render_template("add_barbershop.html", title="Create Barbershop", shop=edited_shop)
 
 
 def barbershop_details_page(id):
-    shop = Berbershopmodel().getById(id)
-    print(shop.shopname)
+    if request.method == 'POST':
+        shop = Berbershop()
+        shop.id = id
+        shop.ownerpeople_id = request.form["barber_owner_id"]
+        shop.shopname = request.form["shop_name"]
+        shop.city = cities[int(request.form["city"])]
+        shop.location = request.form["location"]
+        shop.openingtime = request.form["open_time"]
+        shop.closingtime = request.form["close_time"]
+        shop.tradenumber = request.form["trade"]
+
+        Berbershopmodel().update(shop)
+
+    shop = Berbershopmodel().get_berbershop_with_number_of_employee_by_id(id)
     return render_template("barbershop_details.html", title="Barbershop", shop=shop)
+
+
+def barbershop_delete(id):
+    Berbershopmodel().delete_barbershop(id)
+    return redirect(url_for('profile_page'))
 
 #Semih's Functions
 ##Notes:

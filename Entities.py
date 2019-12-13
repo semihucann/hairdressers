@@ -134,6 +134,7 @@ class Berbershop:
         self.tradenumber = None
         self.campaigns = None  # i need this for my page, you can ignore it for now
         self.contactInfo = None
+        self.numberofemployee = None
 
 ########################################################################
 

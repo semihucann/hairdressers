@@ -21,11 +21,11 @@ id   people_id  bshop_id   g_choice   exp_year     s_time  f_time     rates
 
 Owner Table
 
-=====  =========    =========   =============   ==========  ===============
-id     people_id    tc_number   serial_number   vol_number  family_order_no
-=====  =========    =========   =============   ==========  ===============
-4       #5          123134433   123             234         435
-=====  =========    =========   =============   ==========  ===============
+=====  =========    =========   =============   ==========  =============== ========
+id     people_id    tc_number   serial_number   vol_number  family_order_no order_no
+=====  =========    =========   =============   ==========  =============== ========
+4       #5          123134433   123             234         435             345
+=====  =========    =========   =============   ==========  =============== ========
 
 
 
@@ -47,29 +47,32 @@ Signup Flow
 Signin Flow
 -----------
 .. figure:: pictures/signin.jpg
-   :scale: 50 %
+   :scale: 90 %
    :alt: map to buried treasure
 
    Signin Page
 
 .. figure:: pictures/signin2.jpg
-   :scale: 50 %
+   :scale: 90 %
    :alt: map to buried treasure
 
    Signin Page Respond
+
+- If written username and password is correct, "You have successfully logged in <TYPE>" message is shown.
+- If written username and password is wrong, error message is shown.
 
 
 Admin Panel
 -----------
 .. figure:: pictures/admin_panel1.jpg
-   :scale: 50 %
+   :scale: 80 %
    :alt: map to buried treasure
 
    Admin Panel
 
 
 .. figure:: pictures/admin_panel2.jpg
-   :scale: 50 %
+   :scale: 80 %
    :alt: map to buried treasure
 
    Admin Panel 2
@@ -77,14 +80,14 @@ Admin Panel
 Admin Panel Operations
 ----------------------
 .. figure:: pictures/update.jpg
-   :scale: 50 %
+   :scale: 70 %
    :alt: map to buried treasure
 
     3 different update operation by person type for tables(people, berber, owner)
 
 
 .. figure:: pictures/delete.jpg
-   :scale: 50 %
+   :scale: 70 %
    :alt: map to buried treasure
 
     3 different delete operation by person type for tables(people, berber, owner)
@@ -96,3 +99,8 @@ Navbar Edition
    :alt: map to buried treasure
 
     Navbar links changing according to the type of person logging in
+
+
+- If person doesn't login, navbar is shown like that first part of picture.
+- If person login and person isn't admin, navbar is shown like that second part of picture.
+- If person login and person is admin, Admin Panel url will be added to navbar and navbar is shown like that third part of picture.

@@ -363,6 +363,11 @@ def barbershop_details_page(id):
     shop = Berbershopmodel().get_berbershop_with_number_of_employee_by_id(id)
     return render_template("barbershop_details.html", title="Barbershop", shop=shop)
 
+
+def barbershop_delete(id):
+    Berbershopmodel().delete_barbershop(id)
+    return redirect(url_for('profile_page'))
+
 #Semih's Functions
 ##Notes:
 # Berber signup kısmında start  and finish time sadece saat cinsinden alındı (08:30 yerine 08)

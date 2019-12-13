@@ -308,7 +308,10 @@ def profile_page():
 
     if current_user.is_active:
         list_of_cards = CreditcardModel().get_all_credit_cards_of_a_person(current_user.id)
-        return render_template("profile.html", cards=list_of_cards)
+        list_of_shops = []
+        if current_user.role == "owner":
+            list_of_shops = Berbershopmodel().get_berbershops_with_number_of_employee_by_people_owner_id(current_user.id)
+        return render_template("profile.html", cards=list_of_cards, shops=list_of_shops)
 
     return render_template("profile.html", cards=[])
 
@@ -337,6 +340,12 @@ def updatecreditcard_page():
 
 def add_barbershop_page():
     return render_template("add_barbershop.html", title="Create Barbershop")
+
+
+def barbershop_details_page(id):
+    shop = Berbershopmodel().getById(id)
+    print(shop.shopname)
+    return render_template("barbershop_details.html", title="Barbershop", shop=shop)
 
 #Semih's Functions
 ##Notes:
@@ -462,7 +471,7 @@ def signin():
         password = request.form["password"]
         people = Peoplemodel()
 
-        #Eğer kullanıcı databasede ekli değilse patlar
+        #Eğer kullanıcı databasede ekli değilse patlar //Düzeltildi
         if(people.control_exist_username(username)):
             person = People()
             person = people.get_all(username)
@@ -494,7 +503,6 @@ def admin_panel():
 
     if request.method == 'GET':
         if (current_user.role == "admin"):
-            # Düzeltttt user yerine admin yazılacak !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             return render_template("admin_panel.html", people=peoples, berbers=berber_list, owners=owner_list)
         else:
             return render_template("signin.html", message="admin_error")
@@ -513,7 +521,6 @@ def admin_panel():
                         people.delete_id(j.id)
 
         elif "update" in request.form["edit"]:
-            print("update")
             for i in peoples:
                 x = request.form["edit"].split("_")[0]
                 if int(x) == i.id:
@@ -527,7 +534,7 @@ def admin_panel():
                     person.role = "user"
                     person.id = i.id
                     if i.role == "user" or i.role == "admin":
-                        print(people.update(person))
+                        people.update(person)
                     elif i.role == "berber":
                         print(people.update(person))
                         #uyarı mesajı gönder
@@ -566,8 +573,6 @@ def admin_panel():
             return render_template("admin_panel.html", people=peoples, berbers=berber_list, owners=owner_list)
 
         else:
-            #print(request.form["edit"])
-            #print(peoples[int(request.form["edit"])])
             for i in peoples:
                 if int(request.form["edit"]) == i.id:
                     return render_template("update.html", person=i)

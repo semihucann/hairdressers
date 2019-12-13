@@ -838,6 +838,37 @@ class Berbershopmodel:
                                                                         berbershop.tradenumber))
 
 
+    def get_berbershops_by_people_owner_id(self, people_owner_id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("SELECT * from Berbershop where owner_people_id = %s", (people_owner_id,))
+            rows = cursor.fetchall()
+
+        berbershops = []
+        for row in rows:
+            berbershop = Berbershop()
+            berbershop.id, berbershop.ownerpeople_id, berbershop.shopname, berbershop.location, berbershop.city, \
+            berbershop.openingtime, berbershop.closingtime, berbershop.tradenumber = row[0], row[1], row[2], row[3], row[4], \
+                                                                               row[5], row[6], row[7]
+            berbershops.append(berbershop)
+        return berbershops
+
+    def get_berbershops_with_number_of_employee_by_people_owner_id(self, people_owner_id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("SELECT s.id, s.owner_people_id, s.shopname, s.location, s.city, s.opening_time, s.closing_time, s.trade_number, count(b.id) from Berbershop s left join Berber b on s.id = b.berbershop_id where s.owner_people_id = %s group by s.id", (people_owner_id,))
+            rows = cursor.fetchall()
+
+        berbershops = []
+        for row in rows:
+            berbershop = Berbershop()
+            berbershop.id, berbershop.ownerpeople_id, berbershop.shopname, berbershop.location, berbershop.city, \
+            berbershop.openingtime, berbershop.closingtime, berbershop.tradenumber, berbershop.numberofemployee = \
+            row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8]
+
+            berbershops.append(berbershop)
+        return berbershops
+
     #get All
     def getAll(self):
         with dbapi2.connect(url) as connection:

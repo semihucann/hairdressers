@@ -21,7 +21,14 @@
     </div>
 
     {%if shop.ownerpeople_id == current_user.id%}
-    <a href="{{ url_for('add_barbershop_page', id=shop.id) }}" class="button is-primary is-block is-alt is-large">Edit Barbershop</a>
+    <div class="columns">
+        <div class="column is-10">
+            <a href="{{ url_for('add_barbershop_page', id=shop.id) }}" class="button is-primary is-block is-alt is-large">Edit Barbershop</a>
+        </div>
+        <div class="column is-2">
+            <a href="{{ url_for('barbershop_delete', id=shop.id) }}" class="button is-danger is-block is-alt is-large">Delete</a>
+        </div>
+    </div>
     {%endif%}
 
 

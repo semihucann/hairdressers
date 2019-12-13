@@ -562,6 +562,18 @@ def admin_panel():
                         owner.order_no = request.form["order_no"]
                         owners.update_owner(owner)
 
+        elif "order_id" in request.form["edit"]:
+            peoples = sorted(peoples, key=lambda people: people.id)   # sort by age
+            return render_template("admin_panel.html", people=peoples, berbers=berber_list, owners=owner_list)
+
+        elif "order_username" in request.form["edit"]:
+            peoples = sorted(peoples, key=lambda people: people.username)  # sort by age
+            return render_template("admin_panel.html", people=peoples, berbers=berber_list, owners=owner_list)
+
+        elif "order_role" in request.form["edit"]:
+            peoples = sorted(peoples, key=lambda people: people.role)  # sort by age
+            return render_template("admin_panel.html", people=peoples, berbers=berber_list, owners=owner_list)
+
         else:
             #print(request.form["edit"])
             #print(peoples[int(request.form["edit"])])

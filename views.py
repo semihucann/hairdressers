@@ -308,7 +308,10 @@ def profile_page():
 
     if current_user.is_active:
         list_of_cards = CreditcardModel().get_all_credit_cards_of_a_person(current_user.id)
-        return render_template("profile.html", cards=list_of_cards)
+        list_of_shops = []
+        if current_user.role == "owner":
+            list_of_shops = Berbershopmodel().get_berbershops_with_number_of_employee_by_people_owner_id(current_user.id)
+        return render_template("profile.html", cards=list_of_cards, shops=list_of_shops)
 
     return render_template("profile.html", cards=[])
 
@@ -337,6 +340,12 @@ def updatecreditcard_page():
 
 def add_barbershop_page():
     return render_template("add_barbershop.html", title="Create Barbershop")
+
+
+def barbershop_details_page(id):
+    shop = Berbershopmodel().getById(id)
+    print(shop.shopname)
+    return render_template("barbershop_details.html", title="Barbershop", shop=shop)
 
 #Semih's Functions
 ##Notes:

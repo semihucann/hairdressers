@@ -686,6 +686,64 @@ class Berbermodel:
                 (berber.gender_choice, berber.experience_year, berber.start_time, berber.finish_time, berber.people_id))
         return True
 
+
+    def update_berber_employment(self, id, shop_id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute(
+                """UPDATE Berber SET berbershop_id = %s where id = %s""",
+                (shop_id, id))
+
+    def get_unemployed_barbers(self): #needed for barbershop details page
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("Select p.id, p.name_surname, p.age, b.id, b.experience_year from berber as b join people as p  on b.People_id = p.id where b.berbershop_id = null")
+            rows = cursor.fetchall()
+
+            berbers = []
+            if rows is None:
+                return berbers
+
+            for row in rows:
+                berber = Berber()
+                people = People()
+
+                people.id = row[0]
+                people.name_surname = row[1]
+                people.age = row[2]
+                berber.id = row[3]
+                berber.experience_year = row[4]
+
+                berber.people = people
+                berbers.append(berber)
+            return berbers
+
+
+    def get_barbers_for_details_page_by_shop_id(self, shop_id): #needed for barbershop details page
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("Select p.id, p.name_surname, p.age, b.id, b.experience_year, b.berbershop_id from berber as b join people as p  on b.People_id = p.id where b.berbershop_id is NULL or b.berbershop_id = %s order by b.berbershop_id", (shop_id,))
+            rows = cursor.fetchall()
+
+            berbers = []
+            if rows is None:
+                return berbers
+
+            for row in rows:
+                berber = Berber()
+                people = People()
+
+                people.id = row[0]
+                people.name_surname = row[1]
+                people.age = row[2]
+                berber.id = row[3]
+                berber.experience_year = row[4]
+                berber.berber_shop_id = row[5]
+
+                berber.people = people
+                berbers.append(berber)
+            return berbers
+
     def getBerbersByBerbershop(self, berbershopid): #needed for berbershopview page for commenting.
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()

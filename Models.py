@@ -847,6 +847,13 @@ class Berbershopmodel:
                            (barbershop.shopname, barbershop.location, barbershop.city, barbershop.openingtime, barbershop.closingtime, barbershop.tradenumber, barbershop.id))
 
 
+    def delete_barbershop(self, id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                DELETE from Berbershop where id = %s
+            """, (id,))
+
     def get_berbershops_by_people_owner_id(self, people_owner_id):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()

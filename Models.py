@@ -595,6 +595,8 @@ class Peoplemodel:
                                    """, (username,))
             person = People()
             rows = cursor.fetchall()
+            if len(rows) == 0:
+                return person
             person.id = rows[0][0]
             person.username = rows[0][1]
             person.name_surname = rows[0][2]

@@ -339,12 +339,28 @@ def updatecreditcard_page():
 
 
 def add_barbershop_page():
-    return render_template("add_barbershop.html", title="Create Barbershop")
+    edited_shop = None
+    if "id" in request.args:
+        edited_shop = Berbershopmodel().getById(request.args.get("id"))
+        return render_template("add_barbershop.html", title="Update Barbershop", shop=edited_shop, index=cities.index(edited_shop.city))
+    return render_template("add_barbershop.html", title="Create Barbershop", shop=edited_shop)
 
 
 def barbershop_details_page(id):
-    shop = Berbershopmodel().getById(id)
-    print(shop.shopname)
+    if request.method == 'POST':
+        shop = Berbershop()
+        shop.id = id
+        shop.ownerpeople_id = request.form["barber_owner_id"]
+        shop.shopname = request.form["shop_name"]
+        shop.city = cities[int(request.form["city"])]
+        shop.location = request.form["location"]
+        shop.openingtime = request.form["open_time"]
+        shop.closingtime = request.form["close_time"]
+        shop.tradenumber = request.form["trade"]
+
+        Berbershopmodel().update(shop)
+
+    shop = Berbershopmodel().get_berbershop_with_number_of_employee_by_id(id)
     return render_template("barbershop_details.html", title="Barbershop", shop=shop)
 
 #Semih's Functions

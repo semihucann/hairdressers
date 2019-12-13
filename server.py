@@ -49,6 +49,7 @@ def create_app():
     app2.add_url_rule("/newpost", view_func=views.newpost_page)
     app2.add_url_rule("/add_barbershop", view_func=views.add_barbershop_page, methods=["GET", "POST"])
     app2.add_url_rule("/barbershop_details/<id>", view_func=views.barbershop_details_page, methods=["GET", "POST"])
+    app2.add_url_rule("/barbershop_delete/<id>", view_func=views.barbershop_delete, methods=["GET", "POST"])
 
 
     lm.init_app(app2)

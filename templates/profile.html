@@ -6,11 +6,10 @@
 
     function updateCreditCard (owner_name, card_number, last_date, cvv, card_id) {
         var myForm, nameInput, newInput2;
-        // Start by creating a <form>
+
         myForm = document.createElement('form');
         myForm.action = '{{ url_for('updatecreditcard_page') }}';
         myForm.method = 'post';
-        // Next create the <input>s in the form and give them names and values
 
         nameInput = document.createElement('input');
         nameInput.type = 'hidden';
@@ -42,11 +41,9 @@
         idInput.value = card_id;
         myForm.appendChild(idInput);
 
-        // ...and it to the DOM...
         document.getElementById('profile_main_div').appendChild(myForm);
-        // ...and submit it
         myForm.submit();
-}
+    }
 
 </script>
 
@@ -87,7 +84,42 @@
     {% endif %}
 
     {% if current_user.role == "owner" %}
-        <h1>Hi owner, <a href="{{ url_for('add_barbershop_page') }}">create</a> your barbershop!</h1>
+    <h1>Hi owner, you can <a href="{{ url_for('add_barbershop_page') }}">create</a> your barbershops!</h1>
+
+    {% if shops | length != 0 %}
+    <h1>Barbershops table</h1>
+
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+        <thead>
+        <tr>
+            <th>Shop Name</th>
+            <th>City</th>
+            <th>Opening Time</th>
+            <th>Closing Time</th>
+            <th>Number of Employees</th>
+            <th>Details</th>
+        </tr>
+        </thead>
+        <tbody>
+    {% for shop in shops %}
+
+    <tr>
+        <th>{{shop.shopname}}</th>
+        <td>{{shop.city}}</td>
+        <td>{{shop.openingtime}}</td>
+        <td>{{shop.closingtime}}</td>
+        <td>{{shop.numberofemployee}}</td>
+        <td>
+                <a href="{{ url_for('barbershop_details_page', id=shop.id) }}" class="button is-primary is-small">Show</a>
+        </td>
+    </tr>
+
+    {% endfor %}
+        </tbody>
+    </table>
+
+    {% endif %}
+
     {% endif %}
 
 </div>

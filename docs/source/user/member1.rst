@@ -13,11 +13,11 @@ id     username  name_surname	mail	 password_hash	  gender   age
 
 Berber Table
 
-===  =========  =============   =============   ===============     ==========  ============    ======
-id   people_id  berbershop_id   gender_choice   experience_year     start_time  finish_time     rates
-===  =========  =============   =============   ===============     ==========  ============    ======
-2    #4         #23             unisex          8                   8           17              3
-===  =========  =============   =============   ===============     ==========  ============    ======
+===  =========  ========   ========   ========     ======  =======    ======
+id   people_id  bshop_id   g_choice   exp_year     s_time  f_time     rates
+===  =========  ========   ========   ========     ======  =======    ======
+2    #4         #23        unisex     8            8       17         3
+===  =========  ========   ========   ========     ======  =======    ======
 
 Owner Table
 
@@ -33,7 +33,7 @@ Signup Flow
 -----------
 
 .. figure:: pictures/register_type.jpg
-   :scale: 50 %
+   :scale: 90 %
    :alt: map to buried treasure
 
    Register Type Page
@@ -92,7 +92,7 @@ Admin Panel Operations
 Navbar Edition
 --------------
 .. figure:: pictures/urls.jpg
-   :scale: 50 %
+   :scale: 100 %
    :alt: map to buried treasure
 
     Navbar links changing according to the type of person logging in

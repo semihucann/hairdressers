@@ -839,6 +839,13 @@ class Berbershopmodel:
                                                                         berbershop.openingtime, berbershop.closingtime,
                                                                         berbershop.tradenumber))
 
+    def update(self, barbershop):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                UPDATE Berbershop SET shopname = %s, location = %s, city = %s, opening_time = %s, closing_time = %s, trade_number = %s where id = %s""",
+                           (barbershop.shopname, barbershop.location, barbershop.city, barbershop.openingtime, barbershop.closingtime, barbershop.tradenumber, barbershop.id))
+
 
     def get_berbershops_by_people_owner_id(self, people_owner_id):
         with dbapi2.connect(url) as connection:
@@ -870,6 +877,24 @@ class Berbershopmodel:
 
             berbershops.append(berbershop)
         return berbershops
+
+    def get_berbershop_with_number_of_employee_by_id(self, id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("SELECT s.id, s.owner_people_id, s.shopname, s.location, s.city, s.opening_time, s.closing_time, s.trade_number, count(b.id) from Berbershop s left join Berber b on s.id = b.berbershop_id where s.id = %s group by s.id", (id,))
+            rows = cursor.fetchall()
+
+        berbershops = []
+        for row in rows:
+            berbershop = Berbershop()
+            berbershop.id, berbershop.ownerpeople_id, berbershop.shopname, berbershop.location, berbershop.city, \
+            berbershop.openingtime, berbershop.closingtime, berbershop.tradenumber, berbershop.numberofemployee = \
+            row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8]
+
+            berbershops.append(berbershop)
+        if len(berbershops) == 0:
+            return Berbershop()
+        return berbershops[0]
 
     #get All
     def getAll(self):

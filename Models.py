@@ -1,5 +1,5 @@
 import psycopg2 as dbapi2
-from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, LikedDisliked, Berbershop, CreditCard
+from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, LikedDisliked, Berbershop, CreditCard, ServicePrice
 import datetime
 
 import os
@@ -502,7 +502,7 @@ class RezervationModel:
     def getAllByBarberShop(self,berbershopid,currenttime,tomorrow):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
-            cursor.execute("""SELECT * from Rezervation as r where r.berbershop_id = %s and r.datetime_rezervation >= %s and 
+            cursor.execute("""SELECT r.*, s.* from Rezervation as r left join serviceprices as s on r.price_type = s.id where r.berbershop_id = %s and r.datetime_rezervation >= %s and 
                 r.datetime_rezervation < %s order by r.datetime_rezervation asc
             """,
                            (berbershopid,currenttime,tomorrow))
@@ -513,8 +513,11 @@ class RezervationModel:
         for row in rows:
             rezervation = Rezervation()
             rezervation.id, rezervation.peopleId, rezervation.berberShopId, rezervation.dateTimeRegistration, rezervation.dateTimeRezervation, \
-            rezervation.status, rezervation.note, rezervation.priceType = row[0], row[1], row[2], row[3], row[4], \
-                                                                          row[5], row[6], row[7]
+            rezervation.status, rezervation.note = row[0], row[1], row[2], row[3], row[4], \
+                                                                          row[5], row[6]
+            servicePrice = ServicePrice()
+            servicePrice.id, servicePrice.service_name, servicePrice.price, servicePrice.duration  = row[8], row[10], row[13], row[14]
+            rezervation.priceType = servicePrice
             rezervations.append(rezervation)
         return rezervations
 
@@ -948,7 +951,23 @@ class ServicepriceModel:
                              VALUES (%s , %s , %s , %s , %s , %s)""", (serviceprice.shop_id, serviceprice.service_name,
                                                                         serviceprice.definition, serviceprice.gender,
                                                                         serviceprice.price, serviceprice.duration))
+    def listByBerberShop(self,berbershopid):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""SELECT * from serviceprices where shop_id = %s """,
+                           (berbershopid,))
 
+        rows = cursor.fetchall()
+
+        services = []
+        for row in rows:
+            sv = ServicePrice()
+            sv.id = row[0]
+            sv.service_name = row[2]
+            sv.price = row[5]
+            sv.duration = row[6]
+            services.append(sv)
+        return services
 
 ######################################################################################
 

@@ -2,8 +2,8 @@ from flask import render_template, Flask, request, redirect, url_for, current_ap
 import datetime
 
 from Models import CommentModel, ContactInfoModel, StatisticsModel
-from Models import Peoplemodel, Berbermodel, Ownermodel, CreditcardModel, Berbershopmodel, RezervationModel
-from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, CreditCard, Berbershop
+from Models import Peoplemodel, Berbermodel, Ownermodel, CreditcardModel, Berbershopmodel, RezervationModel, ServicepriceModel
+from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, CreditCard, Berbershop, ServicePrice
 from passlib.hash import pbkdf2_sha256 as hasher
 from flask_login import LoginManager, login_user, logout_user, current_user
 
@@ -37,6 +37,7 @@ def statistics():
     return render_template('statistics.html',mostPopularBerbers = mostPopularBerbers, lastAddedBarbershops = lastAddedBarbershops)
 
 def rezervation(id):
+    idint = int(id)
     if request.method == 'GET':
         options = [9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
 
@@ -51,6 +52,7 @@ def rezervation(id):
         tomorrowafter = today + datetime.timedelta(days=2)
         tmrwafter = str(tomorrowafter)+ " 00:00"
 
+        #Get Rezervations
         todayrezervations = rezervationModel.getAllByBarberShop(int(id),now,tmrw)
         tomorrowrezervations = rezervationModel.getAllByBarberShop(int(id),tmrw,tmrwafter)
         for t in tomorrowrezervations:
@@ -70,27 +72,34 @@ def rezervation(id):
                 minutestr = str(minute)
             j.dateTimeRezervation = str(j.dateTimeRezervation.hour) + ":" + minutestr
 
-
+        #Get serviceprices
+        svmodel = ServicepriceModel()
+        prices = svmodel.listByBerberShop(idint)
         return render_template('rezervation.html', today = today,tomorrow = tomorrow,
                                id=id,todayrezervations=todayrezervations, tomorrowrezervations = tomorrowrezervations,
-                               hour = now.hour, options = options, berbershop = berbershop)
+                               hour = now.hour, options = options, berbershop = berbershop, prices = prices)
 
-    else:
+    else: #post method rezervation is being added
         formvalue = request.form["formvalue"]
+        pricetype = request.form["pricetype"]
         today = datetime.date.today()
         tomorrow = today + datetime.timedelta(days=1)
         hourint = 0
-        note =""
-
-        if(int(formvalue) == 1):
+        note = ""
+        tdy= ""
+        if(int(formvalue) == 1): #today
             hour = request.form["todayhour"]
             tdy = str(today) + " " + str(hour)
             note = request.form["todaynote"]
-        else:
+        else: #for tomorrow
             hour = request.form["tomorrowhour"]
             tdy = str(tomorrow) + " " + str(hour)
             note = request.form["tomorrownote"]
 
+        if pricetype == "-1": # null pricetype
+            pricetype = None
+        else:
+            pricetype = int(pricetype)
 
         rm = RezervationModel()
         rezervation = Rezervation()
@@ -99,6 +108,7 @@ def rezervation(id):
         rezervation.note = note
         rezervation.status = "notokey"
         rezervation.berberShopId = int(id)
+        rezervation.priceType = pricetype
         rm.insert(rezervation)
         return redirect(url_for("rezervation", id=id))
 

@@ -372,7 +372,8 @@ def barbershop_details_page(id):
         return redirect(url_for('barbershop_details_page', id=id))
     barbers = Berbermodel().get_barbers_for_details_page_by_shop_id(id)
     shop = Berbershopmodel().get_berbershop_with_number_of_employee_by_id(id)
-    return render_template("barbershop_details.html", title="Barbershop", shop=shop, barbers=barbers)
+    prices = ServicepriceModel().listByBerberShop(id)
+    return render_template("barbershop_details.html", title="Barbershop", shop=shop, barbers=barbers, prices=prices)
 
 
 def barbershop_delete(id):
@@ -387,6 +388,39 @@ def barber_employ(barber_id, status, barbershop_id):
         Berbermodel().update_berber_employment(barber_id, None)
     return redirect(url_for('barbershop_details_page', id=barbershop_id))
 
+
+def add_service_price_page(shop_id):
+    if request.method == 'POST':
+        service_price = ServicePrice()
+        service_price.shop_id = shop_id
+        service_price.service_name = request.form["name"]
+        service_price.definition = request.form["definition"]
+        service_price.gender = request.form["gender"]
+        service_price.price = request.form["price"]
+        service_price.duration = request.form["duration"]
+        if "price_id" in request.form:
+            service_price.id = request.form["price_id"]
+            ServicepriceModel().update(service_price)
+            return redirect(url_for('barbershop_details_page', id=shop_id))
+        ServicepriceModel().insert(service_price)
+        return redirect(url_for('barbershop_details_page', id=shop_id))
+
+    if "price_id" in request.args:
+        price = ServicepriceModel().getServiceById(request.args.get("price_id"))
+        return render_template("add_service_price.html", title="Add Service Price", shop_id=shop_id, price=price)
+
+    return render_template("add_service_price.html", title="Add Service Price", shop_id=shop_id, price=None)
+
+
+def delete_service_prices(shop_id):
+    deleteds = request.form["deleteds_list"]
+    if len(deleteds) == 0:
+        return redirect(url_for('barbershop_details_page', id=shop_id))
+
+    param_list = tuple(map(int, deleteds.split(',')))
+
+    ServicepriceModel().delete_list_of_service(param_list)
+    return redirect(url_for('barbershop_details_page', id=shop_id))
 
 #Semih's Functions
 ##Notes:

@@ -106,8 +106,8 @@ List of the comment that has been made for this barbershops.
 - If comment belongs to current user, comment will be with editable text and title, also select input rerating the shop managed with edit button
 - If comment belongs to current user, comment can be deleted via delete button
 - If there is current user in the system, comments can be liked or disliked yet if there is not, it will direct to signin page
-- Likes, Disliked systems works similar to social media app.If you dislike your like will be gone and vice-versa.
-- Likes, Dislikes works as a counter increases or decreases by the clicks.
+- Likes, Dislikes systems works similar to social media app.If you dislike comment that you already liked, your like  will be gone and vice-versa.
+- Likes, Dislikes works as a counter, increases or decreases by the clicks.
 
 .. figure:: pictures/barbershopview2.png
    :scale: 50 %

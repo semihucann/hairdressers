@@ -1,29 +1,46 @@
 {%extends "base.html"%}
 {%block title%} Admin Panel {%endblock%}
 {%block content%}
-<center><p> Hello Mr. Admin. You can delete and update any person (user, berber, owner) ! </p></center> <br> <br>
+<center><p> Hello <b>{{current_user.username}}</b>. You can delete and update any person from
+    <u><a href="#people_table">user</a>, <a href="#berber_table">berber</a>, <a href="#owner_table">owner</a></u>
+    table. </p></center> <br> <br>
 <center><h3>People Table</h3></center>
+<script>
+$(function(){
+
+     //change to two ? how?
+
+    $('.order_check').change(function(){
+      var data= $(this).val();
+      var x = document.getElementById("order_control");
+      x.value=data;
+    });
+
+    $('.check')
+        .val('two')
+        .trigger('change');
+});
+</script>
 
 <form action="" method="post" name="signup_base_first" class="box">
-    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" id="people_table">
 
         <div class="field is-grouped">
             <h6>Operations: &nbsp;&nbsp; </h6>
-            <div class="control">
-              <button class="button is-info is-small" name="edit" value="order_id">
-                 <i class="fa fa-filter" aria-hidden="true"></i>&nbsp; Order by Id
-              </button>
+
+              <div class="control">
+                <div class="select is-small">
+                   <select class="order_check">
+                    <option value="order_id"> by Id</option>
+                    <option value="order_username"> by Username</option>
+                    <option value="order_role"> by Role</option>
+                  </select>
+                </div>
+                <button id="order_control" class="button is-info is-small" name="edit" value="order_id">
+                 <i class="fa fa-filter" aria-hidden="true"></i>&nbsp; Order
+                </button>
             </div>
-             <div class="control">
-              <button class="button is-info is-small" name="edit" value="order_username">
-                  <i class="fa fa-filter" aria-hidden="true"></i> &nbsp; Order by Username
-              </button>
-            </div>
-             <div class="control">
-              <button class="button is-info is-small" name="edit" value="order_role">
-                 <i class="fa fa-filter" aria-hidden="true"></i>&nbsp; Order by Role
-              </button>
-            </div>
+
             <div class="control">
               <button class="button is-danger is-small" name="edit" value="delete">
                   <i class="fa fa-times" aria-hidden="true"></i>&nbsp; Delete selected
@@ -77,7 +94,10 @@
           </td>
           <td>
             <label class="checkbox">
-              <button class="button is-link" name="edit" value = "{{person.id}}" >Edit</button>
+              <button class="button is-link is-small" name="edit" value = "{{person.id}}" >
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  &nbsp;Edit
+              </button>
             </label>
           </td>
         </tr>
@@ -87,7 +107,7 @@
 
 <center><h3>Berber Table</h3></center>
 
-<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" id="berber_table">
 
         <tr>
             <th>Id</th>
@@ -132,7 +152,7 @@
 
 <center><h3>Owner Table</h3></center>
 
-<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" id="owner_table">
 
         <tr>
             <th>Id</th>

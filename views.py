@@ -134,7 +134,7 @@ def rezervation_edit (id):
 
 
 def barbershop_view_edit(id):
-    commentrate = request.form["Fbcommentrate"]
+    commentrate = request.form["bcommentrate"]
     commentrateint = int(commentrate)
     commentid = request.form["commentid"]
     commentidint = int(commentid)

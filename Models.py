@@ -1094,7 +1094,7 @@ class Postsmodel :
     def getAll(self):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
-            cursor.execute("SELECT * from Posts as c order by c.date_time desc")
+            cursor.execute("SELECT * from Posts order by date_time desc")
             rows = cursor.fetchall()
 
         Posts = []
@@ -1142,5 +1142,5 @@ class Postsmodel :
             people = People()
             people.id, people.username = row[8], row[9]
             Post.peopleobj = people
-            Posts.append(post)
+            Posts.append(Post)
         return Posts

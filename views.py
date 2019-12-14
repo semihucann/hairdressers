@@ -209,7 +209,15 @@ def barbershop_view(id):
     else: #POST comment
         #checkbox text
         keywords = ["Cheap","Average-Price","Expensive","Talentless","Average-Talent","Talented","Dirty","Average-Clean","Clean"]
-
+        keyword = ""
+        keys = request.form.getlist("key")
+        print(keys)
+        size = len(keys)
+        for i in range(0,size):
+            if i == size-1:
+                keyword += keywords[int(keys[i])]
+            else:
+                keyword += keywords[int(keys[i])]+"|"
 
 
         idint = int(id)
@@ -231,7 +239,7 @@ def barbershop_view(id):
         comment = Comment()
         comment.berbershop, comment.title, comment.content, comment.rate,comment.peopleId, comment.berber = int(berbershopid), commenttitle, commenttext,\
                                                                                         int(commentrate),current_user.id, berberidint
-
+        comment.keywords = keyword
         commentModel.insert(comment)
         return redirect(url_for("barbershop_view",id=id))
 

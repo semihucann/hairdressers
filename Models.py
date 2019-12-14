@@ -143,7 +143,7 @@ class CommentModel:
         for row in rows:
             comment = Comment()
             comment.id, comment.peopleId, comment.berber, comment.berbershop, comment.title, comment.content, comment.rate, comment.dateTime, \
-            comment.like, comment.dislike = row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8],row[9]
+            comment.like, comment.dislike, comment.keywords = row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8],row[9], row[10]
 
             people = People()
             people.id, people.username = row[11], row[12]

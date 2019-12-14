@@ -5,8 +5,8 @@ Welcome to itucsdb33's documentation!
 
 :Members:
 
-   * Ertuğrul Semiz
    * Ahmet Semih Uçan
+   * Ertuğrul Semiz
    * Fatih Mustafa Buçak
    * Halis İbrahim Aydın
 

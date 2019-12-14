@@ -40,52 +40,83 @@
     <div class="berbershop_comment" style="width : 60%;">
 
 
-        <form method="post" action="">
+        <form id="commentbarber" method="post" action="">
 
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Select Berber</label>
-                <select class="form-control" name="berber" id="exampleFormControlSelect1">
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Select Berber</label>
+            <select class="form-control" name="berber" id="exampleFormControlSelect1">
                     <option value="-1">BerberShop Itself</option>
-                    {% if berbers != None %}
+                 {% if berbers != None  %}
                     {% for b in berbers %}
                     <option value="{{b.id}}">{{b.people.name_surname}}</option>
                     {% endfor %}
-                    {% endif %}
+                {% endif %}
 
-                </select>
-            </div>
+            </select>
+      </div>
 
-            <div class="form-group">
-                <label for="exampleFormControlSelect2">Rate</label>
-                <select class="form-control" name="bcommentrate" id="exampleFormControlSelect2">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-            </div>
-
-
-            <div class="form-group">
-                <label for="exampleFormControlInput1">Title</label>
-                <input type="text" name="bcommenttitle" class="form-control" id="exampleFormControlInput1"
-                       placeholder="my title">
-            </div>
-
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Comment Text</label>
-                <textarea name="bcommenttext" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
+        <div class="form-group">
+        <label for="exampleFormControlSelect2">Rate</label>
+        <select class="form-control" name="bcommentrate" id="exampleFormControlSelect2">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
 
 
-            {% if current_user.is_active %}
-            <button type="submit" class="btn btn-success">Submit</button>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Title</label>
+            <input type="text"  name="bcommenttitle" class="form-control" id="bcommenttitle" placeholder="my title">
+        </div>
+
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Comment Text</label>
+        <textarea name="bcommenttext" class="form-control" id="bcommenttext" rows="3"></textarea>
+      </div>
+
+       <div>
+           <h6>Keywords</h6>
+           <strong>Price:</strong>
+           Cheap
+           <input type="checkbox" class="group1" value="0" name="key" checked />
+           Normal
+           <input type="checkbox" class="group1" value="1" name="key" />
+           Expensive
+            <input type="checkbox" class="group1" value="2" name="key" />
+       </div>
+
+    <div>
+        <strong>Skill:</strong>
+        Bad
+        <input type="checkbox" class="group2" value="3" name="key"/>
+        Normal
+        <input type="checkbox" class="group2" value="4" name="key" checked />
+        Good
+        <input type="checkbox" class="group2" value="5" name="key" />
+    </div>
+
+    <div>
+        <strong>Hygiene:</strong>
+        Dirty
+        <input type="checkbox" class="group3" value="6" name="key"/>
+        Normal
+        <input type="checkbox" class="group3" value="7" name="key" />
+        Clean
+        <input type="checkbox" class="group3" value="8" name="key" checked />
+    </div>
+
+        <br>
+        {% if current_user.is_active %}
+
+        <button type="submit" class="btn btn-success">Submit</button>
 
         </form>
         {% else %}
         <a href="/signin" style="height:40px;" type="submit" class="btn btn-primary">Submit</a>
-        </form>
+
         {% endif %}
 
     </div>
@@ -145,7 +176,7 @@
           {% endif %}
 
 
-          <span class="commentdatespan">commented on {{comment.dateTime}}</span>
+          <span class="commentdatespan">commented on {{comment.dateTime}}, summary : {{comment.keywords}}</span>
         </div>
         <div class="panel-body">
           {% if comment.peopleobj.id == current_user.id  %}

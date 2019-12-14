@@ -17,6 +17,7 @@ class Comment:
         self.dislike = 0
         self.peopleobj = None
         self.likedDislikedobj = None
+        self.keywords = None
 
 class LikedDisliked:
     def __init__(self):
@@ -50,6 +51,7 @@ class Rezervation:
         self.status = None
         self.note = None
         self.priceType = None
+        self.paymentMethod = None
 
 
 ##Semih Classlar########################################################

@@ -152,3 +152,4 @@ class Post:
         self.dislike = None
         self.subject = None
         self.date_time = None
+        self.peopleobj = None

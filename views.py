@@ -309,7 +309,7 @@ def newpost_page(post_id):
         PostsModel().insert(post)
         return redirect(url_for('blog_page', id=post_id))
 
-    return render_template("newpost.html", title= "Newpost Page")
+    return render_template("newpost.html", title="Newpost Page")
 
 
 def profile_page():

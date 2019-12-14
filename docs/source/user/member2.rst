@@ -106,8 +106,8 @@ List of the comment that has been made for this barbershops.
 - If comment belongs to current user, comment will be with editable text and title, also select input rerating the shop managed with edit button
 - If comment belongs to current user, comment can be deleted via delete button
 - If there is current user in the system, comments can be liked or disliked yet if there is not, it will direct to signin page
-- Likes, Dislikes systems works similar to social media app.If you dislike comment that you already liked, your like  will be gone and vice-versa.
-- Likes, Dislikes works as a counter, increases or decreases by the clicks.
+- Likes-Dislike system works similar to social media apps. If you dislike comment that you already liked, your like  will be gone and vice-versa.
+- Likes-Dislike system works as a counter, increases or decreases by the clicks.
 
 .. figure:: pictures/barbershopview2.png
    :scale: 50 %
@@ -138,7 +138,7 @@ form, payment method, note, rezervation hour, and the operation type will be arr
 
 - Today appointment hour list consist of the hours after now.
 - Tomorrow, all hours will be available.
-- Registered operations and corresponding informations about it is listed in the table at the above of the form.
+- Registered operations and corresponding informations about it, is listed in the table at the above of the form.
 - If appointment belongs to current user, it can be edited or deleted.
 
 .. figure:: pictures/rez1.png
@@ -155,7 +155,7 @@ form, payment method, note, rezervation hour, and the operation type will be arr
 Statistics Page
 ---------------
 Extra Statistic page that is directed from main page. There are 5 subsections stands for each statistic table. When the buttons at
-the above of the page, it dynamically brings the corresponding statistic table. Generally, top 3 most element of result is listed.
+the above of the page is pressed, it dynamically brings the corresponding statistic table. Generally, top 3 most element of result is listed.
 
 .. figure:: pictures/statistics.png
    :scale: 50 %

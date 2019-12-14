@@ -175,8 +175,12 @@
              <strong>{{comment.peopleobj.username}}</strong>
           {% endif %}
 
+           {% if comment.keywords != None and comment.keywords != "" %}
+             <span class="commentdatespan">commented on {{comment.dateTime}}, summary : {{comment.keywords}}</span>
+            {% else %}
+             <span class="commentdatespan">commented on {{comment.dateTime}}, summary :  Not Specified</span>
+            {% endif %}
 
-          <span class="commentdatespan">commented on {{comment.dateTime}}, summary : {{comment.keywords}}</span>
         </div>
         <div class="panel-body">
           {% if comment.peopleobj.id == current_user.id  %}

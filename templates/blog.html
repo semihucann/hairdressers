@@ -10,7 +10,7 @@
 				</div>
 				<div style="clear:both;">
   <hr>
-  <h4>Comments</h4>
+  <h4>Posts</h4>
   <br>
   {% for Post in Posts %}
     <div>
@@ -18,7 +18,7 @@
         <div class="row">
         <div class="col-sm-12">
         <h5>
-          {% if comment.people.id == current_user.id  %}
+          {% if Post.people.id == current_user.id  %}
 
             <p style="margin-bottom : 5px;" class="commenttexttitle" id="commentedittitle" contenteditable="true">{{Post.title}}</p>
 
@@ -40,14 +40,14 @@
         <div class="panel panel-default">
         <div class="panel-heading">
 
-          {% if comment.people.id == current_user.id %}
+          {% if Post.people.id == current_user.id %}
             <strong style="background-color : yellow;">{{Post.people.username}}</strong>
           {% else %}
              <strong>{{Post.people.username}}</strong>
           {% endif %}
 
 
-          <span class="commentdatespan">commented on {{comment.dateTime}}</span>
+          <span class="commentdatespan">posted on {{comment.dateTime}}</span>
         </div>
         <div class="panel-body">
           {% if Post.people.id == current_user.id  %}

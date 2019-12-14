@@ -52,17 +52,34 @@ same page through buttons on them.
 
 
 .. figure:: pictures/bigcarousel.png
-   :scale: 90 %
+   :scale: 50 %
    :alt: main carousel directing
 
-   Register Type Page
+Who are we  :
+Information about our system.
+Main Bar :
+General links exists here. Visitors directly reach most of the features from this  sliding carousel.
 
-According to the register type preference, I redirected the client to one of the pages in the image below. On this page I received information from the user in accordance with the type of user, barber and owner. I have written 3 different insert functions to add the incoming information to the tables. Username, mail and tc_number is unique so I checked this values for validation.
 
-
-.. figure:: pictures/signup.jpg
+.. figure:: pictures/whoarewe.png
    :scale: 50 %
-   :alt: map to buried treasure
+   :alt: who are we
+
+.. figure:: pictures/mainbar.png
+   :scale: 50 %
+   :alt: mainbar
+
+All Barbershops :
+İt is the table having list of all the barbershops in the systems. Name of the shop, City, Address etc. There is also link which
+users can access berbershopview page which includes info about barbershops, comments made by customers also direct links to the
+take rezervation.
+
+.. figure:: pictures/allberbershops.png
+   :scale: 50 %
+   :alt: mainbar
+
+
+
 
    Signup Page
 

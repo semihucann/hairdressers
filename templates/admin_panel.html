@@ -2,24 +2,32 @@
 {%block title%} Admin Panel {%endblock%}
 {%block content%}
 <center><p> Hello Mr. Admin. You can delete and update any person (user, berber, owner) ! </p></center> <br> <br>
-
 <center><h3>People Table</h3></center>
 
 <form action="" method="post" name="signup_base_first" class="box">
     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
 
         <div class="field is-grouped">
+            <h6>Operations: &nbsp;&nbsp; </h6>
             <div class="control">
-              <button class="button is-info" name="edit" value="order_id">Order by Id</button>
+              <button class="button is-info is-small" name="edit" value="order_id">
+                 <i class="fa fa-filter" aria-hidden="true"></i>&nbsp; Order by Id
+              </button>
             </div>
              <div class="control">
-              <button class="button is-info" name="edit" value="order_username">Order by Username</button>
+              <button class="button is-info is-small" name="edit" value="order_username">
+                  <i class="fa fa-filter" aria-hidden="true"></i> &nbsp; Order by Username
+              </button>
             </div>
              <div class="control">
-              <button class="button is-info" name="edit" value="order_role">Order by Role</button>
+              <button class="button is-info is-small" name="edit" value="order_role">
+                 <i class="fa fa-filter" aria-hidden="true"></i>&nbsp; Order by Role
+              </button>
             </div>
             <div class="control">
-              <button class="button is-danger" name="edit" value="delete">Delete selected</button>
+              <button class="button is-danger is-small" name="edit" value="delete">
+                  <i class="fa fa-times" aria-hidden="true"></i>&nbsp; Delete selected
+              </button>
             </div>
         </div>
 
@@ -56,7 +64,7 @@
               {{ person.mail }}
           </td>
           <td>
-              {{ person.password_hash }}
+              {{ person.password_hash[20:30] }}
           </td>
            <td>
               {{ person.gender }}

@@ -50,7 +50,7 @@
           <span class="commentdatespan">commented on {{comment.dateTime}}</span>
         </div>
         <div class="panel-body">
-          {% if comment.people.id == current_user.id  %}
+          {% if Post.people.id == current_user.id  %}
             <p id="commentedittext" class="commenttextcontent" contenteditable="true">{{Post.content}}</p>
           {% else %}
             <p>{{Post.content}}</p>

@@ -1079,3 +1079,23 @@ class Postsmodel :
                 DELETE from Posts where id = %s
             """, (id,))
 
+    def getAll_posts_with_people_id(self,id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                SELECT c.*, p.id, p.username from Posts as c join people as  p on c.people_id = p.id 
+                WHERE c.berbershop = %s order by c.date_time desc
+            """,(id,))
+
+        rows = cursor.fetchall()
+        Posts = []
+        for row in rows:
+            Post = Post()
+            Post.id, Post.people_id, Post.post_title, Post.post_content, Post.date_time, Post.subject,\
+            Post.like, Post.dislike = row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]
+
+            people = People()
+            people.id, people.username = row[8], row[9]
+            Post.peopleobj = people
+            Posts.append(post)
+        return Posts

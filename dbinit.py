@@ -7,6 +7,8 @@ import psycopg2 as dbapi2
 INIT_STATEMENTS = [
 
     #ERTUGRUL's tables
+    #ALTER TABLE Comments
+    #ADD COLUMN keywords varchar(100);
     """
     
     CREATE TABLE IF NOT EXISTS Comments(
@@ -35,10 +37,10 @@ INIT_STATEMENTS = [
         instagram VARCHAR (500)
     )""",
     # CREATE TYPE status AS ENUM ('okey','notokey');
-
+    #Create type method as enum ('creditcard','cash');
     """
       
-       
+      
        CREATE TABLE IF NOT EXISTS Rezervation(
            id SERIAL PRIMARY KEY,
            people_id integer NOT NULL REFERENCES People(id) ON DELETE CASCADE,
@@ -47,7 +49,8 @@ INIT_STATEMENTS = [
            datetime_rezervation TIMESTAMP,
            status status,
            note VARCHAR (100),
-           price_type integer REFERENCES ServicePrices(id) ON DELETE CASCADE
+           price_type integer REFERENCES ServicePrices(id) ON DELETE CASCADE,
+           payment_method method
        )""",
 
     """ 

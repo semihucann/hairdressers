@@ -64,11 +64,11 @@ class CommentModel:
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""INSERT INTO Comments (people_id ,  berber , berbershop, title , content , rate , date_time , 
-                comment_like , comment_dislike)
-                VALUES (%s , %s, %s , %s , %s , %s , %s , %s , %s)""", (comment.peopleId, comment.berber,comment.berbershop,comment.title,
+                comment_like , comment_dislike, keywords)
+                VALUES (%s , %s, %s , %s , %s , %s , %s , %s , %s, %s)""", (comment.peopleId, comment.berber,comment.berbershop,comment.title,
                                                                     comment.content, comment.rate, comment.dateTime,
                                                                     comment.like,
-                                                                    comment.dislike))
+                                                                    comment.dislike, comment.keywords))
 
     # get by id
     def getById(self, id):
@@ -143,10 +143,10 @@ class CommentModel:
         for row in rows:
             comment = Comment()
             comment.id, comment.peopleId, comment.berber, comment.berbershop, comment.title, comment.content, comment.rate, comment.dateTime, \
-            comment.like, comment.dislike = row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8],row[9]
+            comment.like, comment.dislike, comment.keywords = row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8],row[9], row[10]
 
             people = People()
-            people.id, people.username = row[10], row[11]
+            people.id, people.username = row[11], row[12]
             comment.peopleobj = people
             comments.append(comment)
         return comments
@@ -460,11 +460,11 @@ class RezervationModel:
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""INSERT INTO Rezervation (people_id, berbershop_id, datetime_registration, datetime_rezervation, status, note, 
-                    price_type)
-                    VALUES (%s , %s , %s , %s , %s , %s , %s)""",
+                    price_type, payment_method)
+                    VALUES (%s , %s , %s , %s , %s , %s , %s, %s)""",
                            (rezervation.peopleId, rezervation.berberShopId, rezervation.dateTimeRegistration,
                             rezervation.dateTimeRezervation, rezervation.status, rezervation.note,
-                            rezervation.priceType))
+                            rezervation.priceType,rezervation.paymentMethod))
             return None
 
     # update method that will do update
@@ -513,10 +513,10 @@ class RezervationModel:
         for row in rows:
             rezervation = Rezervation()
             rezervation.id, rezervation.peopleId, rezervation.berberShopId, rezervation.dateTimeRegistration, rezervation.dateTimeRezervation, \
-            rezervation.status, rezervation.note = row[0], row[1], row[2], row[3], row[4], \
-                                                                          row[5], row[6]
+            rezervation.status, rezervation.note, rezervation.paymentMethod = row[0], row[1], row[2], row[3], row[4], \
+                                                                          row[5], row[6], row[8]
             servicePrice = ServicePrice()
-            servicePrice.id, servicePrice.service_name, servicePrice.price, servicePrice.duration  = row[8], row[10], row[13], row[14]
+            servicePrice.id, servicePrice.service_name, servicePrice.price, servicePrice.duration  = row[9], row[11], row[14], row[15]
             rezervation.priceType = servicePrice
             rezervations.append(rezervation)
         return rezervations
@@ -1009,6 +1009,24 @@ class ServicepriceModel:
                              VALUES (%s , %s , %s , %s , %s , %s)""", (serviceprice.shop_id, serviceprice.service_name,
                                                                         serviceprice.definition, serviceprice.gender,
                                                                         serviceprice.price, serviceprice.duration))
+
+
+    def update(self, service_price):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                UPDATE Serviceprices SET service_name = %s, definition = %s, gender = %s, price = %s, duration = %s where id = %s""",
+                           (service_price.service_name, service_price.definition, service_price.gender, service_price.price, service_price.duration, service_price.id))
+
+
+    def delete_list_of_service(self, tuple):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                DELETE from Serviceprices where id in %s
+            """, (tuple,))
+
+
     def listByBerberShop(self,berbershopid):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
@@ -1021,11 +1039,38 @@ class ServicepriceModel:
         for row in rows:
             sv = ServicePrice()
             sv.id = row[0]
+            sv.shop_id = row[1]
             sv.service_name = row[2]
+            sv.definition = row[3]
+            sv.gender = row[4]
             sv.price = row[5]
             sv.duration = row[6]
             services.append(sv)
         return services
+
+
+    def getServiceById(self,berbershopid):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""SELECT * from serviceprices where id = %s """,
+                           (berbershopid,))
+
+        rows = cursor.fetchall()
+
+        services = []
+        for row in rows:
+            sv = ServicePrice()
+            sv.id = row[0]
+            sv.shop_id = row[1]
+            sv.service_name = row[2]
+            sv.definition = row[3]
+            sv.gender = row[4]
+            sv.price = row[5]
+            sv.duration = row[6]
+            services.append(sv)
+        if len(rows) == 0:
+            return ServicePrice()
+        return services[0]
 
 ######################################################################################
 

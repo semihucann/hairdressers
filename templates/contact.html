@@ -2,12 +2,15 @@
 {%block title%} berbershopview {%endblock%}
 {%block content%}
 <div class="contactform" >
-    <form class="contactformi" style="display:inline;" action="/contact/{{id}}" method="post">
+    {% if message != None %}
+        <h5>{{message}}</h5>
+    {% endif %}
+    <form class="contactformi" style="display:inline;" action="/contact/{{id}}" method="post" id="contactshop">
 
         <input type="hidden" name="contactid" value="{{contact.id}}">
         <div class="form-group">
         <label for="phonenumberid">Phone Number</label>
-        <input  class="form-control" id="phonenumberid" name="phonenumber" value="{{contact.telephoneNumber}}" rows="3"></input>
+        <input  pattern=".{10,10}"   required title="10 characters remove 0 if you use at the beginning" class="form-control" id="phonenumberid" name="phonenumber" value="{{contact.telephoneNumber}}" rows="3"></input>
       </div>
 
         <div class="form-group">
@@ -37,6 +40,7 @@
 
         {% if contact == None %}
         <button  style="width:80px;height:40px;margin-left : 180px; margin-top : 50px;"  type="submit" class="btn btn-primary">Add</button>
+
         {% else %}
          <button style="width:80px;height:60px;margin-left : 150px;" type="submit" class="btn btn-primary">Update</button>
 

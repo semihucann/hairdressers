@@ -82,6 +82,7 @@ def rezervation(id):
     else: #post method rezervation is being added
         formvalue = request.form["formvalue"]
         pricetype = request.form["pricetype"]
+        payment = request.form["payment"]
         today = datetime.date.today()
         tomorrow = today + datetime.timedelta(days=1)
         hourint = 0
@@ -106,6 +107,7 @@ def rezervation(id):
         rezervation.peopleId = current_user.id
         rezervation.dateTimeRezervation = tdy
         rezervation.note = note
+        rezervation.paymentMethod = payment
         rezervation.status = "notokey"
         rezervation.berberShopId = int(id)
         rezervation.priceType = pricetype
@@ -204,7 +206,20 @@ def barbershop_view(id):
 
         return render_template("barbershopview.html", commentlist= commentlist, berbershop = berbershop, berbers = berbers)
 
-    else: #POST
+    else: #POST comment
+        #checkbox text
+        keywords = ["Cheap","Average-Price","Expensive","Talentless","Average-Talent","Talented","Dirty","Average-Clean","Clean"]
+        keyword = ""
+        keys = request.form.getlist("key")
+        print(keys)
+        size = len(keys)
+        for i in range(0,size):
+            if i == size-1:
+                keyword += keywords[int(keys[i])]
+            else:
+                keyword += keywords[int(keys[i])]+"|"
+
+
         idint = int(id)
         commentModel = CommentModel()
 
@@ -224,7 +239,7 @@ def barbershop_view(id):
         comment = Comment()
         comment.berbershop, comment.title, comment.content, comment.rate,comment.peopleId, comment.berber = int(berbershopid), commenttitle, commenttext,\
                                                                                         int(commentrate),current_user.id, berberidint
-
+        comment.keywords = keyword
         commentModel.insert(comment)
         return redirect(url_for("barbershop_view",id=id))
 
@@ -250,6 +265,12 @@ def contact_settings(id):
     facebookc = request.form["facebookc"]
     contactId = request.form["contactid"]
     phoneNumber = request.form["phonenumber"]
+
+    if phoneNumber[0] == '0':
+        cm = ContactInfoModel()
+        contactentity = cm.getByBarbershopId(int(id))
+        message = "The phone number can not start with zero"
+        return render_template("contact.html", id=id, contact=contactentity, message = message)
 
     contact = ContactInfo()
     contact.type = typec
@@ -372,7 +393,8 @@ def barbershop_details_page(id):
         return redirect(url_for('barbershop_details_page', id=id))
     barbers = Berbermodel().get_barbers_for_details_page_by_shop_id(id)
     shop = Berbershopmodel().get_berbershop_with_number_of_employee_by_id(id)
-    return render_template("barbershop_details.html", title="Barbershop", shop=shop, barbers=barbers)
+    prices = ServicepriceModel().listByBerberShop(id)
+    return render_template("barbershop_details.html", title="Barbershop", shop=shop, barbers=barbers, prices=prices)
 
 
 def barbershop_delete(id):
@@ -387,6 +409,39 @@ def barber_employ(barber_id, status, barbershop_id):
         Berbermodel().update_berber_employment(barber_id, None)
     return redirect(url_for('barbershop_details_page', id=barbershop_id))
 
+
+def add_service_price_page(shop_id):
+    if request.method == 'POST':
+        service_price = ServicePrice()
+        service_price.shop_id = shop_id
+        service_price.service_name = request.form["name"]
+        service_price.definition = request.form["definition"]
+        service_price.gender = request.form["gender"]
+        service_price.price = request.form["price"]
+        service_price.duration = request.form["duration"]
+        if "price_id" in request.form:
+            service_price.id = request.form["price_id"]
+            ServicepriceModel().update(service_price)
+            return redirect(url_for('barbershop_details_page', id=shop_id))
+        ServicepriceModel().insert(service_price)
+        return redirect(url_for('barbershop_details_page', id=shop_id))
+
+    if "price_id" in request.args:
+        price = ServicepriceModel().getServiceById(request.args.get("price_id"))
+        return render_template("add_service_price.html", title="Add Service Price", shop_id=shop_id, price=price)
+
+    return render_template("add_service_price.html", title="Add Service Price", shop_id=shop_id, price=None)
+
+
+def delete_service_prices(shop_id):
+    deleteds = request.form["deleteds_list"]
+    if len(deleteds) == 0:
+        return redirect(url_for('barbershop_details_page', id=shop_id))
+
+    param_list = tuple(map(int, deleteds.split(',')))
+
+    ServicepriceModel().delete_list_of_service(param_list)
+    return redirect(url_for('barbershop_details_page', id=shop_id))
 
 #Semih's Functions
 ##Notes:

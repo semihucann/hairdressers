@@ -36,6 +36,7 @@
       <th scope="col">Hour</th>
       <th scope="col">Status</th>
       <th scope="col">Service</th>
+      <th scope="col">Method</th>
       <th scope="col">Note</th>
       <th scope="col">Action</th>
     </tr>
@@ -70,11 +71,12 @@
               {% else %}
                 <td>Not Confirmed</td>
               {% endif %}
-               {% if rez.priceType != None %}
+               {% if rez.priceType.service_name != None  and rez.priceType.service_name != "" %}
                    <td>{{rez.priceType.service_name}} - {{rez.priceType.price}}TL - {{rez.priceType.duration}} min</td>
                 {% else %}
-                  <td>No Price Type</td>
+                  <td>No Service Type</td>
                 {% endif %}
+              <td>{{rez.paymentMethod}}</td>
               <td>{{rez.note}}</td>
               <td>
                    {% if rez.peopleId ==  current_user.id %}
@@ -125,13 +127,18 @@
     <div class="form-group">
     <label for="exampleFormControlSelect1">Payment</label>
     <select name="pricetype"class="form-control" id="exampleFormControlSelect2">
-        <option disabled selected value="-1"> -- select an option -- </option>
+        <option  selected value="-1"> -- None -- </option>
         {% for p in prices %}
              <option value="{{p.id}}">{{p.service_name}} -  Price : {{p.price}}TL - Duration : {{p.duration}} min  </option>
         {% endfor %}
     </select>
   </div>
 
+     <h6>Payment Method</h6>
+     <div class="form-check">
+    <input type="radio" checked="checked" name="payment" value="creditcard" id="option11"> Credit Card <br>
+    <input type="radio" name="payment" id="option22" value="cash"> Cash <br>
+  </div>
 
   <div class="form-group">
     <label for="exampleFormControlTextarea1">Note</label>
@@ -166,7 +173,8 @@
           <th scope="col">#</th>
           <th scope="col">Hour</th>
           <th scope="col">Status</th>
-          <th scope="col">PriceType</th>
+          <th scope="col">Service</th>
+            <th scope="col">Method</th>
           <th scope="col">Note</th>
           <th scope="col">Action</th>
         </tr>
@@ -202,13 +210,13 @@
                   <td>Not Confirmed</td>
                 {% endif %}
 
-                 {% if rez.priceType.service_name != None %}
+                 {% if rez.priceType.service_name != None  and rez.priceType.service_name != "" %}
                    <td>{{rez.priceType.service_name}} - {{rez.priceType.price}}TL - {{rez.priceType.duration}} min</td>
                 {% else %}
-                  <td>No Price Type</td>
+                  <td>No Service Type</td>
                 {% endif %}
 
-
+                <td>{{rez.paymentMethod}}</td>
                 <td>{{rez.note}}</td>
                 <td>
                     {% if rez.peopleId == current_user.id %}
@@ -260,14 +268,18 @@
     <div class="form-group">
     <label for="exampleFormControlSelect1">Payment</label>
     <select name="pricetype"class="form-control" id="exampleFormControlSelect22">
-        <option selected value="-1"> -- select an option -- </option>
+        <option selected="selected" value="-1"> -- select an option -- </option>
         {% for p in prices %}
             <option value="{{p.id}}">{{p.service_name}} -  Price : {{p.price}}TL - Duration : {{p.duration}} min  </option>
         {% endfor %}
 
     </select>
   </div>
-
+    <h6>Payment Method</h6>
+     <div class="form-check">
+    <input type="radio"  checked="checked"name="payment" value="creditcard" id="option1"> Credit Card <br>
+    <input type="radio" name="payment" id="option2" value="cash"> Cash <br>
+  </div>
 
   <div class="form-group">
     <label for="exampleFormControlTextarea1">Note</label>

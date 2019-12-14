@@ -31,6 +31,46 @@
     </div>
     {%endif%}
 
+    {% if barbers | length != 0 %}
+    <h1>Barbers table</h1>
+
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Experience Year</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+    {% for barber in barbers %}
+
+    <tr>
+        <th>{{barber.people.name_surname}}</th>
+        <td>{{barber.people.age}}</td>
+        <td>{{barber.experience_year}}</td>
+        {%if barber.berber_shop_id == None%}
+        <td>Unmployed</td>
+        <td>
+                <a href="{{ url_for('barber_employ', barber_id=barber.id, status=1, barbershop_id=shop.id) }}" class="button is-primary is-small">Employ</a>
+        </td>
+        {%else%}
+        <td>Employee</td>
+        <td>
+                <a href="{{ url_for('barber_employ', barber_id=barber.id, status=0, barbershop_id=shop.id) }}" class="button is-danger is-small">Dismiss</a>
+        </td>
+        {%endif%}
+
+
+    </tr>
+
+    {% endfor %}
+        </tbody>
+    </table>
+
+    {% endif %}
 
 
 </div>

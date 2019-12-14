@@ -369,14 +369,24 @@ def barbershop_details_page(id):
         shop.tradenumber = request.form["trade"]
 
         Berbershopmodel().update(shop)
-
+        return redirect(url_for('barbershop_details_page', id=id))
+    barbers = Berbermodel().get_barbers_for_details_page_by_shop_id(id)
     shop = Berbershopmodel().get_berbershop_with_number_of_employee_by_id(id)
-    return render_template("barbershop_details.html", title="Barbershop", shop=shop)
+    return render_template("barbershop_details.html", title="Barbershop", shop=shop, barbers=barbers)
 
 
 def barbershop_delete(id):
     Berbershopmodel().delete_barbershop(id)
     return redirect(url_for('profile_page'))
+
+
+def barber_employ(barber_id, status, barbershop_id):
+    if int(status) == 1:
+        Berbermodel().update_berber_employment(barber_id, barbershop_id)
+    else:
+        Berbermodel().update_berber_employment(barber_id, None)
+    return redirect(url_for('barbershop_details_page', id=barbershop_id))
+
 
 #Semih's Functions
 ##Notes:

@@ -390,9 +390,8 @@ def barber_employ(barber_id, status, barbershop_id):
 
 #Semih's Functions
 ##Notes:
-# Berber signup kısmında start  and finish time sadece saat cinsinden alındı (08:30 yerine 08)
 
-
+#Register type secimi
 def signupbase_page():
     if request.method == 'GET':
         return render_template("register_type.html")
@@ -404,7 +403,6 @@ def signupbase_page():
         elif request.form['submit_button'] == 'owner':
             return redirect(url_for('signup_owner_page'))
         return render_template("profile.html")
-
 
 def signup_berber_page():
     if request.method == 'GET':

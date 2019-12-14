@@ -36,6 +36,7 @@
       <th scope="col">Hour</th>
       <th scope="col">Status</th>
       <th scope="col">Service</th>
+      <th scope="col">Method</th>
       <th scope="col">Note</th>
       <th scope="col">Action</th>
     </tr>
@@ -75,6 +76,7 @@
                 {% else %}
                   <td>No Price Type</td>
                 {% endif %}
+              <td>{{rez.paymentMethod}}</td>
               <td>{{rez.note}}</td>
               <td>
                    {% if rez.peopleId ==  current_user.id %}
@@ -132,6 +134,11 @@
     </select>
   </div>
 
+     <h6>Payment Method</h6>
+     <div class="form-check">
+    <input type="radio" checked="checked" name="payment" value="creditcard" id="option11"> Credit Card <br>
+    <input type="radio" name="payment" id="option22" value="cash"> Cash <br>
+  </div>
 
   <div class="form-group">
     <label for="exampleFormControlTextarea1">Note</label>
@@ -267,7 +274,11 @@
 
     </select>
   </div>
-
+    <h6>Payment Method</h6>
+     <div class="form-check">
+    <input type="radio" name="payment" value="creditcard" id="option1"> Credit Card <br>
+    <input type="radio" name="payment" id="option2" value="cash"> Cash <br>
+  </div>
 
   <div class="form-group">
     <label for="exampleFormControlTextarea1">Note</label>

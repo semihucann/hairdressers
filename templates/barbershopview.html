@@ -40,7 +40,7 @@
     <div class="berbershop_comment" style="width : 60%;">
 
 
-        <form method="post" action="">
+        <form id="commentbarber" method="post" action="">
 
           <div class="form-group">
             <label for="exampleFormControlSelect1">Select Berber</label>
@@ -69,22 +69,54 @@
 
         <div class="form-group">
             <label for="exampleFormControlInput1">Title</label>
-            <input type="text" name="bcommenttitle" class="form-control" id="exampleFormControlInput1" placeholder="my title">
+            <input type="text"  name="bcommenttitle" class="form-control" id="bcommenttitle" placeholder="my title">
         </div>
 
       <div class="form-group">
         <label for="exampleFormControlTextarea1">Comment Text</label>
-        <textarea name="bcommenttext" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        <textarea name="bcommenttext" class="form-control" id="bcommenttext" rows="3"></textarea>
       </div>
 
+       <div>
+           <h6>Keywords</h6>
+           <strong>Price:</strong>
+           Cheap
+           <input type="checkbox" class="group1" name="key" checked />
+           Normal
+           <input type="checkbox" class="group1" name="key" />
+           Expensive
+            <input type="checkbox" class="group1" name="key" />
+       </div>
 
+    <div>
+        <strong>Skill:</strong>
+        Bad
+        <input type="checkbox" class="group2" name="key"/>
+        Normal
+        <input type="checkbox" class="group2" name="key" checked />
+        Good
+        <input type="checkbox" class="group2" name="key" />
+    </div>
+
+    <div>
+        <strong>Hygiene:</strong>
+        Dirty
+        <input type="checkbox" class="group3" name="key"/>
+        Normal
+        <input type="checkbox" class="group3" name="key" />
+        Clean
+        <input type="checkbox" class="group3" name="key" checked />
+    </div>
+
+        <br>
         {% if current_user.is_active %}
+
         <button type="submit" class="btn btn-success">Submit</button>
 
         </form>
         {% else %}
         <a href="/signin" style="height:40px;" type="submit" class="btn btn-primary">Submit</a>
-        </form>
+
         {% endif %}
 
     </div>

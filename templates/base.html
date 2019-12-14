@@ -10,6 +10,8 @@
          src = "{{ url_for('static', filename = 'js/jquery.js') }}" ></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
 
     <!-- Datatable js file for Homepage-->
     <script type = "text/javascript"
@@ -193,7 +195,7 @@
       </section>
     </main>
     <footer class="footer" style="display:block;clear:both">
-      <div class="content" >
+      <div class="content" id="about" >
         <small>&copy;2019, Hairdressers </small>
       </div>
     </footer>
@@ -227,6 +229,42 @@
 
        //DocumentReady
        $(document).ready(function() {
+
+            //validation for comment
+            $('form[id="commentbarber"]').validate({
+              rules: {
+                bcommenttitle: {
+                required: true,
+                minlength : 3,
+                },
+                bcommenttext: {
+                required: true,
+                minlength : 5,
+                }
+
+              },
+              messages: {
+                bcommenttitle: {
+
+                minlength : "Title length needs to be longer than 3 char",
+                },
+                bcommenttext: {
+
+                minlength : "Text length needs to be longer than 5",
+                }
+              },
+              submitHandler: function(form) {
+                form.submit();
+              }
+            });
+
+            });
+
+
+
+
+
+
 
             // Datatable adjustments Homepage
             var table = $('#allBerbers').DataTable();
@@ -301,13 +339,17 @@
                  $("#rezervationbutton1").css("background-color","blue");
               });
 
-
+               //Post Comment checkbox
+               $('input[type="checkbox"]').on('change', function() {
+                $(this).siblings('input[type="checkbox"]').not(this).prop('checked', false);
+                });
 
 
 
               //Comment Datatable
               // Material Design example
             $(document).ready(function () {
+
               $('#dtMaterialDesignExample').DataTable();
               $('#dtMaterialDesignExample_wrapper').find('label').each(function () {
                 $(this).parent().append($(this).children());
@@ -324,11 +366,6 @@
               $('#dtMaterialDesignExample_wrapper select').addClass('mdb-select');
               $('#dtMaterialDesignExample_wrapper .mdb-select').materialSelect();
               $('#dtMaterialDesignExample_wrapper .dataTables_filter').find('label').remove();
-            });
-
-
-
-
 
 
 

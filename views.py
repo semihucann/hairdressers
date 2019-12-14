@@ -82,6 +82,7 @@ def rezervation(id):
     else: #post method rezervation is being added
         formvalue = request.form["formvalue"]
         pricetype = request.form["pricetype"]
+        payment = request.form["payment"]
         today = datetime.date.today()
         tomorrow = today + datetime.timedelta(days=1)
         hourint = 0
@@ -106,6 +107,7 @@ def rezervation(id):
         rezervation.peopleId = current_user.id
         rezervation.dateTimeRezervation = tdy
         rezervation.note = note
+        rezervation.paymentMethod = payment
         rezervation.status = "notokey"
         rezervation.berberShopId = int(id)
         rezervation.priceType = pricetype
@@ -132,7 +134,7 @@ def rezervation_edit (id):
 
 
 def barbershop_view_edit(id):
-    commentrate = request.form["bcommentrate"]
+    commentrate = request.form["Fbcommentrate"]
     commentrateint = int(commentrate)
     commentid = request.form["commentid"]
     commentidint = int(commentid)
@@ -204,7 +206,12 @@ def barbershop_view(id):
 
         return render_template("barbershopview.html", commentlist= commentlist, berbershop = berbershop, berbers = berbers)
 
-    else: #POST
+    else: #POST comment
+        #checkbox text
+        keywords = ["Cheap","Average-Price","Expensive","Talentless","Average-Talent","Talented","Dirty","Average-Clean","Clean"]
+
+
+
         idint = int(id)
         commentModel = CommentModel()
 
@@ -250,6 +257,12 @@ def contact_settings(id):
     facebookc = request.form["facebookc"]
     contactId = request.form["contactid"]
     phoneNumber = request.form["phonenumber"]
+
+    if phoneNumber[0] == '0':
+        cm = ContactInfoModel()
+        contactentity = cm.getByBarbershopId(int(id))
+        message = "The phone number can not start with zero"
+        return render_template("contact.html", id=id, contact=contactentity, message = message)
 
     contact = ContactInfo()
     contact.type = typec

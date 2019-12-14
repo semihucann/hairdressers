@@ -64,11 +64,11 @@ class CommentModel:
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""INSERT INTO Comments (people_id ,  berber , berbershop, title , content , rate , date_time , 
-                comment_like , comment_dislike)
-                VALUES (%s , %s, %s , %s , %s , %s , %s , %s , %s)""", (comment.peopleId, comment.berber,comment.berbershop,comment.title,
+                comment_like , comment_dislike, keywords)
+                VALUES (%s , %s, %s , %s , %s , %s , %s , %s , %s, %s)""", (comment.peopleId, comment.berber,comment.berbershop,comment.title,
                                                                     comment.content, comment.rate, comment.dateTime,
                                                                     comment.like,
-                                                                    comment.dislike))
+                                                                    comment.dislike, comment.keywords))
 
     # get by id
     def getById(self, id):
@@ -146,7 +146,7 @@ class CommentModel:
             comment.like, comment.dislike = row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8],row[9]
 
             people = People()
-            people.id, people.username = row[10], row[11]
+            people.id, people.username = row[11], row[12]
             comment.peopleobj = people
             comments.append(comment)
         return comments
@@ -460,11 +460,11 @@ class RezervationModel:
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""INSERT INTO Rezervation (people_id, berbershop_id, datetime_registration, datetime_rezervation, status, note, 
-                    price_type)
-                    VALUES (%s , %s , %s , %s , %s , %s , %s)""",
+                    price_type, payment_method)
+                    VALUES (%s , %s , %s , %s , %s , %s , %s, %s)""",
                            (rezervation.peopleId, rezervation.berberShopId, rezervation.dateTimeRegistration,
                             rezervation.dateTimeRezervation, rezervation.status, rezervation.note,
-                            rezervation.priceType))
+                            rezervation.priceType,rezervation.paymentMethod))
             return None
 
     # update method that will do update
@@ -513,10 +513,10 @@ class RezervationModel:
         for row in rows:
             rezervation = Rezervation()
             rezervation.id, rezervation.peopleId, rezervation.berberShopId, rezervation.dateTimeRegistration, rezervation.dateTimeRezervation, \
-            rezervation.status, rezervation.note = row[0], row[1], row[2], row[3], row[4], \
-                                                                          row[5], row[6]
+            rezervation.status, rezervation.note, rezervation.paymentMethod = row[0], row[1], row[2], row[3], row[4], \
+                                                                          row[5], row[6], row[8]
             servicePrice = ServicePrice()
-            servicePrice.id, servicePrice.service_name, servicePrice.price, servicePrice.duration  = row[8], row[10], row[13], row[14]
+            servicePrice.id, servicePrice.service_name, servicePrice.price, servicePrice.duration  = row[9], row[11], row[14], row[15]
             rezervation.priceType = servicePrice
             rezervations.append(rezervation)
         return rezervations

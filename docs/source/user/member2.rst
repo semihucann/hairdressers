@@ -95,15 +95,7 @@ Admin Panel Operations
 - To order table, select order type from select_box and click the order button
 - To edit any person, click the rightmost button on that person's row and
 
-.. figure:: pictures/delete.jpg
-   :scale: 70 %
-   :alt: map to buried treasure
 
-    3 different delete operation by person type for tables(people, berber, owner)
-
-.. figure:: pictures/update.jpg
-   :scale: 70 %
-   :alt: map to buried treasure
 
     3 different update operation by person type for tables(people, berber, owner)
 
@@ -114,8 +106,5 @@ Admin Panel Operations
 
 Navbar Edition
 --------------
-.. figure:: pictures/urls.jpg
-   :scale: 100 %
-   :alt: map to buried treasure
 
     Navbar links changing according to the type of person logging in

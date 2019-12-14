@@ -87,14 +87,15 @@ BarbershopView
 --------------
 In this page, more informations about barbershop is listed which is clicked from all barbershops table. Opening-Closing time, phonenumber
 city,adress, social media accounts with icons etc. many properties is reachable. If the current_user is owner of the that shop, he/she can have acces to contact settings
-page from shop card. What is more, user can direct to rezervation page from the barbershopcard.
+page from shop card.
+What is more, user can direct to rezervation page from the barbershopcard.
 Other than general knowledge of that specific barbershop, there is a form for comment. In this form, a comment can be made for
-barbershop itself, or the existing barbers of that barbershop. User can specifiy rate and write comment title and text. There are optional
-keywords summarize of your comment consisting of three category as price,skill,hygiene. User can click those if it is useful for comment
+barbershop itself, or the existing barbers of that barbershop. User can specifiy rate and write comment title and text.
+There are optional keywords summarize of your comment consisting of three category as price,skill,hygiene. User can click those if it is useful for comment
 or can leave them blank if they don't like there keywords.
 
 .. figure:: pictures/barbershopview1.png
-   :scale: 50 %
+   :scale: 60 %
    :alt: bbview1
 
 Comments Part
@@ -106,7 +107,7 @@ List of the comment that has been made for this barbershops.
 - Likes, Disliked systems works similar to social media app.If you dislike your like will be gone and vice-versa.
 - Likes, Dislikes works as a counter increases or decreases by the clicks.
 
-.. figure:: pictures/barbershopview2.jpg
+.. figure:: pictures/barbershopview2.png
    :scale: 50 %
    :alt: bbview2
 
@@ -122,7 +123,7 @@ options will be provided. Validation for the phone number is made here. Besides,
 store or type of the contact.
 
 .. figure:: pictures/contact.png
-   :scale: 40 %
+   :scale: 50 %
    :alt: contact
 
 
@@ -139,11 +140,11 @@ form, payment method, note, rezervation hour, and the operation type will be arr
 - If appointment belongs to current user, it can be edited or deleted.
 
 .. figure:: pictures/rez1.png
-   :scale: 50 %
+   :scale: 70 %
    :alt: rez1
 
 .. figure:: pictures/rez2.png
-   :scale: 50 %
+   :scale: 70 %
    :alt: rez2
 
 
@@ -155,5 +156,5 @@ Extra Statistic page that is directed from main page. There are 5 subsections st
 the above of the page, it dynamically brings the corresponding statistic table. Generally, top 3 most element of result is listed.
 
 .. figure:: pictures/statistics.png
-   :scale: 30 %
+   :scale: 50 %
    :alt: statistics

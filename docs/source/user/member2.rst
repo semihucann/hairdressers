@@ -8,41 +8,52 @@ Comment  Table
 =====  =========  ==============  ==========  ================  ==============  ======  ==========================  ============  ===============  ===========================
 id     people_id  berber          berbershop  title	        content         rate    date_time                   comment_like  comment_dislike  keywords
 =====  =========  ==============  ==========  ================  ==============  ======  ==========================  ============  ===============  ===========================
-25     87	  NULL            13          izmirin en iyisi  gayet begendik  4       2019-12-14 21:02:56.554483  0             0                Expensive|TalentlessDirty
+25     87	  NULL            13          izmirin en iyisi  gayet begendik  4       2019-12-14 21:02:56.554483  0             0                Expensive,Talentless,Dirty
 =====  =========  ==============  ==========  ================  ==============  ======  ==========================  ============  ===============  ===========================
 
-Berber Table
+Contact_info Table
 
-===  =========  ========   ========   ========     ======  =======    ======
-id   people_id  bshop_id   g_choice   exp_year     s_time  f_time     rates
-===  =========  ========   ========   ========     ======  =======    ======
-2    #4         #23        unisex     8            8       17         3
-===  =========  ========   ========   ========     ======  =======    ======
+===  =============  ========   ================   ===========     ==========  ===========
+id   berbershop_id  type       telephone_number   facebook        twitter     instagram
+===  =============  ========   ================   ===========     ==========  ===========
+5    11             company    5359266963         ertugrulsm      ertugrulsm  ertugrulsmz
+===  =============  ========   ================   ===========     ==========  ===========
 
-Owner Table
+Rezervation Table
 
-=====  =========    =========   =============   ==========  =============== ========
-id     people_id    tc_number   serial_number   vol_number  family_order_no order_no
-=====  =========    =========   =============   ==========  =============== ========
-4       #5          123134433   123             234         435             345
-=====  =========    =========   =============   ==========  =============== ========
+=====  =========    =============   ==========================   ====================  =============== =========  ==========  ==============
+id     people_id    berbershop_id   datetime_registration        datetime_rezervation  status          note       price_type  payment_method
+=====  =========    =============   ==========================   ====================  =============== =========  ==========  ==============
+1      78           11              2019-12-14 15:36:52.266049   2019-12-15 09:00:00   notokey         ordayimmm  1           creditcard
+=====  =========    =============   ==========================   ====================  =============== =========  ==========  ==============
 
-In this project assignment I was responsible for 3 tables. These tables were people, berber and owner tables. In people table, username and mail are unique so I wrote code by checking these rules.
+Commentlikedislike Table
+
+===  =============  =========   ========   ==========
+id   comment_id     people_id   ifliked    ifdisliked
+===  =============  =========   ========   ==========
+1    1              79          1          0
+===  =============  =========   ========   ==========
 
 
 
-Signup Flow
+In this project I was in charge of  4 tables. Even though database rules does permit different length of phone numbers, i have done
+validation for it to be 10 digits exactly. Also, comment title, content can not be null so it is covered also form validation.
+
+
+
+Main Page
 -----------
 
-I've created a register type selection page to register a person to the website.
-3 different types of records meet client on this page.
-When the icons are over, the icon with js rotates and informs about the type of recording.
-Clicking Continue button leads to the signup page. (By subject)
+I've created main page of website (except navigation bar which is common for all page). In the first part of main page there is
+bootstrap carausel which has 3 navigators : who are we , main bar, all barbershops which direct to the corresponding area in the
+same page through buttons on them.
 
 
-.. figure:: pictures/register_type.jpg
+
+.. figure:: pictures/bigcarousel.png
    :scale: 90 %
-   :alt: map to buried treasure
+   :alt: main carousel directing
 
    Register Type Page
 

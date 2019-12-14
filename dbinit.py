@@ -9,6 +9,8 @@ INIT_STATEMENTS = [
     #ERTUGRUL's tables
     #ALTER TABLE Comments
     #ADD COLUMN keywords varchar(100);
+    #ALTER TABLE comments ALTER COLUMN title SET NOT NULL;
+    #ALTER TABLE comments ALTER COLUMN content SET NOT NULL;
     """
     
     CREATE TABLE IF NOT EXISTS Comments(

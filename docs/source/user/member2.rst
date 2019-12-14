@@ -3,7 +3,7 @@ Parts Implemented by Ertugrul Semiz
 
 My Tables in Database
 ---------------------
-People Table
+Comment  Table
 
 =====  ========  ============   ======   ==============   ======   ======
 id     username  name_surname	mail	 password_hash	  gender   age

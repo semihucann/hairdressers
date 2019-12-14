@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Hairdressers - {% block title %}{% endblock %}</title>
-
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
     <script type = "text/javascript"
          src = "{{ url_for('static', filename = 'js/jquery.js') }}" ></script>
@@ -230,10 +230,11 @@
 
             // Datatable adjustments Homepage
             var table = $('#allBerbers').DataTable();
-
+            //search
             $('#myInputStore').on( 'keyup', function () {
                 table.columns(0).search( this.value ).draw();
             } );
+            //search
             $('#myInputCity').on( 'keyup', function () {
                 table.columns(1).search( this.value ).draw();
             } );
@@ -337,6 +338,7 @@
 
         } );
 
+        //discount for berberlist
         function discountpricebutton(buttonid) {
             var xname= buttonid + "panel"
             console.log (xname)
@@ -351,6 +353,7 @@
 
         }
 
+        //edit post get data
         document.getElementById("editpost1").addEventListener("click", inputCopied);
         function inputCopied(){
             var text = document.getElementById('commentedittext').innerHTML;
@@ -364,13 +367,14 @@
 
         }
 
-
+        //rezervation edit today
         function hourCopied(){
             var e = document.getElementById("updatehour");
             var rate = e.options[e.selectedIndex].value;
             document.getElementById('daterez').value = rate;
             document.getElementById("editrezervation").submit();
         }
+        //rezervation edit tomorrow
         function hourCopiedtmrw(){
         var e = document.getElementById("updatehourtmrw");
         var rate = e.options[e.selectedIndex].value;

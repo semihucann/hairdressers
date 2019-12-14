@@ -1,5 +1,5 @@
 import psycopg2 as dbapi2
-from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, LikedDisliked, Berbershop, CreditCard
+from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, LikedDisliked, Berbershop, CreditCard, ServicePrice
 import datetime
 
 import os
@@ -502,7 +502,7 @@ class RezervationModel:
     def getAllByBarberShop(self,berbershopid,currenttime,tomorrow):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
-            cursor.execute("""SELECT * from Rezervation as r where r.berbershop_id = %s and r.datetime_rezervation >= %s and 
+            cursor.execute("""SELECT r.*, s.* from Rezervation as r left join serviceprices as s on r.price_type = s.id where r.berbershop_id = %s and r.datetime_rezervation >= %s and 
                 r.datetime_rezervation < %s order by r.datetime_rezervation asc
             """,
                            (berbershopid,currenttime,tomorrow))
@@ -513,8 +513,11 @@ class RezervationModel:
         for row in rows:
             rezervation = Rezervation()
             rezervation.id, rezervation.peopleId, rezervation.berberShopId, rezervation.dateTimeRegistration, rezervation.dateTimeRezervation, \
-            rezervation.status, rezervation.note, rezervation.priceType = row[0], row[1], row[2], row[3], row[4], \
-                                                                          row[5], row[6], row[7]
+            rezervation.status, rezervation.note = row[0], row[1], row[2], row[3], row[4], \
+                                                                          row[5], row[6]
+            servicePrice = ServicePrice()
+            servicePrice.id, servicePrice.service_name, servicePrice.price, servicePrice.duration  = row[8], row[10], row[13], row[14]
+            rezervation.priceType = servicePrice
             rezervations.append(rezervation)
         return rezervations
 
@@ -683,6 +686,64 @@ class Berbermodel:
                 (berber.gender_choice, berber.experience_year, berber.start_time, berber.finish_time, berber.people_id))
         return True
 
+
+    def update_berber_employment(self, id, shop_id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute(
+                """UPDATE Berber SET berbershop_id = %s where id = %s""",
+                (shop_id, id))
+
+    def get_unemployed_barbers(self): #needed for barbershop details page
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("Select p.id, p.name_surname, p.age, b.id, b.experience_year from berber as b join people as p  on b.People_id = p.id where b.berbershop_id = null")
+            rows = cursor.fetchall()
+
+            berbers = []
+            if rows is None:
+                return berbers
+
+            for row in rows:
+                berber = Berber()
+                people = People()
+
+                people.id = row[0]
+                people.name_surname = row[1]
+                people.age = row[2]
+                berber.id = row[3]
+                berber.experience_year = row[4]
+
+                berber.people = people
+                berbers.append(berber)
+            return berbers
+
+
+    def get_barbers_for_details_page_by_shop_id(self, shop_id): #needed for barbershop details page
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("Select p.id, p.name_surname, p.age, b.id, b.experience_year, b.berbershop_id from berber as b join people as p  on b.People_id = p.id where b.berbershop_id is NULL or b.berbershop_id = %s order by b.berbershop_id", (shop_id,))
+            rows = cursor.fetchall()
+
+            berbers = []
+            if rows is None:
+                return berbers
+
+            for row in rows:
+                berber = Berber()
+                people = People()
+
+                people.id = row[0]
+                people.name_surname = row[1]
+                people.age = row[2]
+                berber.id = row[3]
+                berber.experience_year = row[4]
+                berber.berber_shop_id = row[5]
+
+                berber.people = people
+                berbers.append(berber)
+            return berbers
+
     def getBerbersByBerbershop(self, berbershopid): #needed for berbershopview page for commenting.
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
@@ -847,6 +908,13 @@ class Berbershopmodel:
                            (barbershop.shopname, barbershop.location, barbershop.city, barbershop.openingtime, barbershop.closingtime, barbershop.tradenumber, barbershop.id))
 
 
+    def delete_barbershop(self, id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                DELETE from Berbershop where id = %s
+            """, (id,))
+
     def get_berbershops_by_people_owner_id(self, people_owner_id):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
@@ -941,7 +1009,23 @@ class ServicepriceModel:
                              VALUES (%s , %s , %s , %s , %s , %s)""", (serviceprice.shop_id, serviceprice.service_name,
                                                                         serviceprice.definition, serviceprice.gender,
                                                                         serviceprice.price, serviceprice.duration))
+    def listByBerberShop(self,berbershopid):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""SELECT * from serviceprices where shop_id = %s """,
+                           (berbershopid,))
 
+        rows = cursor.fetchall()
+
+        services = []
+        for row in rows:
+            sv = ServicePrice()
+            sv.id = row[0]
+            sv.service_name = row[2]
+            sv.price = row[5]
+            sv.duration = row[6]
+            services.append(sv)
+        return services
 
 ######################################################################################
 

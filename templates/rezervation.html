@@ -35,6 +35,7 @@
       <th scope="col">#</th>
       <th scope="col">Hour</th>
       <th scope="col">Status</th>
+      <th scope="col">Service</th>
       <th scope="col">Note</th>
       <th scope="col">Action</th>
     </tr>
@@ -69,6 +70,11 @@
               {% else %}
                 <td>Not Confirmed</td>
               {% endif %}
+               {% if rez.priceType != None %}
+                   <td>{{rez.priceType.service_name}} - {{rez.priceType.price}}TL - {{rez.priceType.duration}} min</td>
+                {% else %}
+                  <td>No Price Type</td>
+                {% endif %}
               <td>{{rez.note}}</td>
               <td>
                    {% if rez.peopleId ==  current_user.id %}
@@ -118,9 +124,11 @@
 
     <div class="form-group">
     <label for="exampleFormControlSelect1">Payment</label>
-    <select name="todaypayment"class="form-control" id="exampleFormControlSelect2">
-      <option value="creditcart">Credit Cart</option>
-      <option value="cash">Cash</option>
+    <select name="pricetype"class="form-control" id="exampleFormControlSelect2">
+        <option disabled selected value="-1"> -- select an option -- </option>
+        {% for p in prices %}
+             <option value="{{p.id}}">{{p.service_name}} -  Price : {{p.price}}TL - Duration : {{p.duration}} min  </option>
+        {% endfor %}
     </select>
   </div>
 
@@ -131,11 +139,11 @@
   </div>
       {%if current_user.is_active  %}
         <button style="height:40px;" type="submit" class="btn btn-primary">Submit</button>
-      </form>
+
       {% else %}
         <a href="/signin" style="height:40px;" type="submit" class="btn btn-primary">Submit</a>
       {% endif %}
-
+       </form>
 
 
 
@@ -148,7 +156,7 @@
 
 
 <div class="tomorrowrezervation" style="display:none;">
-<form>
+
 
     <h3>Tomorrow Rezervation </h3>
     <strong>{{tomorrow}}</strong>
@@ -158,6 +166,7 @@
           <th scope="col">#</th>
           <th scope="col">Hour</th>
           <th scope="col">Status</th>
+          <th scope="col">PriceType</th>
           <th scope="col">Note</th>
           <th scope="col">Action</th>
         </tr>
@@ -174,10 +183,10 @@
                         <select class="form-control" id="updatehourtmrw">
                              <option value="{{rez.dateTimeRezervation}}" selected disabled hidden> Date at  {{rez.dateTimeRezervation}} </option>
                               {% for o in options %}
-                                 {% if o > hour %}
+
                                     <option value="{{o}}:00">{{o}}:00</option>
                                     <option value="{{o}}:30">{{o}}:30</option>
-                                 {% endif %}
+
                               {% endfor %}
                           </select>
                         </div>
@@ -192,6 +201,13 @@
                 {% else %}
                   <td>Not Confirmed</td>
                 {% endif %}
+
+                 {% if rez.priceType.service_name != None %}
+                   <td>{{rez.priceType.service_name}} - {{rez.priceType.price}}TL - {{rez.priceType.duration}} min</td>
+                {% else %}
+                  <td>No Price Type</td>
+                {% endif %}
+
 
                 <td>{{rez.note}}</td>
                 <td>
@@ -227,45 +243,47 @@
 
 
 
-  <form action="/rezervation/{{id}}" method="post">
-    <input name="formvalue" value="2" type="hidden">
+ <form action="/rezervation/{{id}}" method="POST">
+     <input name="formvalue" value="2" type="hidden">
   <div class="form-group">
-    <label for="exampleFormControlSelect33">Beginning Time</label>
-    <select class="form-control" name="tomorrowhour" id="exampleFormControlSelect33">
+    <label for="exampleFormControlSelect3">Beginning Time</label>
+    <select class="form-control" name="tomorrowhour" id="exampleFormControlSelect3">
       {% for o in options %}
 
-           <option value="{{o}}:00">{{o}}:00</option>
-           <option value="{{o}}:30">{{o}}:30</option>
+            <option value="{{o}}:00">{{o}}:00</option>
+            <option value="{{o}}:30">{{o}}:30</option>
 
       {% endfor %}
     </select>
   </div>
 
     <div class="form-group">
-    <label for="exampleFormControlSelect4">Payment</label>
-    <select name="tomorrowpayment" class="form-control" id="exampleFormControlSelect4">
-      <option value="creditcart">Credit Cart</option>
-      <option value="cash">Cash</option>
+    <label for="exampleFormControlSelect1">Payment</label>
+    <select name="pricetype"class="form-control" id="exampleFormControlSelect22">
+        <option selected value="-1"> -- select an option -- </option>
+        {% for p in prices %}
+            <option value="{{p.id}}">{{p.service_name}} -  Price : {{p.price}}TL - Duration : {{p.duration}} min  </option>
+        {% endfor %}
+
     </select>
   </div>
 
 
   <div class="form-group">
-    <label  for="exampleFormControlTextarea1">Note</label>
-    <textarea name="tomorrownote" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <label for="exampleFormControlTextarea1">Note</label>
+    <textarea class="form-control" name="tomorrownote" id="exampleFormControlTextarea11" rows="3"></textarea>
   </div>
-      {%if current_user.is_active > 0  %}
-       <button style="height:40px;" type="submit" class="btn btn-primary">Submit</button>
-        </form>
-     {% else %}
-        <a href="/signin" style="height:40px;" type="submit" class="btn btn-primary">Submit</a>
-        </form>
-    {% endif %}
+      {%if current_user.is_active  %}
+        <button style="height:40px;" type="submit" class="btn btn-primary">Submit</button>
+
+      {% else %}
+        <a href="/signin" style="height:40px;"  class="btn btn-primary">Submit</a>
+      {% endif %}
+
+ </form>
 
 </div>
 
-
-</div>
 
 
 

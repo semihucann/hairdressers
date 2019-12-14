@@ -93,7 +93,7 @@ page from shop card.
 Other than general knowledge of that specific barbershop, there is a form for comment. In this form, a comment can be made for
 barbershop itself, or the existing barbers of that barbershop. User can specifiy rate and write comment title and text.
 
--There are optional keywords summarize of your comment consisting of three category as price,skill,hygiene. User can click those if it is useful for comment
+-There are optional keywords summarize your comment consisting of three category as price,skill,hygiene. User can click those if it is useful for comment
 or can leave them blank if they don't like there keywords.
 
 .. figure:: pictures/barbershopview1.png
@@ -101,13 +101,13 @@ or can leave them blank if they don't like there keywords.
    :alt: bbview1
 
 Comments Part
-List of the comment that has been made for this barbershops.
+List of the comment that has been made for this barbershop.
 
 - If comment belongs to current user, comment will be with editable text and title, also select input rerating the shop managed with edit button
 - If comment belongs to current user, comment can be deleted via delete button
 - If there is current user in the system, comments can be liked or disliked yet if there is not, it will direct to signin page
-- Likes-Dislike system works similar to social media apps. If you dislike comment that you already liked, your like  will be gone and vice-versa.
-- Likes-Dislike system works as a counter, increases or decreases by the clicks.
+- Like-Dislike system works similar to social media apps. If you dislike comment that you already liked, your like  will be gone and vice-versa.
+- Like-Dislike system works as a counter, increases or decreases by the clicks.
 
 .. figure:: pictures/barbershopview2.png
    :scale: 50 %

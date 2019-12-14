@@ -27,10 +27,18 @@ id     people_id    tc_number   serial_number   vol_number  family_order_no orde
 4       #5          123134433   123             234         435             345
 =====  =========    =========   =============   ==========  =============== ========
 
+In this project assignment I was responsible for 3 tables. These tables were people, berber and owner tables. In people table, username and mail are unique so I wrote code by checking these rules.
+
 
 
 Signup Flow
 -----------
+
+I've created a register type selection page to register a person to the website.
+3 different types of records meet client on this page.
+When the icons are over, the icon with js rotates and informs about the type of recording.
+Clicking Continue button leads to the signup page. (By subject)
+
 
 .. figure:: pictures/register_type.jpg
    :scale: 90 %
@@ -38,8 +46,11 @@ Signup Flow
 
    Register Type Page
 
+According to the register type preference, I redirected the client to one of the pages in the image below. On this page I received information from the user in accordance with the type of user, barber and owner. I have written 3 different insert functions to add the incoming information to the tables. Username, mail and tc_number is unique so I checked this values for validation.
+
+
 .. figure:: pictures/signup.jpg
-   :scale: 50 %
+   :scale: 80 %
    :alt: map to buried treasure
 
    Signup Page
@@ -51,6 +62,8 @@ Signin Flow
    :alt: map to buried treasure
 
    Signin Page
+
+In signin page, I get username and password from client. After this operation, I hash the password with passlib.hash library and check.
 
 .. figure:: pictures/signin2.jpg
    :scale: 90 %
@@ -64,18 +77,11 @@ Signin Flow
 
 Admin Panel
 -----------
-.. figure:: pictures/admin_panel1.jpg
-   :scale: 80 %
+.. figure:: pictures/admin_panel.jpg
+   :scale: 50 %
    :alt: map to buried treasure
 
    Admin Panel
-
-
-.. figure:: pictures/admin_panel2.jpg
-   :scale: 80 %
-   :alt: map to buried treasure
-
-   Admin Panel 2
 
 Admin Panel Operations
 ----------------------

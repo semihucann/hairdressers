@@ -55,10 +55,10 @@ same page through buttons on them.
    :scale: 50 %
    :alt: main carousel directing
 
-Who are we  :
+- Who are we  :
 Information about our system. Informations about Customers,Barbers,Owners and their functionalities.
 
-Main Bar :
+- Main Bar :
 General links exists here. Visitors directly reach most of the features from this  sliding carousel.
 
 
@@ -88,10 +88,12 @@ BarbershopView
 In this page, more informations about barbershop is listed which is clicked from all barbershops table. Opening-Closing time, phonenumber
 city,adress, social media accounts with icons etc. many properties is reachable. If the current_user is owner of the that shop, he/she can have acces to contact settings
 page from shop card.
-What is more, user can direct to rezervation page from the barbershopcard.
+
+- What is more, user can direct to rezervation page from the barbershopcard.
 Other than general knowledge of that specific barbershop, there is a form for comment. In this form, a comment can be made for
 barbershop itself, or the existing barbers of that barbershop. User can specifiy rate and write comment title and text.
-There are optional keywords summarize of your comment consisting of three category as price,skill,hygiene. User can click those if it is useful for comment
+
+-There are optional keywords summarize of your comment consisting of three category as price,skill,hygiene. User can click those if it is useful for comment
 or can leave them blank if they don't like there keywords.
 
 .. figure:: pictures/barbershopview1.png

@@ -558,10 +558,12 @@ class Peoplemodel:
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("SELECT id FROM People where username = %s or mail = %s ", (people.username, people.mail))
-        row = cursor.fetchone()
+        row = cursor.fetchall()
         if (row == None):
             return False
-        elif (row[0]==people.id):
+        elif len(row) > 1:
+            return True
+        elif len(row) == 1 and row[0]==people.id:
             return False
         return True
 

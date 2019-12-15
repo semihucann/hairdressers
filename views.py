@@ -656,11 +656,21 @@ def admin_panel():
                     person.role = "user"
                     person.id = i.id
 
+                    #Validation
+                    if len(person.name_surname)>50 or len(person.username) >50 or len(person.mail)>300:
+                        return render_template("update.html", person=i, message="You should check input validations.")
+
                     if i.role == "user" or i.role == "admin":
-                        people.update(person)
+
+                        if(people.update(person)):
+                            return render_template("admin_panel.html", people=peoples, berbers=berber_list,owners=owner_list, message="True")
+                        else:
+                            return render_template("admin_panel.html", people=peoples, berbers=berber_list,owners=owner_list, message="False")
                     elif i.role == "berber":
-                        print(people.update(person))
-                        #uyarı mesajı gönder
+                        if (people.update(person)):
+                            return render_template("admin_panel.html", people=peoples, berbers=berber_list,owners=owner_list, message="True")
+                        else:
+                            return render_template("admin_panel.html", people=peoples, berbers=berber_list,owners=owner_list, message="False")
                         berbers = Berbermodel()
                         berber = Berber()
                         berber.people_id = i.id
@@ -670,10 +680,12 @@ def admin_panel():
                         berber.finish_time = request.form["finish_time"][:2]
                         berbers = Berbermodel()
                         berbers.update_berber(berber)
-                        # uyarı mesajı gönder
+                        return render_template("admin_panel.html", people=peoples, berbers=berber_list, owners=owner_list, message="True")
                     elif i.role == "owner":
-                        print(people.update(person))
-                        # uyarı mesajı gönder
+                        if (people.update(person)):
+                            return render_template("admin_panel.html", people=peoples, berbers=berber_list,owners=owner_list, message="True")
+                        else:
+                            return render_template("admin_panel.html", people=peoples, berbers=berber_list,owners=owner_list, message="False")
                         owner = Owner()
                         owner.people_id = owners.get_id(person.username)[0]
                         owner.tc_number = request.form["tc_number"]
@@ -682,6 +694,7 @@ def admin_panel():
                         owner.family_order_no = request.form["family_order_no"]
                         owner.order_no = request.form["order_no"]
                         owners.update_owner(owner)
+                        return render_template("admin_panel.html", people=peoples, berbers=berber_list, owners=owner_list, message="True")
 
         elif "order_id" in request.form["edit"]:
             peoples = sorted(peoples, key=lambda people: people.id)   # sort by age

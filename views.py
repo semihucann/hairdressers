@@ -655,6 +655,7 @@ def admin_panel():
                     person.age = request.form["age"]
                     person.role = "user"
                     person.id = i.id
+
                     if i.role == "user" or i.role == "admin":
                         people.update(person)
                     elif i.role == "berber":

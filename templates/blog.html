@@ -39,9 +39,15 @@
                     <div class="media-right">
                         <span> posted on {{post.date_time}}</span>
                     </div>
+                    {% if current_user.is_authenticated == False %}
+                    <div class="media-right">
+                        <a href="{{ url_for('signin') }}">New Post</a>
+                    </div>
+                    {%else%}
                     <div class="media-right">
                         <a href="{{ url_for('comment_page', people_id=current_user.id, post_id=post.id) }}">New Comment</a>
                     </div>
+                    {%endif%}
 
                 </div>
 

@@ -154,4 +154,15 @@ class Post:
         self.dislike = None
         self.subject = None
         self.date_time = None
-        self.peopleobj = None
+        self.comments = None
+
+class Post_comment:
+    def __init__(self):
+        self.id = None
+        self.post_id = None
+        self.people_id = None
+        self.title = None
+        self.content = None
+        self.like = 0
+        self.dislike = 0
+        self.date_time = None

@@ -3,9 +3,9 @@ import base64
 from flask import render_template, Flask, request, redirect, url_for, current_app
 import datetime
 
-from Models import CommentModel, ContactInfoModel, StatisticsModel
+from Models import CommentModel, ContactInfoModel, StatisticsModel, Postsmodel, PostCommentmodel
 from Models import Peoplemodel, Berbermodel, Ownermodel, CreditcardModel, Berbershopmodel, RezervationModel, ServicepriceModel
-from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, CreditCard, Berbershop, ServicePrice
+from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, CreditCard, Berbershop, ServicePrice, Post, Post_comment
 from passlib.hash import pbkdf2_sha256 as hasher
 from flask_login import LoginManager, login_user, logout_user, current_user
 import base64
@@ -308,22 +308,64 @@ def contact_settings(id):
 
 
 
-def blog_page(post_id=None):
+def blog_page():
+    posts = Postsmodel().getAll()
 
-    return render_template("blog.html", name="blog_page")
+    return render_template("blog.html", name="blog_page", posts=posts)
 
 
-def newpost_page(post_id):
+def newpost_page(people_id):
     if request.method == 'POST':
         post = Post()
-        post.post_id = post_id
+        post.people_id = people_id
         post.subject = request.form["category"]
         post.post_title = request.form["title"]
         post.post_content = request.form["content"]
-        PostsModel().insert(post)
-        return redirect(url_for('blog_page', id=post_id))
-
+        post.like = 0
+        post.dislike = 0
+        post.date_time = datetime.datetime.now()
+        Postsmodel().insert(post)
+        return redirect(url_for('blog_page'))
     return render_template("newpost.html", title="Newpost Page")
+
+def comment_page(post_id, people_id):
+    if request.method == 'POST':
+        post_comment = Post_comment()
+        post_comment.post_id = post_id
+        post_comment.people_id = people_id
+        post_comment.title = request.form["title"]
+        post_comment.content = request.form["content"]
+        post_comment.like = 0
+        post_comment.dislike = 0
+        post_comment.date_time = datetime.datetime.now()
+        PostCommentmodel().insert(post_comment)
+        return redirect(url_for('blog_page'))
+    return render_template("post_comment.html", title="Post Comment Page")
+
+
+def like_post(post_id):
+    Postsmodel().increaseLikeNumber(post_id)
+    return redirect(url_for('blog_page'))
+
+def dislike_post(post_id):
+    Postsmodel().increaseDislikeNumber(post_id)
+    return redirect(url_for('blog_page'))
+
+def like_comment(comment_id):
+    PostCommentmodel().increaseLikeNumber(comment_id)
+    return redirect(url_for('blog_page'))
+
+def dislike_comment(comment_id):
+    PostCommentmodel().increaseDislikeNumber(comment_id)
+    return redirect(url_for('blog_page'))
+
+def post_delete(post_id):
+    Postsmodel().delete_post(post_id)
+    return redirect(url_for('blog_page'))
+
+def comment_delete(id):
+    PostCommentmodel().delete_comment(id)
+    return redirect(url_for('blog_page'))
 
 
 def profile_page():

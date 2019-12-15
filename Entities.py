@@ -166,3 +166,13 @@ class Post_comment:
         self.like = 0
         self.dislike = 0
         self.date_time = None
+
+class Campaign:
+    def __init__(self):
+        self.id = None
+        self.barbershop_id = None
+        self.campaign_name = None
+        self.definition = None
+        self.start_date = None
+        self.end_date = None
+        self.discount = None

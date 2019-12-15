@@ -2,8 +2,8 @@ from flask import render_template, Flask, request, redirect, url_for, current_ap
 import datetime
 
 from Models import CommentModel, ContactInfoModel, StatisticsModel, Postsmodel, PostCommentmodel
-from Models import Peoplemodel, Berbermodel, Ownermodel, CreditcardModel, Berbershopmodel, RezervationModel, ServicepriceModel
-from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, CreditCard, Berbershop, ServicePrice, Post, Post_comment
+from Models import Peoplemodel, Berbermodel, Ownermodel, CreditcardModel, Berbershopmodel, RezervationModel, ServicepriceModel,campaignModel
+from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, CreditCard, Berbershop, ServicePrice, Post, Post_comment, Campaign
 from passlib.hash import pbkdf2_sha256 as hasher
 from flask_login import LoginManager, login_user, logout_user, current_user
 import base64
@@ -369,6 +369,24 @@ def post_delete(post_id):
 def comment_delete(id):
     PostCommentmodel().delete_comment(id)
     return redirect(url_for('blog_page'))
+
+def newcampaign(barbershop_id):
+    if request.method == 'POST':
+        campaign = Campaign()
+        campaign.barbershop_id = people_id
+        campaign.campaign_name = request.form["campaign_name"]
+        campaign.definition = request.form["definition"]
+        campaign.start_date = request.form["start_date"]
+        campaign.end_date = request.form["end_date"]
+        campaign.discount = request.form["discount"]
+
+        campaignModel().insert(campaign)
+        return redirect(url_for('campaigns_page'))
+    return render_template("newcampaign.html", title="Newcampaign Page")
+
+def campaign_page():
+    campaign = campaignModel().get_campaigns()
+    return render_template("blog.html", name="blog_page", posts=posts)
 
 
 def profile_page():

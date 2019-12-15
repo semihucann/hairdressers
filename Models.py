@@ -894,11 +894,12 @@ class Berbershopmodel:
     def insert(self, berbershop):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
-            cursor.execute("""INSERT INTO Berbershop (owner_people_id, shopname, location, city, opening_time, closing_time, trade_number) 
-                             VALUES (%s , %s , %s , %s , %s , %s, %s)""", (berbershop.ownerpeople_id, berbershop.shopname,
+            cursor.execute("""INSERT INTO Berbershop (owner_people_id, shopname, location, city, opening_time, closing_time, trade_number, shop_logo) 
+                             VALUES (%s , %s , %s , %s , %s , %s, %s, %s)""", (berbershop.ownerpeople_id, berbershop.shopname,
                                                                         berbershop.location, berbershop.city,
                                                                         berbershop.openingtime, berbershop.closingtime,
-                                                                        berbershop.tradenumber))
+                                                                        berbershop.tradenumber,
+                                                                        berbershop.shop_logo))
 
     def update(self, barbershop):
         with dbapi2.connect(url) as connection:
@@ -949,15 +950,15 @@ class Berbershopmodel:
     def get_berbershop_with_number_of_employee_by_id(self, id):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
-            cursor.execute("SELECT s.id, s.owner_people_id, s.shopname, s.location, s.city, s.opening_time, s.closing_time, s.trade_number, count(b.id) from Berbershop s left join Berber b on s.id = b.berbershop_id where s.id = %s group by s.id", (id,))
+            cursor.execute("SELECT s.id, s.owner_people_id, s.shopname, s.location, s.city, s.opening_time, s.closing_time, s.trade_number, count(b.id), s.shop_logo from Berbershop s left join Berber b on s.id = b.berbershop_id where s.id = %s group by s.id", (id,))
             rows = cursor.fetchall()
 
         berbershops = []
         for row in rows:
             berbershop = Berbershop()
             berbershop.id, berbershop.ownerpeople_id, berbershop.shopname, berbershop.location, berbershop.city, \
-            berbershop.openingtime, berbershop.closingtime, berbershop.tradenumber, berbershop.numberofemployee = \
-            row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8]
+            berbershop.openingtime, berbershop.closingtime, berbershop.tradenumber, berbershop.numberofemployee, berbershop.shop_logo = \
+            row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9]
 
             berbershops.append(berbershop)
         if len(berbershops) == 0:

@@ -8,6 +8,8 @@ from Models import Peoplemodel, Berbermodel, Ownermodel, CreditcardModel, Berber
 from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, CreditCard, Berbershop, ServicePrice
 from passlib.hash import pbkdf2_sha256 as hasher
 from flask_login import LoginManager, login_user, logout_user, current_user
+import base64
+
 
 
 #Ertuğrul's Function
@@ -329,6 +331,8 @@ def profile_page():
             shop.openingtime = request.form["open_time"]
             shop.closingtime = request.form["close_time"]
             shop.tradenumber = request.form["trade"]
+            shop.shop_logo = request.files["file"].read()
+
             Berbershopmodel().insert(shop)
         elif "delete_card" in request.form:
             CreditcardModel().delete_credit_card(request.form["delete_card"])
@@ -408,7 +412,11 @@ def barbershop_details_page(id):
     barbers = Berbermodel().get_barbers_for_details_page_by_shop_id(id)
     shop = Berbershopmodel().get_berbershop_with_number_of_employee_by_id(id)
     prices = ServicepriceModel().listByBerberShop(id)
-    return render_template("barbershop_details.html", title="Barbershop", shop=shop, barbers=barbers, prices=prices)
+    image_logo = None
+    if shop.shop_logo is not None:
+        image_logo = base64.b64encode(shop.shop_logo.tobytes()).decode("utf-8")
+
+    return render_template("barbershop_details.html", title="Barbershop", shop=shop, barbers=barbers, prices=prices, image=image_logo)
 
 
 def barbershop_delete(id):

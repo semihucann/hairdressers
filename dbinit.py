@@ -119,9 +119,11 @@ INIT_STATEMENTS = [
         city VARCHAR(50),
         opening_time TIME,
         closing_time TIME,
-        trade_number NUMERIC(10) NOT NULL
+        trade_number NUMERIC(10) NOT NULL,
+        shop_logo bytea 
     )   
     """,
+    # blob data type for postgresql is bytea
     """
     CREATE TABLE IF NOT EXISTS Serviceprices(
         id SERIAL PRIMARY KEY,

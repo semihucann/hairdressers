@@ -667,10 +667,7 @@ def admin_panel():
                         else:
                             return render_template("admin_panel.html", people=peoples, berbers=berber_list,owners=owner_list, message="False")
                     elif i.role == "berber":
-                        if (people.update(person)):
-                            return render_template("admin_panel.html", people=peoples, berbers=berber_list,owners=owner_list, message="True")
-                        else:
-                            return render_template("admin_panel.html", people=peoples, berbers=berber_list,owners=owner_list, message="False")
+                        people.update(person)
                         berbers = Berbermodel()
                         berber = Berber()
                         berber.people_id = i.id
@@ -682,10 +679,7 @@ def admin_panel():
                         berbers.update_berber(berber)
                         return render_template("admin_panel.html", people=peoples, berbers=berber_list, owners=owner_list, message="True")
                     elif i.role == "owner":
-                        if (people.update(person)):
-                            return render_template("admin_panel.html", people=peoples, berbers=berber_list,owners=owner_list, message="True")
-                        else:
-                            return render_template("admin_panel.html", people=peoples, berbers=berber_list,owners=owner_list, message="False")
+                        people.update(person)
                         owner = Owner()
                         owner.people_id = owners.get_id(person.username)[0]
                         owner.tc_number = request.form["tc_number"]

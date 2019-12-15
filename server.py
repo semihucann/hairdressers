@@ -36,6 +36,7 @@ def create_app():
     app2.add_url_rule("/contact/<id>", view_func=views.contact_settings, methods=["GET","POST"])
     app2.add_url_rule("/contact/delete/<id>", view_func=views.contact_delete, methods=["POST"])
     app2.add_url_rule("/blog", view_func=views.blog_page)
+    app2.add_url_rule("/campaign", view_func=views.campaign_page)
     app2.add_url_rule("/profile", view_func=views.profile_page, methods=["GET", "POST"])
     app2.add_url_rule("/addcreditcard", view_func=views.addcreditcard_page, methods=["GET", "POST"])
     app2.add_url_rule("/updatecreditcard", view_func=views.updatecreditcard_page, methods=["GET", "POST"])

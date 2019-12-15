@@ -992,8 +992,8 @@ class Berbershopmodel:
         # return one berbershop object
         berbershop = Berbershop()
         berbershop.id, berbershop.ownerpeople_id, berbershop.shopname, berbershop.location, berbershop.city, \
-        berbershop.openingtime, berbershop.closingtime, berbershop.tradenumber = row[0], row[1], row[2], row[3], row[4], \
-                                                                                 row[5], row[6], row[7]
+        berbershop.openingtime, berbershop.closingtime, berbershop.tradenumber, berbershop.shop_logo = row[0], row[1], row[2], row[3], row[4], \
+                                                                                 row[5], row[6], row[7], row[8]
         return berbershop
 
 

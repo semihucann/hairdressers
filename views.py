@@ -190,6 +190,10 @@ def barbershop_view(id):
         berbershopModel = Berbershopmodel()
         berbershop = berbershopModel.getById(id)
 
+        #Base 64 Format
+        if berbershop.shop_logo != None:
+            berbershop.shop_logo = base64.b64encode(berbershop.shop_logo.tobytes()).decode("utf-8")
+
         contactInfoModel = ContactInfoModel()
         contactInfo = contactInfoModel.getByBarbershopId(idint)
         berbershop.contactInfo = contactInfo
@@ -236,6 +240,8 @@ def barbershop_view(id):
         commentrate = request.form["bcommentrate"]
         berberid = request.form["berber"]
         image = request.files["commentfile"].read()
+        if len(image) <= 2: #escape char
+            image = None
         berberidint = int(berberid)
 
         if berberidint == -1: #berbershop itself

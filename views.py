@@ -301,6 +301,11 @@ def blog_page(post_id=None):
     return render_template("blog.html", name="blog_page")
 
 
+def campaign_page():
+
+    return render_template("campaigns.html")
+
+
 def newpost_page(post_id):
     if request.method == 'POST':
         post = Post()
@@ -326,6 +331,8 @@ def profile_page():
             shop.closingtime = request.form["close_time"]
             shop.tradenumber = request.form["trade"]
             shop.shop_logo = request.files["file"].read()
+            if len(request.files["file"].filename) == 0:
+                shop.shop_logo = None
 
             Berbershopmodel().insert(shop)
         elif "delete_card" in request.form:
@@ -333,7 +340,7 @@ def profile_page():
         else:
             credit_card = CreditCard()
             credit_card.name = request.form["name_surname"]
-            credit_card.card_number = request.form["number"]
+            credit_card.card_number = int(request.form["number"].replace(" ", ""))
             last_date = request.form["date"]
             if "/" not in last_date:
                 return render_template("profile.html")
@@ -368,7 +375,7 @@ def updatecreditcard_page():
     if request.method == 'POST':
 
         credit_card.name = request.form["name_surname"]
-        credit_card.card_number = request.form["number"]
+        credit_card.card_number = int(request.form["number"].replace(" ", ""))
         last_date = request.form["date"]
         if "/" not in last_date:
             return render_template("profile.html")

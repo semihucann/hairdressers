@@ -6,7 +6,11 @@
 <!-- Berbershop Info -->
 <div id="berbershopview_wrapper">
     <div id="berbershop_card"  align="left">
-      <img src="{{ url_for('static', filename='images/barbershopcard.jpg') }}" style="height:80px;" alt="John" >
+      {% if berbershop.shop_logo == None %}
+        <img src="{{ url_for('static', filename='images/barbershopcard.jpg') }}" style="height:80px;" alt="John" >
+      {% else %}
+         <img style="width : 20%;" alt="Barbershop" src="data:image/png;base64,{{ berbershop.shop_logo }}" id="logo" >
+      {% endif %}
       <h3>{{berbershop.shopname}}</h3>
       <p class="berbershopcard_title">{{berbershop.city}}</p>
       <p>{{berbershop.location }}</p>
@@ -40,7 +44,7 @@
     <div class="berbershop_comment" style="width : 60%;">
 
 
-        <form id="commentbarber" method="post" action="">
+        <form id="commentbarber" method="post" action="" enctype="multipart/form-data">
 
           <div class="form-group">
             <label for="exampleFormControlSelect1">Select Berber</label>
@@ -106,6 +110,12 @@
         <input type="checkbox" class="group3" value="7" name="key" />
         Clean
         <input type="checkbox" class="group3" value="8" name="key" checked />
+    </div>
+     <div class="field">
+        <label class="label">Upload Image</label>
+        <div class="control">
+            <input type="file" name="commentfile" class="input" accept="image/*"/>
+        </div>
     </div>
 
         <br>
@@ -189,6 +199,9 @@
             <p>{{comment.content}}</p>
           {% endif %}
 
+          {% if comment.image != None%}
+             <img style="width : 20%;" alt="comment" src="data:image/png;base64,{{ comment.image }}" id="cimage" >
+          {% endif %}
         </div><!-- /panel-body -->
         </div><!-- /panel panel-default -->
         </div><!-- /col-sm-5 -->

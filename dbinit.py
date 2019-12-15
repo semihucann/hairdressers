@@ -11,6 +11,7 @@ INIT_STATEMENTS = [
     #ADD COLUMN keywords varchar(100);
     #ALTER TABLE comments ALTER COLUMN title SET NOT NULL;
     #ALTER TABLE comments ALTER COLUMN content SET NOT NULL;
+    #ALTER TABLE Comments ADD COLUMN image bytea;
     """
     
     CREATE TABLE IF NOT EXISTS Comments(

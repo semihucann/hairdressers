@@ -294,3 +294,13 @@ Owner Model
                     owner.order_no = i[6]
                     owner_list.append(owner)
                 return owner_list
+
+
+Validation
+-----------
+I checked validation of inputs with control blocks. Validation examples are below.
+
+.. code-block:: python
+
+                    if len(person.name_surname)>50 or len(person.username) >50 or len(person.mail)>300:
+                        return render_template("update.html", person=i, message="You should check input validations.")

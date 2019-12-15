@@ -1,3 +1,5 @@
+import base64
+
 from flask import render_template, Flask, request, redirect, url_for, current_app
 import datetime
 
@@ -188,6 +190,10 @@ def barbershop_view(id):
         berbershopModel = Berbershopmodel()
         berbershop = berbershopModel.getById(id)
 
+        #Base 64 Format
+        if berbershop.shop_logo != None:
+            berbershop.shop_logo = base64.b64encode(berbershop.shop_logo.tobytes()).decode("utf-8")
+
         contactInfoModel = ContactInfoModel()
         contactInfo = contactInfoModel.getByBarbershopId(idint)
         berbershop.contactInfo = contactInfo
@@ -203,6 +209,8 @@ def barbershop_view(id):
 
         for c in commentlist:
             c.dateTime = datetime.date(c.dateTime.year, c.dateTime.month, c.dateTime.day)
+            if c.image != None :
+                c.image = base64.b64encode(c.image.tobytes()).decode("utf-8")
             if x==1 :
                 c.likedDislikedobj = commentModel.commentCurrentUserRelationship(c.id, current_user.id)
 
@@ -231,6 +239,9 @@ def barbershop_view(id):
         commenttext = request.form["bcommenttext"]
         commentrate = request.form["bcommentrate"]
         berberid = request.form["berber"]
+        image = request.files["commentfile"].read()
+        if len(image) <= 2: #escape char
+            image = None
         berberidint = int(berberid)
 
         if berberidint == -1: #berbershop itself
@@ -242,6 +253,7 @@ def barbershop_view(id):
         comment.berbershop, comment.title, comment.content, comment.rate,comment.peopleId, comment.berber = int(berbershopid), commenttitle, commenttext,\
                                                                                         int(commentrate),current_user.id, berberidint
         comment.keywords = keyword
+        comment.image = image
         commentModel.insert(comment)
         return redirect(url_for("barbershop_view",id=id))
 
@@ -643,11 +655,18 @@ def admin_panel():
                     person.age = request.form["age"]
                     person.role = "user"
                     person.id = i.id
+
+                    #Validation
+                    if len(person.name_surname)>50 or len(person.username) >50 or len(person.mail)>300:
+                        return render_template("update.html", person=i, message="You should check input validations.")
+
                     if i.role == "user" or i.role == "admin":
-                        people.update(person)
+
+                        if(people.update(person)):
+                            return render_template("admin_panel.html", people=peoples, berbers=berber_list,owners=owner_list, message="True")
+                        else:
+                            return render_template("admin_panel.html", people=peoples, berbers=berber_list,owners=owner_list, message="False")
                     elif i.role == "berber":
-                        print(people.update(person))
-                        #uyarı mesajı gönder
                         berbers = Berbermodel()
                         berber = Berber()
                         berber.people_id = i.id
@@ -656,11 +675,10 @@ def admin_panel():
                         berber.start_time = request.form["start_time"][:2]
                         berber.finish_time = request.form["finish_time"][:2]
                         berbers = Berbermodel()
+                        people.update(person)
                         berbers.update_berber(berber)
-                        # uyarı mesajı gönder
+                        return render_template("admin_panel.html", people=peoples, berbers=berber_list, owners=owner_list, message="True")
                     elif i.role == "owner":
-                        print(people.update(person))
-                        # uyarı mesajı gönder
                         owner = Owner()
                         owner.people_id = owners.get_id(person.username)[0]
                         owner.tc_number = request.form["tc_number"]
@@ -668,7 +686,11 @@ def admin_panel():
                         owner.vol_number = request.form["vol_number"]
                         owner.family_order_no = request.form["family_order_no"]
                         owner.order_no = request.form["order_no"]
+                        if (owners.control_exist_tc(owner.tc_number)):
+                            return render_template("admin_panel.html", people=peoples, berbers=berber_list, owners=owner_list, message="False")
+                        people.update(person)
                         owners.update_owner(owner)
+                        return render_template("admin_panel.html", people=peoples, berbers=berber_list, owners=owner_list, message="True")
 
         elif "order_id" in request.form["edit"]:
             peoples = sorted(peoples, key=lambda people: people.id)   # sort by age

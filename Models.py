@@ -64,11 +64,11 @@ class CommentModel:
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""INSERT INTO Comments (people_id ,  berber , berbershop, title , content , rate , date_time , 
-                comment_like , comment_dislike, keywords)
-                VALUES (%s , %s, %s , %s , %s , %s , %s , %s , %s, %s)""", (comment.peopleId, comment.berber,comment.berbershop,comment.title,
+                comment_like , comment_dislike, keywords, image)
+                VALUES (%s , %s, %s , %s , %s , %s , %s , %s , %s, %s, %s)""", (comment.peopleId, comment.berber,comment.berbershop,comment.title,
                                                                     comment.content, comment.rate, comment.dateTime,
                                                                     comment.like,
-                                                                    comment.dislike, comment.keywords))
+                                                                    comment.dislike, comment.keywords, comment.image))
 
     # get by id
     def getById(self, id):
@@ -143,10 +143,10 @@ class CommentModel:
         for row in rows:
             comment = Comment()
             comment.id, comment.peopleId, comment.berber, comment.berbershop, comment.title, comment.content, comment.rate, comment.dateTime, \
-            comment.like, comment.dislike, comment.keywords = row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8],row[9], row[10]
+            comment.like, comment.dislike, comment.keywords, comment.image = row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8],row[9], row[10], row[11]
 
             people = People()
-            people.id, people.username = row[11], row[12]
+            people.id, people.username = row[12], row[13]
             comment.peopleobj = people
             comments.append(comment)
         return comments
@@ -558,10 +558,12 @@ class Peoplemodel:
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("SELECT id FROM People where username = %s or mail = %s ", (people.username, people.mail))
-        row = cursor.fetchone()
+        row = cursor.fetchall()
         if (row == None):
             return False
-        elif (row[0]==people.id):
+        elif len(row) > 1:
+            return True
+        elif len(row) == 1 and row[0][0]==people.id:
             return False
         return True
 
@@ -992,8 +994,8 @@ class Berbershopmodel:
         # return one berbershop object
         berbershop = Berbershop()
         berbershop.id, berbershop.ownerpeople_id, berbershop.shopname, berbershop.location, berbershop.city, \
-        berbershop.openingtime, berbershop.closingtime, berbershop.tradenumber = row[0], row[1], row[2], row[3], row[4], \
-                                                                                 row[5], row[6], row[7]
+        berbershop.openingtime, berbershop.closingtime, berbershop.tradenumber, berbershop.shop_logo = row[0], row[1], row[2], row[3], row[4], \
+                                                                                 row[5], row[6], row[7], row[8]
         return berbershop
 
 

@@ -4,7 +4,7 @@
 
 <h1 class="title">{{title}}</h1>
 {% if shop == None %}
-<form action="{{ url_for('profile_page') }}" method="post" name="berber_shop">
+<form action="{{ url_for('profile_page') }}" method="post" name="berber_shop" enctype=multipart/form-data>
 
     <div class="field">
         <div class="control">
@@ -16,6 +16,13 @@
         <label class="label">Shop Name</label>
         <div class="control">
             <input type="text" name="shop_name" class="input" required="required"/>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Shop Logo</label>
+        <div class="control">
+            <input type="file" name="file" class="input" accept="image/*"/>
         </div>
     </div>
 

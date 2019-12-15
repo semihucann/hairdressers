@@ -294,14 +294,22 @@ def contact_settings(id):
 
 
 
-def blog_page():
+def blog_page(post_id=None):
 
     return render_template("blog.html", name="blog_page")
 
 
-def newpost_page():
+def newpost_page(post_id):
+    if request.method == 'POST':
+        post = Post()
+        post.post_id = post_id
+        post.subject = request.form["category"]
+        post.post_title = request.form["title"]
+        post.post_content = request.form["content"]
+        PostsModel().insert(post)
+        return redirect(url_for('blog_page', id=post_id))
 
-    return render_template("newpost.html", name="newpost_page")
+    return render_template("newpost.html", title="Newpost Page")
 
 
 def profile_page():

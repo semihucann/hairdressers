@@ -52,70 +52,111 @@ same page through buttons on them.
 
 
 .. figure:: pictures/bigcarousel.png
-   :scale: 90 %
+   :scale: 50 %
    :alt: main carousel directing
 
-   Register Type Page
+- Who are we  :
+Information about our system. Informations about Customers,Barbers,Owners and their functionalities.
 
-According to the register type preference, I redirected the client to one of the pages in the image below. On this page I received information from the user in accordance with the type of user, barber and owner. I have written 3 different insert functions to add the incoming information to the tables. Username, mail and tc_number is unique so I checked this values for validation.
+- Main Bar :
+General links exists here. Visitors directly reach most of the features from this  sliding carousel.
 
 
-.. figure:: pictures/signup.jpg
+.. figure:: pictures/whoarewe.png
+   :scale: 40 %
+   :alt: who are we
+
+.. figure:: pictures/mainbar.png
+   :scale: 40 %
+   :alt: mainbar
+
+All Barbershops :
+It is the table having list of all the barbershops in the systems. Name of the shop, City, Address etc. In this table there is two
+input areas which are name of the shop and city. You can filter the barbershops you are looking for here. In cities input area, it also
+does provide list of cities of the existing barbershops in the system.
+There is also link which users can access berbershopview page which includes info about barbershops, comments made by customers also direct links to the
+take rezervation.
+
+.. figure:: pictures/allbarbershops.png
    :scale: 50 %
-   :alt: map to buried treasure
-
-   Signup Page
-
-Signin Flow
------------
-In signin page, I get username and password from client. After this operation, I hash the password with passlib.hash library and check.
-
-.. figure:: pictures/signin.jpg
-   :scale: 90 %
-   :alt: map to buried treasure
-
-   Signin Page
-
-- If written username and password is correct, "You have successfully logged in <TYPE>" message is shown.
-- If written username and password is wrong, error message is shown.
-
-.. figure:: pictures/signin2.jpg
-   :scale: 90 %
-   :alt: map to buried treasure
-
-   Signin Page Respond
-
-
-Admin Panel
------------
-
-If person signin to web site as admin, admin panel can be used.
-In admin panel, people berber and owner tables are shown.
-The panel provides update and delete facilities on 3 tables.
-
-.. figure:: pictures/admin_panel.jpg
-   :scale: 50 %
-   :alt: map to buried treasure
-
-   Admin Panel
-
-Admin Panel Operations
-----------------------
-
-- To delete any user, mark the check_box in the first column of people table and click the "delete selected" button.
-- To order table, select order type from select_box and click the order button
-- To edit any person, click the rightmost button on that person's row and
+   :alt: mainbar
 
 
 
-    3 different update operation by person type for tables(people, berber, owner)
-
-
-- If person doesn't login, navbar is shown like that first part of picture.
-- If person login and person isn't admin, navbar is shown like that second part of picture.
-- If person login and person is admin, Admin Panel url will be added to navbar and navbar is shown like that third part of picture.
-
-Navbar Edition
+BarbershopView
 --------------
+In this page, more informations about barbershop is listed which is clicked from all barbershops table. Opening-Closing time, phonenumber
+city,adress, social media accounts with icons etc. many properties is reachable. If the current_user is owner of the that shop, he/she can have acces to contact settings
+page from shop card.
 
-    Navbar links changing according to the type of person logging in
+- What is more, user can direct to rezervation page from the barbershopcard.
+Other than general knowledge of that specific barbershop, there is a form for comment. In this form, a comment can be made for
+barbershop itself, or the existing barbers of that barbershop. User can specifiy rate and write comment title and text.
+
+-There are optional keywords summarize your comment consisting of three category as price,skill,hygiene. User can click those if it is useful for comment
+or can leave them blank if they don't like there keywords.
+
+.. figure:: pictures/barbershopview1.png
+   :scale: 60 %
+   :alt: bbview1
+
+Comments Part
+List of the comment that has been made for this barbershop.
+
+- If comment belongs to current user, comment will be with editable text and title, also select input rerating the shop managed with edit button
+- If comment belongs to current user, comment can be deleted via delete button
+- If there is current user in the system, comments can be liked or disliked yet if there is not, it will direct to signin page
+- Like-Dislike system works similar to social media apps. If you dislike comment that you already liked, your like  will be gone and vice-versa.
+- Like-Dislike system works as a counter, increases or decreases by the clicks.
+
+.. figure:: pictures/barbershopview2.png
+   :scale: 50 %
+   :alt: bbview2
+
+
+
+
+Contact Page
+------------
+
+If current user is owner of that barbershop, the contact link will be available for the barbershop card. Via this link, contact info
+form will be opened. If there is no record, new one will be added by add button. If there is already exists, then update and delete
+options will be provided. Validation for the phone number is made here. Besides, owner can fill areas about social media account of
+store or type of the contact.
+
+.. figure:: pictures/contact.png
+   :scale: 50 %
+   :alt: contact
+
+
+
+Rezervation Page
+----------------------
+Current user can do rezervation for that specific shop, otherwise it has to sign in first. There is 2 section for rezervation which
+are rezervation of today and tomorrow. The button at the above of page, brings corresponding form and tables dynamically. In rezervation
+form, payment method, note, rezervation hour, and the operation type will be arranged by the user for the available slot.
+
+- Today appointment hour list consist of the hours after now.
+- Tomorrow, all hours will be available.
+- Registered operations and corresponding informations about it, is listed in the table at the above of the form.
+- If appointment belongs to current user, it can be edited or deleted.
+
+.. figure:: pictures/rez1.png
+   :scale: 70 %
+   :alt: rez1
+
+.. figure:: pictures/rez2.png
+   :scale: 70 %
+   :alt: rez2
+
+
+
+
+Statistics Page
+---------------
+Extra Statistic page that is directed from main page. There are 5 subsections stands for each statistic table. When the buttons at
+the above of the page is pressed, it dynamically brings the corresponding statistic table. Generally, top 3 most element of result is listed.
+
+.. figure:: pictures/statistics.png
+   :scale: 50 %
+   :alt: statistics

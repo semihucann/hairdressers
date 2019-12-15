@@ -1088,8 +1088,59 @@ class Postsmodel :
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""INSERT INTO Posts (people_id, post_title, post_content, like, dislike, subject, date_time)
-             VALUES(%s, %s, %s, %s, %s, %s, %s) """, (Posts.people_id, Posts.post_title, Posts.post_content, Posts.like,
-                                                      Posts.dislike, Posts.subject, Posts.date_time))
+                            VALUES(%s, %s, %s, %s, %s, %s, %s) """, (Posts.people_id, Posts.post_title, Posts.post_content,
+                                                                     Posts.like, Posts.dislike, Posts.subject, Posts.date_time))
+
+    def getAll(self):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("SELECT * from Posts order by date_time desc")
+            rows = cursor.fetchall()
+
+        Posts = []
+        for row in rows:
+            Post = Post()
+            Post.id, Post.people_id, Post.post_title, Post.post_content, Post.date_time, Post.like, Post.dislike = row[0], row[1], row[2], row[3], row[4],row[5],row[6]
+            Posts.append(Post)
+        return Posts
 
 
+    def getById(self, id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                SELECT * from Posts as c where c.id = %s """, (id,))
+            row = cursor.fetchone()
 
+        # return one post object
+        Post = Post()
+        Post.id, Post.people_id, Post.post_title, Post.post_content, Post.date_time, Post.like, Post.dislike = row[0], row[1], row[2], row[3], row[4], row[5], row[6]
+        return Post
+
+    def deleteById(self, id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                DELETE from Posts where id = %s
+            """, (id,))
+
+    def getAll_posts_with_people_id(self,id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                SELECT c.*, p.id, p.username from Posts as c join people as  p on c.people_id = p.id 
+                WHERE c.berbershop = %s order by c.date_time desc
+            """,(id,))
+
+        rows = cursor.fetchall()
+        Posts = []
+        for row in rows:
+            Post = Post()
+            Post.id, Post.people_id, Post.post_title, Post.post_content, Post.date_time, Post.subject,\
+            Post.like, Post.dislike = row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]
+
+            people = People()
+            people.id, people.username = row[8], row[9]
+            Post.peopleobj = people
+            Posts.append(Post)
+        return Posts

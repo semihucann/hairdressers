@@ -1252,7 +1252,7 @@ class campaignModel:
     def get_campaigns(self):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
-            cursor.execute("SELECT * from campaigns as c order by c.date_time desc")
+            cursor.execute("SELECT * from campaigns")
             rows = cursor.fetchall()
 
         campaigns = []

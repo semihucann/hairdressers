@@ -370,10 +370,9 @@ def comment_delete(id):
     PostCommentmodel().delete_comment(id)
     return redirect(url_for('blog_page'))
 
-def newcampaign(barbershop_id):
+def newcampaign():
     if request.method == 'POST':
         campaign = Campaign()
-        campaign.barbershop_id = people_id
         campaign.campaign_name = request.form["campaign_name"]
         campaign.definition = request.form["definition"]
         campaign.start_date = request.form["start_date"]
@@ -382,11 +381,11 @@ def newcampaign(barbershop_id):
 
         campaignModel().insert(campaign)
         return redirect(url_for('campaigns_page'))
-    return render_template("newcampaign.html", title="Newcampaign Page")
+    return render_template("newcampaign_page.html", title="Newcampaign Page")
 
 def campaign_page():
     campaign = campaignModel().get_campaigns()
-    return render_template("blog.html", name="blog_page", posts=posts)
+    return render_template("campaigns.html", name="campaign_page")
 
 
 def profile_page():

@@ -12,8 +12,9 @@
 
 <div class="column is-3">
     <a class="button is-primary is-block is-alt is-large"
-       href="{{ url_for('newcampaign', people_id=current_user.id) }}">New Campaign</a>
+       href="{{ url_for('newcampaign') }}">New Campaign</a>
 </div>
+{%endif%}
 
 <div class="box content">
     {% for post in posts %}
@@ -32,11 +33,13 @@
                 </div>
                 <div class="content">
                     <p>
-                        % {{ campaign.discoun}}
+                        discount rate = % {{ campaign.discoun}}
                     </p>
                 </div>
             </div>
-
-            {%endblock%}
-
+        </div>
+    </article>
+    {%endfor%}
+    {%endblock%}
+</div>
 

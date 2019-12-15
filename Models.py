@@ -563,7 +563,7 @@ class Peoplemodel:
             return False
         elif len(row) > 1:
             return True
-        elif len(row) == 1 and row[0]==people.id:
+        elif len(row) == 1 and row[0][0]==people.id:
             return False
         return True
 

@@ -18,6 +18,7 @@ class Comment:
         self.peopleobj = None
         self.likedDislikedobj = None
         self.keywords = None
+        self.image = None
 
 class LikedDisliked:
     def __init__(self):

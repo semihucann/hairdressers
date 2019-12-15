@@ -1,3 +1,5 @@
+import base64
+
 from flask import render_template, Flask, request, redirect, url_for, current_app
 import datetime
 
@@ -201,6 +203,8 @@ def barbershop_view(id):
 
         for c in commentlist:
             c.dateTime = datetime.date(c.dateTime.year, c.dateTime.month, c.dateTime.day)
+            if c.image != None :
+                c.image = base64.b64encode(c.image.tobytes()).decode("utf-8")
             if x==1 :
                 c.likedDislikedobj = commentModel.commentCurrentUserRelationship(c.id, current_user.id)
 
@@ -229,6 +233,7 @@ def barbershop_view(id):
         commenttext = request.form["bcommenttext"]
         commentrate = request.form["bcommentrate"]
         berberid = request.form["berber"]
+        image = request.files["commentfile"].read()
         berberidint = int(berberid)
 
         if berberidint == -1: #berbershop itself
@@ -240,6 +245,7 @@ def barbershop_view(id):
         comment.berbershop, comment.title, comment.content, comment.rate,comment.peopleId, comment.berber = int(berbershopid), commenttitle, commenttext,\
                                                                                         int(commentrate),current_user.id, berberidint
         comment.keywords = keyword
+        comment.image = image
         commentModel.insert(comment)
         return redirect(url_for("barbershop_view",id=id))
 

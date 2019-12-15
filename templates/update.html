@@ -4,6 +4,7 @@
 
 <center><h1>Update for {{person.role}} </h1></center>
 <center><h2>Hello {{person.username}} </h2></center>
+<center><h6 style="color: red;"> {{message}} </h6></center>
 
 <div class="container">
       <div class="columns is-centered">
@@ -18,7 +19,7 @@
                  <div class="field">
                  <label for="name_surname" class="label">Name Surname</label>
                     <div class="control">
-                      <input type="text" name="name_surname" class="input is-success" required="required" value="{{person.name_surname}}"/>
+                        <textarea class="textarea is-success" name="name_surname" placeholder="Success textarea"  required="required">{{person.name_surname}}</textarea>
                     </div>
                   </div>
                   <div class="field">

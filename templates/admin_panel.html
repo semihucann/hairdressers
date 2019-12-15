@@ -4,6 +4,13 @@
 <center><p> Hello <b>{{current_user.username}}</b>. You can delete and update any person from
     <u><a href="#people_table">user</a>, <a href="#berber_table">berber</a>, <a href="#owner_table">owner</a></u>
     table. </p></center> <br> <br>
+
+{% if message == "True"%}
+    <center><h2 class="title" style="color: green;"> Update successful </h2></center>
+{% elif message == "False" %}
+   <center> <h2 class="title" style="color: red;"> Update failed !! </h2></center>
+{% endif %}
+
 <center><h3>People Table</h3></center>
 <script>
 $(function(){

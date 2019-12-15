@@ -296,14 +296,22 @@ def contact_settings(id):
 
 
 
-def blog_page():
+def blog_page(post_id=None):
 
     return render_template("blog.html", name="blog_page")
 
 
-def newpost_page():
+def newpost_page(post_id):
+    if request.method == 'POST':
+        post = Post()
+        post.post_id = post_id
+        post.subject = request.form["category"]
+        post.post_title = request.form["title"]
+        post.post_content = request.form["content"]
+        PostsModel().insert(post)
+        return redirect(url_for('blog_page', id=post_id))
 
-    return render_template("newpost.html", name="newpost_page")
+    return render_template("newpost.html", title="Newpost Page")
 
 
 def profile_page():
@@ -453,9 +461,8 @@ def delete_service_prices(shop_id):
 
 #Semih's Functions
 ##Notes:
-# Berber signup kısmında start  and finish time sadece saat cinsinden alındı (08:30 yerine 08)
 
-
+#Register type secimi
 def signupbase_page():
     if request.method == 'GET':
         return render_template("register_type.html")
@@ -467,7 +474,6 @@ def signupbase_page():
         elif request.form['submit_button'] == 'owner':
             return redirect(url_for('signup_owner_page'))
         return render_template("profile.html")
-
 
 def signup_berber_page():
     if request.method == 'GET':

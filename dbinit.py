@@ -171,7 +171,19 @@ INIT_STATEMENTS = [
         dislike_number INTEGER,
         date_time TIMESTAMP
     )
+    """,
     """
+    CREATE TABLE IF NOT EXISTS campaigns(
+        id SERIAL PRIMARY KEY,
+        barbershop_id integer  REFERENCES Berbershop(id) ON DELETE CASCADE,
+        campaign_name VARCHAR(50),
+        definition VARCHAR(200),
+        start_date TIMESTAMP,
+        end_date TIMESTAMP,
+        discount integer
+    )
+    """
+
 
 ]
 

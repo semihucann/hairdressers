@@ -1,5 +1,6 @@
 import psycopg2 as dbapi2
-from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, LikedDisliked, Berbershop, CreditCard, ServicePrice, Post, Post_comment
+from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, LikedDisliked, Berbershop, CreditCard, \
+    ServicePrice, Post, Post_comment, Campaign
 import datetime
 
 import os
@@ -1231,3 +1232,32 @@ class PostCommentmodel :
             cursor.execute("""
                 DELETE from post_comment where id = %s
             """, (id,))
+
+class campaignModel:
+
+    def insert(self, campaign):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""INSERT INTO campaigns (barbershop_id, campaign_name, definition, start_date, end_date, discount)
+                            VALUES(%s, %s, %s, %s, %s, %s) """, (campaign.barbershop_id, campaign.campaign_name, campaign.campaign_name, campaign.start_date,
+                                                                     campaign.end_date, campaign.discount))
+
+    def delete_campaign(self, id):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("""
+                DELETE from campaigns where id = %s
+            """, (id,))
+
+    def get_campaigns(self):
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            cursor.execute("SELECT * from campaigns")
+            rows = cursor.fetchall()
+
+        campaigns = []
+        for row in rows:
+            campaign = Campaign()
+            campaign.id, campaign.barbershop_id, campaign.campaign_name, campaign.definition, campaign.start_date, campaign.end_date, campaign.discount = row[0], row[1], row[2], row[3], row[4], row[5], row[6]
+            campaigns.append(campaign)
+        return campaigns

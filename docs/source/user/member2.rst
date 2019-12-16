@@ -37,7 +37,7 @@ id   comment_id     people_id   ifliked    ifdisliked
 
 
 
-In this project I was in charge of  4 tables. Even though database rules does permit different length of phone numbers, i have done
+In this project I was in charge of  4 tables. Many filter and rules added to my tables. For instance, Even though database rules does permit different length of phone numbers, i have done
 validation for it to be 10 digits exactly. Also, comment title, content can not be null so it is covered also form validation.
 
 

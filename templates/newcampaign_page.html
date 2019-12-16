@@ -7,48 +7,47 @@
 <form action="" method="post" name="campaign_edit">
 
     <div class="field">
-        <label class="label">City</label>
+        <label for="title" class="label"></label>
         <div class="control">
-            <select class="input" name="city" required="required">
-                <option value="0">Select Campaign Name</option>
-                <option value="1">Hair</option>
-                <option value="2">Beard</option>
-                <option value="3">Washing</option>
-                <option value="4">Blow-dry</option>
-                <option value="5">Hair coloring</option>
-                <option value="6">Wax</option>
+            <select class="input" name="campaign_name" required="required">
+                <option name="campaign_name" value="Not defined">Select Campaign Name</option>
+                <option name="campaign_name" value="Hair">Hair</option>
+                <option name="campaign_name" value="Beard">Beard</option>
+                <option name="campaign_name" value="Washing">Washing</option>
+                <option name="campaign_name" value="Blow-dry">Blow-dry</option>
+                <option name="campaign_name" value="Hair coloring">Hair coloring</option>
+                <option name="campaign_name" value="Wax">Wax</option>
             </select>
         </div>
     </div>
 
     <div><label for="start_date">Start date:</label>
 
-        <input type="date" id="start" name="trip-start"
+        <input type="date" id="start" name="start_date"
                value="2018-07-22"
                min="2018-01-01" max="2020-12-31">
     </div>
 
     <div><label for="end_date">End date:</label>
 
-        <input type="date" id="end" name="trip-start"
+        <input type="date" id="end" name="end_date"
                value="2018-07-22"
                min="2018-01-01" max="2020-12-31">
     </div>
 
 
-    <div class="field">
+    <div>
         <label for="title" class="label">Definition</label>
         <div class="control">
-            <textarea style="height:250px; width:60%" type="text" name="content" class="input"
+            <textarea style="height:250px; width:60%" type="text" name="definition" class="input"
                       required="required"></textarea>
         </div>
-
     </div>
 
     <div class="field">
         <label for="title" class="label">Discount</label>
         <div class="control">
-            <input style="width:60%" type="text" name="title" class="input" required="required"/>
+            <input style="width:60%" type="text" name="discount" class="input" required="required"/>
         </div>
     </div>
 

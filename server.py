@@ -62,6 +62,7 @@ def create_app():
     app2.add_url_rule("/delete_post/<post_id>", view_func=views.post_delete, methods=["GET", "POST"])
     app2.add_url_rule("/delete_comment/<id>", view_func=views.comment_delete, methods=["GET", "POST"])
     app2.add_url_rule("/newcampaign", view_func=views.newcampaign, methods=["GET", "POST"])
+    app2.add_url_rule("/campaign", view_func=views.campaign_page)
 
     lm.init_app(app2)
     lm.login_view = "login_page"

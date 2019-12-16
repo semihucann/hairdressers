@@ -71,13 +71,13 @@ Services
 - Owners can see and delete services of the shops in barbershop page.
 
 .. figure:: pictures/services.png
-   :scale: 50 %
+   :scale: 70 %
    :alt: services
 
 - Owners can add and edit services.
 
 .. figure:: pictures/addservice.png
-   :scale: 50 %
+   :scale: 70 %
    :alt: addservice
 
    All fields are required in the form.

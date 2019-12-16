@@ -311,11 +311,10 @@ def blog_page():
 
     return render_template("blog.html", name="blog_page", posts=posts)
 
-
 def campaign_page():
 
-    return render_template("campaigns.html")
-
+    campaigns = campaignModel().get_campaigns()
+    return render_template("campaigns.html", name="campaign_page", campaigns=campaigns)
 
 def newpost_page(people_id):
     if request.method == 'POST':
@@ -373,6 +372,7 @@ def comment_delete(id):
 def newcampaign():
     if request.method == 'POST':
         campaign = Campaign()
+        #campaign.barbershop_id = berbershop_id
         campaign.campaign_name = request.form["campaign_name"]
         campaign.definition = request.form["definition"]
         campaign.start_date = request.form["start_date"]
@@ -380,12 +380,10 @@ def newcampaign():
         campaign.discount = request.form["discount"]
 
         campaignModel().insert(campaign)
-        return redirect(url_for('campaigns_page'))
+        return redirect(url_for('campaign_page'))
     return render_template("newcampaign_page.html", title="Newcampaign Page")
 
-def campaign_page():
-    campaign = campaignModel().get_campaigns()
-    return render_template("campaigns.html", name="campaign_page")
+
 
 
 def profile_page():

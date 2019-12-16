@@ -3,7 +3,7 @@ Parts Implemented by Ertugrul Semiz
 
 My Tables in Database
 ---------------------
-Comment  Table
+Comments  Table
 
 =====  =========  ==============  ==========  ================  ==============  ======  ==========================  ============  ===============  ===========================
 id     people_id  berber          berbershop  title	        content         rate    date_time                   comment_like  comment_dislike  keywords
@@ -37,7 +37,7 @@ id   comment_id     people_id   ifliked    ifdisliked
 
 
 
-In this project I was in charge of  4 tables. Even though database rules does permit different length of phone numbers, i have done
+In this project I was in charge of  4 tables. Many filter and rules added to my tables. For instance, Even though database rules does permit different length of phone numbers, i have done
 validation for it to be 10 digits exactly. Also, comment title, content can not be null so it is covered also form validation.
 
 
@@ -95,6 +95,8 @@ barbershop itself, or the existing barbers of that barbershop. User can specifiy
 
 -There are optional keywords summarize your comment consisting of three category as price,skill,hygiene. User can click those if it is useful for comment
 or can leave them blank if they don't like there keywords.
+
+- With image file upload part, user can support his/her ideas with pictures.
 
 .. figure:: pictures/barbershopview1.png
    :scale: 60 %

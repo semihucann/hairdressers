@@ -68,12 +68,31 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="256" height="256"><path fill="#FFF" d="M109,119H19c-5.5,0-10-4.5-10-10V59c0-5.5,4.5-10,10-10h90c5.5,0,10,4.5,10,10v50C119,114.5,114.5,119,109,119z"></path><path fill="#C7D7E2" d="M9 59H119V74H9zM19"></path><path fill="#454B54" d="M109,122H19c-7.2,0-13-5.8-13-13V59c0-7.2,5.8-13,13-13h90c7.2,0,13,5.8,13,13v50C122,116.2,116.2,122,109,122z M19,52c-3.9,0-7,3.1-7,7v50c0,3.9,3.1,7,7,7h90c3.9,0,7-3.1,7-7V59c0-3.9-3.1-7-7-7H19z"></path>
                 <text x="20" y="108" fill="black" font-size="7">{{ card.name }}</text>
                 <text x="80" y="99" fill="black" font-size="7">{{ card.last_month }}/{{ card.last_year }}</text>
-                <text x="20" y="83" fill="black" font-size="7">{{ card.card_number }}</text>
+                <text class="card_number" x="20" y="83" fill="black" font-size="7">{{ card.card_number }}</text>
             </svg>
         </a>
 
 
         {% endfor %}
+
+    <script>
+        var cards = document.getElementsByClassName("card_number");
+        for (var j = 0; j < cards.length; j++) {
+            var res = "";
+            var temp = 0;
+            for (var i = 0; i < cards[j].innerHTML.length; i++) {
+                if (cards[j].innerHTML[i] <= "9" && cards[j].innerHTML[i] >= "0") {
+                    res = res + cards[j].innerHTML[i];
+                    temp = temp + 1;
+                }
+                if (temp == 4) {
+                    res = res + " ";
+                    temp = 0;
+                }
+            }
+            cards[j].innerHTML = res;
+        }
+    </script>
 
         <a href="{{ url_for('addcreditcard_page') }}">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="256" height="256"><path fill="#FFF" d="M109,119H19c-5.5,0-10-4.5-10-10V59c0-5.5,4.5-10,10-10h90c5.5,0,10,4.5,10,10v50C119,114.5,114.5,119,109,119z"></path><path fill="#C7D7E2" d="M9 59H119V74H9zM19"></path><path fill="#454B54" d="M109,122H19c-7.2,0-13-5.8-13-13V59c0-7.2,5.8-13,13-13h90c7.2,0,13,5.8,13,13v50C122,116.2,116.2,122,109,122z M19,52c-3.9,0-7,3.1-7,7v50c0,3.9,3.1,7,7,7h90c3.9,0,7-3.1,7-7V59c0-3.9-3.1-7-7-7H19z"></path>

@@ -3,7 +3,6 @@ import sys
 
 import psycopg2 as dbapi2
 
-
 INIT_STATEMENTS = [
 
     #ERTUGRUL's tables
@@ -160,7 +159,31 @@ INIT_STATEMENTS = [
         subject VARCHAR(20),
         date_time TIMESTAMP
     )
+    """,
     """
+    CREATE TABLE IF NOT EXISTS post_comment(
+        id SERIAL PRIMARY KEY,
+        post_id INTEGER REFERENCES Posts(id) ON DELETE CASCADE,
+        people_id INTEGER REFERENCES People(id) ON DELETE CASCADE,
+        title VARCHAR(50),
+        content VARCHAR(500),
+        like_number INTEGER,
+        dislike_number INTEGER,
+        date_time TIMESTAMP
+    )
+    """,
+    """
+    CREATE TABLE IF NOT EXISTS campaigns(
+        id SERIAL PRIMARY KEY,
+        barbershop_id integer  REFERENCES Berbershop(id) ON DELETE CASCADE,
+        campaign_name VARCHAR(50),
+        definition VARCHAR(200),
+        start_date TIMESTAMP,
+        end_date TIMESTAMP,
+        discount integer
+    )
+    """
+
 
 ]
 

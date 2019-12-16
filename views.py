@@ -1,11 +1,9 @@
-import base64
-
 from flask import render_template, Flask, request, redirect, url_for, current_app
 import datetime
 
-from Models import CommentModel, ContactInfoModel, StatisticsModel
-from Models import Peoplemodel, Berbermodel, Ownermodel, CreditcardModel, Berbershopmodel, RezervationModel, ServicepriceModel
-from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, CreditCard, Berbershop, ServicePrice
+from Models import CommentModel, ContactInfoModel, StatisticsModel, Postsmodel, PostCommentmodel
+from Models import Peoplemodel, Berbermodel, Ownermodel, CreditcardModel, Berbershopmodel, RezervationModel, ServicepriceModel,campaignModel
+from Entities import Comment, ContactInfo, Rezervation, People, Berber, Owner, CreditCard, Berbershop, ServicePrice, Post, Post_comment, Campaign
 from passlib.hash import pbkdf2_sha256 as hasher
 from flask_login import LoginManager, login_user, logout_user, current_user
 import base64
@@ -308,22 +306,86 @@ def contact_settings(id):
 
 
 
-def blog_page(post_id=None):
+def blog_page():
+    posts = Postsmodel().getAll()
 
-    return render_template("blog.html", name="blog_page")
+    return render_template("blog.html", name="blog_page", posts=posts)
 
 
-def newpost_page(post_id):
+def campaign_page():
+
+    return render_template("campaigns.html")
+
+
+def newpost_page(people_id):
     if request.method == 'POST':
         post = Post()
-        post.post_id = post_id
+        post.people_id = people_id
         post.subject = request.form["category"]
         post.post_title = request.form["title"]
         post.post_content = request.form["content"]
-        PostsModel().insert(post)
-        return redirect(url_for('blog_page', id=post_id))
-
+        post.like = 0
+        post.dislike = 0
+        post.date_time = datetime.datetime.now()
+        Postsmodel().insert(post)
+        return redirect(url_for('blog_page'))
     return render_template("newpost.html", title="Newpost Page")
+
+def comment_page(post_id, people_id):
+    if request.method == 'POST':
+        post_comment = Post_comment()
+        post_comment.post_id = post_id
+        post_comment.people_id = people_id
+        post_comment.title = request.form["title"]
+        post_comment.content = request.form["content"]
+        post_comment.like = 0
+        post_comment.dislike = 0
+        post_comment.date_time = datetime.datetime.now()
+        PostCommentmodel().insert(post_comment)
+        return redirect(url_for('blog_page'))
+    return render_template("post_comment.html", title="Post Comment Page")
+
+
+def like_post(post_id):
+    Postsmodel().increaseLikeNumber(post_id)
+    return redirect(url_for('blog_page'))
+
+def dislike_post(post_id):
+    Postsmodel().increaseDislikeNumber(post_id)
+    return redirect(url_for('blog_page'))
+
+def like_comment(comment_id):
+    PostCommentmodel().increaseLikeNumber(comment_id)
+    return redirect(url_for('blog_page'))
+
+def dislike_comment(comment_id):
+    PostCommentmodel().increaseDislikeNumber(comment_id)
+    return redirect(url_for('blog_page'))
+
+def post_delete(post_id):
+    Postsmodel().delete_post(post_id)
+    return redirect(url_for('blog_page'))
+
+def comment_delete(id):
+    PostCommentmodel().delete_comment(id)
+    return redirect(url_for('blog_page'))
+
+def newcampaign():
+    if request.method == 'POST':
+        campaign = Campaign()
+        campaign.campaign_name = request.form["campaign_name"]
+        campaign.definition = request.form["definition"]
+        campaign.start_date = request.form["start_date"]
+        campaign.end_date = request.form["end_date"]
+        campaign.discount = request.form["discount"]
+
+        campaignModel().insert(campaign)
+        return redirect(url_for('campaigns_page'))
+    return render_template("newcampaign_page.html", title="Newcampaign Page")
+
+def campaign_page():
+    campaign = campaignModel().get_campaigns()
+    return render_template("campaigns.html", name="campaign_page")
 
 
 def profile_page():
@@ -338,6 +400,8 @@ def profile_page():
             shop.closingtime = request.form["close_time"]
             shop.tradenumber = request.form["trade"]
             shop.shop_logo = request.files["file"].read()
+            if len(request.files["file"].filename) == 0:
+                shop.shop_logo = None
 
             Berbershopmodel().insert(shop)
         elif "delete_card" in request.form:
@@ -345,7 +409,7 @@ def profile_page():
         else:
             credit_card = CreditCard()
             credit_card.name = request.form["name_surname"]
-            credit_card.card_number = request.form["number"]
+            credit_card.card_number = int(request.form["number"].replace(" ", ""))
             last_date = request.form["date"]
             if "/" not in last_date:
                 return render_template("profile.html")
@@ -380,7 +444,7 @@ def updatecreditcard_page():
     if request.method == 'POST':
 
         credit_card.name = request.form["name_surname"]
-        credit_card.card_number = request.form["number"]
+        credit_card.card_number = int(request.form["number"].replace(" ", ""))
         last_date = request.form["date"]
         if "/" not in last_date:
             return render_template("profile.html")
@@ -655,11 +719,18 @@ def admin_panel():
                     person.age = request.form["age"]
                     person.role = "user"
                     person.id = i.id
+
+                    #Validation
+                    if len(person.name_surname)>50 or len(person.username) >50 or len(person.mail)>300:
+                        return render_template("update.html", person=i, message="You should check input validations.")
+
                     if i.role == "user" or i.role == "admin":
-                        people.update(person)
+
+                        if(people.update(person)):
+                            return render_template("admin_panel.html", people=peoples, berbers=berber_list,owners=owner_list, message="True")
+                        else:
+                            return render_template("admin_panel.html", people=peoples, berbers=berber_list,owners=owner_list, message="False")
                     elif i.role == "berber":
-                        print(people.update(person))
-                        #uyarı mesajı gönder
                         berbers = Berbermodel()
                         berber = Berber()
                         berber.people_id = i.id
@@ -668,11 +739,10 @@ def admin_panel():
                         berber.start_time = request.form["start_time"][:2]
                         berber.finish_time = request.form["finish_time"][:2]
                         berbers = Berbermodel()
+                        people.update(person)
                         berbers.update_berber(berber)
-                        # uyarı mesajı gönder
+                        return render_template("admin_panel.html", people=peoples, berbers=berber_list, owners=owner_list, message="True")
                     elif i.role == "owner":
-                        print(people.update(person))
-                        # uyarı mesajı gönder
                         owner = Owner()
                         owner.people_id = owners.get_id(person.username)[0]
                         owner.tc_number = request.form["tc_number"]
@@ -680,7 +750,11 @@ def admin_panel():
                         owner.vol_number = request.form["vol_number"]
                         owner.family_order_no = request.form["family_order_no"]
                         owner.order_no = request.form["order_no"]
+                        if (owners.control_exist_tc(owner.tc_number)):
+                            return render_template("admin_panel.html", people=peoples, berbers=berber_list, owners=owner_list, message="False")
+                        people.update(person)
                         owners.update_owner(owner)
+                        return render_template("admin_panel.html", people=peoples, berbers=berber_list, owners=owner_list, message="True")
 
         elif "order_id" in request.form["edit"]:
             peoples = sorted(peoples, key=lambda people: people.id)   # sort by age

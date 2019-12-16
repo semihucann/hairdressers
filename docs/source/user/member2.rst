@@ -96,6 +96,8 @@ barbershop itself, or the existing barbers of that barbershop. User can specifiy
 -There are optional keywords summarize your comment consisting of three category as price,skill,hygiene. User can click those if it is useful for comment
 or can leave them blank if they don't like there keywords.
 
+- With image file upload part, user can support his/her ideas with pictures.
+
 .. figure:: pictures/barbershopview1.png
    :scale: 60 %
    :alt: bbview1

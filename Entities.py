@@ -123,6 +123,7 @@ class CreditCard:
         self.cvv = None
         self.last_month = None
         self.last_year = None
+        self.created_time = None
 
 
 class Berbershop:

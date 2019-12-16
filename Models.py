@@ -854,11 +854,13 @@ class CreditcardModel:
     def insert(self, credit_card):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
-            cursor.execute("""INSERT INTO Creditcards (people_id, name, card_number, cvv_number, last_month, last_year) 
-                             VALUES (%s , %s , %s , %s , %s , %s )""", (credit_card.people_id, credit_card.name,
+
+            cursor.execute("""INSERT INTO Creditcards (people_id, name, card_number, cvv_number, last_month, last_year, created_time) 
+                             VALUES (%s , %s , %s , %s , %s , %s, %s )""", (credit_card.people_id, credit_card.name,
                                                                         credit_card.card_number,
                                                                         credit_card.cvv, credit_card.last_month,
-                                                                        credit_card.last_year))
+                                                                        credit_card.last_year,
+                                                                        credit_card.created_time))
 
     def update(self, credit_card):
         with dbapi2.connect(url) as connection:
@@ -889,6 +891,9 @@ class CreditcardModel:
                 creditcard.cvv = i[4]
                 creditcard.last_month = i[5]
                 creditcard.last_year = i[6]
+                creditcard.created_time = i[7]
+                if creditcard.created_time is not None:
+                    creditcard.created_time = (str(creditcard.created_time))[0:16]
                 creditcards_list.append(creditcard)
             return creditcards_list
 

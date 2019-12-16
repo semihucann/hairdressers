@@ -3,7 +3,7 @@ Parts Implemented by Ertugrul Semiz
 
 My Tables in Database
 ---------------------
-Comment  Table
+Comments  Table
 
 =====  =========  ==============  ==========  ================  ==============  ======  ==========================  ============  ===============  ===========================
 id     people_id  berber          berbershop  title	        content         rate    date_time                   comment_like  comment_dislike  keywords

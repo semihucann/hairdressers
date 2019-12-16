@@ -1239,7 +1239,7 @@ class campaignModel:
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""INSERT INTO campaigns (barbershop_id, campaign_name, definition, start_date, end_date, discount)
-                            VALUES(%s, %s, %s, %s, %s, %s) """, (campaign.barbershop_id, campaign.campaign_name, campaign.campaign_name, campaign.start_date,
+                            VALUES(%s, %s, %s, %s, %s, %s) """, (campaign.barbershop_id, campaign.campaign_name, campaign.definition, campaign.start_date,
                                                                      campaign.end_date, campaign.discount))
 
     def delete_campaign(self, id):

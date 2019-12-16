@@ -312,8 +312,9 @@ def blog_page():
     return render_template("blog.html", name="blog_page", posts=posts)
 
 def campaign_page():
+
     campaigns = campaignModel().get_campaigns()
-    return render_template("campaigns.html", name="campaign_page")
+    return render_template("campaigns.html", name="campaign_page", campaigns=campaigns)
 
 def newpost_page(people_id):
     if request.method == 'POST':

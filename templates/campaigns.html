@@ -22,29 +22,24 @@
         <div class="box content">
             {% for campaign in campaigns %}
             <article class="post">
+                <hr style="border-color: black">
                 <strong>{{ campaign.campaign_name }}</strong>
                 <p>{{ campaign.definition }}</p>
                 <div class="media">
                     <div class="media-content">
                         <div class="content">
                             <p>
-                                {{ campaign.start_date}}
+                                Discount rate = % {{ campaign.discount }}
+
                             </p>
                             <p>
-                                {{ campaign.end_date}}
+                                Start Date: {{ campaign.start_date}}
                             </p>
                         </div>
                         <div class="content">
                             <p>
-                                discount rate = % {{ campaign.discount }}
+                                End Date: {{ campaign.end_date}}
                             </p>
-                        </div>
-                        <div class="media-content">
-                            <div class="content">
-                                <p>
-                                    {{ campaign.definition}}
-                                </p>
-                            </div>
                         </div>
                     </div>
                 </div>

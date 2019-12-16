@@ -2,44 +2,56 @@
 {%block title%} Blog {%endblock%}
 {%block content%}
 
-{% if current_user.is_authenticated == False %}
-<div class="column is-3">
-    <a class="button is-primary is-block is-alt is-large"
-       href="{{ url_for('signin') }}">New Campaign</a>
-</div>
 
-{%else%}
+<div class="columns">
+    {% if current_user.is_authenticated == False %}
+    <div class="column is-3">
+        <a class="button is-primary is-block is-alt is-large"
+           href="{{ url_for('signin') }}">New Campaign</a>
+    </div>
 
-<div class="column is-3">
-    <a class="button is-primary is-block is-alt is-large"
-       href="{{ url_for('newcampaign') }}">New Campaign</a>
-</div>
-{%endif%}
+    {%else%}
 
-<div class="box content">
-    {% for post in posts %}
-    <article class="post">
-        <strong>{{ campaign.campaign_name }}</strong>
-        <p>{{ campaign.definition }}</p>
-        <div class="media">
-            <div class="media-content">
-                <div class="content">
-                    <p>
-                        {{ campaign.start_date}}
-                    </p>
-                    <p>
-                        {{ campaign.end_date}}
-                    </p>
+    <div class="column is-3">
+        <a class="button is-primary is-block is-alt is-large"
+           href="{{ url_for('newcampaign') }}">New Campaign</a>
+    </div>
+    {%endif%}
+
+    <div class="column is-9">
+        <div class="box content">
+            {% for campaign in campaigns %}
+            <article class="post">
+                <strong>{{ campaign.campaign_name }}</strong>
+                <p>{{ campaign.definition }}</p>
+                <div class="media">
+                    <div class="media-content">
+                        <div class="content">
+                            <p>
+                                {{ campaign.start_date}}
+                            </p>
+                            <p>
+                                {{ campaign.end_date}}
+                            </p>
+                        </div>
+                        <div class="content">
+                            <p>
+                                discount rate = % {{ campaign.discount }}
+                            </p>
+                        </div>
+                        <div class="media-content">
+                            <div class="content">
+                                <p>
+                                    {{ campaign.definition}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="content">
-                    <p>
-                        discount rate = % {{ campaign.discoun}}
-                    </p>
-                </div>
-            </div>
+            </article>
+            {%endfor%}
+
         </div>
-    </article>
-    {%endfor%}
-    {%endblock%}
+    </div>
 </div>
-
+{%endblock%}

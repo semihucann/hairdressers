@@ -6,7 +6,7 @@ Database Design
 
 
 .. figure:: pictures/diagram.png
-   :scale: 50 %
+   :scale: 80 %
    :alt: main carousel directing
 
    E/R diagram(s)

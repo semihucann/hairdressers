@@ -1,16 +1,12 @@
 User Guide
 ==========
 
-**explain how your application works from the user perspective, use
-screenshots whereever appropriate**
 
-**to add a picture, use the following example**::
+.. figure:: pictures/hairdresser-logo.png
+   :scale: 50 %
+   :alt: main carousel directing
 
-   .. figure:: picture.png
-      :scale: 50 %
-      :alt: map to buried treasure
-
-      This is the caption of the figure (a simple paragraph).
+   Website Logo
 
 .. toctree::
 

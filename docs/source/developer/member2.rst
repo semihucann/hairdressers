@@ -44,6 +44,7 @@ validation for it to be 10 digits exactly. Also, comment title, content can not 
 
 Entity Classes
 --------------
+
 In this project, I have created 4 Entity Class representing tables in database. I have created constructors for those classes
 as a initial values. Besides, 4 Model Classes are created for the purpose of managing database Create, Read, Update, Delete operations.
 

@@ -43,4 +43,4 @@ Campaign page is the page which shows the campaigns of fees of hair cut or beard
    :scale: 70 %
    :alt: campaigns
 
-New
+

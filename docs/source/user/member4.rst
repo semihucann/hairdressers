@@ -39,7 +39,7 @@ Campaigns Page
 
 Campaign page is the page which shows the campaigns of fees of hair cut or beard cut or blow-dry etc.
 
-.. figure:: pictures/campaignpage.PNG
+.. figure:: pictures/campaign_page.PNG
    :scale: 70 %
    :alt: campaigns
 

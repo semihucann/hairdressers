@@ -8,4 +8,4 @@ I have created blog page of the website. In the blog page there is a link to the
 
 .. figure:: pictures/blogpage1.PNG
    :scale: 50 %
-   :alt: main carousel directing
+   :alt: blog

@@ -307,7 +307,7 @@ CRUD Operations
 Validation
 ----------
 
-I used html form types to provide validation generally. However, I wrote some javascript code for credit card number validation.
+I used html form types to provide validation generally. However, I wrote some javascript code for credit card form validation.
 
 **Card Number Validation**::
 
@@ -330,7 +330,7 @@ I used html form types to provide validation generally. However, I wrote some ja
         }
     });
 
-When card number text box is changed, addEventListener method is called automatically. It regulates the typed numbers for grouping 4 digit as shown normal credit card.
+When card number text box is changed, addEventListener method is called automatically. It regulates the typed numbers for grouping 4 digits as shown normal credit card.
 
 **Valid Thru Validation**::
 

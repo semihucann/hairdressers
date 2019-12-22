@@ -303,3 +303,55 @@ CRUD Operations
                 DELETE from Creditcards where id = %s
             """, (id,))
 
+
+Validation
+----------
+
+I used html form types to provide validation generally. However, I wrote some javascript code for credit card number validation.
+
+**Card Number Validation**::
+
+    var cardno = document.getElementById("cardno");
+    cardno.addEventListener('input', function(evt) {
+        var res = "";
+        var temp = 0;
+        for (var i = 0; i < cardno.value.length; i++) {
+            if (cardno.value[i] <= "9" && cardno.value[i] >= "0") {
+                res = res + cardno.value[i];
+                temp = temp + 1;
+            }
+            if (temp == 4) {
+                res = res + " ";
+                temp = 0;
+            }
+        }
+        if (cardno.value.length < 19) {
+            cardno.value = res;
+        }
+    });
+
+When card number text box is changed, addEventListener method is called automatically. It regulates the typed numbers for grouping 4 digit as shown normal credit card.
+
+**Valid Thru Validation**::
+
+    var thru = document.getElementById("thru");
+    thru.addEventListener('input', function(evt) {
+        var res = "";
+        var temp = 0;
+        for (var i = 0; i < thru.value.length; i++) {
+            if (thru.value[i] <= "9" && thru.value[i] >= "0") {
+                res = res + thru.value[i];
+                temp = temp + 1;
+            }
+            if (temp == 2) {
+                res = res + "/";
+                temp = 0;
+            }
+        }
+        if (thru.value.length < 5) {
+            thru.value = res;
+        }
+
+    });
+
+When thru text box is changed, addEventListener method is called automatically. It automaticly puts "/" character after two digits.

@@ -5,7 +5,7 @@ In this project, I have created 4 Entity Class representing tables in database. 
 as a initial values. Besides, 4 Model Classes are created for the purpose of managing database Create, Read, Update, Delete operations.
 
 Entity Classes
-==============
+--------------
 
 .. code-block:: python
 
@@ -61,7 +61,7 @@ Entity Classes
 
 
 Database Init
-==============
+-------------
 The following initialize function in dbinit.py was running when the site was opened. This function was running to create tables with SQL codes that are kept
 in INIT_STATEMENT string array. Each developer's sql statements are listed here, my statements are as follows.
 
@@ -133,7 +133,7 @@ INIT_STATEMENT is below.
     ]
 
 Model Classes
-=============
+--------------
 Model Classes are the packages that includes functions runs sql statements for the corresponding entity and table.
 
 .. code-block:: python

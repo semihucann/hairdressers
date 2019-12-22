@@ -62,4 +62,14 @@ Campaign page is the page which shows the campaigns of fees of hair cut or beard
    :scale: 60 %
    :alt: campaigns
 
+New Campaign Page
+-----------------
+
+New Campaign page is the page where barber enter new campaign. A barber should enter a name for the campaign, choose
+start time and end time, enter definition of the campaign and discount rate.
+
+
+.. figure:: pictures/newcampaignpage.PNG
+   :scale: 60 %
+   :alt: campaigns
 

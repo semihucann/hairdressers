@@ -136,8 +136,12 @@ Model Classes
 --------------
 Model Classes are the packages that includes functions runs sql statements for the corresponding entity and table.
 
-.. code-block:: python
 
+
+
+Statistics Model
+----------------
+.. code-block:: python
     class StatisticsModel :
     def mostPopularBerbershops(self):
         with dbapi2.connect(url) as connection:
@@ -177,7 +181,9 @@ Model Classes are the packages that includes functions runs sql statements for t
         return berbershops
 
 
-
+Comment Model
+--------------
+.. code-block:: python
 
     class CommentModel:
 
@@ -455,7 +461,10 @@ Model Classes are the packages that includes functions runs sql statements for t
 
 
 
+ContactInfo Model
+-----------------
 
+.. code-block:: python
 
     class ContactInfoModel:
 
@@ -574,6 +583,11 @@ Model Classes are the packages that includes functions runs sql statements for t
                 5], row[6]
             return contactInfo
 
+
+
+Rezervation Model
+-----------------
+.. code-block:: python
 
     class RezervationModel:
 

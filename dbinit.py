@@ -142,7 +142,8 @@ INIT_STATEMENTS = [
         card_number NUMERIC(16) NOT NULL,
         cvv_number NUMERIC(4) NOT NULL,
         last_month NUMERIC(2) NOT NULL,
-        last_year NUMERIC(2) NOT NULL
+        last_year NUMERIC(2) NOT NULL,
+        created_time TIMESTAMP
     )   
     """,
     #FATIH'S TABLES

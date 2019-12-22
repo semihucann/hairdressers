@@ -421,6 +421,7 @@ def profile_page():
                 credit_card.id = request.form["card_id"]
                 CreditcardModel().update(credit_card)
             else:
+                credit_card.created_time = datetime.datetime.now()
                 CreditcardModel().insert(credit_card)
 
     if current_user.is_active:
@@ -518,7 +519,7 @@ def add_service_price_page(shop_id):
 
     if "price_id" in request.args:
         price = ServicepriceModel().getServiceById(request.args.get("price_id"))
-        return render_template("add_service_price.html", title="Add Service Price", shop_id=shop_id, price=price)
+        return render_template("add_service_price.html", title="Update Service Price", shop_id=shop_id, price=price)
 
     return render_template("add_service_price.html", title="Add Service Price", shop_id=shop_id, price=None)
 

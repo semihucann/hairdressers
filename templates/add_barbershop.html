@@ -15,7 +15,7 @@
     <div class="field">
         <label class="label">Shop Name</label>
         <div class="control">
-            <input type="text" name="shop_name" class="input" required="required"/>
+            <input type="text" name="shop_name" class="input" required="required"  maxlength="45"/>
         </div>
     </div>
 
@@ -120,7 +120,7 @@
     <div class="field">
         <label class="label">Detailed location</label>
         <div class="control">
-            <textarea style="height:70px; width:100%" name="location" class="input" required="required"></textarea>
+            <textarea style="height:70px; width:100%" name="location" class="input" required="required" maxlength="295"></textarea>
         </div>
     </div>
 
@@ -141,7 +141,7 @@
     <div class="field">
         <label class="label">Trade Number</label>
         <div class="control">
-            <input type="number" name="trade" class="input" required="required"/>
+            <input type="number" name="trade" class="input tradein" required="required"/>
         </div>
     </div>
 
@@ -164,7 +164,7 @@
     <div class="field">
         <label class="label">Shop Name</label>
         <div class="control">
-            <input type="text" name="shop_name" class="input" required="required" value="{{shop.shopname}}"/>
+            <input type="text" name="shop_name" class="input" required="required" value="{{shop.shopname}}" maxlength="45"/>
         </div>
     </div>
 
@@ -262,7 +262,7 @@
     <div class="field">
         <label class="label">Detailed location</label>
         <div class="control">
-            <textarea style="height:70px; width:100%" name="location" class="input" required="required">{{shop.location}}</textarea>
+            <textarea style="height:70px; width:100%" name="location" class="input" required="required" maxlength="295">{{shop.location}}</textarea>
         </div>
     </div>
 
@@ -283,7 +283,7 @@
     <div class="field">
         <label class="label">Trade Number</label>
         <div class="control">
-            <input type="number" name="trade" class="input" required="required" value="{{shop.tradenumber}}"/>
+            <input type="number" name="trade" class="input tradein" required="required" value="{{shop.tradenumber}}"/>
         </div>
     </div>
 
@@ -296,6 +296,32 @@
 </form>
 
 {% endif %}
+
+<script>
+
+var trades = document.getElementsByClassName("tradein");
+
+trade = trades[0];
+
+trade.addEventListener('input', function (evt) {
+        var res = "";
+        var temp = 0;
+        for (var i = 0; i < trade.value.length; i++) {
+            if (trade.value[i] <= "9" && trade.value[i] >= "0"){
+            res = res + trade.value[i];
+            temp = temp + 1;
+        }
+
+    }
+    if (res.length < 10) {
+        trade.value = res;
+    }else{
+        trade.value = res[0] + res[1] + res[2] + res[3] + res[4] + res[5] + res[6] + res[7] + res[8] + res[9]
+    }
+
+    });
+
+</script>
 
 
 {%endblock%}

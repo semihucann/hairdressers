@@ -141,11 +141,10 @@ Model Classes are the packages that includes functions runs sql statements for t
 
 Statistics Model
 ----------------
-
-
 .. code-block:: python
+
     class StatisticsModel :
-        def mostPopularBerbershops(self):
+    def mostPopularBerbershops(self):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""
@@ -164,7 +163,7 @@ Statistics Model
             berbershops.append(berbershop)
         return berbershops
 
-        def lastAddedBarbershops(self):
+    def lastAddedBarbershops(self):
         with dbapi2.connect(url) as connection:
             cursor = connection.cursor()
             cursor.execute("""

@@ -1,11 +1,53 @@
 Parts Implemented by Ertugrul Semiz
 =====================================
 
-In this project, I have created 4 Entity Class representing tables in database. I have created constructors for those classes
-as a initial values. Besides, 4 Model Classes are created for the purpose of managing database Create, Read, Update, Delete operations.
+My Tables in Database
+---------------------
+Comments  Table
+
+=====  =========  ==============  ==========  ================  ==============  ======  ==========================  ============  ===============  ===========================
+id     people_id  berber          berbershop  title	        content         rate    date_time                   comment_like  comment_dislike  keywords
+=====  =========  ==============  ==========  ================  ==============  ======  ==========================  ============  ===============  ===========================
+25     87	  NULL            13          izmirin en iyisi  gayet begendik  4       2019-12-14 21:02:56.554483  0             0                Expensive,Talentless,Dirty
+=====  =========  ==============  ==========  ================  ==============  ======  ==========================  ============  ===============  ===========================
+
+Contact_info Table
+
+===  =============  ========   ================   ===========     ==========  ===========
+id   berbershop_id  type       telephone_number   facebook        twitter     instagram
+===  =============  ========   ================   ===========     ==========  ===========
+5    11             company    5359266963         ertugrulsm      ertugrulsm  ertugrulsmz
+===  =============  ========   ================   ===========     ==========  ===========
+
+Rezervation Table
+
+=====  =========    =============   ==========================   ====================  =============== =========  ==========  ==============
+id     people_id    berbershop_id   datetime_registration        datetime_rezervation  status          note       price_type  payment_method
+=====  =========    =============   ==========================   ====================  =============== =========  ==========  ==============
+1      78           11              2019-12-14 15:36:52.266049   2019-12-15 09:00:00   notokey         ordayimmm  1           creditcard
+=====  =========    =============   ==========================   ====================  =============== =========  ==========  ==============
+
+Commentlikedislike Table
+
+===  =============  =========   ========   ==========
+id   comment_id     people_id   ifliked    ifdisliked
+===  =============  =========   ========   ==========
+1    1              79          1          0
+===  =============  =========   ========   ==========
+
+
+
+In this project I was in charge of  4 tables. Many filter and rules added to my tables. For instance, Even though database rules does permit different length of phone numbers, i have done
+validation for it to be 10 digits exactly. Also, comment title, content can not be null so it is covered also form validation.
+
+
 
 Entity Classes
 --------------
+In this project, I have created 4 Entity Class representing tables in database. I have created constructors for those classes
+as a initial values. Besides, 4 Model Classes are created for the purpose of managing database Create, Read, Update, Delete operations.
+
+
 
 .. code-block:: python
 

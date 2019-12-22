@@ -34,7 +34,7 @@ Entity Classes
 In this project, I have created 3 Entity Class representing tables in database. I have created constructors for those classes
 as a initial values. Therefore 4 Model Classes are created for the purpose of managing database Create, Read, Update, Delete operations.
 
-.. code-block:: python
+**Entity classes**::
 
     class Post:
         def __init__(self):
@@ -73,7 +73,7 @@ as a initial values. Therefore 4 Model Classes are created for the purpose of ma
 Database Init
 -------------
 
-.. code-block:: python
+**Database Init**::
 
     """
     CREATE TABLE IF NOT EXISTS Posts(

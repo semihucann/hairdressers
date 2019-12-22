@@ -1,4 +1,4 @@
-Parts Implemented by Halis İbrahim Aydın
+Parts Implemented by Halis Ibrahim Aydin
 ========================================
 
 Blog Page

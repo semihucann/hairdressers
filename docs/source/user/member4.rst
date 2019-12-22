@@ -21,7 +21,7 @@ Newpost page is the page where users enter new posts. A user should select subje
 content of the post.
 
 .. figure:: pictures/newpostpage1.PNG
-   :scale: 50 %
+   :scale: 70 %
    :alt: newpost
 
 
@@ -31,7 +31,7 @@ Post Comment Page
 Post Comment page is the page where users enter new comment. A user should enter title of the post and content of the post.
 
 .. figure:: pictures/newcomment.PNG
-   :scale: 50 %
+   :scale: 70 %
    :alt: newcomment
 
 Campaigns Page
@@ -39,8 +39,8 @@ Campaigns Page
 
 Campaign page is the page which shows the campaigns of fees of hair cut or beard cut or blow-dry etc.
 
-.. figure:: pictures/campaign page.PNG
-   :scale: 50 %
+.. figure:: pictures/campaignpage.PNG
+   :scale: 70 %
    :alt: campaigns
 
 New

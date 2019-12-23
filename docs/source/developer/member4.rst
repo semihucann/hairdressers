@@ -118,7 +118,7 @@ Model Classes are packages that contain functions that run SQL statements for th
 Posts Model
 -----------
 
-**Postmodel class**::
+**Postsmodel class**::
 
     def insert(self,post):
         with dbapi2.connect(url) as connection:

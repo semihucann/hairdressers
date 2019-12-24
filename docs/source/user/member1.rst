@@ -1,36 +1,6 @@
 Parts Implemented by Ahmet Semih Uçan
 =====================================
 
-My Tables in Database
----------------------
-People Table
-
-=====  ========  ============   ======   ==============   ======   ======
-id     username  name_surname	mail	 password_hash	  gender   age
-=====  ========  ============   ======   ==============   ======   ======
-5      berberr	 Hasan Berber   a@g.cm   Hash             m        21
-=====  ========  ============   ======   ==============   ======   ======
-
-Berber Table
-
-===  =========  ========   ========   ========     ======  =======    ======
-id   people_id  bshop_id   g_choice   exp_year     s_time  f_time     rates
-===  =========  ========   ========   ========     ======  =======    ======
-2    #4         #23        unisex     8            8       17         3
-===  =========  ========   ========   ========     ======  =======    ======
-
-Owner Table
-
-=====  =========    =========   =============   ==========  =============== ========
-id     people_id    tc_number   serial_number   vol_number  family_order_no order_no
-=====  =========    =========   =============   ==========  =============== ========
-4       #5          123134433   123             234         435             345
-=====  =========    =========   =============   ==========  =============== ========
-
-In this project assignment I was responsible for 3 tables. These tables were people, berber and owner tables. In people table, username and mail are unique so I wrote code by checking these rules.
-
-
-
 Signup Flow
 -----------
 

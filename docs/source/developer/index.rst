@@ -11,6 +11,8 @@ Database Design
 
    E/R diagram(s)
 
+**Git Process**
+`Video Link <https://youtu.be/nAwKhnK7LSE>`_
 
 
 .. toctree::

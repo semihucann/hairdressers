@@ -69,13 +69,15 @@ Admin Panel Operations
    :scale: 70 %
    :alt: delete
 
-    3 different delete operation by person type for tables(people, berber, owner)
+
+3 different delete operation by person type for tables(people, berber, owner)
 
 .. figure:: pictures/update.jpg
    :scale: 70 %
    :alt: update
 
-    3 different update operation by person type for tables(people, berber, owner)
+
+3 different update operation by person type for tables(people, berber, owner)
 
 
 - If person doesn't login, navbar is shown like that first part of picture.
@@ -88,4 +90,5 @@ Navbar Edition
    :scale: 100 %
    :alt: urls
 
-    Navbar links changing according to the type of person logging in
+
+Navbar links changing according to the type of person logging in

@@ -12,7 +12,7 @@ Clicking Continue button leads to the signup page. (By subject)
 
 .. figure:: pictures/register_type.jpg
    :scale: 90 %
-   :alt: map to buried treasure
+   :alt: register_type
 
    Register Type Page
 
@@ -21,7 +21,7 @@ According to the register type preference, I redirected the client to one of the
 
 .. figure:: pictures/signup.jpg
    :scale: 50 %
-   :alt: map to buried treasure
+   :alt: signup
 
    Signup Page
 
@@ -31,7 +31,7 @@ In signin page, I get username and password from client. After this operation, I
 
 .. figure:: pictures/signin.jpg
    :scale: 90 %
-   :alt: map to buried treasure
+   :alt: signin
 
    Signin Page
 
@@ -40,7 +40,7 @@ In signin page, I get username and password from client. After this operation, I
 
 .. figure:: pictures/signin2.jpg
    :scale: 90 %
-   :alt: map to buried treasure
+   :alt: signin2
 
    Signin Page Respond
 
@@ -54,7 +54,7 @@ The panel provides update and delete facilities on 3 tables.
 
 .. figure:: pictures/admin_panel.jpg
    :scale: 50 %
-   :alt: map to buried treasure
+   :alt: admin_panel
 
    Admin Panel
 
@@ -67,13 +67,13 @@ Admin Panel Operations
 
 .. figure:: pictures/delete.jpg
    :scale: 70 %
-   :alt: map to buried treasure
+   :alt: delete
 
     3 different delete operation by person type for tables(people, berber, owner)
 
 .. figure:: pictures/update.jpg
    :scale: 70 %
-   :alt: map to buried treasure
+   :alt: update
 
     3 different update operation by person type for tables(people, berber, owner)
 
@@ -86,6 +86,6 @@ Navbar Edition
 --------------
 .. figure:: pictures/urls.jpg
    :scale: 100 %
-   :alt: map to buried treasure
+   :alt: urls
 
     Navbar links changing according to the type of person logging in

@@ -1,0 +1,1027 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Parts Implemented by Ertugrul Semiz &mdash; ITUCSDB1933  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Parts Implemented by Fatih Mustafa Bucak" href="member3.html" />
+    <link rel="prev" title="Parts Implemented by Ahmet Semih Uçan" href="member1.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> ITUCSDB1933
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#database-design">Database Design</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="member1.html">Parts Implemented by Ahmet Semih Uçan</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Parts Implemented by Ertugrul Semiz</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#my-tables-in-database">My Tables in Database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#entity-classes">Entity Classes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database-init">Database Init</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model-classes">Model Classes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#statistics-model">Statistics Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#comment-model">Comment Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contactinfo-model">ContactInfo Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rezervation-model">Rezervation Model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="member3.html">Parts Implemented by Fatih Mustafa Bucak</a></li>
+<li class="toctree-l3"><a class="reference internal" href="member4.html">Parts Implemented by Halis Ibrahim Aydin</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ITUCSDB1933</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Developer Guide</a> &raquo;</li>
+        
+      <li>Parts Implemented by Ertugrul Semiz</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/developer/member2.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="parts-implemented-by-ertugrul-semiz">
+<h1>Parts Implemented by Ertugrul Semiz<a class="headerlink" href="#parts-implemented-by-ertugrul-semiz" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="my-tables-in-database">
+<h2>My Tables in Database<a class="headerlink" href="#my-tables-in-database" title="Permalink to this headline">¶</a></h2>
+<p>Comments  Table</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 3%" />
+<col style="width: 6%" />
+<col style="width: 9%" />
+<col style="width: 6%" />
+<col style="width: 10%" />
+<col style="width: 9%" />
+<col style="width: 4%" />
+<col style="width: 17%" />
+<col style="width: 8%" />
+<col style="width: 10%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>id</p></th>
+<th class="head"><p>people_id</p></th>
+<th class="head"><p>berber</p></th>
+<th class="head"><p>berbershop</p></th>
+<th class="head"><p>title</p></th>
+<th class="head"><p>content</p></th>
+<th class="head"><p>rate</p></th>
+<th class="head"><p>date_time</p></th>
+<th class="head"><p>comment_like</p></th>
+<th class="head"><p>comment_dislike</p></th>
+<th class="head"><p>keywords</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>25</p></td>
+<td><p>87</p></td>
+<td><p>NULL</p></td>
+<td><p>13</p></td>
+<td><p>izmirin en iyisi</p></td>
+<td><p>gayet begendik</p></td>
+<td><p>4</p></td>
+<td><p>2019-12-14 21:02:56.554483</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>Expensive,Talentless,Dirty</p></td>
+</tr>
+</tbody>
+</table>
+<p>Contact_info Table</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 18%" />
+<col style="width: 11%" />
+<col style="width: 22%" />
+<col style="width: 15%" />
+<col style="width: 14%" />
+<col style="width: 15%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>id</p></th>
+<th class="head"><p>berbershop_id</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>telephone_number</p></th>
+<th class="head"><p>facebook</p></th>
+<th class="head"><p>twitter</p></th>
+<th class="head"><p>instagram</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>11</p></td>
+<td><p>company</p></td>
+<td><p>5359266963</p></td>
+<td><p>ertugrulsm</p></td>
+<td><p>ertugrulsm</p></td>
+<td><p>ertugrulsmz</p></td>
+</tr>
+</tbody>
+</table>
+<p>Rezervation Table</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 7%" />
+<col style="width: 11%" />
+<col style="width: 21%" />
+<col style="width: 17%" />
+<col style="width: 12%" />
+<col style="width: 7%" />
+<col style="width: 8%" />
+<col style="width: 12%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>id</p></th>
+<th class="head"><p>people_id</p></th>
+<th class="head"><p>berbershop_id</p></th>
+<th class="head"><p>datetime_registration</p></th>
+<th class="head"><p>datetime_rezervation</p></th>
+<th class="head"><p>status</p></th>
+<th class="head"><p>note</p></th>
+<th class="head"><p>price_type</p></th>
+<th class="head"><p>payment_method</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>78</p></td>
+<td><p>11</p></td>
+<td><p>2019-12-14 15:36:52.266049</p></td>
+<td><p>2019-12-15 09:00:00</p></td>
+<td><p>notokey</p></td>
+<td><p>ordayimmm</p></td>
+<td><p>1</p></td>
+<td><p>creditcard</p></td>
+</tr>
+</tbody>
+</table>
+<p>Commentlikedislike Table</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 30%" />
+<col style="width: 21%" />
+<col style="width: 19%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>id</p></th>
+<th class="head"><p>comment_id</p></th>
+<th class="head"><p>people_id</p></th>
+<th class="head"><p>ifliked</p></th>
+<th class="head"><p>ifdisliked</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>79</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+<p>In this project I was in charge of  4 tables. Many filter and rules added to my tables. For instance, Even though database rules does permit different length of phone numbers, i have done
+validation for it to be 10 digits exactly. Also, comment title, content can not be null so it is covered also form validation.</p>
+</div>
+<div class="section" id="entity-classes">
+<h2>Entity Classes<a class="headerlink" href="#entity-classes" title="Permalink to this headline">¶</a></h2>
+<p>In this project, I have created 4 Entity Class representing tables in database. I have created constructors for those classes
+as a initial values. Besides, 4 Model Classes are created for the purpose of managing database Create, Read, Update, Delete operations.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Comment</span><span class="p">:</span>
+ <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+     <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="kc">None</span>
+     <span class="bp">self</span><span class="o">.</span><span class="n">peopleId</span> <span class="o">=</span> <span class="kc">None</span>
+     <span class="bp">self</span><span class="o">.</span><span class="n">berber</span> <span class="o">=</span> <span class="kc">None</span>
+     <span class="bp">self</span><span class="o">.</span><span class="n">berbershop</span> <span class="o">=</span> <span class="kc">None</span>
+     <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+     <span class="bp">self</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+     <span class="bp">self</span><span class="o">.</span><span class="n">rate</span> <span class="o">=</span> <span class="mi">0</span>
+     <span class="bp">self</span><span class="o">.</span><span class="n">dateTime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+     <span class="bp">self</span><span class="o">.</span><span class="n">like</span> <span class="o">=</span> <span class="mi">0</span>
+     <span class="bp">self</span><span class="o">.</span><span class="n">dislike</span> <span class="o">=</span> <span class="mi">0</span>
+     <span class="bp">self</span><span class="o">.</span><span class="n">peopleobj</span> <span class="o">=</span> <span class="kc">None</span>
+     <span class="bp">self</span><span class="o">.</span><span class="n">likedDislikedobj</span> <span class="o">=</span> <span class="kc">None</span>
+     <span class="bp">self</span><span class="o">.</span><span class="n">keywords</span> <span class="o">=</span> <span class="kc">None</span>
+
+ <span class="k">class</span> <span class="nc">LikedDisliked</span><span class="p">:</span>
+     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="kc">None</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">comment_id</span> <span class="o">=</span> <span class="kc">None</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">peopleId</span> <span class="o">=</span> <span class="kc">None</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">ifliked</span> <span class="o">=</span> <span class="kc">None</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">ifDisliked</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+
+ <span class="k">class</span> <span class="nc">ContactInfo</span><span class="p">:</span>
+     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="kc">None</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">berberShopId</span> <span class="o">=</span> <span class="kc">None</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="kc">None</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">telephoneNumber</span> <span class="o">=</span> <span class="kc">None</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">facebook</span> <span class="o">=</span> <span class="kc">None</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">twitter</span> <span class="o">=</span> <span class="kc">None</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">instagram</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+
+ <span class="k">class</span> <span class="nc">Rezervation</span><span class="p">:</span>
+     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="kc">None</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">peopleId</span> <span class="o">=</span> <span class="kc">None</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">berberShopId</span> <span class="o">=</span> <span class="kc">None</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">dateTimeRegistration</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">dateTimeRezervation</span> <span class="o">=</span> <span class="kc">None</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="kc">None</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">note</span> <span class="o">=</span> <span class="kc">None</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">priceType</span> <span class="o">=</span> <span class="kc">None</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">paymentMethod</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="database-init">
+<h2>Database Init<a class="headerlink" href="#database-init" title="Permalink to this headline">¶</a></h2>
+<p>The following initialize function in dbinit.py was running when the site was opened. This function was running to create tables with SQL codes that are kept
+in INIT_STATEMENT string array. Each developer’s sql statements are listed here, my statements are as follows.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">statement</span> <span class="ow">in</span> <span class="n">INIT_STATEMENTS</span><span class="p">:</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>INIT_STATEMENT is below.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">INIT_STATEMENTS</span> <span class="o">=</span> <span class="p">[</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">CREATE TABLE IF NOT EXISTS Comments(</span>
+<span class="sd">    id SERIAL PRIMARY KEY,</span>
+<span class="sd">    people_id integer NOT NULL REFERENCES People(id) ON DELETE CASCADE,</span>
+<span class="sd">    berber integer  REFERENCES Berber(id) ON DELETE CASCADE,</span>
+<span class="sd">    berbershop integer  REFERENCES Berbershop(id) ON DELETE CASCADE,</span>
+<span class="sd">    title VARCHAR (100),</span>
+<span class="sd">    content VARCHAR (500),</span>
+<span class="sd">    rate integer  NOT NULL,</span>
+<span class="sd">    date_time TIMESTAMP,</span>
+<span class="sd">    comment_like integer DEFAULT 0 NOT NULL,</span>
+<span class="sd">    comment_dislike  integer DEFAULT 0 NOT NULL,</span>
+<span class="sd">    CHECK (rate &gt; 0), CHECK (rate &lt; 6)</span>
+<span class="sd">)&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="c1">#  CREATE TYPE IF NOT EXISTS type AS ENUM (&#39;company&#39;, &#39;personal&#39;);</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">CREATE TABLE IF NOT EXISTS Contact_info(</span>
+<span class="sd">    id SERIAL PRIMARY KEY,</span>
+<span class="sd">    berbershop_id integer  REFERENCES Berbershop(id) ON DELETE CASCADE,</span>
+<span class="sd">    type type,</span>
+<span class="sd">    telephone_number VARCHAR (15) NOT NULL,</span>
+<span class="sd">    facebook VARCHAR (500),</span>
+<span class="sd">    twitter VARCHAR (500),</span>
+<span class="sd">    instagram VARCHAR (500)</span>
+<span class="sd">)&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="c1"># CREATE TYPE status AS ENUM (&#39;okey&#39;,&#39;notokey&#39;);</span>
+<span class="c1">#Create type method as enum (&#39;creditcard&#39;,&#39;cash&#39;);</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">   CREATE TABLE IF NOT EXISTS Rezervation(</span>
+<span class="sd">       id SERIAL PRIMARY KEY,</span>
+<span class="sd">       people_id integer NOT NULL REFERENCES People(id) ON DELETE CASCADE,</span>
+<span class="sd">       berbershop_id integer NOT NULL REFERENCES Berbershop(id) ON DELETE CASCADE,</span>
+<span class="sd">       datetime_registration TIMESTAMP,</span>
+<span class="sd">       datetime_rezervation TIMESTAMP,</span>
+<span class="sd">       status status,</span>
+<span class="sd">       note VARCHAR (100),</span>
+<span class="sd">       price_type integer REFERENCES ServicePrices(id) ON DELETE CASCADE,</span>
+<span class="sd">       payment_method method</span>
+<span class="sd">   )&quot;&quot;&quot;</span><span class="p">,</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">   CREATE TABLE IF NOT EXISTS CommentLikeDislike(</span>
+<span class="sd">       id SERIAL PRIMARY KEY,</span>
+<span class="sd">       comment_id integer NOT NULL REFERENCES Comments(id) ON DELETE CASCADE,</span>
+<span class="sd">       people_id integer NOT NULL REFERENCES People(id) ON DELETE CASCADE,</span>
+<span class="sd">       ifliked  integer NOT NULL,</span>
+<span class="sd">       ifdisliked integer NOT NULL,</span>
+<span class="sd">       CHECK (ifliked &lt;2), CHECK (ifliked &gt;-2), CHECK (ifdisliked &lt;2), CHECK (ifdisliked &gt;-2)</span>
+<span class="sd">   )&quot;&quot;&quot;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="model-classes">
+<h2>Model Classes<a class="headerlink" href="#model-classes" title="Permalink to this headline">¶</a></h2>
+<p>Model Classes are the packages that includes functions runs sql statements for the corresponding entity and table.</p>
+</div>
+<div class="section" id="statistics-model">
+<h2>Statistics Model<a class="headerlink" href="#statistics-model" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">StatisticsModel</span> <span class="p">:</span>
+<span class="k">def</span> <span class="nf">mostPopularBerbershops</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            Select s.* from (SELECT  count(*) as c, Berbershop   from comments GROUP BY Berbershop ) as j join berbershop as s on j.berbershop = s.id</span>
+<span class="s2">            ORDER BY j.c DESC LIMIT 3</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+
+    <span class="n">berbershops</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+        <span class="n">berbershop</span> <span class="o">=</span> <span class="n">Berbershop</span><span class="p">()</span>
+        <span class="n">berbershop</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">berbershop</span><span class="o">.</span><span class="n">ownerpeople_id</span><span class="p">,</span> <span class="n">berbershop</span><span class="o">.</span><span class="n">shopname</span><span class="p">,</span> <span class="n">berbershop</span><span class="o">.</span><span class="n">location</span><span class="p">,</span> <span class="n">berbershop</span><span class="o">.</span><span class="n">city</span><span class="p">,</span> \
+        <span class="n">berbershop</span><span class="o">.</span><span class="n">openingtime</span><span class="p">,</span> <span class="n">berbershop</span><span class="o">.</span><span class="n">closingtime</span><span class="p">,</span> <span class="n">berbershop</span><span class="o">.</span><span class="n">tradenumber</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> \
+                                                                                 <span class="n">row</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> \
+                                                                                 <span class="n">row</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
+        <span class="n">berbershops</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">berbershop</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">berbershops</span>
+
+<span class="k">def</span> <span class="nf">lastAddedBarbershops</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">           SELECT * from berbershop ORDER BY Id DESC limit 3</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+
+    <span class="n">berbershops</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+        <span class="n">berbershop</span> <span class="o">=</span> <span class="n">Berbershop</span><span class="p">()</span>
+        <span class="n">berbershop</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">berbershop</span><span class="o">.</span><span class="n">ownerpeople_id</span><span class="p">,</span> <span class="n">berbershop</span><span class="o">.</span><span class="n">shopname</span><span class="p">,</span> <span class="n">berbershop</span><span class="o">.</span><span class="n">location</span><span class="p">,</span> <span class="n">berbershop</span><span class="o">.</span><span class="n">city</span><span class="p">,</span> \
+        <span class="n">berbershop</span><span class="o">.</span><span class="n">openingtime</span><span class="p">,</span> <span class="n">berbershop</span><span class="o">.</span><span class="n">closingtime</span><span class="p">,</span> <span class="n">berbershop</span><span class="o">.</span><span class="n">tradenumber</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> \
+                                                                                 <span class="n">row</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> \
+                                                                                 <span class="n">row</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
+        <span class="n">berbershops</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">berbershop</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">berbershops</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="comment-model">
+<h2>Comment Model<a class="headerlink" href="#comment-model" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CommentModel</span><span class="p">:</span>
+
+    <span class="c1"># to decide insert or update</span>
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comment</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">comment</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>  <span class="c1"># if object has no id value then insert</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ifExist</span><span class="p">(</span><span class="n">comment</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="o">!=</span> <span class="kc">True</span><span class="p">):</span>  <span class="c1"># object has value but if it exists in database</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>  <span class="c1"># then insert since that object not in database</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>  <span class="c1"># it exists in database update</span>
+
+    <span class="c1"># insert method that will be do insertion</span>
+    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comment</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;INSERT INTO Comments (people_id ,  berber , berbershop, title , content , rate , date_time ,</span>
+<span class="s2">                comment_like , comment_dislike, keywords)</span>
+<span class="s2">                VALUES (</span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">comment</span><span class="o">.</span><span class="n">peopleId</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">berber</span><span class="p">,</span><span class="n">comment</span><span class="o">.</span><span class="n">berbershop</span><span class="p">,</span><span class="n">comment</span><span class="o">.</span><span class="n">title</span><span class="p">,</span>
+                                                                    <span class="n">comment</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">rate</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">dateTime</span><span class="p">,</span>
+                                                                    <span class="n">comment</span><span class="o">.</span><span class="n">like</span><span class="p">,</span>
+                                                                    <span class="n">comment</span><span class="o">.</span><span class="n">dislike</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">keywords</span><span class="p">))</span>
+
+    <span class="c1"># get by id</span>
+    <span class="k">def</span> <span class="nf">getById</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                SELECT * from Comments as c where c.id = </span><span class="si">%s</span><span class="s2"> &quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nb">id</span><span class="p">,))</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+
+        <span class="c1"># return one comment object</span>
+        <span class="n">comment</span> <span class="o">=</span> <span class="n">Comment</span><span class="p">()</span>
+        <span class="n">comment</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">peopleId</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">berber</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">berbershop</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">rate</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">dateTime</span><span class="p">,</span> \
+        <span class="n">comment</span><span class="o">.</span><span class="n">like</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">dislike</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">comment</span>
+
+    <span class="c1"># get All</span>
+    <span class="k">def</span> <span class="nf">getAll</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * from Comments as c order by c.date_time desc&quot;</span><span class="p">)</span>
+            <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+
+        <span class="n">comments</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+            <span class="n">comment</span> <span class="o">=</span> <span class="n">Comment</span><span class="p">()</span>
+            <span class="n">comment</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">peopleId</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">berber</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">berbershop</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">rate</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">dateTime</span><span class="p">,</span> \
+            <span class="n">comment</span><span class="o">.</span><span class="n">like</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">dislike</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span>
+            <span class="n">comments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">comments</span>
+
+
+
+    <span class="k">def</span> <span class="nf">deleteById</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                DELETE from Comments where id = </span><span class="si">%s</span><span class="s2"></span>
+<span class="s2">            &quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nb">id</span><span class="p">,))</span>
+
+    <span class="c1"># update method that will do update</span>
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comment</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                UPDATE Comments SET id = </span><span class="si">%s</span><span class="s2">, people_id = </span><span class="si">%s</span><span class="s2"> , berber = </span><span class="si">%s</span><span class="s2"> , berbershop =</span><span class="si">%s</span><span class="s2"> title = </span><span class="si">%s</span><span class="s2"> , content = </span><span class="si">%s</span><span class="s2"> ,</span>
+<span class="s2">                rate = </span><span class="si">%s</span><span class="s2"> , date_time = </span><span class="si">%s</span><span class="s2"> , comment_like =</span><span class="si">%s</span><span class="s2"> , comment_dislike = </span><span class="si">%s</span><span class="s2"> where id = </span><span class="si">%s</span><span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
+                           <span class="p">(</span><span class="n">comment</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">peopleId</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">berber</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">berbershop</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">rate</span><span class="p">,</span>
+                            <span class="n">comment</span><span class="o">.</span><span class="n">dateTime</span><span class="p">,</span>
+                            <span class="n">comment</span><span class="o">.</span><span class="n">like</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">dislike</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">ifExist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                SELECT * from Comments where id = </span><span class="si">%s</span><span class="s2"></span>
+<span class="s2">            &quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nb">id</span><span class="p">,))</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">row</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">getAllCommentswithPeopleByBerbershopId</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="nb">id</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                SELECT c.*, p.id, p.username from comments as c join people as  p on c.people_id = p.id</span>
+<span class="s2">                WHERE c.berbershop = </span><span class="si">%s</span><span class="s2"> order by c.date_time desc</span>
+<span class="s2">            &quot;&quot;&quot;</span><span class="p">,(</span><span class="nb">id</span><span class="p">,))</span>
+
+        <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+        <span class="n">comments</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+            <span class="n">comment</span> <span class="o">=</span> <span class="n">Comment</span><span class="p">()</span>
+            <span class="n">comment</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">peopleId</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">berber</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">berbershop</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">rate</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">dateTime</span><span class="p">,</span> \
+            <span class="n">comment</span><span class="o">.</span><span class="n">like</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">dislike</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">keywords</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span><span class="n">row</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+
+            <span class="n">people</span> <span class="o">=</span> <span class="n">People</span><span class="p">()</span>
+            <span class="n">people</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">people</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span>
+            <span class="n">comment</span><span class="o">.</span><span class="n">peopleobj</span> <span class="o">=</span> <span class="n">people</span>
+            <span class="n">comments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">comments</span>
+
+    <span class="k">def</span> <span class="nf">commentCurrentUserRelationship</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">peopleid</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">              select com.id, com.people_id, com.ifliked, com.ifdisliked from</span>
+<span class="s2">               commentlikedislike as com where com.comment_id = </span><span class="si">%s</span><span class="s2"> and com.people_id = </span><span class="si">%s</span><span class="s2"></span>
+<span class="s2">            &quot;&quot;&quot;</span><span class="p">,(</span><span class="nb">id</span><span class="p">,</span><span class="n">peopleid</span><span class="p">))</span>
+
+        <span class="n">row</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+        <span class="n">likedDisliked</span> <span class="o">=</span> <span class="n">LikedDisliked</span><span class="p">()</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">row</span> <span class="o">==</span> <span class="kc">None</span><span class="p">)</span> <span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">likedDisliked</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">likedDisliked</span><span class="o">.</span><span class="n">peopleId</span><span class="p">,</span> <span class="n">likedDisliked</span><span class="o">.</span><span class="n">ifliked</span><span class="p">,</span> <span class="n">likedDisliked</span><span class="o">.</span><span class="n">ifDisliked</span><span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> \
+        <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">likedDisliked</span>
+
+    <span class="k">def</span> <span class="nf">updateByIdTitleTextRate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">rate</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                       UPDATE Comments SET title = </span><span class="si">%s</span><span class="s2"> , content= </span><span class="si">%s</span><span class="s2">, date_time = </span><span class="si">%s</span><span class="s2">, rate =</span><span class="si">%s</span><span class="s2">  where id = </span><span class="si">%s</span><span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
+                           <span class="p">(</span><span class="n">title</span><span class="p">,</span><span class="n">content</span><span class="p">,</span><span class="n">datetime</span><span class="p">,</span><span class="n">rate</span><span class="p">,</span><span class="nb">id</span><span class="p">))</span>
+
+
+    <span class="k">def</span>  <span class="nf">increaseLikeNumber</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">commentid</span><span class="p">):</span>
+         <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+             <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+             <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot; UPDATE Comments as c SET comment_like = comment_like +1  where c.id = </span><span class="si">%s</span><span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
+                                   <span class="p">(</span><span class="n">commentid</span><span class="p">,))</span>
+
+    <span class="k">def</span> <span class="nf">increaseDislikeNumber</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">commentid</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot; UPDATE Comments as c SET comment_dislike = comment_dislike +1  where c.id = </span><span class="si">%s</span><span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
+                           <span class="p">(</span><span class="n">commentid</span><span class="p">,))</span>
+
+    <span class="k">def</span> <span class="nf">decreaseDislikeNumber</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">commentid</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot; UPDATE Comments as c SET comment_dislike = comment_dislike -1  where c.id = </span><span class="si">%s</span><span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
+                           <span class="p">(</span><span class="n">commentid</span><span class="p">,))</span>
+
+    <span class="k">def</span> <span class="nf">decreaseLikeNumber</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">commentid</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot; UPDATE Comments as c SET comment_like = comment_like -1  where c.id = </span><span class="si">%s</span><span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
+                           <span class="p">(</span><span class="n">commentid</span><span class="p">,))</span>
+
+    <span class="k">def</span> <span class="nf">increaseLikeDecreaseDislike</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">commentid</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot; UPDATE Comments as c SET comment_like = comment_like +1 , comment_dislike = comment_dislike -1</span>
+<span class="s2">              where c.id = </span><span class="si">%s</span><span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
+                           <span class="p">(</span><span class="n">commentid</span><span class="p">,))</span>
+
+    <span class="k">def</span> <span class="nf">decreaseLikeIncreaseDislike</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">commentid</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot; UPDATE Comments as c SET comment_like = comment_like -1 , comment_dislike = comment_dislike + 1</span>
+<span class="s2">              where c.id = </span><span class="si">%s</span><span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
+                           <span class="p">(</span><span class="n">commentid</span><span class="p">,))</span>
+
+
+
+    <span class="k">def</span> <span class="nf">likeDislikeUpdateCondition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">commentid</span><span class="p">,</span> <span class="n">peopleid</span><span class="p">,</span> <span class="nb">bool</span> <span class="p">,</span> <span class="n">likedislikeid</span><span class="p">):</span>
+        <span class="c1">#it is not existed</span>
+        <span class="k">if</span><span class="p">(</span><span class="nb">bool</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="nb">bool</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="n">like</span> <span class="p">,</span> <span class="n">dislike</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+            <span class="k">if</span><span class="p">(</span><span class="nb">bool</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">increaseLikeNumber</span><span class="p">(</span><span class="n">commentid</span><span class="p">)</span>
+                <span class="n">like</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">else</span> <span class="p">:</span>
+                <span class="n">dislike</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">increaseDislikeNumber</span><span class="p">(</span><span class="n">commentid</span><span class="p">)</span>
+
+            <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+                <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+                <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;  INSERT into CommentLikeDislike (comment_id, people_id, ifliked, ifdisliked)</span>
+<span class="s2">                                               values (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">) &quot;&quot;&quot;</span><span class="p">,</span>
+                               <span class="p">(</span><span class="n">commentid</span><span class="p">,</span> <span class="n">peopleid</span><span class="p">,</span> <span class="n">like</span><span class="p">,</span> <span class="n">dislike</span><span class="p">))</span>
+
+
+        <span class="k">elif</span> <span class="p">(</span><span class="nb">bool</span> <span class="o">==</span> <span class="mi">3</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">decreaseLikeNumber</span><span class="p">(</span><span class="n">commentid</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+                <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+                <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot; DELETE from CommentLikeDislike as c where c.id = </span><span class="si">%s</span><span class="s2"> &quot;&quot;&quot;</span><span class="p">,</span>
+                               <span class="p">(</span><span class="n">likedislikeid</span><span class="p">,))</span>
+
+
+
+
+
+
+        <span class="k">elif</span> <span class="p">(</span><span class="nb">bool</span> <span class="o">==</span> <span class="mi">4</span><span class="p">):</span>
+
+            <span class="n">like</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">dislike</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">decreaseLikeIncreaseDislike</span><span class="p">(</span><span class="n">commentid</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+                <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+                <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot; UPDATE CommentLikeDislike as c SET ifliked = </span><span class="si">%s</span><span class="s2">, ifdisliked = </span><span class="si">%s</span><span class="s2"> where c.id = </span><span class="si">%s</span><span class="s2"> &quot;&quot;&quot;</span><span class="p">,</span>
+                               <span class="p">(</span><span class="n">like</span><span class="p">,</span> <span class="n">dislike</span><span class="p">,</span> <span class="n">likedislikeid</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="nb">bool</span> <span class="o">==</span> <span class="mi">5</span><span class="p">):</span>
+            <span class="n">like</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">dislike</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">increaseLikeDecreaseDislike</span><span class="p">(</span><span class="n">commentid</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+                <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+                <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot; UPDATE CommentLikeDislike as c SET ifliked = </span><span class="si">%s</span><span class="s2">, ifdisliked = </span><span class="si">%s</span><span class="s2"> where c.id = </span><span class="si">%s</span><span class="s2"> &quot;&quot;&quot;</span><span class="p">,</span>
+                               <span class="p">(</span><span class="n">like</span><span class="p">,</span> <span class="n">dislike</span><span class="p">,</span> <span class="n">likedislikeid</span><span class="p">))</span>
+        <span class="k">else</span> <span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">decreaseDislikeNumber</span><span class="p">(</span><span class="n">commentid</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+                <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+                <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;DELETE from CommentLikeDislike as c where c.id = </span><span class="si">%s</span><span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
+                               <span class="p">(</span><span class="n">likedislikeid</span><span class="p">,))</span>
+
+
+
+
+
+
+
+
+    <span class="k">def</span> <span class="nf">likedislikeUpdate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">commentid</span><span class="p">,</span> <span class="n">peopleid</span><span class="p">,</span> <span class="nb">bool</span> <span class="p">,</span> <span class="n">likedislikeid</span><span class="p">):</span>
+
+        <span class="k">if</span><span class="p">(</span> <span class="n">likedislikeid</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span> <span class="c1">#no like-dislike exist</span>
+            <span class="n">like</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">dislike</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span><span class="p">(</span><span class="nb">bool</span> <span class="o">==</span><span class="mi">1</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">increaseLikeNumber</span><span class="p">(</span><span class="n">commentid</span><span class="p">)</span>
+                <span class="n">like</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">bool</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">dislike</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">increaseDislikeNumber</span><span class="p">(</span><span class="n">commentid</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+                <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+                <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                                    INSERT into CommentLikeDislike (comment_id, people_id, ifliked, ifdisliked)</span>
+<span class="s2">                                    values (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">) &quot;&quot;&quot;</span><span class="p">,</span>
+                               <span class="p">(</span><span class="n">commentid</span><span class="p">,</span> <span class="n">peopleid</span><span class="p">,</span><span class="n">like</span><span class="p">,</span><span class="n">dislike</span><span class="p">))</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span><span class="p">(</span><span class="nb">bool</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="nb">bool</span><span class="o">==-</span><span class="mi">1</span><span class="p">):</span> <span class="c1">#delete it got notr</span>
+                <span class="k">if</span><span class="p">(</span><span class="nb">bool</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">decreaseDislikeNumber</span><span class="p">(</span><span class="n">commentid</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">decreaseLikeNumber</span><span class="p">(</span><span class="n">commentid</span><span class="p">)</span>
+                <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+                    <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+                    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;DELETE from CommentLikeDislike as c where c.id = </span><span class="si">%s</span><span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
+                                   <span class="p">(</span><span class="n">likedislikeid</span><span class="p">,))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">like</span><span class="p">,</span><span class="n">dislike</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+                <span class="k">if</span><span class="p">(</span><span class="nb">bool</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+                    <span class="n">like</span> <span class="o">=</span> <span class="mi">1</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">increaseLikeDecreaseDislike</span><span class="p">(</span><span class="n">commentid</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">dislike</span> <span class="o">=</span> <span class="mi">1</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">decreaseLikeIncreaseDislike</span><span class="p">(</span><span class="n">commentid</span><span class="p">)</span>
+                <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+                    <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+                    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot; UPDATE CommentLikeDislike as c SET ifliked = </span><span class="si">%s</span><span class="s2">, ifdisliked = </span><span class="si">%s</span><span class="s2"> where c.id = </span><span class="si">%s</span><span class="s2"> &quot;&quot;&quot;</span><span class="p">,</span>
+                                   <span class="p">(</span><span class="n">like</span><span class="p">,</span><span class="n">dislike</span><span class="p">,</span><span class="n">likedislikeid</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="contactinfo-model">
+<h2>ContactInfo Model<a class="headerlink" href="#contactinfo-model" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ContactInfoModel</span><span class="p">:</span>
+
+    <span class="c1">#  to decide insert or update</span>
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comment</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">comment</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>  <span class="c1"># if object has no id value then insert</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ifExist</span><span class="p">(</span><span class="n">comment</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="o">!=</span> <span class="kc">True</span><span class="p">):</span>  <span class="c1"># object has value but if it exists in database</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>  <span class="c1"># then insert since that object not in database</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>  <span class="c1"># it exists in database update</span>
+
+    <span class="c1"># insert method that will do insertion</span>
+    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contactInfo</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;INSERT INTO Contact_info (berbershop_id , type , telephone_number , facebook , twitter ,</span>
+<span class="s2">                    instagram)</span>
+<span class="s2">                    VALUES ( </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2">)&quot;&quot;&quot;</span><span class="p">,</span>
+                           <span class="p">(</span><span class="n">contactInfo</span><span class="o">.</span><span class="n">berberShopId</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
+                            <span class="n">contactInfo</span><span class="o">.</span><span class="n">telephoneNumber</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">.</span><span class="n">facebook</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">.</span><span class="n">twitter</span><span class="p">,</span>
+                            <span class="n">contactInfo</span><span class="o">.</span><span class="n">instagram</span><span class="p">))</span>
+
+    <span class="c1"># update method that will do update</span>
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contactInfo</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                UPDATE Contact_Info SET id = </span><span class="si">%s</span><span class="s2">, berbershop_id = </span><span class="si">%s</span><span class="s2"> , type  =</span><span class="si">%s</span><span class="s2"> , telephone_number = </span><span class="si">%s</span><span class="s2"> ,</span>
+<span class="s2">                facebook = </span><span class="si">%s</span><span class="s2"> , twitter = </span><span class="si">%s</span><span class="s2"> , instagram =</span><span class="si">%s</span><span class="s2"> where id = </span><span class="si">%s</span><span class="s2"> &quot;&quot;&quot;</span><span class="p">,</span>
+                           <span class="p">(</span><span class="n">contactInfo</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">.</span><span class="n">berberShopId</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
+                            <span class="n">contactInfo</span><span class="o">.</span><span class="n">telephoneNumber</span><span class="p">,</span>
+                            <span class="n">contactInfo</span><span class="o">.</span><span class="n">facebook</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">.</span><span class="n">twitter</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">.</span><span class="n">instagram</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+
+
+    <span class="c1"># get by id</span>
+    <span class="k">def</span> <span class="nf">getById</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                SELECT * from Contact_info as c where c.id = </span><span class="si">%s</span><span class="s2"> &quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nb">id</span><span class="p">,))</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+
+        <span class="c1"># return one comment object</span>
+        <span class="n">contactInfo</span> <span class="o">=</span> <span class="n">ContactInfo</span><span class="p">()</span>
+        <span class="n">contactInfo</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">.</span><span class="n">berberShopId</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">.</span><span class="n">telephoneNumber</span><span class="p">,</span> \
+        <span class="n">contactInfo</span><span class="o">.</span><span class="n">facebook</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">.</span><span class="n">twitter</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">.</span><span class="n">instagram</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span>
+            <span class="mi">5</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">contactInfo</span>
+
+    <span class="k">def</span> <span class="nf">getByBarbershopId</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="nb">id</span><span class="p">):</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                SELECT * from Contact_info as c where c.berbershop_id  = </span><span class="si">%s</span><span class="s2"> &quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nb">id</span><span class="p">,))</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">row</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="c1"># return one comment object</span>
+        <span class="n">contactInfo</span> <span class="o">=</span> <span class="n">ContactInfo</span><span class="p">()</span>
+        <span class="n">contactInfo</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">.</span><span class="n">berberShopId</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">.</span><span class="n">telephoneNumber</span><span class="p">,</span> \
+        <span class="n">contactInfo</span><span class="o">.</span><span class="n">facebook</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">.</span><span class="n">twitter</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">.</span><span class="n">instagram</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> \
+                                                                           <span class="n">row</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">contactInfo</span>
+
+    <span class="k">def</span> <span class="nf">deleteById</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                DELETE from Contact_info where id = </span><span class="si">%s</span><span class="s2"></span>
+<span class="s2">            &quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nb">id</span><span class="p">,))</span>
+
+    <span class="c1"># get All</span>
+    <span class="k">def</span> <span class="nf">getAll</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * from Contact_info as c&quot;</span><span class="p">)</span>
+            <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+
+        <span class="n">contacts</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+            <span class="n">contactInfo</span> <span class="o">=</span> <span class="n">ContactInfo</span><span class="p">()</span>
+            <span class="n">contactInfo</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">.</span><span class="n">berberShopId</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">.</span><span class="n">telephoneNumber</span><span class="p">,</span> \
+            <span class="n">contactInfo</span><span class="o">.</span><span class="n">facebook</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">.</span><span class="n">twitter</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">.</span><span class="n">instagram</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> \
+                                                                               <span class="n">row</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+            <span class="n">contacts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">contactInfo</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">contacts</span>
+
+    <span class="k">def</span> <span class="nf">ifExist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                SELECT * from Contact_info where id = </span><span class="si">%s</span><span class="s2"></span>
+<span class="s2">            &quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nb">id</span><span class="p">,))</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">row</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">getByBarbershopId</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">barbershopid</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                       SELECT * from Contact_info as c where c.berbershop_id = </span><span class="si">%s</span><span class="s2"> &quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">barbershopid</span><span class="p">,))</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+
+            <span class="c1"># return one comment object</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">row</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">contactInfo</span> <span class="o">=</span> <span class="n">ContactInfo</span><span class="p">()</span>
+        <span class="n">contactInfo</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>  <span class="n">contactInfo</span><span class="o">.</span><span class="n">berberShopId</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">.</span><span class="n">telephoneNumber</span><span class="p">,</span> \
+        <span class="n">contactInfo</span><span class="o">.</span><span class="n">facebook</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">.</span><span class="n">twitter</span><span class="p">,</span> <span class="n">contactInfo</span><span class="o">.</span><span class="n">instagram</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span>
+            <span class="mi">5</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">contactInfo</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rezervation-model">
+<h2>Rezervation Model<a class="headerlink" href="#rezervation-model" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">RezervationModel</span><span class="p">:</span>
+
+    <span class="c1"># to decide insert or update</span>
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rezervation</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">rezervation</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>  <span class="c1"># if object has no id value then insert</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">rezervation</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ifExist</span><span class="p">(</span><span class="n">rezervation</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="o">!=</span> <span class="kc">True</span><span class="p">):</span>  <span class="c1"># object has value but if it exists in database</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">rezervation</span><span class="p">)</span>  <span class="c1"># then insert since that object not in database</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">rezervation</span><span class="p">)</span>  <span class="c1"># it exists in database update</span>
+
+    <span class="c1"># insert method that will do insertion</span>
+    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rezervation</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;INSERT INTO Rezervation (people_id, berbershop_id, datetime_registration, datetime_rezervation, status, note,</span>
+<span class="s2">                    price_type, payment_method)</span>
+<span class="s2">                    VALUES (</span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;&quot;&quot;</span><span class="p">,</span>
+                           <span class="p">(</span><span class="n">rezervation</span><span class="o">.</span><span class="n">peopleId</span><span class="p">,</span> <span class="n">rezervation</span><span class="o">.</span><span class="n">berberShopId</span><span class="p">,</span> <span class="n">rezervation</span><span class="o">.</span><span class="n">dateTimeRegistration</span><span class="p">,</span>
+                            <span class="n">rezervation</span><span class="o">.</span><span class="n">dateTimeRezervation</span><span class="p">,</span> <span class="n">rezervation</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">rezervation</span><span class="o">.</span><span class="n">note</span><span class="p">,</span>
+                            <span class="n">rezervation</span><span class="o">.</span><span class="n">priceType</span><span class="p">,</span><span class="n">rezervation</span><span class="o">.</span><span class="n">paymentMethod</span><span class="p">))</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="c1"># update method that will do update</span>
+    <span class="k">def</span> <span class="nf">updateByIdDate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">daterez</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                UPDATE Rezervation SET datetime_rezervation = </span><span class="si">%s</span><span class="s2"> where id = </span><span class="si">%s</span><span class="s2"> &quot;&quot;&quot;</span><span class="p">,</span>
+                           <span class="p">(</span>
+                               <span class="n">daterez</span><span class="p">,</span> <span class="nb">id</span><span class="p">))</span>
+
+    <span class="c1"># get by id</span>
+    <span class="k">def</span> <span class="nf">getById</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                SELECT * from Rezervation as r where r.id = </span><span class="si">%s</span><span class="s2"> &quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nb">id</span><span class="p">,))</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+
+        <span class="c1"># return one comment object</span>
+        <span class="n">rezervation</span> <span class="o">=</span> <span class="n">Rezervation</span><span class="p">()</span>
+        <span class="n">rezervation</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">rezervation</span><span class="o">.</span><span class="n">peopleId</span><span class="p">,</span> <span class="n">rezervation</span><span class="o">.</span><span class="n">berberShopId</span><span class="p">,</span> <span class="n">rezervation</span><span class="o">.</span><span class="n">dateTimeRegistration</span><span class="p">,</span> <span class="n">rezervation</span><span class="o">.</span><span class="n">dateTimeRezervation</span><span class="p">,</span> \
+        <span class="n">rezervation</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">rezervation</span><span class="o">.</span><span class="n">note</span><span class="p">,</span> <span class="n">rezervation</span><span class="o">.</span><span class="n">priceType</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> \
+                                                                      <span class="n">row</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">rezervation</span>
+
+    <span class="k">def</span> <span class="nf">deleteById</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                DELETE from Rezervation where id = </span><span class="si">%s</span><span class="s2"></span>
+<span class="s2">            &quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nb">id</span><span class="p">,))</span>
+
+    <span class="c1"># get All</span>
+    <span class="k">def</span> <span class="nf">getAllByBarberShop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">berbershopid</span><span class="p">,</span><span class="n">currenttime</span><span class="p">,</span><span class="n">tomorrow</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;SELECT r.*, s.* from Rezervation as r left join serviceprices as s on r.price_type = s.id where r.berbershop_id = </span><span class="si">%s</span><span class="s2"> and r.datetime_rezervation &gt;= </span><span class="si">%s</span><span class="s2"> and</span>
+<span class="s2">                r.datetime_rezervation &lt; </span><span class="si">%s</span><span class="s2"> order by r.datetime_rezervation asc</span>
+<span class="s2">            &quot;&quot;&quot;</span><span class="p">,</span>
+                           <span class="p">(</span><span class="n">berbershopid</span><span class="p">,</span><span class="n">currenttime</span><span class="p">,</span><span class="n">tomorrow</span><span class="p">))</span>
+            <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">rows</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="k">return</span>  <span class="kc">None</span>
+        <span class="n">rezervations</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+            <span class="n">rezervation</span> <span class="o">=</span> <span class="n">Rezervation</span><span class="p">()</span>
+            <span class="n">rezervation</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">rezervation</span><span class="o">.</span><span class="n">peopleId</span><span class="p">,</span> <span class="n">rezervation</span><span class="o">.</span><span class="n">berberShopId</span><span class="p">,</span> <span class="n">rezervation</span><span class="o">.</span><span class="n">dateTimeRegistration</span><span class="p">,</span> <span class="n">rezervation</span><span class="o">.</span><span class="n">dateTimeRezervation</span><span class="p">,</span> \
+            <span class="n">rezervation</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">rezervation</span><span class="o">.</span><span class="n">note</span><span class="p">,</span> <span class="n">rezervation</span><span class="o">.</span><span class="n">paymentMethod</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> \
+                                                                          <span class="n">row</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span>
+            <span class="n">servicePrice</span> <span class="o">=</span> <span class="n">ServicePrice</span><span class="p">()</span>
+            <span class="n">servicePrice</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">servicePrice</span><span class="o">.</span><span class="n">service_name</span><span class="p">,</span> <span class="n">servicePrice</span><span class="o">.</span><span class="n">price</span><span class="p">,</span> <span class="n">servicePrice</span><span class="o">.</span><span class="n">duration</span>  <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">14</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span>
+            <span class="n">rezervation</span><span class="o">.</span><span class="n">priceType</span> <span class="o">=</span> <span class="n">servicePrice</span>
+            <span class="n">rezervations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rezervation</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">rezervations</span>
+
+    <span class="k">def</span> <span class="nf">ifExist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                SELECT * from Rezervation where id = </span><span class="si">%s</span><span class="s2"></span>
+<span class="s2">            &quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nb">id</span><span class="p">,))</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">row</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="member3.html" class="btn btn-neutral float-right" title="Parts Implemented by Fatih Mustafa Bucak" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="member1.html" class="btn btn-neutral float-left" title="Parts Implemented by Ahmet Semih Uçan" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, ITUCSDB1933
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

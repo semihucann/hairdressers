@@ -1,0 +1,647 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Parts Implemented by Fatih Mustafa Bucak &mdash; ITUCSDB1933  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Parts Implemented by Halis Ibrahim Aydin" href="member4.html" />
+    <link rel="prev" title="Parts Implemented by Ertugrul Semiz" href="member2.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> ITUCSDB1933
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#database-design">Database Design</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="member1.html">Parts Implemented by Ahmet Semih Uçan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="member2.html">Parts Implemented by Ertugrul Semiz</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Parts Implemented by Fatih Mustafa Bucak</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#my-tables-in-database">My Tables in Database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#creating-tables">Creating Tables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#classes">Classes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#crud-operations">CRUD Operations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#validation">Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="member4.html">Parts Implemented by Halis Ibrahim Aydin</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ITUCSDB1933</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Developer Guide</a> &raquo;</li>
+        
+      <li>Parts Implemented by Fatih Mustafa Bucak</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/developer/member3.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="parts-implemented-by-fatih-mustafa-bucak">
+<h1>Parts Implemented by Fatih Mustafa Bucak<a class="headerlink" href="#parts-implemented-by-fatih-mustafa-bucak" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="my-tables-in-database">
+<h2>My Tables in Database<a class="headerlink" href="#my-tables-in-database" title="Permalink to this headline">¶</a></h2>
+<p>Berbershop  Table</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 17%" />
+<col style="width: 11%" />
+<col style="width: 12%" />
+<col style="width: 11%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 9%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>id</p></th>
+<th class="head"><p>owner_people_id</p></th>
+<th class="head"><p>shopname</p></th>
+<th class="head"><p>location</p></th>
+<th class="head"><p>city</p></th>
+<th class="head"><p>opening_time</p></th>
+<th class="head"><p>closing_time</p></th>
+<th class="head"><p>trade_number</p></th>
+<th class="head"><p>shop_logo</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>PRIMARY</p></td>
+<td><p>INTEGER People(id)</p></td>
+<td><p>VARCHAR(50)</p></td>
+<td><p>VARCHAR(300)</p></td>
+<td><p>VARCHAR(50)</p></td>
+<td><p>TIME</p></td>
+<td><p>TIME</p></td>
+<td><p>NUMERIC(10)</p></td>
+<td><p>BYTEA</p></td>
+</tr>
+</tbody>
+</table>
+<p>Serviceprices Table</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 26%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 13%" />
+<col style="width: 14%" />
+<col style="width: 10%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>id</p></th>
+<th class="head"><p>shop_id</p></th>
+<th class="head"><p>service_name</p></th>
+<th class="head"><p>definition</p></th>
+<th class="head"><p>gender</p></th>
+<th class="head"><p>price</p></th>
+<th class="head"><p>duration</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>PRIMARY</p></td>
+<td><p>INTEGER Berbershop(id)</p></td>
+<td><p>VARCHAR(50)</p></td>
+<td><p>VARCHAR(300)</p></td>
+<td><p>VARCHAR(10)</p></td>
+<td><p>DECIMAL(6,2)</p></td>
+<td><p>INTEGER</p></td>
+</tr>
+</tbody>
+</table>
+<p>Creditcards Table</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 20%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 13%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>id</p></th>
+<th class="head"><p>people_id</p></th>
+<th class="head"><p>name</p></th>
+<th class="head"><p>card_number</p></th>
+<th class="head"><p>cvv_number</p></th>
+<th class="head"><p>last_month</p></th>
+<th class="head"><p>last_year</p></th>
+<th class="head"><p>created_time</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>PRIMARY</p></td>
+<td><p>INTEGER People(id)</p></td>
+<td><p>VARCHAR(50)</p></td>
+<td><p>NUMERIC(16)</p></td>
+<td><p>NUMERIC(4)</p></td>
+<td><p>NUMERIC(2)</p></td>
+<td><p>NUMERIC(2)</p></td>
+<td><p>TIMESTAMP</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="creating-tables">
+<h2>Creating Tables<a class="headerlink" href="#creating-tables" title="Permalink to this headline">¶</a></h2>
+<p><strong>dbinit.py</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INIT_STATEMENTS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    CREATE TABLE IF NOT EXISTS Berbershop(</span>
+<span class="s2">        id SERIAL PRIMARY KEY,</span>
+<span class="s2">        owner_people_id INTEGER REFERENCES People(id) ON DELETE CASCADE,</span>
+<span class="s2">        shopname VARCHAR(50),</span>
+<span class="s2">        location VARCHAR(300),</span>
+<span class="s2">        city VARCHAR(50),</span>
+<span class="s2">        opening_time TIME,</span>
+<span class="s2">        closing_time TIME,</span>
+<span class="s2">        trade_number NUMERIC(10) NOT NULL,</span>
+<span class="s2">        shop_logo bytea</span>
+<span class="s2">    )</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    CREATE TABLE IF NOT EXISTS Serviceprices(</span>
+<span class="sd">        id SERIAL PRIMARY KEY,</span>
+<span class="sd">        shop_id INTEGER REFERENCES Berbershop(id) ON DELETE CASCADE,</span>
+<span class="sd">        service_name VARCHAR(50),</span>
+<span class="sd">        definition VARCHAR(300),</span>
+<span class="sd">        gender VARCHAR(10),</span>
+<span class="sd">        price DECIMAL(6,2),</span>
+<span class="sd">        duration INTEGER</span>
+<span class="sd">    )</span>
+<span class="sd">    &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    CREATE TABLE IF NOT EXISTS Creditcards(</span>
+<span class="sd">        id SERIAL PRIMARY KEY,</span>
+<span class="sd">        people_id INTEGER REFERENCES People(id) ON DELETE CASCADE,</span>
+<span class="sd">        name VARCHAR(50),</span>
+<span class="sd">        card_number NUMERIC(16) NOT NULL,</span>
+<span class="sd">        cvv_number NUMERIC(4) NOT NULL,</span>
+<span class="sd">        last_month NUMERIC(2) NOT NULL,</span>
+<span class="sd">        last_year NUMERIC(2) NOT NULL,</span>
+<span class="sd">        created_time TIMESTAMP</span>
+<span class="sd">    )</span>
+<span class="sd">    &quot;&quot;&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Tables are created in dbinit.py file with above SQL queries.
+With initialize method in dbinit.py, these queries are executed one by one.</p>
+</div>
+<div class="section" id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h2>
+<p><strong>Berbershop class</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Berbershop</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shopname</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ownerpeople_id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">city</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">openingtime</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">closingtime</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tradenumber</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">campaigns</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contactInfo</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">numberofemployee</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shop_logo</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p><strong>ServicePrice class</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ServicePrice</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shop_id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">service_name</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">definition</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gender</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">price</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">duration</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p><strong>CreditCard class</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CreditCard</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">people_id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">card_number</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cvv</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_month</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_year</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">created_time</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p>These classes are used to store information from SQL tables above respectively. Some classes has more number of variable than number of column of related table. Extra variables are used store extra information after join queries with other tables.</p>
+</div>
+<div class="section" id="crud-operations">
+<h2>CRUD Operations<a class="headerlink" href="#crud-operations" title="Permalink to this headline">¶</a></h2>
+<p><strong>Berbershop Insert</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">berbershop</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;INSERT INTO Berbershop (</span>
+<span class="s2">        owner_people_id, shopname, location,</span>
+<span class="s2">        city, opening_time, closing_time,</span>
+<span class="s2">        trade_number, shop_logo)</span>
+<span class="s2">        VALUES (</span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;&quot;&quot;</span><span class="p">,</span>
+        <span class="p">(</span><span class="n">berbershop</span><span class="o">.</span><span class="n">ownerpeople_id</span><span class="p">,</span> <span class="n">berbershop</span><span class="o">.</span><span class="n">shopname</span><span class="p">,</span>
+         <span class="n">berbershop</span><span class="o">.</span><span class="n">location</span><span class="p">,</span> <span class="n">berbershop</span><span class="o">.</span><span class="n">city</span><span class="p">,</span>
+         <span class="n">berbershop</span><span class="o">.</span><span class="n">openingtime</span><span class="p">,</span> <span class="n">berbershop</span><span class="o">.</span><span class="n">closingtime</span><span class="p">,</span>
+         <span class="n">berbershop</span><span class="o">.</span><span class="n">tradenumber</span><span class="p">,</span> <span class="n">berbershop</span><span class="o">.</span><span class="n">shop_logo</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>Berbershop Select</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_berbershops_with_number_of_employee_by_people_owner_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">people_owner_id</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        SELECT s.id, s.owner_people_id, s.shopname, s.location, s.city,</span>
+<span class="s2">        s.opening_time, s.closing_time, s.trade_number, count(b.id)</span>
+<span class="s2">        from Berbershop s left join Berber b</span>
+<span class="s2">        on s.id = b.berbershop_id</span>
+<span class="s2">        where s.owner_people_id = </span><span class="si">%s</span><span class="s2"> group by s.id&quot;&quot;&quot;</span><span class="p">,</span>
+        <span class="p">(</span><span class="n">people_owner_id</span><span class="p">,))</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+
+    <span class="n">berbershops</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+        <span class="n">berbershop</span> <span class="o">=</span> <span class="n">Berbershop</span><span class="p">()</span>
+        <span class="n">berbershop</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">berbershop</span><span class="o">.</span><span class="n">ownerpeople_id</span><span class="p">,</span> <span class="n">berbershop</span><span class="o">.</span><span class="n">shopname</span><span class="p">,</span> <span class="n">berbershop</span><span class="o">.</span><span class="n">location</span><span class="p">,</span> <span class="n">berbershop</span><span class="o">.</span><span class="n">city</span><span class="p">,</span> \
+        <span class="n">berbershop</span><span class="o">.</span><span class="n">openingtime</span><span class="p">,</span> <span class="n">berbershop</span><span class="o">.</span><span class="n">closingtime</span><span class="p">,</span> <span class="n">berbershop</span><span class="o">.</span><span class="n">tradenumber</span><span class="p">,</span> <span class="n">berbershop</span><span class="o">.</span><span class="n">numberofemployee</span> <span class="o">=</span> \
+        <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span>
+
+        <span class="n">berbershops</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">berbershop</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">berbershops</span>
+</pre></div>
+</div>
+<p><strong>Berbershop Update</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">barbershop</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            UPDATE Berbershop SET shopname = </span><span class="si">%s</span><span class="s2">, location = </span><span class="si">%s</span><span class="s2">, city = </span><span class="si">%s</span><span class="s2">,</span>
+<span class="s2">            opening_time = </span><span class="si">%s</span><span class="s2">, closing_time = </span><span class="si">%s</span><span class="s2">, trade_number = </span><span class="si">%s</span><span class="s2"> where id = </span><span class="si">%s</span><span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">barbershop</span><span class="o">.</span><span class="n">shopname</span><span class="p">,</span> <span class="n">barbershop</span><span class="o">.</span><span class="n">location</span><span class="p">,</span> <span class="n">barbershop</span><span class="o">.</span><span class="n">city</span><span class="p">,</span>
+            <span class="n">barbershop</span><span class="o">.</span><span class="n">openingtime</span><span class="p">,</span> <span class="n">barbershop</span><span class="o">.</span><span class="n">closingtime</span><span class="p">,</span> <span class="n">barbershop</span><span class="o">.</span><span class="n">tradenumber</span><span class="p">,</span>
+            <span class="n">barbershop</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>Berbershop Delete</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">delete_barbershop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            DELETE from Berbershop where id = </span><span class="si">%s</span><span class="s2"></span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nb">id</span><span class="p">,))</span>
+</pre></div>
+</div>
+<p><strong>ServicePrice Insert</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serviceprice</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        INSERT INTO Serviceprices (shop_id, service_name, definition, gender, price, duration)</span>
+<span class="s2">                         VALUES (</span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2">)&quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span>
+                         <span class="n">serviceprice</span><span class="o">.</span><span class="n">shop_id</span><span class="p">,</span> <span class="n">serviceprice</span><span class="o">.</span><span class="n">service_name</span><span class="p">,</span>
+                         <span class="n">serviceprice</span><span class="o">.</span><span class="n">definition</span><span class="p">,</span> <span class="n">serviceprice</span><span class="o">.</span><span class="n">gender</span><span class="p">,</span>
+                         <span class="n">serviceprice</span><span class="o">.</span><span class="n">price</span><span class="p">,</span> <span class="n">serviceprice</span><span class="o">.</span><span class="n">duration</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>ServicePrice Select</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">listByBerberShop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">berbershopid</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;SELECT * from serviceprices where shop_id = </span><span class="si">%s</span><span class="s2"> &quot;&quot;&quot;</span><span class="p">,</span>
+                       <span class="p">(</span><span class="n">berbershopid</span><span class="p">,))</span>
+
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+
+    <span class="n">services</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+        <span class="n">sv</span> <span class="o">=</span> <span class="n">ServicePrice</span><span class="p">()</span>
+        <span class="n">sv</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">sv</span><span class="o">.</span><span class="n">shop_id</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">sv</span><span class="o">.</span><span class="n">service_name</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">sv</span><span class="o">.</span><span class="n">definition</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+        <span class="n">sv</span><span class="o">.</span><span class="n">gender</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+        <span class="n">sv</span><span class="o">.</span><span class="n">price</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+        <span class="n">sv</span><span class="o">.</span><span class="n">duration</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+        <span class="n">services</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sv</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">services</span>
+</pre></div>
+</div>
+<p><strong>ServicePrice Update</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service_price</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            UPDATE Serviceprices SET service_name = </span><span class="si">%s</span><span class="s2">, definition = </span><span class="si">%s</span><span class="s2">,</span>
+<span class="s2">            gender = </span><span class="si">%s</span><span class="s2">, price = </span><span class="si">%s</span><span class="s2">, duration = </span><span class="si">%s</span><span class="s2"> where id = </span><span class="si">%s</span><span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
+                       <span class="p">(</span><span class="n">service_price</span><span class="o">.</span><span class="n">service_name</span><span class="p">,</span> <span class="n">service_price</span><span class="o">.</span><span class="n">definition</span><span class="p">,</span>
+                       <span class="n">service_price</span><span class="o">.</span><span class="n">gender</span><span class="p">,</span> <span class="n">service_price</span><span class="o">.</span><span class="n">price</span><span class="p">,</span>
+                        <span class="n">service_price</span><span class="o">.</span><span class="n">duration</span><span class="p">,</span> <span class="n">service_price</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>ServicePrice Delete</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">delete_list_of_service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            DELETE from Serviceprices where id in </span><span class="si">%s</span><span class="s2"></span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">,))</span>
+</pre></div>
+</div>
+<p><strong>CreditCard Insert</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">credit_card</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        INSERT INTO Creditcards</span>
+<span class="s2">        (people_id, name, card_number, cvv_number, last_month, last_year, created_time)</span>
+<span class="s2">                         VALUES (</span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2"> )&quot;&quot;&quot;</span><span class="p">,</span>
+                         <span class="p">(</span><span class="n">credit_card</span><span class="o">.</span><span class="n">people_id</span><span class="p">,</span> <span class="n">credit_card</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                         <span class="n">credit_card</span><span class="o">.</span><span class="n">card_number</span><span class="p">,</span>
+                         <span class="n">credit_card</span><span class="o">.</span><span class="n">cvv</span><span class="p">,</span> <span class="n">credit_card</span><span class="o">.</span><span class="n">last_month</span><span class="p">,</span>
+                         <span class="n">credit_card</span><span class="o">.</span><span class="n">last_year</span><span class="p">,</span>
+                         <span class="n">credit_card</span><span class="o">.</span><span class="n">created_time</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>CreditCard Select</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_all_credit_cards_of_a_person</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot; SELECT * from Creditcards where people_id = </span><span class="si">%s</span><span class="s2"> order by id&quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">user_id</span><span class="p">,))</span>
+        <span class="n">creditcards_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+            <span class="n">creditcard</span> <span class="o">=</span> <span class="n">CreditCard</span><span class="p">()</span>
+            <span class="n">creditcard</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">creditcard</span><span class="o">.</span><span class="n">people_id</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">creditcard</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">creditcard</span><span class="o">.</span><span class="n">card_number</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+            <span class="n">creditcard</span><span class="o">.</span><span class="n">cvv</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+            <span class="n">creditcard</span><span class="o">.</span><span class="n">last_month</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+            <span class="n">creditcard</span><span class="o">.</span><span class="n">last_year</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+            <span class="n">creditcard</span><span class="o">.</span><span class="n">created_time</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">creditcard</span><span class="o">.</span><span class="n">created_time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">creditcard</span><span class="o">.</span><span class="n">created_time</span> <span class="o">=</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">creditcard</span><span class="o">.</span><span class="n">created_time</span><span class="p">))[</span><span class="mi">0</span><span class="p">:</span><span class="mi">16</span><span class="p">]</span>
+            <span class="n">creditcards_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">creditcard</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">creditcards_list</span>
+</pre></div>
+</div>
+<p><strong>CreditCard Update</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">credit_card</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        UPDATE Creditcards SET name = </span><span class="si">%s</span><span class="s2">,</span>
+<span class="s2">        card_number = </span><span class="si">%s</span><span class="s2">, cvv_number = </span><span class="si">%s</span><span class="s2">,</span>
+<span class="s2">        last_month = </span><span class="si">%s</span><span class="s2">, last_year = </span><span class="si">%s</span><span class="s2"> where id = </span><span class="si">%s</span><span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
+        <span class="p">(</span><span class="n">credit_card</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">credit_card</span><span class="o">.</span><span class="n">card_number</span><span class="p">,</span>
+        <span class="n">credit_card</span><span class="o">.</span><span class="n">cvv</span><span class="p">,</span> <span class="n">credit_card</span><span class="o">.</span><span class="n">last_month</span><span class="p">,</span>
+        <span class="n">credit_card</span><span class="o">.</span><span class="n">last_year</span><span class="p">,</span> <span class="n">credit_card</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>CreditCard Update</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">delete_credit_card</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            DELETE from Creditcards where id = </span><span class="si">%s</span><span class="s2"></span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nb">id</span><span class="p">,))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="validation">
+<h2>Validation<a class="headerlink" href="#validation" title="Permalink to this headline">¶</a></h2>
+<p>I used html form types to provide validation generally. However, I wrote some javascript code for credit card form validation.</p>
+<p><strong>Card Number Validation</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">cardno</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s2">&quot;cardno&quot;</span><span class="p">);</span>
+<span class="n">cardno</span><span class="o">.</span><span class="n">addEventListener</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">,</span> <span class="n">function</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">res</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+    <span class="n">var</span> <span class="n">temp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">cardno</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">cardno</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="s2">&quot;9&quot;</span> <span class="o">&amp;&amp;</span> <span class="n">cardno</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">res</span> <span class="o">+</span> <span class="n">cardno</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+            <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">temp</span> <span class="o">==</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">res</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span><span class="p">;</span>
+            <span class="n">temp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">cardno</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">length</span> <span class="o">&lt;</span> <span class="mi">19</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cardno</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">res</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>When card number text box is changed, addEventListener method is called automatically. It regulates the typed numbers for grouping 4 digits as shown normal credit card.</p>
+<p><strong>Valid Thru Validation</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">thru</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s2">&quot;thru&quot;</span><span class="p">);</span>
+<span class="n">thru</span><span class="o">.</span><span class="n">addEventListener</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">,</span> <span class="n">function</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">res</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+    <span class="n">var</span> <span class="n">temp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">thru</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">thru</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="s2">&quot;9&quot;</span> <span class="o">&amp;&amp;</span> <span class="n">thru</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">res</span> <span class="o">+</span> <span class="n">thru</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+            <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">temp</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">res</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span><span class="p">;</span>
+            <span class="n">temp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">thru</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">length</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">thru</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">res</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>When thru text box is changed, addEventListener method is called automatically. It automaticly puts “/” character after two digits.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="member4.html" class="btn btn-neutral float-right" title="Parts Implemented by Halis Ibrahim Aydin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="member2.html" class="btn btn-neutral float-left" title="Parts Implemented by Ertugrul Semiz" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, ITUCSDB1933
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

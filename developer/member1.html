@@ -1,0 +1,959 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Parts Implemented by Ahmet Semih Uçan &mdash; ITUCSDB1933  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Parts Implemented by Ertugrul Semiz" href="member2.html" />
+    <link rel="prev" title="Developer Guide" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> ITUCSDB1933
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#database-design">Database Design</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Parts Implemented by Ahmet Semih Uçan</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#my-tables-in-database">My Tables in Database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#entity-classes">Entity Classes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database-init">Database Init</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#people-model">People Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#berber-model">Berber Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#owner-model">Owner Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#used-libraries">Used libraries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#functions-in-views-py">Functions in views.py</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#validation-examples">Validation Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="member2.html">Parts Implemented by Ertugrul Semiz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="member3.html">Parts Implemented by Fatih Mustafa Bucak</a></li>
+<li class="toctree-l3"><a class="reference internal" href="member4.html">Parts Implemented by Halis Ibrahim Aydin</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ITUCSDB1933</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Developer Guide</a> &raquo;</li>
+        
+      <li>Parts Implemented by Ahmet Semih Uçan</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/developer/member1.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="parts-implemented-by-ahmet-semih-ucan">
+<h1>Parts Implemented by Ahmet Semih Uçan<a class="headerlink" href="#parts-implemented-by-ahmet-semih-ucan" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="my-tables-in-database">
+<h2>My Tables in Database<a class="headerlink" href="#my-tables-in-database" title="Permalink to this headline">¶</a></h2>
+<p>In this project, I was responsible for 3 tables. These tables were people, berber and owner tables. In people table, username and mail are unique so I wrote code by checking these rules.</p>
+<p>People Table</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 14%" />
+<col style="width: 21%" />
+<col style="width: 11%" />
+<col style="width: 25%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>id</p></th>
+<th class="head"><p>username</p></th>
+<th class="head"><p>name_surname</p></th>
+<th class="head"><p>mail</p></th>
+<th class="head"><p>password_hash</p></th>
+<th class="head"><p>gender</p></th>
+<th class="head"><p>age</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>berberr</p></td>
+<td><p>Hasan Berber</p></td>
+<td><p><a class="reference external" href="mailto:a&#37;&#52;&#48;g&#46;cm">a<span>&#64;</span>g<span>&#46;</span>cm</a></p></td>
+<td><p>Hash</p></td>
+<td><p>m</p></td>
+<td><p>21</p></td>
+</tr>
+</tbody>
+</table>
+<p>Berber Table</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 16%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 11%" />
+<col style="width: 13%" />
+<col style="width: 11%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>id</p></th>
+<th class="head"><p>people_id</p></th>
+<th class="head"><p>bshop_id</p></th>
+<th class="head"><p>g_choice</p></th>
+<th class="head"><p>exp_year</p></th>
+<th class="head"><p>s_time</p></th>
+<th class="head"><p>f_time</p></th>
+<th class="head"><p>rates</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>#4</p></td>
+<td><p>#23</p></td>
+<td><p>unisex</p></td>
+<td><p>8</p></td>
+<td><p>8</p></td>
+<td><p>17</p></td>
+<td><p>3</p></td>
+</tr>
+</tbody>
+</table>
+<p>Owner Table</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 19%" />
+<col style="width: 14%" />
+<col style="width: 22%" />
+<col style="width: 12%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>id</p></th>
+<th class="head"><p>people_id</p></th>
+<th class="head"><p>tc_number</p></th>
+<th class="head"><p>serial_number</p></th>
+<th class="head"><p>vol_number</p></th>
+<th class="head"><p>family_order_no</p></th>
+<th class="head"><p>order_no</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>#5</p></td>
+<td><p>123134433</p></td>
+<td><p>123</p></td>
+<td><p>234</p></td>
+<td><p>435</p></td>
+<td><p>345</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="entity-classes">
+<h2>Entity Classes<a class="headerlink" href="#entity-classes" title="Permalink to this headline">¶</a></h2>
+<p>In this project, I created 3 classes to send and receive data as object. My fundamental classes’ name are People, Berber and Owner.
+In these classes, I write constructors to assign initial values to the object. These classes’ codes are below.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">People</span><span class="p">:</span>
+ <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+     <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="kc">None</span>
+     <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="kc">None</span>
+     <span class="bp">self</span><span class="o">.</span><span class="n">name_surname</span> <span class="o">=</span> <span class="kc">None</span>
+     <span class="bp">self</span><span class="o">.</span><span class="n">mail</span> <span class="o">=</span> <span class="kc">None</span>
+     <span class="bp">self</span><span class="o">.</span><span class="n">password_hash</span> <span class="o">=</span> <span class="kc">None</span>
+     <span class="bp">self</span><span class="o">.</span><span class="n">gender</span> <span class="o">=</span> <span class="kc">None</span>
+     <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="kc">None</span>
+     <span class="bp">self</span><span class="o">.</span><span class="n">role</span> <span class="o">=</span> <span class="kc">None</span>
+     <span class="bp">self</span><span class="o">.</span><span class="n">active</span> <span class="o">=</span> <span class="kc">True</span>
+
+ <span class="k">def</span> <span class="nf">get_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span>
+
+ <span class="nd">@property</span>
+ <span class="k">def</span> <span class="nf">is_active</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">active</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Berber</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">people_id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">berber_shop_id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gender_choice</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">experience_year</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">finish_time</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rates</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">people</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1">#will be used for reaching berber&#39;s people attributes for berbershop_view page</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Owner</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">people_id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tc_number</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serial_number</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vol_number</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">family_order_no</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">order_no</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="database-init">
+<h2>Database Init<a class="headerlink" href="#database-init" title="Permalink to this headline">¶</a></h2>
+<p>The following initialize function in dbinit.py was running when the site was opened. This function was running to create tables with SQL codes that I kept in the variable INIT_STATEMENT in the database.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">statement</span> <span class="ow">in</span> <span class="n">INIT_STATEMENTS</span><span class="p">:</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">INIT_STATEMENTS</span> <span class="o">=</span> <span class="p">[</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    CREATE TABLE IF NOT EXISTS People(</span>
+<span class="sd">        id SERIAL PRIMARY KEY,</span>
+<span class="sd">        username VARCHAR(50) UNIQUE,</span>
+<span class="sd">        name_surname VARCHAR(50),</span>
+<span class="sd">        mail VARCHAR(300) UNIQUE,</span>
+<span class="sd">        password_hash VARCHAR(300),</span>
+<span class="sd">        gender VARCHAR(10),</span>
+<span class="sd">        age integer,</span>
+<span class="sd">        role VARCHAR(10)</span>
+<span class="sd">    )&quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    CREATE TABLE IF NOT EXISTS Berber(</span>
+<span class="sd">        id SERIAL PRIMARY KEY,</span>
+<span class="sd">        people_id INTEGER REFERENCES People(id) ON DELETE CASCADE,</span>
+<span class="sd">        berbershop_id INTEGER DEFAULT NULL REFERENCES Berbershop(id) ON DELETE SET NULL,</span>
+<span class="sd">        gender_choice VARCHAR(10),</span>
+<span class="sd">        experience_year INTEGER DEFAULT 0,</span>
+<span class="sd">        start_time INTEGER,</span>
+<span class="sd">        finish_time INTEGER,</span>
+<span class="sd">        rates INTEGER DEFAULT 0</span>
+<span class="sd">    )</span>
+<span class="sd">    &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    CREATE TABLE IF NOT EXISTS Owner(</span>
+<span class="sd">        id SERIAL PRIMARY KEY,</span>
+<span class="sd">        people_id INTEGER REFERENCES People(id) ON DELETE CASCADE,</span>
+<span class="sd">        tc_number NUMERIC(11) UNIQUE NOT NULL,</span>
+<span class="sd">        serial_number NUMERIC(5) NOT NULL,</span>
+<span class="sd">        vol_number NUMERIC(5),</span>
+<span class="sd">        family_order_no NUMERIC(5),</span>
+<span class="sd">        order_no NUMERIC(5)</span>
+<span class="sd">    )</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>In this project, I have written SQL codes, such as read, insertion, deleting, updating in functions for each table separately. I used the necessary functions in views.py. I have created 3 different classes named Peoplemodel, Berbermodel, and Ownermodel for People, Berber and Owner tables. I wrote the CRUD queries in these classes. I have used the necessary actions by calling the functions I prepared in views.py.</p>
+</div>
+<div class="section" id="people-model">
+<h2>People Model<a class="headerlink" href="#people-model" title="Permalink to this headline">¶</a></h2>
+<p>Here are some examples of functions that I use in the model</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Peoplemodel</span><span class="p">:</span>
+
+    <span class="c1"># Insert Function</span>
+     <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">people</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;INSERT INTO People (username, name_surname, mail, password_hash, gender, age,role)</span>
+<span class="s2">                           VALUES (</span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2">,  </span><span class="si">%s</span><span class="s2"> )&quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span>
+            <span class="n">people</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="n">people</span><span class="o">.</span><span class="n">name_surname</span><span class="p">,</span> <span class="n">people</span><span class="o">.</span><span class="n">mail</span><span class="p">,</span> <span class="n">people</span><span class="o">.</span><span class="n">password_hash</span><span class="p">,</span> <span class="n">people</span><span class="o">.</span><span class="n">gender</span><span class="p">,</span> <span class="n">people</span><span class="o">.</span><span class="n">age</span><span class="p">,</span>
+            <span class="n">people</span><span class="o">.</span><span class="n">role</span><span class="p">))</span>
+
+    <span class="c1"># Read Function for admin panel</span>
+    <span class="k">def</span> <span class="nf">get_all_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot; SELECT * from people&quot;&quot;&quot;</span><span class="p">)</span>
+            <span class="n">people_list</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+                <span class="n">person</span> <span class="o">=</span> <span class="n">People</span><span class="p">()</span>
+                <span class="n">person</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">person</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">person</span><span class="o">.</span><span class="n">name_surname</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+                <span class="n">person</span><span class="o">.</span><span class="n">mail</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+                <span class="n">person</span><span class="o">.</span><span class="n">password_hash</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+                <span class="n">person</span><span class="o">.</span><span class="n">gender</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+                <span class="n">person</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+                <span class="n">person</span><span class="o">.</span><span class="n">role</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
+                <span class="n">person</span><span class="o">.</span><span class="n">active</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">people_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">people_list</span>
+
+    <span class="c1"># Delete Id</span>
+    <span class="k">def</span> <span class="nf">delete_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;DELETE FROM People where id = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nb">id</span><span class="p">,))</span>
+
+    <span class="c1"># Update</span>
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">people</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">control_exist_to_update</span><span class="p">(</span><span class="n">people</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+                <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+                <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;UPDATE People SET username = </span><span class="si">%s</span><span class="s2">, name_surname = </span><span class="si">%s</span><span class="s2">, mail = </span><span class="si">%s</span><span class="s2">, password_hash = </span><span class="si">%s</span><span class="s2">, gender = </span><span class="si">%s</span><span class="s2">, age = </span><span class="si">%s</span><span class="s2"> where id = </span><span class="si">%s</span><span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
+                               <span class="p">(</span><span class="n">people</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="n">people</span><span class="o">.</span><span class="n">name_surname</span><span class="p">,</span> <span class="n">people</span><span class="o">.</span><span class="n">mail</span><span class="p">,</span> <span class="n">people</span><span class="o">.</span><span class="n">password_hash</span><span class="p">,</span> <span class="n">people</span><span class="o">.</span><span class="n">gender</span><span class="p">,</span> <span class="n">people</span><span class="o">.</span><span class="n">age</span><span class="p">,</span> <span class="n">people</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>The function is used to update. The difference of control exist and control_exist_to_update is that control_exist_to_update don’t considers self existence.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># The function control exist of people with username and mail.</span>
+<span class="k">def</span> <span class="nf">control_exist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">people</span><span class="p">):</span>
+       <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+           <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+           <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM People where username = </span><span class="si">%s</span><span class="s2"> or mail = </span><span class="si">%s</span><span class="s2"> &quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">people</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="n">people</span><span class="o">.</span><span class="n">mail</span><span class="p">))</span>
+       <span class="n">row</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+       <span class="k">if</span> <span class="p">(</span><span class="n">row</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>
+           <span class="k">return</span> <span class="kc">False</span>
+       <span class="k">return</span> <span class="kc">True</span>
+
+<span class="k">def</span> <span class="nf">control_exist_to_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">people</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+       <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+       <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT id FROM People where username = </span><span class="si">%s</span><span class="s2"> or mail = </span><span class="si">%s</span><span class="s2"> &quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">people</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="n">people</span><span class="o">.</span><span class="n">mail</span><span class="p">))</span>
+   <span class="n">row</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+   <span class="k">if</span> <span class="p">(</span><span class="n">row</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>
+       <span class="k">return</span> <span class="kc">False</span>
+   <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+       <span class="k">return</span> <span class="kc">True</span>
+   <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="n">people</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
+       <span class="k">return</span> <span class="kc">False</span>
+   <span class="k">return</span> <span class="kc">True</span>
+
+<span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">people</span><span class="p">):</span>
+   <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">control_exist</span><span class="p">(</span><span class="n">people</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span><span class="p">):</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">people</span><span class="p">)</span>
+       <span class="k">return</span> <span class="kc">True</span>
+   <span class="k">else</span><span class="p">:</span>
+       <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>I did the reading from the database with the following functions. With get_role function, role information can be obtained from the username.
+The get_all function allows you to obtain a people object from the username.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_role</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+       <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+       <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;    SELECT role from people where username = </span><span class="si">%s</span><span class="s2"></span>
+<span class="s2">                              &quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">username</span><span class="p">,))</span>
+       <span class="n">role</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+       <span class="k">return</span> <span class="n">role</span>
+
+<span class="k">def</span> <span class="nf">get_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">):</span>
+   <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+       <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+       <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot; SELECT * from people where username = </span><span class="si">%s</span><span class="s2"></span>
+<span class="s2">                              &quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">username</span><span class="p">,))</span>
+       <span class="n">person</span> <span class="o">=</span> <span class="n">People</span><span class="p">()</span>
+       <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+       <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+           <span class="k">return</span> <span class="n">person</span>
+       <span class="n">person</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+       <span class="n">person</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+       <span class="n">person</span><span class="o">.</span><span class="n">name_surname</span> <span class="o">=</span> <span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+       <span class="n">person</span><span class="o">.</span><span class="n">mail</span> <span class="o">=</span> <span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span>
+       <span class="n">person</span><span class="o">.</span><span class="n">password_hash</span> <span class="o">=</span> <span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span>
+       <span class="n">person</span><span class="o">.</span><span class="n">gender</span> <span class="o">=</span> <span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">5</span><span class="p">]</span>
+       <span class="n">person</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">6</span><span class="p">]</span>
+       <span class="n">person</span><span class="o">.</span><span class="n">role</span> <span class="o">=</span> <span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">7</span><span class="p">]</span>
+       <span class="n">person</span><span class="o">.</span><span class="n">active</span> <span class="o">=</span> <span class="kc">True</span>
+       <span class="k">return</span> <span class="n">person</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="berber-model">
+<h2>Berber Model<a class="headerlink" href="#berber-model" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Berbermodel</span><span class="p">:</span>
+
+    <span class="c1"># Read function</span>
+    <span class="k">def</span> <span class="nf">get_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                            SELECT id FROM PEOPLE WHERE username = </span><span class="si">%s</span><span class="s2"></span>
+<span class="s2">                            &quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">row</span>
+
+    <span class="c1"># Insert function</span>
+    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">berber</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+                <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+                <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;INSERT INTO Berber (people_id, gender_choice, experience_year, start_time, finish_time, rates)</span>
+<span class="s2">                                 VALUES (</span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> )&quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">berber</span><span class="o">.</span><span class="n">people_id</span><span class="p">,</span> <span class="n">berber</span><span class="o">.</span><span class="n">gender_choice</span><span class="p">,</span> <span class="n">berber</span><span class="o">.</span><span class="n">experience_year</span><span class="p">,</span>
+                                                                                 <span class="n">berber</span><span class="o">.</span><span class="n">start_time</span><span class="p">,</span> <span class="n">berber</span><span class="o">.</span><span class="n">finish_time</span><span class="p">,</span> <span class="n">berber</span><span class="o">.</span><span class="n">rates</span><span class="p">))</span>
+    <span class="c1"># Delete function</span>
+    <span class="k">def</span> <span class="nf">delete_with_people_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;DELETE FROM Berber where people_id = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nb">id</span><span class="p">,))</span>
+
+    <span class="c1"># Update function</span>
+    <span class="k">def</span> <span class="nf">update_berber</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">berber</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+                <span class="sd">&quot;&quot;&quot;UPDATE Berber SET gender_choice = %s, experience_year = %s, start_time = %s, finish_time = %s  where people_id = %s&quot;&quot;&quot;</span><span class="p">,</span>
+                <span class="p">(</span><span class="n">berber</span><span class="o">.</span><span class="n">gender_choice</span><span class="p">,</span> <span class="n">berber</span><span class="o">.</span><span class="n">experience_year</span><span class="p">,</span> <span class="n">berber</span><span class="o">.</span><span class="n">start_time</span><span class="p">,</span> <span class="n">berber</span><span class="o">.</span><span class="n">finish_time</span><span class="p">,</span> <span class="n">berber</span><span class="o">.</span><span class="n">people_id</span><span class="p">))</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="c1"># Read function</span>
+    <span class="k">def</span> <span class="nf">get_all_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot; SELECT * from berber&quot;&quot;&quot;</span><span class="p">)</span>
+            <span class="n">berber_list</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+                <span class="n">berber</span> <span class="o">=</span> <span class="n">Berber</span><span class="p">()</span>
+                <span class="n">berber</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">berber</span><span class="o">.</span><span class="n">people_id</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">berber</span><span class="o">.</span><span class="n">berber_shop_id</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+                <span class="n">berber</span><span class="o">.</span><span class="n">gender_choice</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+                <span class="n">berber</span><span class="o">.</span><span class="n">experience_year</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+                <span class="n">berber</span><span class="o">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+                <span class="n">berber</span><span class="o">.</span><span class="n">finish_time</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+                <span class="n">berber</span><span class="o">.</span><span class="n">rates</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
+                <span class="n">berber_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">berber</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">berber_list</span>
+</pre></div>
+</div>
+<p>get_all_list() function is used in admin panel to list all berbers on panel.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_all_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot; SELECT * from berber&quot;&quot;&quot;</span><span class="p">)</span>
+        <span class="n">berber_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+            <span class="n">berber</span> <span class="o">=</span> <span class="n">Berber</span><span class="p">()</span>
+            <span class="n">berber</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">berber</span><span class="o">.</span><span class="n">people_id</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">berber</span><span class="o">.</span><span class="n">berber_shop_id</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">berber</span><span class="o">.</span><span class="n">gender_choice</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+            <span class="n">berber</span><span class="o">.</span><span class="n">experience_year</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+            <span class="n">berber</span><span class="o">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+            <span class="n">berber</span><span class="o">.</span><span class="n">finish_time</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+            <span class="n">berber</span><span class="o">.</span><span class="n">rates</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
+            <span class="n">berber_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">berber</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">berber_list</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="owner-model">
+<h2>Owner Model<a class="headerlink" href="#owner-model" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Ownermodel</span><span class="p">:</span>
+    <span class="c1">#Read function to get id with username</span>
+    <span class="k">def</span> <span class="nf">get_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                            SELECT id FROM PEOPLE WHERE username = </span><span class="si">%s</span><span class="s2"></span>
+<span class="s2">                            &quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">username</span><span class="p">,))</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">row</span>
+
+    <span class="c1">#Insert function with owner object</span>
+    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">owner</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;INSERT INTO Owner (people_id, tc_number, serial_number, vol_number, family_order_no, order_no)</span>
+<span class="s2">                            VALUES (</span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> , </span><span class="si">%s</span><span class="s2"> )&quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">owner</span><span class="o">.</span><span class="n">people_id</span><span class="p">,</span> <span class="n">owner</span><span class="o">.</span><span class="n">tc_number</span><span class="p">,</span> <span class="n">owner</span><span class="o">.</span><span class="n">serial_number</span><span class="p">,</span> <span class="n">owner</span><span class="o">.</span><span class="n">vol_number</span><span class="p">,</span> <span class="n">owner</span><span class="o">.</span><span class="n">family_order_no</span><span class="p">,</span> <span class="n">owner</span><span class="o">.</span><span class="n">order_no</span><span class="p">))</span>
+
+    <span class="c1">#Delete function with id</span>
+    <span class="k">def</span> <span class="nf">delete_with_people_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;DELETE FROM Owner where people_id = </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nb">id</span><span class="p">,))</span>
+
+    <span class="c1">#Update function with owner object</span>
+    <span class="k">def</span> <span class="nf">update_owner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">owner</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+                <span class="sd">&quot;&quot;&quot;UPDATE Owner SET tc_number = %s, serial_number = %s, vol_number = %s, family_order_no = %s, order_no = %s  where people_id = %s&quot;&quot;&quot;</span><span class="p">,</span>
+                <span class="p">(</span><span class="n">owner</span><span class="o">.</span><span class="n">tc_number</span><span class="p">,</span> <span class="n">owner</span><span class="o">.</span><span class="n">serial_number</span><span class="p">,</span> <span class="n">owner</span><span class="o">.</span><span class="n">vol_number</span><span class="p">,</span> <span class="n">owner</span><span class="o">.</span><span class="n">family_order_no</span><span class="p">,</span> <span class="n">owner</span><span class="o">.</span><span class="n">order_no</span><span class="p">,</span> <span class="n">owner</span><span class="o">.</span><span class="n">people_id</span><span class="p">))</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="c1">#Control function the duplicate tc_number for validation</span>
+    <span class="k">def</span> <span class="nf">control_exist_tc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tc</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM Owner where tc_number = </span><span class="si">%s</span><span class="s2"> &quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">tc</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">row</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="c1">#Read function all owners</span>
+    <span class="k">def</span> <span class="nf">get_all_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot; SELECT * from owner&quot;&quot;&quot;</span><span class="p">)</span>
+            <span class="n">owner_list</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+                <span class="n">owner</span> <span class="o">=</span> <span class="n">Owner</span><span class="p">()</span>
+                <span class="n">owner</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">owner</span><span class="o">.</span><span class="n">people_id</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">owner</span><span class="o">.</span><span class="n">tc_number</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+                <span class="n">owner</span><span class="o">.</span><span class="n">serial_number</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+                <span class="n">owner</span><span class="o">.</span><span class="n">vol_number</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+                <span class="n">owner</span><span class="o">.</span><span class="n">family_order_no</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+                <span class="n">owner</span><span class="o">.</span><span class="n">order_no</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+                <span class="n">owner_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">owner</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">owner_list</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="used-libraries">
+<h2>Used libraries<a class="headerlink" href="#used-libraries" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span><span class="p">,</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">redirect</span><span class="p">,</span> <span class="n">url_for</span><span class="p">,</span> <span class="n">current_app</span>
+<span class="kn">from</span> <span class="nn">passlib.hash</span> <span class="kn">import</span> <span class="n">pbkdf2_sha256</span> <span class="k">as</span> <span class="n">hasher</span>
+<span class="kn">from</span> <span class="nn">flask_login</span> <span class="kn">import</span> <span class="n">LoginManager</span><span class="p">,</span> <span class="n">login_user</span><span class="p">,</span> <span class="n">logout_user</span><span class="p">,</span> <span class="n">current_user</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="functions-in-views-py">
+<h2>Functions in views.py<a class="headerlink" href="#functions-in-views-py" title="Permalink to this headline">¶</a></h2>
+<p>I have built the signup_register_type, signup, signin and admin_panel pages with the following functions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">signupbase_page</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;register_type.html&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;submit_button&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;user&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;signup_user_page&#39;</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;submit_button&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;berber&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;signup_berber_page&#39;</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;submit_button&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;owner&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;signup_owner_page&#39;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;profile.html&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">signup_berber_page</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;signup_berber.html&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">person</span> <span class="o">=</span> <span class="n">People</span><span class="p">()</span>
+        <span class="n">person</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">]</span>
+        <span class="n">person</span><span class="o">.</span><span class="n">name_surname</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;name_surname&quot;</span><span class="p">]</span>
+        <span class="n">person</span><span class="o">.</span><span class="n">mail</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;mail&quot;</span><span class="p">]</span>
+        <span class="n">person</span><span class="o">.</span><span class="n">password_hash</span> <span class="o">=</span> <span class="n">hasher</span><span class="o">.</span><span class="n">hash</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">])</span>
+        <span class="n">person</span><span class="o">.</span><span class="n">gender</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;gender&quot;</span><span class="p">]</span>
+        <span class="n">person</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">]</span>
+        <span class="n">person</span><span class="o">.</span><span class="n">role</span> <span class="o">=</span> <span class="s2">&quot;berber&quot;</span>
+        <span class="n">people</span> <span class="o">=</span> <span class="n">Peoplemodel</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">people</span><span class="o">.</span><span class="n">control_exist</span><span class="p">(</span><span class="n">person</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;signup_berber.html&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;False&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">people</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+            <span class="n">berbers</span> <span class="o">=</span> <span class="n">Berbermodel</span><span class="p">()</span>
+            <span class="n">berber</span> <span class="o">=</span> <span class="n">Berber</span><span class="p">()</span>
+            <span class="n">berber</span><span class="o">.</span><span class="n">people_id</span> <span class="o">=</span> <span class="n">berbers</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">person</span><span class="o">.</span><span class="n">username</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">berber</span><span class="o">.</span><span class="n">gender_choice</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;gender_choice&quot;</span><span class="p">]</span>
+            <span class="n">berber</span><span class="o">.</span><span class="n">experience_year</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;experience&quot;</span><span class="p">]</span>
+            <span class="n">berber</span><span class="o">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;start_time&quot;</span><span class="p">][:</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">berber</span><span class="o">.</span><span class="n">finish_time</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;finish_time&quot;</span><span class="p">][:</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">berbers</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">berber</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;signup_berber.html&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;True&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;signup_berber_page&quot;</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">signup_owner_page</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;signup_owner.html&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">person</span> <span class="o">=</span> <span class="n">People</span><span class="p">()</span>
+        <span class="n">person</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">]</span>
+        <span class="n">person</span><span class="o">.</span><span class="n">name_surname</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;name_surname&quot;</span><span class="p">]</span>
+        <span class="n">person</span><span class="o">.</span><span class="n">mail</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;mail&quot;</span><span class="p">]</span>
+        <span class="n">person</span><span class="o">.</span><span class="n">password_hash</span> <span class="o">=</span> <span class="n">hasher</span><span class="o">.</span><span class="n">hash</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">])</span>
+        <span class="n">person</span><span class="o">.</span><span class="n">gender</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;gender&quot;</span><span class="p">]</span>
+        <span class="n">person</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">]</span>
+        <span class="n">person</span><span class="o">.</span><span class="n">role</span> <span class="o">=</span> <span class="s2">&quot;owner&quot;</span>
+        <span class="n">people</span> <span class="o">=</span> <span class="n">Peoplemodel</span><span class="p">()</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">people</span><span class="o">.</span><span class="n">control_exist</span><span class="p">(</span><span class="n">person</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;signup_owner.html&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;False&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">owners</span> <span class="o">=</span> <span class="n">Ownermodel</span><span class="p">()</span>
+            <span class="n">owner</span> <span class="o">=</span> <span class="n">Owner</span><span class="p">()</span>
+            <span class="n">owner</span><span class="o">.</span><span class="n">tc_number</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;tc_number&quot;</span><span class="p">]</span>
+            <span class="n">owner</span><span class="o">.</span><span class="n">serial_number</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;serial_number&quot;</span><span class="p">]</span>
+            <span class="n">owner</span><span class="o">.</span><span class="n">vol_number</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;vol_number&quot;</span><span class="p">]</span>
+            <span class="n">owner</span><span class="o">.</span><span class="n">family_order_no</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;family_order_no&quot;</span><span class="p">]</span>
+            <span class="n">owner</span><span class="o">.</span><span class="n">order_no</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;order_no&quot;</span><span class="p">]</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">owners</span><span class="o">.</span><span class="n">control_exist_tc</span><span class="p">(</span><span class="n">owner</span><span class="o">.</span><span class="n">tc_number</span><span class="p">)):</span>
+                <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;signup_owner.html&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;The TC Number has been saved already &quot;</span><span class="p">)</span>
+            <span class="k">elif</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">owner</span><span class="o">.</span><span class="n">tc_number</span><span class="p">)</span><span class="o">!=</span><span class="mi">11</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;signup_owner.html&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;TC Number Length must be 11 digits&quot;</span><span class="p">)</span>
+            <span class="k">elif</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">owner</span><span class="o">.</span><span class="n">serial_number</span><span class="p">)</span><span class="o">!=</span><span class="mi">3</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;signup_owner.html&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Serial number must be 3 digits&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">owner</span><span class="o">.</span><span class="n">vol_number</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;signup_owner.html&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Vol number must be 3 digits&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">owner</span><span class="o">.</span><span class="n">family_order_no</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;signup_owner.html&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Family order number must be 3 digits&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">owner</span><span class="o">.</span><span class="n">order_no</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;signup_owner.html&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Order number must be 3 digits&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">people</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+                <span class="n">owner</span><span class="o">.</span><span class="n">people_id</span> <span class="o">=</span> <span class="n">owners</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">person</span><span class="o">.</span><span class="n">username</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">owners</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">owner</span><span class="p">)</span>
+                <span class="c1">#tc kimlik varlığını kontrolü</span>
+                <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;signup_owner.html&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;True&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;signup_owner_page&quot;</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">signup_user_page</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;signup_user.html&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">person</span> <span class="o">=</span> <span class="n">People</span><span class="p">()</span>
+        <span class="n">person</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">]</span>
+        <span class="n">person</span><span class="o">.</span><span class="n">name_surname</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;name_surname&quot;</span><span class="p">]</span>
+        <span class="n">person</span><span class="o">.</span><span class="n">mail</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;mail&quot;</span><span class="p">]</span>
+        <span class="n">person</span><span class="o">.</span><span class="n">password_hash</span> <span class="o">=</span> <span class="n">hasher</span><span class="o">.</span><span class="n">hash</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">])</span>
+        <span class="n">person</span><span class="o">.</span><span class="n">gender</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;gender&quot;</span><span class="p">]</span>
+        <span class="n">person</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">]</span>
+        <span class="n">person</span><span class="o">.</span><span class="n">role</span> <span class="o">=</span> <span class="s2">&quot;user&quot;</span>
+
+        <span class="n">people</span> <span class="o">=</span> <span class="n">Peoplemodel</span><span class="p">()</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">people</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">person</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;signup_user.html&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;True&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;signup_user.html&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;False&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;signup_user_page&quot;</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">signin</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;signin.html&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">username</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">]</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">]</span>
+        <span class="n">people</span> <span class="o">=</span> <span class="n">Peoplemodel</span><span class="p">()</span>
+
+        <span class="c1">#Eğer kullanıcı databasede ekli değilse patlar //Düzeltildi</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">people</span><span class="o">.</span><span class="n">control_exist_username</span><span class="p">(</span><span class="n">username</span><span class="p">)):</span>
+            <span class="n">person</span> <span class="o">=</span> <span class="n">People</span><span class="p">()</span>
+            <span class="n">person</span> <span class="o">=</span> <span class="n">people</span><span class="o">.</span><span class="n">get_all</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+
+            <span class="k">if</span><span class="p">(</span><span class="n">hasher</span><span class="o">.</span><span class="n">verify</span><span class="p">(</span><span class="n">password</span><span class="p">,</span> <span class="n">person</span><span class="o">.</span><span class="n">password_hash</span><span class="p">)):</span>
+                <span class="n">login_user</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+                <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;LOGGED_USERS&quot;</span><span class="p">][</span><span class="n">person</span><span class="o">.</span><span class="n">username</span><span class="p">]</span> <span class="o">=</span> <span class="n">person</span>
+
+                <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;signin.html&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;True&quot;</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="n">people</span><span class="o">.</span><span class="n">get_role</span><span class="p">(</span><span class="n">username</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;signin.html&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;False&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;signin.html&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;False&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">signout</span><span class="p">():</span>
+    <span class="n">logout_user</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;home_page&quot;</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">admin_panel</span><span class="p">():</span>
+    <span class="n">peoples</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">people</span> <span class="o">=</span> <span class="n">Peoplemodel</span><span class="p">()</span>
+    <span class="n">berbers</span> <span class="o">=</span> <span class="n">Berbermodel</span><span class="p">()</span>
+    <span class="n">owners</span> <span class="o">=</span> <span class="n">Ownermodel</span><span class="p">()</span>
+    <span class="n">peoples</span> <span class="o">=</span> <span class="n">people</span><span class="o">.</span><span class="n">get_all_list</span><span class="p">()</span>
+    <span class="n">berber_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">berber_list</span> <span class="o">=</span> <span class="n">berbers</span><span class="o">.</span><span class="n">get_all_list</span><span class="p">()</span>
+    <span class="n">owner_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">owner_list</span> <span class="o">=</span> <span class="n">owners</span><span class="o">.</span><span class="n">get_all_list</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">current_user</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;admin&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;admin_panel.html&quot;</span><span class="p">,</span> <span class="n">people</span><span class="o">=</span><span class="n">peoples</span><span class="p">,</span> <span class="n">berbers</span><span class="o">=</span><span class="n">berber_list</span><span class="p">,</span> <span class="n">owners</span><span class="o">=</span><span class="n">owner_list</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;signin.html&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;admin_error&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;edit&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;delete&quot;</span><span class="p">:</span>
+            <span class="n">form_movie_keys</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">getlist</span><span class="p">(</span><span class="s2">&quot;people_keys&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">form_movie_keys</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">peoples</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">j</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="ow">and</span> <span class="n">j</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;user&quot;</span><span class="p">:</span>
+                        <span class="n">people</span><span class="o">.</span><span class="n">delete_id</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">j</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="ow">and</span> <span class="n">j</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;berber&quot;</span><span class="p">:</span>
+                        <span class="n">berbers</span><span class="o">.</span><span class="n">delete_with_people_id</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+                        <span class="n">people</span><span class="o">.</span><span class="n">delete_id</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">j</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="ow">and</span> <span class="n">j</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;owner&quot;</span><span class="p">:</span>
+                        <span class="n">owners</span><span class="o">.</span><span class="n">delete_with_people_id</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+                        <span class="n">people</span><span class="o">.</span><span class="n">delete_id</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="s2">&quot;update&quot;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;edit&quot;</span><span class="p">]:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">peoples</span><span class="p">:</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;edit&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="n">i</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
+                    <span class="n">person</span> <span class="o">=</span> <span class="n">People</span><span class="p">()</span>
+                    <span class="n">person</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">]</span>
+                    <span class="n">person</span><span class="o">.</span><span class="n">name_surname</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;name_surname&quot;</span><span class="p">]</span>
+                    <span class="n">person</span><span class="o">.</span><span class="n">mail</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;mail&quot;</span><span class="p">]</span>
+                    <span class="n">person</span><span class="o">.</span><span class="n">password_hash</span> <span class="o">=</span> <span class="n">hasher</span><span class="o">.</span><span class="n">hash</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">])</span>
+                    <span class="n">person</span><span class="o">.</span><span class="n">gender</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;gender&quot;</span><span class="p">]</span>
+                    <span class="n">person</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">]</span>
+                    <span class="n">person</span><span class="o">.</span><span class="n">role</span> <span class="o">=</span> <span class="s2">&quot;user&quot;</span>
+                    <span class="n">person</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">id</span>
+
+                    <span class="c1">#Validation</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">person</span><span class="o">.</span><span class="n">name_surname</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">50</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">person</span><span class="o">.</span><span class="n">username</span><span class="p">)</span> <span class="o">&gt;</span><span class="mi">50</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">person</span><span class="o">.</span><span class="n">mail</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">300</span><span class="p">:</span>
+                        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;update.html&quot;</span><span class="p">,</span> <span class="n">person</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;You should check input validations.&quot;</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;user&quot;</span> <span class="ow">or</span> <span class="n">i</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;admin&quot;</span><span class="p">:</span>
+                        <span class="k">if</span><span class="p">(</span><span class="n">people</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">person</span><span class="p">)):</span>
+                            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;admin_panel.html&quot;</span><span class="p">,</span> <span class="n">people</span><span class="o">=</span><span class="n">peoples</span><span class="p">,</span> <span class="n">berbers</span><span class="o">=</span><span class="n">berber_list</span><span class="p">,</span><span class="n">owners</span><span class="o">=</span><span class="n">owner_list</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;True&quot;</span><span class="p">)</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;admin_panel.html&quot;</span><span class="p">,</span> <span class="n">people</span><span class="o">=</span><span class="n">peoples</span><span class="p">,</span> <span class="n">berbers</span><span class="o">=</span><span class="n">berber_list</span><span class="p">,</span><span class="n">owners</span><span class="o">=</span><span class="n">owner_list</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;False&quot;</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">i</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;berber&quot;</span><span class="p">:</span>
+                        <span class="n">berbers</span> <span class="o">=</span> <span class="n">Berbermodel</span><span class="p">()</span>
+                        <span class="n">berber</span> <span class="o">=</span> <span class="n">Berber</span><span class="p">()</span>
+                        <span class="n">berber</span><span class="o">.</span><span class="n">people_id</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">id</span>
+                        <span class="n">berber</span><span class="o">.</span><span class="n">gender_choice</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;gender_choice&quot;</span><span class="p">]</span>
+                        <span class="n">berber</span><span class="o">.</span><span class="n">experience_year</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;experience&quot;</span><span class="p">]</span>
+                        <span class="n">berber</span><span class="o">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;start_time&quot;</span><span class="p">][:</span><span class="mi">2</span><span class="p">]</span>
+                        <span class="n">berber</span><span class="o">.</span><span class="n">finish_time</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;finish_time&quot;</span><span class="p">][:</span><span class="mi">2</span><span class="p">]</span>
+                        <span class="n">berbers</span> <span class="o">=</span> <span class="n">Berbermodel</span><span class="p">()</span>
+                        <span class="n">people</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+                        <span class="n">berbers</span><span class="o">.</span><span class="n">update_berber</span><span class="p">(</span><span class="n">berber</span><span class="p">)</span>
+                        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;admin_panel.html&quot;</span><span class="p">,</span> <span class="n">people</span><span class="o">=</span><span class="n">peoples</span><span class="p">,</span> <span class="n">berbers</span><span class="o">=</span><span class="n">berber_list</span><span class="p">,</span> <span class="n">owners</span><span class="o">=</span><span class="n">owner_list</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;True&quot;</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">i</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;owner&quot;</span><span class="p">:</span>
+                        <span class="n">owner</span> <span class="o">=</span> <span class="n">Owner</span><span class="p">()</span>
+                        <span class="n">owner</span><span class="o">.</span><span class="n">people_id</span> <span class="o">=</span> <span class="n">owners</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">person</span><span class="o">.</span><span class="n">username</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                        <span class="n">owner</span><span class="o">.</span><span class="n">tc_number</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;tc_number&quot;</span><span class="p">]</span>
+                        <span class="n">owner</span><span class="o">.</span><span class="n">serial_number</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;serial_number&quot;</span><span class="p">]</span>
+                        <span class="n">owner</span><span class="o">.</span><span class="n">vol_number</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;vol_number&quot;</span><span class="p">]</span>
+                        <span class="n">owner</span><span class="o">.</span><span class="n">family_order_no</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;family_order_no&quot;</span><span class="p">]</span>
+                        <span class="n">owner</span><span class="o">.</span><span class="n">order_no</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;order_no&quot;</span><span class="p">]</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="n">owners</span><span class="o">.</span><span class="n">control_exist_tc</span><span class="p">(</span><span class="n">owner</span><span class="o">.</span><span class="n">tc_number</span><span class="p">)):</span>
+                            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;admin_panel.html&quot;</span><span class="p">,</span> <span class="n">people</span><span class="o">=</span><span class="n">peoples</span><span class="p">,</span> <span class="n">berbers</span><span class="o">=</span><span class="n">berber_list</span><span class="p">,</span> <span class="n">owners</span><span class="o">=</span><span class="n">owner_list</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;False&quot;</span><span class="p">)</span>
+                        <span class="n">people</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+                        <span class="n">owners</span><span class="o">.</span><span class="n">update_owner</span><span class="p">(</span><span class="n">owner</span><span class="p">)</span>
+                        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;admin_panel.html&quot;</span><span class="p">,</span> <span class="n">people</span><span class="o">=</span><span class="n">peoples</span><span class="p">,</span> <span class="n">berbers</span><span class="o">=</span><span class="n">berber_list</span><span class="p">,</span> <span class="n">owners</span><span class="o">=</span><span class="n">owner_list</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;True&quot;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="s2">&quot;order_id&quot;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;edit&quot;</span><span class="p">]:</span>
+            <span class="n">peoples</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">peoples</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">people</span><span class="p">:</span> <span class="n">people</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>   <span class="c1"># sort by age</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;admin_panel.html&quot;</span><span class="p">,</span> <span class="n">people</span><span class="o">=</span><span class="n">peoples</span><span class="p">,</span> <span class="n">berbers</span><span class="o">=</span><span class="n">berber_list</span><span class="p">,</span> <span class="n">owners</span><span class="o">=</span><span class="n">owner_list</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="s2">&quot;order_username&quot;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;edit&quot;</span><span class="p">]:</span>
+            <span class="n">peoples</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">peoples</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">people</span><span class="p">:</span> <span class="n">people</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>  <span class="c1"># sort by age</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;admin_panel.html&quot;</span><span class="p">,</span> <span class="n">people</span><span class="o">=</span><span class="n">peoples</span><span class="p">,</span> <span class="n">berbers</span><span class="o">=</span><span class="n">berber_list</span><span class="p">,</span> <span class="n">owners</span><span class="o">=</span><span class="n">owner_list</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="s2">&quot;order_role&quot;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;edit&quot;</span><span class="p">]:</span>
+            <span class="n">peoples</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">peoples</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">people</span><span class="p">:</span> <span class="n">people</span><span class="o">.</span><span class="n">role</span><span class="p">)</span>  <span class="c1"># sort by age</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;admin_panel.html&quot;</span><span class="p">,</span> <span class="n">people</span><span class="o">=</span><span class="n">peoples</span><span class="p">,</span> <span class="n">berbers</span><span class="o">=</span><span class="n">berber_list</span><span class="p">,</span> <span class="n">owners</span><span class="o">=</span><span class="n">owner_list</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">peoples</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;edit&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="n">i</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;update.html&quot;</span><span class="p">,</span> <span class="n">person</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;admin_panel&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="validation-examples">
+<h2>Validation Examples<a class="headerlink" href="#validation-examples" title="Permalink to this headline">¶</a></h2>
+<p>I checked validation of inputs with control blocks. Validation examples are below.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">person</span><span class="o">.</span><span class="n">name_surname</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">50</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">person</span><span class="o">.</span><span class="n">username</span><span class="p">)</span> <span class="o">&gt;</span><span class="mi">50</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">person</span><span class="o">.</span><span class="n">mail</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">300</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;update.html&quot;</span><span class="p">,</span> <span class="n">person</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;You should check input validations.&quot;</span><span class="p">)</span>
+
+<span class="k">if</span><span class="p">(</span><span class="n">owners</span><span class="o">.</span><span class="n">control_exist_tc</span><span class="p">(</span><span class="n">owner</span><span class="o">.</span><span class="n">tc_number</span><span class="p">)):</span>
+                <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;signup_owner.html&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;The TC Number has been saved already &quot;</span><span class="p">)</span>
+            <span class="k">elif</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">owner</span><span class="o">.</span><span class="n">tc_number</span><span class="p">)</span><span class="o">!=</span><span class="mi">11</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;signup_owner.html&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;TC Number Length must be 11 digits&quot;</span><span class="p">)</span>
+            <span class="k">elif</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">owner</span><span class="o">.</span><span class="n">serial_number</span><span class="p">)</span><span class="o">!=</span><span class="mi">3</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;signup_owner.html&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Serial number must be 3 digits&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">owner</span><span class="o">.</span><span class="n">vol_number</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;signup_owner.html&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Vol number must be 3 digits&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">owner</span><span class="o">.</span><span class="n">family_order_no</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;signup_owner.html&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Family order number must be 3 digits&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">owner</span><span class="o">.</span><span class="n">order_no</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;signup_owner.html&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Order number must be 3 digits&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">people</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+                <span class="n">owner</span><span class="o">.</span><span class="n">people_id</span> <span class="o">=</span> <span class="n">owners</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">person</span><span class="o">.</span><span class="n">username</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">owners</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">owner</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="member2.html" class="btn btn-neutral float-right" title="Parts Implemented by Ertugrul Semiz" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Developer Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, ITUCSDB1933
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

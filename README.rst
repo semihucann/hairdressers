@@ -1,7 +1,8 @@
 Reservation Web App for Hairdressers
 ------------------------------------
 
-Reservation web app developed with flask vs postgresql.
+Reservation web app developed with the Python language, the Flask web application framework,
+and the PostgreSQL database.
 
 You can review this project that we have completed with 4 of my friends via the following urls.
 
@@ -11,8 +12,6 @@ You can review this project that we have completed with 4 of my friends via the 
 
 This repository contains a group project for the Database Systems course
 of the Istanbul Technical University Computer Engineering Department.
-The project uses the Python language, the Flask web application framework,
-and the PostgreSQL database.
 
 How to use this repository
 --------------------------
